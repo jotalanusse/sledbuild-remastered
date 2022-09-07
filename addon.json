@@ -4,7 +4,8 @@
 	"tags"		:	[ "fun", "build" ],
 	"ignore"	:
 	[
-        ".git*",
+		"dev*",
+    ".git*",
 		"*.md",
 		"*.vcproj",
 		"*.svn*",
