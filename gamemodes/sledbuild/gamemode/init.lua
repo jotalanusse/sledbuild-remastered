@@ -1,5 +1,5 @@
---// Help stuff //--
---// Scoreboard & Timer & General Networking fixes by Meidor //--
+-- Help stuff --
+-- Scoreboard & Timer & General Networking fixes by Meidor --
 local HelpTable = {}
 
 function AddHelp( cmd, info )
@@ -21,14 +21,14 @@ function SendHelp( ply )
 		end
 	end
 end
---// end Help stuff //--
+-- end Help stuff --
 
 -- Sledbuild server file
 include( 'shared.lua' )
 include( 'sv_statssaving.lua' )
 include( 'sv_chatcmd.lua' )
 
-// Send resources to client
+-- Send resources to client
 resource.AddFile("materials/gui/sledbuild/timer_bg.vtf")
 resource.AddFile("materials/gui/sledbuild/timer_bg.vmt")
 resource.AddFile("materials/gui/sledbuild/timer_ro.vtf")
@@ -68,14 +68,14 @@ function HewkPlayerInitialSpawn( pl )
 	util.PrecacheSound( "vo/npc/barney/ba_damnit.wav" )
 	util.PrecacheSound( "ambient/alarms/warningbell1.wav" )
 
-	// Disable Bloom Rape
+	-- Disable Bloom Rape
 	pl:ConCommand("pp_bloom 0")
 
 	pl:SetCollisionGroup( COLLISION_GROUP_WEAPON )
 
 	pl:SelectWeapon( "weapon_physgun" )
 
-	// Notify of new racer
+	-- Notify of new racer
 	for k,v in pairs(player.GetAll()) do
 		v:PrintMessage( HUD_PRINTTALK , "[Sledbuild] " .. pl:Nick() .. " finished joining the server.")
 	end
@@ -84,17 +84,17 @@ function HewkPlayerInitialSpawn( pl )
 end
 hook.Add("PlayerInitialSpawn","HewkPlayerInitialSpawn", HewkPlayerInitialSpawn)
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function HewkPlayerSpawn( pl )
 
-	// Call item loadout function
+	-- Call item loadout function
 	hook.Call( "PlayerLoadout", GAMEMODE, pl )
 	
-	// Set player model
+	-- Set player model
 	hook.Call( "PlayerSetModel", GAMEMODE, pl )
 
-	// Is Racing
+	-- Is Racing
 	pl:SetNetworkedBool( "IsRacing", false )
 	pl:SetNetworkedBool( "OnTrack", false )
 
@@ -102,7 +102,7 @@ function HewkPlayerSpawn( pl )
 
 	pl:SelectWeapon( "weapon_physgun" )
 
-	// Set team building
+	-- Set team building
 	pl:SetTeam( TEAM_BUILDING )
 	
 	SendHelp( pl )
@@ -117,7 +117,7 @@ end
 hook.Add("PlayerSpawn","HewkPlayerSpawn",HewkPlayerSpawn)
 
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function GM:PlayerLoadout( pl )
 	if pl:IsAdmin() then
@@ -131,12 +131,12 @@ function GM:PlayerLoadout( pl )
 	pl:Give( "weapon_physcannon" )
 end
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function GM:ShowHelp( ply )
 end
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function NewRound()	
 	local Many = _G["HowMany"]
@@ -188,27 +188,27 @@ function NewRound()
 	end 
 
 
-      // Reset the race teleport trigger
+      -- Reset the race teleport trigger
 	for k,v in pairs(ents.FindByClass("lng_teleport")) do
 		 v:Reset()
 	end
 
-	// Disable the blocker
+	-- Disable the blocker
 	for k,v in pairs(ents.FindByName("Blocker")) do
 		v:Fire("Disable","","0")
 	end
 
-	// Enable the pusher
+	-- Enable the pusher
 	for k,v in pairs(ents.FindByName("Pusher")) do
 		v:Fire("Enable","","0")
 	end
 
-	// Notify of new race
+	-- Notify of new race
 	for k,v in pairs(player.GetAll()) do
 		v:PrintMessage( HUD_PRINTTALK , "Race [#" .. _G["HowMany"] .. "] Started.")
 	end
 
-	// Remove player colours
+	-- Remove player colours
 	for k,v in pairs(player.GetAll()) do
 		v:SetColor(Color(255, 255, 255, 255))
 	end
@@ -218,21 +218,21 @@ function NewRound()
 end
 
 timer.Create( "NewRoundTimer", racetimertime, 0 , NewRound) -- <--
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function RoundClean()
-	// Disable the pusher
+	-- Disable the pusher
 	for k,v in pairs(ents.FindByName("Pusher")) do
 		v:Fire("Disable","","0")
 	end
 
-	// Enable the blocker
+	-- Enable the blocker
 	for k,v in pairs(ents.FindByName("Blocker")) do
 		v:Fire("Enable","","0")
 	end	
 end
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function LimitVehicles( pl, mdl )
 	if mdl != "models/vehicles/prisoner_pod_inner.mdl" && mdl != "models/nova/airboat_seat.mdl" then
@@ -243,7 +243,7 @@ end
 
 hook.Add("PlayerSpawnVehicle", "LimitVehicles", LimitVehicles)
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function LimitTools( ply, trace, mode )
 	if !ply:IsAdmin() and (trace.Entity:GetClass() == "func_brush" || trace.Entity:GetClass() == "player") then 
@@ -254,7 +254,7 @@ end
 
 hook.Add("CanTool", "LimitTools", LimitTools)
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function LimitPhysgun( ply, ent )
 	if ent:GetClass() == "func_brush" then
@@ -269,13 +269,13 @@ function LimitPhysgun( ply, ent )
 end
 hook.Add("PhysgunPickup", "LimitPhysgun", LimitPhysgun)
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function GM:DoPlayerDeath( ply, attacker, dmginfo )
 	ply:CreateRagdoll()
 end 
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function AdminNoclip( player, bool )
 	if player:IsAdmin() then 
@@ -287,7 +287,7 @@ end
 
 hook.Add("PlayerNoClip", "AdminNoclip", AdminNoclip)
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function LimitToolGuns( ply, trace, mode )
 	local slbrestools = {"balloon","ballsocket_adv","button","dynamite","elastic","emitter","eyeposer","faceposer","finger","hoverball","hydraulic","ignite","inflator","lamp","light","magnetise","muscle","nail","paint","physprop","pulley","rope","slider","spawner","statue","thruster","turret","winch"}
@@ -300,7 +300,7 @@ function LimitToolGuns( ply, trace, mode )
 end
 hook.Add("CanTool", "LimitToolGuns", LimitToolGuns)
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function PlayarSpawnObject( ply )
 	if ply:Team() == TEAM_RACING then
@@ -312,7 +312,7 @@ end
 
 hook.Add("PlayerSpawnObject","PlayarSpawnObject", PlayarSpawnObject)
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function SpawnedProp( userid, model, prop )
   	if prop:BoundingRadius() > 128 then -- Note: Radius is half the size of the diameter (half the size of the prop)
@@ -326,7 +326,7 @@ end
 
 hook.Add( "PlayerSpawnedProp", "SpawnedProp", SpawnedProp )
 
-// ---------------------------------------------------------------------------
+-- ---------------------------------------------------------------------------
 
 function SpawnedVehicle( userid, prop )
 	prop:SetCollisionGroup( COLLISION_GROUP_DEBRIS_TRIGGER )

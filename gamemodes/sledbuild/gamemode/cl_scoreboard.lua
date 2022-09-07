@@ -1,4 +1,4 @@
---// Sledbuild scoreboard + some stuff //--
+-- Sledbuild scoreboard + some stuff --
 
 local function CreatePlayerInfo( pl )
 	local pinfo = { pl:Nick(),
@@ -53,13 +53,13 @@ function HUDDrawScoreBoard( startX, startY, bWidth )
 	
 	local bHeight = 0
 	
-	// Get the font height
+	-- Get the font height
 	surface.SetFont( "ScoreboardText" )
 	local txWidth, txHeight = surface.GetTextSize( "W" )		
 	local RowHeight = txHeight + 4
 	txWidth, txHeight = nil, nil
 			
-	// Column width definitions
+	-- Column width definitions
 	local ColWidths = {}
 	for k, v in pairs( Captions ) do
 		local tcol = {}
@@ -73,10 +73,10 @@ function HUDDrawScoreBoard( startX, startY, bWidth )
 		ColWidths[k] = tcol
 	end
 	
-	// Scoreboard table creation	
+	-- Scoreboard table creation	
 	local SBT = {}
 	
-	// - The row with the captions
+	-- The row with the captions
 	local CaptionRow = {}
 	CaptionRow.TYPE = "Captions"
 	CaptionRow.Color = BGCOLOR
@@ -88,7 +88,7 @@ function HUDDrawScoreBoard( startX, startY, bWidth )
 	table.insert( SBT, #SBT+1, CaptionRow )
 	CaptionRow = nil
 	
-	// - The rows with the players
+	-- The rows with the players
 	for tid, tinfo in pairs( STable ) do
 		local tcolorn = Color( 250, 250, 250, CELLALPHA )
 		local tcolorh = Color( 230, 230, 250, CELLALPHA )
@@ -109,7 +109,7 @@ function HUDDrawScoreBoard( startX, startY, bWidth )
 		end
 	end
 	
-	// Draw the Scoreboard table
+	-- Draw the Scoreboard table
 	bHeight = #SBT * RowHeight + 10
 	
 	//SetDrawColor( BGCOLOR )

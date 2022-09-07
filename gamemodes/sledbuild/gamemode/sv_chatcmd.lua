@@ -1,4 +1,4 @@
--- // Chat CMD Lib by Boarstee :P -- // --
+-- Chat CMD Lib by Boarstee :P --
 
 local ChatCommands = {}
 ChatCommands.Commands = {}
@@ -73,7 +73,7 @@ function AddChatCommand( str, info, func, antispamm )
 	end
 end
 
--- // -- Some useful functions -- // --
+-- Some useful functions --
 
 function ChatCommands.PrintChat( ply, text )
 	if type( ply ) == "table" then
@@ -109,7 +109,7 @@ function ChatCommands.PrintChatTeam( team, text )
 	end
 end
 
--- // -- Some "default" chat commands ;) -- // --
+-- Some "default" chat commands ;) --
 
 function ChatCommands.Whisper( ply, arg )
 	local text = ply:Name() .." [Whisper]: " .. arg
@@ -136,7 +136,7 @@ function ChatCommands.RemoveFires( ply, arg )
 end
 AddChatCommand( "fire", "Removes all fires", ChatCommands.RemoveFires, true )
 
--- // -- Sledbuild commands!!! -- // --
+-- Sledbuild commands!!! --
 
 local CCMD_taunts = {
 	"vo/npc/male01/hacks02.wav",

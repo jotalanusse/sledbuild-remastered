@@ -3,7 +3,7 @@
 ENT.Base = "base_entity"
 ENT.Type = "brush"
 
-function ENT:Initialize()	
+function ENT:Initialize()
 end
 
 function ENT:StartTouch( entity )
@@ -38,7 +38,7 @@ end
 
 --[[---------------------------------------------------------
    Name: Think
-   Desc: Entity's think function. 
+   Desc: Entity's think function.
 -----------------------------------------------------------]]
 function ENT:Think()
 end

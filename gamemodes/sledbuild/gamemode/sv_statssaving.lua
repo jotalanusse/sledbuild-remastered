@@ -59,7 +59,7 @@ function stats_save( ply )
 	sql.Query( "UPDATE "..PLAYERSTATS.." SET topspeed = "..topspeed..", won = "..won..", lost = "..lost.." WHERE steamid = "..sid..";" )
 end
 
--- // -- Player Stats Shit here -- // --
+-- Player Stats Shit here --
 
 local lastspeedpublish = CurTime()
 local PUBLISHPAUSE = 0.66

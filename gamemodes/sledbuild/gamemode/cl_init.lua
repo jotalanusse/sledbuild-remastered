@@ -1,4 +1,4 @@
-include( 'shared.lua' ) // ########### DON'T COMMENT THESE OUT
+include( 'shared.lua' ) -- ########### DON'T COMMENT THESE OUT
 include( 'cl_menusys.lua' )
 
 local slbprevspeed = 0
@@ -170,7 +170,7 @@ function Leeroy()
 	surface.SetDrawColor(0,0,0,150)
 	surface.DrawTexturedRect(ScrW()-256+32,0,256-32,256+64)
 	
-	// Next Race clock BEGIN - ReaperSWE
+	-- Next Race clock BEGIN - ReaperSWE
 	local slbclockx = ScrW()*1-24
 	local slbclocky = 136
 	local slbclockz = 0.6
@@ -192,31 +192,31 @@ function Leeroy()
 	surface.SetTexture(surface.GetTextureID("gui/sledbuild/timer_sh"))
 	surface.SetDrawColor(255,255,255,150)
 	surface.DrawTexturedRect(slbclockx-64,slbclocky,128*slbclockz,128*slbclockz) 
-	// Next Race clock END
+	-- Next Race clock END
 
 	
 	surface.SetTexture(surface.GetTextureID("GUI/gradient"))
 	surface.SetDrawColor(0,0,0,255)
 	surface.DrawTexturedRect(0,00,225,160)
-	// Player Name
+	-- Player Name
 	draw.DrawText("Name: " .. Name,"ScoreboardText",13,10,Color(255, 255, 255, 255),0,0)
 
-	// Stats
+	-- Stats
 	draw.DrawText("Top Three in " .. Won .. " out of " .. Won + Lost .. " races","ScoreboardText",13,30,Color(255, 255, 255, 255),0,0)
 
-	// Building Racing
+	-- Building Racing
 	draw.DrawText("Racing: " .. HowManyRacing .. " of " .. TotalPlayers .." players","ScoreboardText",13,50,Color(255, 255, 255, 255),0,0)
 
-	// Last Race Title
+	-- Last Race Title
 	draw.DrawText("Race #" ..HM.. " Results:","ScoreboardText",13,70,Color(255, 255, 255, 255),0,0)
 
-	// Last Race Stats
+	-- Last Race Stats
 	draw.DrawText("1st: " .. FirstPosition,"ScoreboardText",13, 90,Color(0, 255, 0, 255),0,0)
 	draw.DrawText("2nd: " .. SecondPosition,"ScoreboardText",13, 110,Color(255, 255, 0, 255),0,0)
 	draw.DrawText("3rd: " .. ThirdPosition,"ScoreboardText",13, 130,Color(255, 0, 0, 255),0,0)
 	
 	if ( IsValid( LocalPlayer()) and LocalPlayer():InVehicle() ) then
-		local conv = 17.6 // mph convertion value
+		local conv = 17.6 -- mph convertion value
 		local speed = LocalPlayer():GetVehicle():GetVelocity():Length() 	
 		speedstr = math.Round( speed / conv * 10 ) / 10
 		hackerspeed =  speedstr
@@ -244,7 +244,7 @@ function Leeroy()
 		if speedstr < 0 then speedstr = 0 end
 	end
 	
-	// Topspeed clock BEGIN - ReaperSWE
+	-- Topspeed clock BEGIN - ReaperSWE
 	local slbspeedx = ScrW()*1.0-64-8
 	local slbspeedy = 8
 	local slbspeedz = 1
@@ -255,7 +255,7 @@ function Leeroy()
 	local slbtimer = 0
 	slbtimer = speedstr*-270/speedometer_maxspeed + 135
 	slbtimer2 = currenttopspeed*-270/speedometer_maxspeed + 135
-	slbtimer3 = globaltopspeed*-270/speedometer_maxspeed + 135 // globaltopspeed
+	slbtimer3 = globaltopspeed*-270/speedometer_maxspeed + 135 -- globaltopspeed
 	
 	draw.DrawText("(" .. currenttopspeed .. " MPH)","ScoreboardText",slbspeedx,slbspeedy + 64 + 16,Color(150, 150, 150, 255),1)
 	draw.DrawText("" .. speedstr .. " MPH","ScoreboardText",slbspeedx,slbspeedy + 64 + 16+12,Color(150, 150, 150, 255),1)
@@ -271,7 +271,7 @@ function Leeroy()
 	surface.SetTexture(surface.GetTextureID("gui/sledbuild/timer_sh"))
 	surface.SetDrawColor(255,255,255,150)
 	surface.DrawTexturedRect(slbspeedx-64,slbspeedy,128*slbspeedz,128*slbspeedz) 
-	// Topspeed clock END
+	-- Topspeed clock END
 	
 	drawplayernames()
 	PublishTopSpeeds()

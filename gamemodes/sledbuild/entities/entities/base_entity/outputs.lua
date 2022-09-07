@@ -1,11 +1,13 @@
 
-// This is called from ENT:KeyValue(key,value) to store the output from
-// the map, it could also be called from ENT:AcceptInput I think, so if
-// ent_fire addoutput is used, we can store that too (that hasn't been 
-// tested though).
-// Usage: self:StoreOutput("<name of output>","<entities to fire>,<input name>,<param>,<delay>,<times to be used>")
-// If called from ENT:KeyValue, then the first parameter is the key, and
-// the second is value.
+--[[
+This is called from ENT:KeyValue(key,value) to store the output from
+the map, it could also be called from ENT:AcceptInput I think, so if
+ent_fire addoutput is used, we can store that too (that hasn't been 
+tested though).
+Usage: self:StoreOutput("<name of output>","<entities to fire>,<input name>,<param>,<delay>,<times to be used>")
+If called from ENT:KeyValue, then the first parameter is the key, and
+the second is value.
+--]]
 
 function ENT:StoreOutput(name, info)
 	local rawData = string.Explode(",",info);
@@ -24,8 +26,7 @@ function ENT:StoreOutput(name, info)
 	table.insert(self.Outputs[name], Output);
 end
 
-// Nice helper function, this does all the work. Returns false if the
-// output should be removed from the list.
+-- Nice helper function, this does all the work. Returns false if the output should be removed from the list.
 
 local function FireSingleOutput(output, this, activator)
 
@@ -54,7 +55,7 @@ local function FireSingleOutput(output, this, activator)
 	return (output.times > 0) || (output.times == -1)
 end
 
-// This function is used to trigger an output. 
+-- This function is used to trigger an output. 
 
 function ENT:TriggerOutput(name, activator)
 	if (!self.Outputs) then return end

@@ -1,4 +1,4 @@
--- // help screen here // --
+-- help screen here --
 
 local Commandhelp = {}
 local function usmg_addhelp( um ) -- usermessages ftw
@@ -7,7 +7,7 @@ local function usmg_addhelp( um ) -- usermessages ftw
 	newentry[2] = um:ReadString()
 		
 	Commandhelp[newentry[1]] = newentry
-	//table.insert( Commandhelp, newentry )
+	-- table.insert( Commandhelp, newentry )
 end
 usermessage.Hook( "addhelp", usmg_addhelp )
 
@@ -15,13 +15,13 @@ function HUDDrawHelpScreen( startX, startY, bWidth )
 	local Captions = { {"Command",20}, {"Info",80} }
 	local bHeight = 0
 	
-	// Get the font height
+	-- Get the font height
 	surface.SetFont( "ScoreboardText" )
 	local txWidth, txHeight = surface.GetTextSize( "W" )		
 	local RowHeight = txHeight + 4
 	txWidth, txHeight = nil, nil
 	
-	// Global informations/help
+	-- Global informations/help
 	local infoheight = RowHeight * 5
 	-- I've got to make this more dynamic..
 	
@@ -42,7 +42,7 @@ function HUDDrawHelpScreen( startX, startY, bWidth )
 		
 	startY = startY + infoheight
 	
-	// Column width definitions
+	-- Column width definitions
 	local ColWidths = {}
 	for k, v in pairs( Captions ) do
 		local tcol = {}
@@ -56,10 +56,10 @@ function HUDDrawHelpScreen( startX, startY, bWidth )
 		ColWidths[k] = tcol
 	end
 	
-	// Helpscreen table creation	
+	-- Helpscreen table creation	
 	local SBT = {}
 	
-	// - The row with the captions
+	-- The row with the captions
 	local CaptionRow = {}
 	CaptionRow.TYPE = "Captions"
 	CaptionRow.Color = BGCOLOR
@@ -72,7 +72,7 @@ function HUDDrawHelpScreen( startX, startY, bWidth )
 	table.insert( SBT, #SBT+1, CaptionRow )
 	CaptionRow = nil
 	
-	// - The rows with the help text
+	-- The rows with the help text
 	for hid, hinfo in pairs( Commandhelp ) do
 		local tcolorn = Color( 250, 250, 250, CELLALPHA )
 		local tcolorh = Color( 230, 230, 250, CELLALPHA )
@@ -87,7 +87,7 @@ function HUDDrawHelpScreen( startX, startY, bWidth )
 		table.insert( SBT, #SBT+1, trow )
 	end
 	
-	// Draw the help table
+	-- Draw the help table
 	bHeight = #SBT * RowHeight + 10
 	
 	startY = startY + 5
