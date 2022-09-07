@@ -1,0 +1,8 @@
+"Gamemode"
+{
+	"base"		"base"
+	"title"		"SledBuild"
+	"maps"		"^slb_"
+	"menusystem"	"1"
+	"workshopid"	"122351397"
+}
