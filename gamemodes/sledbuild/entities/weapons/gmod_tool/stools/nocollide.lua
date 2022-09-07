@@ -59,23 +59,23 @@ end
 
 function TOOL:RightClick( trace )
 
-//	if (!trace.Entity ) then return end
-//	if (!trace.Entity:IsValid()) then return end
-//	if (trace.Entity:IsPlayer()) then return end
+--	if (!trace.Entity ) then return end
+--	if (!trace.Entity:IsValid()) then return end
+--	if (trace.Entity:IsPlayer()) then return end
 	
-//	if ( CLIENT ) then return true end
+--	if ( CLIENT ) then return true end
 	
-//	if ( trace.Entity.CollisionGroup == COLLISION_GROUP_WORLD ) then
+--	if ( trace.Entity.CollisionGroup == COLLISION_GROUP_WORLD ) then
 	
-//		trace.Entity:SetCollisionGroup( COLLISION_GROUP_NONE )
-//		trace.Entity.CollisionGroup = COLLISION_GROUP_NONE
+--		trace.Entity:SetCollisionGroup( COLLISION_GROUP_NONE )
+--		trace.Entity.CollisionGroup = COLLISION_GROUP_NONE
 	
-//	else
+--	else
 	
-//		trace.Entity:SetCollisionGroup( COLLISION_GROUP_WORLD )
-//		trace.Entity.CollisionGroup = COLLISION_GROUP_WORLD
+--		trace.Entity:SetCollisionGroup( COLLISION_GROUP_WORLD )
+--		trace.Entity.CollisionGroup = COLLISION_GROUP_WORLD
 		
-//	end
+--	end
 	
 	return true
 	

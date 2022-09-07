@@ -112,8 +112,8 @@ function HUDDrawScoreBoard( startX, startY, bWidth )
 	-- Draw the Scoreboard table
 	bHeight = #SBT * RowHeight + 10
 	
-	//SetDrawColor( BGCOLOR )
-	//surface.DrawRect( startX, startY, bWidth, bHeight )
+	-- SetDrawColor( BGCOLOR )
+	-- surface.DrawRect( startX, startY, bWidth, bHeight )
 	
 	startY = startY + 5
 	

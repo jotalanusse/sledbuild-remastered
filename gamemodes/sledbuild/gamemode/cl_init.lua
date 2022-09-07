@@ -32,7 +32,7 @@ local function PublishTopSpeeds()
 	if ( lastsendtime + SENDPAUSE < CurTime() ) then
 		lastsendtime = CurTime()
 		local sendstring = tostring( math.floor( currenttopspeed * 10 ) ) .." ".. tostring( math.floor( speedstr * 10 ) )
-		//LocalPlayer():ConCommand( "CC_SubmitSpeeds "..submitkey.." ".. sendstring )
+		-- LocalPlayer():ConCommand( "CC_SubmitSpeeds "..submitkey.." ".. sendstring )
 		LocalPlayer():ConCommand( "CC_SubmitSpeeds ".. sendstring )
 	end
 end

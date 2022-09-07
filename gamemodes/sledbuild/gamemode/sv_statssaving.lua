@@ -80,9 +80,9 @@ end
 hook.Add( "Think", "PST_UpdateNW", PST_UpdateNW )
 
 function GenerateSubmitKey( ply ) -- some fancy stuff here :P
-	//local key = tostring( math.floor( math.sin( CurTime() * ply:UniqueID() ) * ( math.random( 50000 ) + 1337 ) ) ) -- no floating point pl0x
-	//key = string.sub( ply:Name(), -math.random(3) )..key..string.reverse( string.sub( ply:SteamID(), -math.random(5) ) )
-	return tostring( math.floor( CurTime() ) + 50 ).."_LOLHAX" //key  -- NOW BEAT THAT MOFO xD
+	-- local key = tostring( math.floor( math.sin( CurTime() * ply:UniqueID() ) * ( math.random( 50000 ) + 1337 ) ) ) -- no floating point pl0x
+	-- key = string.sub( ply:Name(), -math.random(3) )..key..string.reverse( string.sub( ply:SteamID(), -math.random(5) ) )
+	return tostring( math.floor( CurTime() ) + 50 ).."_LOLHAX" -- Key  -- NOW BEAT THAT MOFO xD
 end
 
 function PST_DelayedKeySend( ply )
@@ -100,10 +100,10 @@ function PST_PlayerInitialSpawn( ply )
 	local sid = ClearSteamID(ply:SteamID())
 	PLSpeedTable[sid] = { cts = 0, speed = 0, gts = 0, key = "" }
 	stats_load( ply )
-	//timer.Simple(1, PST_DelayedKeySend, ply )  
+	-- timer.Simple(1, PST_DelayedKeySend, ply )  
 end
-//hook.Add( "PlayerInitialSpawn", "PST_PlayerInitialSpawn", PST_PlayerInitialSpawn )
-//added it to the initialspawn hook @ init.lua
+-- hook.Add( "PlayerInitialSpawn", "PST_PlayerInitialSpawn", PST_PlayerInitialSpawn )
+-- added it to the initialspawn hook @ init.lua
 
 function PST_PlayerDisconnected( ply )	
 	if ( PLSpeedTable[ClearSteamID(ply:SteamID())] ) then
@@ -119,14 +119,14 @@ function PST_CCSubmitSpeeds( ply, cmd, args )
 	if ply && ply:IsPlayer() && ply:Alive() then
 		if ( #args == 2 ) then
 			local sid = ClearSteamID( ply:SteamID() )
-			//if ( args[1] == PLSpeedTable[sid].key ) then 
+			-- if ( args[1] == PLSpeedTable[sid].key ) then 
 				PLSpeedTable[sid].cts = tonumber( args[1] ) or 0
 				PLSpeedTable[sid].speed = tonumber( args[2] ) or 0
 				if PLSpeedTable[sid].cts > PLSpeedTable[sid].gts then
 					PLSpeedTable[sid].gts = PLSpeedTable[sid].cts
 				end
 				return
-			//end
+			-- end
 		end
 	end
 	if ply && ply:IsPlayer() && consolespam then
