@@ -5,8 +5,9 @@ GM.Author  = "jotalanusse"
 GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
+-- TODO: Should these variables be only available to the server?
 -- Global shared variables
-CONSOLE_PREFIX = "[SledBuild Remastered] "
+CONSOLE_PREFIX = "[SBR] "
 ROUND_STATES = {
   WAITING = 1,
   STARTING = 2,

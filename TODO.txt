@@ -1,2 +1,4 @@
 - Restrict the spawning of weapons
 - Check if the map is complete/compatible
+- Reset server if more than 6 hours of uptime
+- Read convars for settings
