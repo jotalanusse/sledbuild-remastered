@@ -1,5 +1,3 @@
-include('sv_globals.lua')
-
 -- ToolsBlacklistToolgun: Blacklist certain tools of the toolgun
 function ToolsBlacklistToolgun(ply, trace, toolname)
   if (ply:IsAdmin()) then

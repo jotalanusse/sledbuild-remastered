@@ -1,5 +1,3 @@
-include('sv_globals.lua')
-
 -- PlayerStripLoadout: Remove the player's loadout completely
 local function PlayerStripLoadout(ply)
   -- TODO: Why is this not working?
@@ -44,7 +42,7 @@ local function PlayerSpawn(ply)
   PlayerSetDefaultCollision(ply)
 
   ply:SelectWeapon("weapon_physgun")
-  ply:SetTeam(TEAM_BUILDING)
+  ply:SetTeam(TEAMS.BUILDING)
 end
 
 hook.Add("PlayerSpawn", "SBRPlayerSpawn", PlayerSpawn)

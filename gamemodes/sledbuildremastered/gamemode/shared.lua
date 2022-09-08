@@ -25,7 +25,7 @@ TEAMS = {
 -- Create the new teams
 local function SetTeams()
   team.SetUp(TEAMS.BUILDING, "Building", Color(80, 255, 80, 255)) -- TODO: Find a real color
-  team.SetUp(TEAM.RACING, "Racing", Color(160, 80, 255, 255)) -- TODO: Find a real color
+  team.SetUp(TEAMS.RACING, "Racing", Color(160, 80, 255, 255)) -- TODO: Find a real color
 end
 
 -- Initialize

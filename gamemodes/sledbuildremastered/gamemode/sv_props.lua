@@ -1,5 +1,3 @@
-include('sv_globals.lua')
-
 -- PropRestrictRacingSpawning: Restricts a player from spawning props when racing
 function PropRestrictRacingSpawning(ply)
   if (ply:Team() == TEAMS.RACING) then

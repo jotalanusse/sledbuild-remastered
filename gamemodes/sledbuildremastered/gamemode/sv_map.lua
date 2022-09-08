@@ -1,5 +1,3 @@
-include("sv_globals.lua")
-
 -- GatesOpen: Open the gates so the player can race
 function GatesOpen()
 	for k, v in pairs(ents.FindByName(ENTITY_NAMES.GATE_NAME)) do

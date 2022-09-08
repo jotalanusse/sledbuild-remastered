@@ -8,7 +8,7 @@ function PlayerStartZoneStartTouch(ply)
   else
     -- If the player is in the start zone we consider them a player
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You are now a racer!")
-    ply:SetTeam(TEAM_RACING)
+    ply:SetTeam(TEAMS.RACING)
   end
 end
 
@@ -25,6 +25,6 @@ function PlayerStartZoneEndTouch(ply)
   else
     -- If the player leaves the start zone we consider them a builder
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You are now a builder!")
-    ply:SetTeam(TEAM_BUILDING)
+    ply:SetTeam(TEAMS.BUILDING)
   end
 end

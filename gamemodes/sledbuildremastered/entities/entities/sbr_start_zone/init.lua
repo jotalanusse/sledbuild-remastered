@@ -1,7 +1,7 @@
 ENT.Base = "base_entity"
 ENT.Type = "brush"
 
-include('sv_players.lua')
+include("sv_players.lua")
 
 -- Initialize: Called when the entity is created
 function ENT:Initialize()

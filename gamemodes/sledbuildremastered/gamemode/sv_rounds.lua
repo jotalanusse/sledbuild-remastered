@@ -1,6 +1,3 @@
-include('sv_globals.lua')
-include('sv_map.lua')
-
 STATE = {
   totalRounds = 0,
   -- RECORD_TIME,
