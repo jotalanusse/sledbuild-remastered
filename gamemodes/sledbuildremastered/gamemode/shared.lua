@@ -1,17 +1,24 @@
-DeriveGamemode("sandbox")
+DeriveGamemode("sandbox") -- Use sanbox as our default
 
-GM.Name    = "Sledbuild 3.4"
-GM.Author  = "G3X, robinkooli"
-GM.Email   = "robinkooli@live.fi"
-GM.Website = "robinkooli.net"
+GM.Name    = "SledBuild Remastered 1.0"
+GM.Author  = "jotalanusse"
+GM.Email   = "jotalanusse@gmail.com"
+GM.Website = "jotalanusse.github.io"
 
--- Team enumerations
-TEAM_BUILDING = 2
-TEAM_RACING   = 1
+-- -- Team enumerations
+-- TEAM_BUILDING = 1
+-- TEAM_RACING   = 2
+-- TEAM_SPECTATING = 3
 
-function setTeams()
-	team.SetUp(TEAM_BUILDING, "Building", Color(80, 80, 255, 255))
-	team.SetUp(TEAM_RACING, "Racing", Color(255, 80, 80, 255))
-end
+-- -- Create the new teams
+-- local function SetTeams()
+-- 	team.SetUp(TEAM_BUILDING, "Building", Color(80, 255, 80, 255)) -- TODO: Find a real color
+-- 	team.SetUp(TEAM_RACING, "Racing", Color(160, 80, 255, 255)) -- TODO: Find a real color
+-- end
 
-setTeams()
+-- -- Initialize
+-- function GM:Initialize()
+-- 	print("SledBuild Remastered initialized!")
+	
+-- 	SetTeams()
+-- end

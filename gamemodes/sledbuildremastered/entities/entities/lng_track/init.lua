@@ -6,7 +6,7 @@
 -- function ENT:Initialize()
 -- end
 
--- function ENT:StartTouch(entity)
+-- function ENT: (entity)
 --    if entity:IsPlayer() then
 --       entity:SetNetworkedBool("OnTrack", true)
 --    end
