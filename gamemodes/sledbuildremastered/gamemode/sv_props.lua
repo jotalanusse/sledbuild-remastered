@@ -1,4 +1,4 @@
--- Blacklisted models
+-- Blacklisted props
 local PROP_BLACKLIST = {
   "models/props_phx/oildrum001_explosive.mdl",
   "models/props_junk/gascan001a.mdl",
