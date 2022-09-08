@@ -1,72 +1,72 @@
 -- PlayerStripLoadout: Remove the player's loadout completely
-local function PlayerStripLoadout(pl)
+local function PlayerStripLoadout(ply)
   -- TODO: Why is this not working?
-  pl:StripWeapons()
-  pl:StripAmmo()
+  ply:StripWeapons()
+  ply:StripAmmo()
 end
 
 -- PlayerGiveDefaultLoadout: Give the default loadout to the player
-local function PlayerGiveDefaultLoadout(pl)
-  pl:Give("gmod_tool")
-  pl:Give("weapon_physgun")
-  pl:Give("weapon_physcannon")
-  pl:Give("gmod_camera")
+local function PlayerGiveDefaultLoadout(ply)
+  ply:Give("gmod_tool")
+  ply:Give("weapon_physgun")
+  ply:Give("weapon_physcannon")
+  ply:Give("gmod_camera")
 end
 
 -- PlayerGiveAdminLoadout: Give the admin loadout to the player
-local function PlayerGiveAdminLoadout(pl)
-  pl:GiveAmmo(24, "357", true)
-  pl:Give("weapon_crowbar")
-  pl:Give("weapon_357")
+local function PlayerGiveAdminLoadout(ply)
+  ply:GiveAmmo(24, "357", true)
+  ply:Give("weapon_crowbar")
+  ply:Give("weapon_357")
 end
 
 -- PlayerSetLoadout: Set the loadout for the player
-local function PlayerSetLoadout(pl)
-  PlayerStripLoadout(pl)
-  PlayerGiveDefaultLoadout(pl)
+local function PlayerSetLoadout(ply)
+  PlayerStripLoadout(ply)
+  PlayerGiveDefaultLoadout(ply)
 
   -- And if the player is an admin we give them some toys
-  if pl:IsAdmin() then
-    PlayerGiveAdminLoadout(pl)
+  if ply:IsAdmin() then
+    PlayerGiveAdminLoadout(ply)
   end
 end
 
 -- PlayerSetDefaultCollision: Set the default collission for a player
-local function PlayerSetDefaultCollision(pl)
-  pl:SetCollisionGroup(COLLISION_GROUP_WEAPON) -- Doesn't collide with players and vehicles
+local function PlayerSetDefaultCollision(ply)
+  ply:SetCollisionGroup(COLLISION_GROUP_WEAPON) -- Doesn't collide with players and vehicles
 end
 
 -- PlayerSpawn: Called everytime a player spawns
-local function PlayerSpawn(pl)
-  PlayerSetLoadout(pl)
-  PlayerSetDefaultCollision(pl)
+local function PlayerSpawn(ply)
+  PlayerSetLoadout(ply)
+  PlayerSetDefaultCollision(ply)
 
-  pl:SelectWeapon("weapon_physgun")
-  pl:SetTeam(TEAM_BUILDING)
+  ply:SelectWeapon("weapon_physgun")
+  ply:SetTeam(TEAM_BUILDING)
 end
 
 hook.Add("PlayerSpawn", "SBRPlayerSpawn", PlayerSpawn)
 
 -- PlayerInitialSpawn: Called when a player joins the server
-local function PlayerInitialSpawn(pl)
-  PlayerSpawn(pl)
+local function PlayerInitialSpawn(ply)
+  PlayerSpawn(ply)
 
   -- Notify of a new player
   for k, v in pairs(player.GetAll()) do
-    v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. pl:Nick() .. " has joined the server!")
+    v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. ply:Nick() .. " has joined the server!")
   end
 end
 
 hook.Add("PlayerInitialSpawn", "SBRPlayerInitialSpawn", PlayerInitialSpawn)
 
 -- PlayerRestrictNoclip: Only enable noclip on Admins
-function PlayerRestrictNoclip(pl, bool)
-	if pl:IsAdmin() then
-		return true
-	end
+function PlayerRestrictNoclip(ply, bool)
+  if ply:IsAdmin() then
+    return true
+  end
 
-	pl:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Only admins may use noclip.")
-	return false
+  ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Only admins may use noclip.")
+  return false
 end
 
 hook.Add("PlayerNoClip", "SBRPlayerRestrictNoclip", PlayerRestrictNoclip)
