@@ -11,7 +11,7 @@ CONSOLE_PREFIX = "[SBR] "
 ROUND_STATES = {
   WAITING = 1,
   STARTING = 2,
-  STARTED = 3,
+  RACING = 3,
   FINISHED = 4,
 }
 
