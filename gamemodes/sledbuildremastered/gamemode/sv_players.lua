@@ -77,3 +77,10 @@ function PlayerRemoveDeathSound()
 end
 
 hook.Add("PlayerDeathSound", "SBRPlayerRemoveDeathSound", PlayerRemoveDeathSound)
+
+-- TODO: Whah do this do???
+-- TODO: Maybe find a way to not override this?
+-- DoPlayerDeath: Handle the player's death
+function GM:DoPlayerDeath(ply, attacker, dmginfo)
+	ply:CreateRagdoll()
+end

@@ -18,10 +18,18 @@ end
 
 hook.Add("PlayerSpawnVehicle", "SBRVehicleLimitType", VehicleLimitType)
 
-
+-- TODO: Whah do this do???
 -- VehicleSetDefaultCollissions: Set the default collission for the spawned vehicle
 function VehicleSetDefaultCollissions(ply, entity)
-	entity:SetCollisionGroup(COLLISION_GROUP_DEBRIS_TRIGGER) -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+  entity:SetCollisionGroup(COLLISION_GROUP_DEBRIS_TRIGGER) -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
 end
 
 hook.Add("PlayerSpawnedVehicle", "SBRVehicleSetDefaultCollissions", VehicleSetDefaultCollissions)
+
+-- TODO: Whah do this do???
+-- VehiclePlayerLeave: Called when the player exits a vehicle
+function VehiclePlayerLeave(ply, vehicle)
+  ply:SetCollisionGroup(COLLISION_GROUP_WEAPON) -- Doesn't collide with players and vehicles
+end
+
+hook.Add("PlayerLeaveVehicle", "SBRVehiclePlayerLeave", VehiclePlayerLeave)
