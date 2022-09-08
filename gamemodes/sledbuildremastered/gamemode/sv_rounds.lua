@@ -17,11 +17,27 @@ function RoundStarting(round)
 
   RoundsIncrementTotal()
 
-  -- TODO: Kill racing players not in vehicles
+  for k, v in pairs(player:GetAll()) do
+    v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Race #" .. STATE.totalRounds .. " just begun!")
+
+    if (v:Team() == TEAMS.RACING) then
+      if (v:InVehicle()) then
+        -- TODO: Set the player as racing state?
+        v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Here we go!")
+      else
+        -- TODO: Technically the player is assured to be in the starting area, so the message could be different
+        v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't be a racer and not have a vehicle!")
+        v:Kill()
+      end
+    elseif (v:Team() == TEAMS.BUILDING) then
+      -- TODO: Actually do nothing?
+    elseif (v:Team() == TEAMS.SPECTATING) then
+      v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Make your bets!")
+    end
+  end
+
   -- TODO: Track players and times
   -- TODO: Notify of the new race
-
-  print("Round is starting!") --TODO: Remove, debug
 
   -- Let the map know we are starting
   GatesOpen()
