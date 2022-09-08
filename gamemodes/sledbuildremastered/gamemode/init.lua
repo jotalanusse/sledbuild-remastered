@@ -1,6 +1,7 @@
 -- Run LUA files
 include('shared.lua')
 include('sv_players.lua')
+include('sv_props.lua')
 -- include('sv_round.lua')
 
 -- Send LUA files

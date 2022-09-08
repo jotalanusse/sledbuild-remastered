@@ -6,6 +6,7 @@ GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
 -- Global variables
+MAX_PROP_RADIUS = 128
 CONSOLE_PREFIX = "[SledBuild Remastered] "
 
 -- Team enumerations
