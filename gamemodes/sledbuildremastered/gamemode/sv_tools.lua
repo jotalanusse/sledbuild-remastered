@@ -1,3 +1,32 @@
+local RESTRICTED_TOOLS = {
+  "balloon", "ballsocket_adv", "button",
+  "dynamite", "elastic", "emitter",
+  "eyeposer", "faceposer", "finger",
+  "hoverball", "hydraulic", "ignite",
+  "inflator", "lamp", "light",
+  "magnetise", "muscle", "nail",
+  "paint", "physprop", "pulley",
+  "rope", "slider", "spawner",
+  "statue", "thruster", "turret",
+  "winch"
+}
+
+-- ToolsBlacklistToolgun: Blacklist certain tools of the toolgun
+function ToolsBlacklistToolgun(ply, trace, toolname)
+  if (ply:IsAdmin()) then
+    return true
+  end
+
+	for k, v in pairs(RESTRICTED_TOOLS) do
+		if (toolname == v) then
+			ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This tool is restricted.")
+			return false
+		end
+	end
+end
+
+hook.Add("CanTool", "LimitToolGuns", ToolsBlacklistToolgun)
+
 -- TODO: Test if this function actually does something
 -- ToolsLimitToolgun: Limit what the player can affect with their toolgun
 function ToolsLimitToolgun(ply, trace)
