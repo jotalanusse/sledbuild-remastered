@@ -53,8 +53,20 @@ local function PlayerInitialSpawn(pl)
 
   -- Notify of a new player
   for k, v in pairs(player.GetAll()) do
-    v:PrintMessage(HUD_PRINTTALK, "[SledBuild Remastered] " .. pl:Nick() .. " has joined the server!")
+    v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. pl:Nick() .. " has joined the server!")
   end
 end
 
 hook.Add("PlayerInitialSpawn", "SBRPlayerInitialSpawn", PlayerInitialSpawn)
+
+-- PlayerRestrictNoclip: Only enable noclip on Admins
+function PlayerRestrictNoclip(pl, bool)
+	if pl:IsAdmin() then
+		return true
+	end
+
+	pl:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Only admins may use noclip.")
+	return false
+end
+
+hook.Add("PlayerNoClip", "SBRPlayerRestrictNoclip", PlayerRestrictNoclip)

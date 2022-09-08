@@ -5,6 +5,9 @@ GM.Author  = "jotalanusse"
 GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
+-- Global variables
+CONSOLE_PREFIX = "[SledBuild Remastered] "
+
 -- Team enumerations
 TEAM_BUILDING = 1
 TEAM_RACING   = 2
@@ -18,7 +21,7 @@ end
 
 -- Initialize
 function GM:Initialize()
-	print("SledBuild Remastered initialized!")
+	print(CONSOLE_PREFIX .. "SledBuild Remastered initialized!")
 	
 	SetTeams()
 end
