@@ -25,7 +25,7 @@ function ToolsBlacklistToolgun(ply, trace, toolname)
 	end
 end
 
-hook.Add("CanTool", "LimitToolGuns", ToolsBlacklistToolgun)
+hook.Add("CanTool", "SBRToolsBlacklistToolgun", ToolsBlacklistToolgun)
 
 -- TODO: Test if this function actually does something
 -- ToolsLimitToolgun: Limit what the player can affect with their toolgun

@@ -17,3 +17,11 @@ function VehicleLimitType(ply, model, name, table)
 end
 
 hook.Add("PlayerSpawnVehicle", "SBRVehicleLimitType", VehicleLimitType)
+
+
+-- VehicleSetDefaultCollissions: Set the default collission for the spawned vehicle
+function VehicleSetDefaultCollissions(ply, entity)
+	entity:SetCollisionGroup(COLLISION_GROUP_DEBRIS_TRIGGER) -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+end
+
+hook.Add("PlayerSpawnedVehicle", "SBRVehicleSetDefaultCollissions", VehicleSetDefaultCollissions)
