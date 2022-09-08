@@ -15,13 +15,12 @@ end
 -- PlayerStartZoneEndTouch: Called when a player leaves the start zone
 function PlayerStartZoneEndTouch(ply)
   if (STATE.state == ROUND_STATES.STARTING) then
-    -- -- TODO: Check if this is redundant (all players in racing team without vehicle will be killed on round start)
-    -- -- You cant leave the start zone without a vehicle
-    -- if (not ply:InVehicle()) then
-    --   ply:PrintMessage(HUD_PRINTTALK,
-    --     CONSOLE_PREFIX .. "You can't leave the start zone without a vehicle while the race is starting!")
-    --   ply:Kill()
-    -- end
+    -- You cant leave the start zone without a vehicle
+    if (not ply:InVehicle()) then
+      ply:PrintMessage(HUD_PRINTTALK,
+        CONSOLE_PREFIX .. "You can't leave the start zone without a vehicle while the race is starting!")
+      ply:Kill()
+    end
   else
     -- If the player leaves the start zone we consider them a builder
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You are now a builder!")
