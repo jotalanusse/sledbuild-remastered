@@ -26,7 +26,7 @@ local function PlayerSetLoadout(ply)
   PlayerGiveDefaultLoadout(ply)
 
   -- And if the player is an admin we give them some toys
-  if ply:IsAdmin() then
+  if (ply:IsAdmin()) then
     PlayerGiveAdminLoadout(ply)
   end
 end
@@ -61,7 +61,7 @@ hook.Add("PlayerInitialSpawn", "SBRPlayerInitialSpawn", PlayerInitialSpawn)
 
 -- PlayerRestrictNoclip: Only enable noclip on Admins
 function PlayerRestrictNoclip(ply, bool)
-  if ply:IsAdmin() then
+  if (ply:IsAdmin()) then
     return true
   end
 

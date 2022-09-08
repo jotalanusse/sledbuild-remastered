@@ -1,22 +1,34 @@
--- Non-tooleable entities
-local NO_TOOL_ENTITIES = {
-  "player",
-  "func_brush"
-}
-
--- ToolsLimit: Limit what the player can affect with their tools
-function ToolsLimit(ply, trace)
+-- TODO: Test if this function actually does something
+-- ToolsLimitToolgun: Limit what the player can affect with their toolgun
+function ToolsLimitToolgun(ply, trace)
   -- TODO: Enable after testing
-  -- if ply:IsAdmin() then
+  -- if (ply:IsAdmin()) then
   --   return true
   -- end
 
-  for k, v in pairs(NO_TOOL_ENTITIES) do
-    if trace.Entity:GetClass() == v then
-      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This entity cannot be toolgunned.")
+  local entityClass = trace.Entity:GetClass()
+
+  if (entityClass == "func_brush" or entityClass == "player") then
+    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This entity cannot be toolgunned.")
+    return false
+  end
+end
+
+hook.Add("CanTool", "SBRToolsLimit", ToolsLimitToolgun)
+
+-- ToolsLimitPhysgun: Limit what the player can affect with their physgun
+function ToolsLimitPhysgun(ply, entity)
+  if (entity:GetClass() == "func_brush") then
+    return false
+  end
+
+  if (entity:IsPlayer()) then
+    if (ply:IsAdmin()) then
+      return true
+    else
       return false
     end
   end
 end
 
-hook.Add("CanTool", "SBRToolsLimit", ToolsLimit)
+hook.Add("PhysgunPickup", "SBRToolsLimitPhysgun", ToolsLimitPhysgun)

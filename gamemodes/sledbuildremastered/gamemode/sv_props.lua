@@ -15,7 +15,7 @@ local PROP_BLACKLIST = {
 
 -- PropRestrictRacingSpawning: Restricts a player from spawning props when racing
 function PropRestrictRacingSpawning(ply)
-  if ply:Team() == TEAM_RACING then
+  if (ply:Team()) == TEAM_RACING then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Props cannot be spawned while racing!")
     return false
   end
@@ -27,7 +27,7 @@ hook.Add("PlayerSpawnObject", "SBRPropRestrictRacingSpawning", PropRestrictRacin
 
 -- PropLimitSize: Limit the max size of props that can be spawned
 function PropLimitSize(ply, model, prop)
-  if prop:BoundingRadius() > MAX_PROP_RADIUS then -- Note: Radius is half the size of the diameter (half the size of the prop)
+  if (prop:BoundingRadius() > MAX_PROP_RADIUS) then -- Note: Radius is half the size of the diameter (half the size of the prop)
     prop:Remove()
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "That prop is way too large for a sled.")
   end
@@ -40,7 +40,7 @@ hook.Add("PlayerSpawnedProp", "SBRPropLimitSize", PropLimitSize)
 -- PropBlock: Restrict the spawning of props in the blacklist
 function PropBlock(ply, model)
   for k, v in pairs(PROP_BLACKLIST) do
-    if string.find(model, v) then
+    if (string.find(model, v)) then
       ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This prop is blacklisted.")
       return false
     end

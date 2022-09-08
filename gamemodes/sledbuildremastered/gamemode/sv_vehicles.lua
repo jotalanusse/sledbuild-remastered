@@ -7,7 +7,7 @@ local WHITELISTED_VEHICLES = {
 -- VehicleLimitType: Limit the kind of vehicles that can be used
 function VehicleLimitType(ply, model, name, table)
   for k, v in pairs(WHITELISTED_VEHICLES) do
-    if string.find(model, v) then
+    if (string.find(model, v)) then
       return true
     end
   end
