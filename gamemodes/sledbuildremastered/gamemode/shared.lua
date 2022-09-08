@@ -5,20 +5,20 @@ GM.Author  = "jotalanusse"
 GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
--- -- Team enumerations
--- TEAM_BUILDING = 1
--- TEAM_RACING   = 2
--- TEAM_SPECTATING = 3
+-- Team enumerations
+TEAM_BUILDING = 1
+TEAM_RACING   = 2
+TEAM_SPECTATING = 3
 
--- -- Create the new teams
--- local function SetTeams()
--- 	team.SetUp(TEAM_BUILDING, "Building", Color(80, 255, 80, 255)) -- TODO: Find a real color
--- 	team.SetUp(TEAM_RACING, "Racing", Color(160, 80, 255, 255)) -- TODO: Find a real color
--- end
+-- Create the new teams
+local function SetTeams()
+	team.SetUp(TEAM_BUILDING, "Building", Color(80, 255, 80, 255)) -- TODO: Find a real color
+	team.SetUp(TEAM_RACING, "Racing", Color(160, 80, 255, 255)) -- TODO: Find a real color
+end
 
--- -- Initialize
--- function GM:Initialize()
--- 	print("SledBuild Remastered initialized!")
+-- Initialize
+function GM:Initialize()
+	print("SledBuild Remastered initialized!")
 	
--- 	SetTeams()
--- end
+	SetTeams()
+end
