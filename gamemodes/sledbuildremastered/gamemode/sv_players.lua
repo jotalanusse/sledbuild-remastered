@@ -1,5 +1,6 @@
 -- PlayerStripLoadout: Remove the player's loadout completely
 local function PlayerStripLoadout(pl)
+  -- TODO: Why is this not working?
   pl:StripWeapons()
   pl:StripAmmo()
 end
@@ -35,16 +36,6 @@ local function PlayerSetDefaultCollision(pl)
   pl:SetCollisionGroup(COLLISION_GROUP_WEAPON) -- Doesn't collide with players and vehicles
 end
 
--- PlayerInitialSpawn: Called when a player joins the server
-local function PlayerInitialSpawn(pl)
-  	-- Notify of a new player
-	for k, v in pairs(player.GetAll()) do
-		v:PrintMessage(HUD_PRINTTALK, "[SledBuild Remastered] " .. pl:Nick() .. " has joined the server!")
-	end
-end
-
-hook.Add("PlayerInitialSpawn", "SBRPlayerInitialSpawn", PlayerInitialSpawn)
-
 -- PlayerSpawn: Called everytime a player spawns
 local function PlayerSpawn(pl)
   PlayerSetLoadout(pl)
@@ -55,3 +46,15 @@ local function PlayerSpawn(pl)
 end
 
 hook.Add("PlayerSpawn", "SBRPlayerSpawn", PlayerSpawn)
+
+-- PlayerInitialSpawn: Called when a player joins the server
+local function PlayerInitialSpawn(pl)
+  PlayerSpawn(pl)
+
+  -- Notify of a new player
+  for k, v in pairs(player.GetAll()) do
+    v:PrintMessage(HUD_PRINTTALK, "[SledBuild Remastered] " .. pl:Nick() .. " has joined the server!")
+  end
+end
+
+hook.Add("PlayerInitialSpawn", "SBRPlayerInitialSpawn", PlayerInitialSpawn)
