@@ -1,3 +1,5 @@
+include('sv_globals.lua')
+
 -- PlayerStripLoadout: Remove the player's loadout completely
 local function PlayerStripLoadout(ply)
   -- TODO: Why is this not working?
@@ -33,7 +35,7 @@ end
 
 -- PlayerSetDefaultCollision: Set the default collission for a player
 local function PlayerSetDefaultCollision(ply)
-  ply:SetCollisionGroup(COLLISION_GROUP_WEAPON) -- Doesn't collide with players and vehicles
+  ply:SetCollisionGroup(PLAYERS.DEFAULT_COLLISION_GROUP) -- Doesn't collide with players and vehicles
 end
 
 -- PlayerSpawn: Called everytime a player spawns

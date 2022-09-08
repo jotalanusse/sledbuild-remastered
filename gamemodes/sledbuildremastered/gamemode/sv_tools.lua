@@ -1,15 +1,4 @@
-local RESTRICTED_TOOLS = {
-  "balloon", "ballsocket_adv", "button",
-  "dynamite", "elastic", "emitter",
-  "eyeposer", "faceposer", "finger",
-  "hoverball", "hydraulic", "ignite",
-  "inflator", "lamp", "light",
-  "magnetise", "muscle", "nail",
-  "paint", "physprop", "pulley",
-  "rope", "slider", "spawner",
-  "statue", "thruster", "turret",
-  "winch", "duplicator" -- TODO: See if duplicator show be disabled
-}
+include('sv_globals.lua')
 
 -- ToolsBlacklistToolgun: Blacklist certain tools of the toolgun
 function ToolsBlacklistToolgun(ply, trace, toolname)
@@ -17,7 +6,7 @@ function ToolsBlacklistToolgun(ply, trace, toolname)
     return true
   end
 
-  for k, v in pairs(RESTRICTED_TOOLS) do
+  for k, v in pairs(TOOLS.RESTRICTED) do
     if (toolname == v) then
       ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This tool is restricted.")
       return false

@@ -16,14 +16,16 @@ ROUND_STATES = {
 }
 
 -- Team enumerations
-TEAM_BUILDING   = 1
-TEAM_RACING     = 2
-TEAM_SPECTATING = 3
+TEAMS = {
+  BUILDING = 1,
+  RACING = 2,
+  SPECTATING = 3,
+}
 
 -- Create the new teams
 local function SetTeams()
-  team.SetUp(TEAM_BUILDING, "Building", Color(80, 255, 80, 255)) -- TODO: Find a real color
-  team.SetUp(TEAM_RACING, "Racing", Color(160, 80, 255, 255)) -- TODO: Find a real color
+  team.SetUp(TEAMS.BUILDING, "Building", Color(80, 255, 80, 255)) -- TODO: Find a real color
+  team.SetUp(TEAM.RACING, "Racing", Color(160, 80, 255, 255)) -- TODO: Find a real color
 end
 
 -- Initialize

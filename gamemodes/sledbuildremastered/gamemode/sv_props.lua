@@ -1,6 +1,8 @@
+include('sv_globals.lua')
+
 -- PropRestrictRacingSpawning: Restricts a player from spawning props when racing
 function PropRestrictRacingSpawning(ply)
-  if (ply:Team()) == TEAM_RACING then
+  if (ply:Team() == TEAMS.RACING) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Props cannot be spawned while racing!")
     return false
   end
@@ -17,7 +19,7 @@ function PropLimitSize(ply, model, prop)
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "That prop is way too large for a sled.")
   end
 
-  prop:SetCollisionGroup(COLLISION_GROUP_DEBRIS_TRIGGER) -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+  prop:SetCollisionGroup(PROPS.DEFAULT_COLLISION_GROUP)
 end
 
 hook.Add("PlayerSpawnedProp", "SBRPropLimitSize", PropLimitSize)

@@ -1,3 +1,5 @@
+include('sv_globals.lua')
+
 -- VehicleLimitType: Limit the kind of vehicles that can be used
 function VehicleLimitType(ply, model, name, table)
   for k, v in pairs(VEHICLES.WHITELIST) do

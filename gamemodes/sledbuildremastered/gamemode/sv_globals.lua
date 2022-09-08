@@ -22,6 +22,22 @@ PROPS = {
     "models/props_phx/ball.mdl",
     "models/props_phx/cannonball.mdl",
     "models/props_phx/torpedo.mdl"
+  },
+  DEFAULT_COLLISION_GROUP = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+
+}
+TOOLS = {
+  RESTRICTED = {
+    "balloon", "ballsocket_adv", "button",
+    "dynamite", "elastic", "emitter",
+    "eyeposer", "faceposer", "finger",
+    "hoverball", "hydraulic", "ignite",
+    "inflator", "lamp", "light",
+    "magnetise", "muscle", "nail",
+    "paint", "physprop", "pulley",
+    "rope", "slider", "spawner",
+    "statue", "thruster", "turret",
+    "winch", "duplicator" -- TODO: See if duplicator show be disabled
   }
 }
 VEHICLES = {

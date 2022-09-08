@@ -1,3 +1,4 @@
+include('sv_globals.lua')
 include('sv_map.lua')
 
 STATE = {
@@ -19,6 +20,7 @@ function RoundStarting(round)
 
   RoundsIncrementTotal()
 
+  -- TODO: Kill racing players not in vehicles
   -- TODO: Track players and times
   -- TODO: Notify of the new race
 
