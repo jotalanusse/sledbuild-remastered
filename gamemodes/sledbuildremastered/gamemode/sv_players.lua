@@ -70,3 +70,10 @@ function PlayerRestrictNoclip(ply, bool)
 end
 
 hook.Add("PlayerNoClip", "SBRPlayerRestrictNoclip", PlayerRestrictNoclip)
+
+-- PlayerRemoveDeathSound: Remove the death sound of the player
+function PlayerRemoveDeathSound()
+  return true
+end
+
+hook.Add("PlayerDeathSound", "SBRPlayerRemoveDeathSound", PlayerRemoveDeathSound)
