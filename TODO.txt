@@ -1,0 +1,1 @@
+- Restrict the spawning of weapons

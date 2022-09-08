@@ -8,7 +8,7 @@ local RESTRICTED_TOOLS = {
   "paint", "physprop", "pulley",
   "rope", "slider", "spawner",
   "statue", "thruster", "turret",
-  "winch"
+  "winch", "duplicator" -- TODO: See if duplicator show be disabled
 }
 
 -- ToolsBlacklistToolgun: Blacklist certain tools of the toolgun
