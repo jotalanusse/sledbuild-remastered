@@ -6,6 +6,11 @@ GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
 -- Global variables
+ENTITY_NAMES = {
+  GATE_NAME = "sbr_gate",
+  PUSHER_NAME = "sbr_pusher",
+}
+
 MAX_PROP_RADIUS = 128
 CONSOLE_PREFIX = "[SledBuild Remastered] "
 
