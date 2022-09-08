@@ -1,0 +1,30 @@
+"sledbuildremastered"
+{
+	"base"		"base"
+	"title"		"SledBuild Remastered"
+	"maps"		"^sbr_"
+	"category"	"other"
+	"menusystem"	"1"
+	"workshopid"	"000000000"
+
+		"settings"
+	{
+		1
+		{
+			"name"		"sbr_waittime"
+			"text"		"Wait Time"
+			"help"		"How many seconds to wait between each race"
+			"type"		"Numeric"
+			"default"	"90"
+		}
+
+		2
+		{
+			"name"		"sbr_sandbox"
+			"text"		"Sandbox"
+			"help"		"Sanbox mode disables races and allows players to constantly use the track"
+			"type"		"CheckBox "
+			"default"	"false"
+		}
+	}
+}
