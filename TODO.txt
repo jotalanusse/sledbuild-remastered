@@ -1,1 +1,2 @@
 - Restrict the spawning of weapons
+- Check if the map is complete/compatible

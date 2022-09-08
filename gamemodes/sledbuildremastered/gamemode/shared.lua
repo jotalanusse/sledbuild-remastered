@@ -5,14 +5,14 @@ GM.Author  = "jotalanusse"
 GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
--- Global variables
-ENTITY_NAMES = {
-  GATE_NAME = "sbr_gate",
-  PUSHER_NAME = "sbr_pusher",
-}
-
-MAX_PROP_RADIUS = 128
+-- Global shared variables
 CONSOLE_PREFIX = "[SledBuild Remastered] "
+ROUND_STATES = {
+  WAITING = 1,
+  STARTING = 2,
+  STARTED = 3,
+  FINISHED = 4,
+}
 
 -- Team enumerations
 TEAM_BUILDING   = 1
