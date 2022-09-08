@@ -17,4 +17,6 @@ function RoundStart(round)
 
   RoundsIncrementTotal()
   GatesOpen()
+
+  timer.Create("NewRoundTimer", racetimertime, 0, NewRound) -- <--
 end

@@ -17,12 +17,12 @@ function ToolsBlacklistToolgun(ply, trace, toolname)
     return true
   end
 
-	for k, v in pairs(RESTRICTED_TOOLS) do
-		if (toolname == v) then
-			ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This tool is restricted.")
-			return false
-		end
-	end
+  for k, v in pairs(RESTRICTED_TOOLS) do
+    if (toolname == v) then
+      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This tool is restricted.")
+      return false
+    end
+  end
 end
 
 hook.Add("CanTool", "SBRToolsBlacklistToolgun", ToolsBlacklistToolgun)
