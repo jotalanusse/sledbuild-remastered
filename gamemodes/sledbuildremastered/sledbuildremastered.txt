@@ -7,7 +7,7 @@
 	"menusystem"	"1"
 	"workshopid"	"000000000"
 
-		"settings"
+	"settings"
 	{
 		1
 		{
