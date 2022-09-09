@@ -8,7 +8,7 @@ VEH = {
 
 -- LimitType: Limit the kind of vehicles that can be used
 function VEH.LimitType(ply, model, name, table)
-  for k, v in pairs(VEHICLES.WHITELIST) do
+  for k, v in pairs(VEH.WHITELIST) do
     if (string.find(model, v)) then
       return true
     end
@@ -31,7 +31,7 @@ hook.Add("PlayerSpawnedVehicle", "SBR.VEH.SetDefaultCollissions", VEH.SetDefault
 -- PlayerLeave: Called when the player exits a vehicle
 function VEH.PlayerLeave(ply, vehicle)
   -- TODO: Kill player if team racing
-  ply:SetCollisionGroup(PLAYERS.DEFAULT_COLLISION_GROUP)
+  ply:SetCollisionGroup(PYS.DEFAULT_COLLISION_GROUP)
 end
 
 hook.Add("PlayerLeaveVehicle", "SBR.VEH.PlayerLeave", VEH.PlayerLeave)

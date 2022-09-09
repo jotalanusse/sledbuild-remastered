@@ -1,55 +1,59 @@
--- PlayerStripLoadout: Remove the player's loadout completely
-local function PlayerStripLoadout(ply)
+PYS = {
+  DEFAULT_COLLISION_GROUP = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
+}
+
+-- StripLoadout: Remove the player's loadout completely
+function PYS.StripLoadout(ply)
   -- TODO: Why is this not working?
   ply:StripWeapons()
   ply:StripAmmo()
 end
 
--- PlayerGiveDefaultLoadout: Give the default loadout to the player
-local function PlayerGiveDefaultLoadout(ply)
+-- GiveDefaultLoadout: Give the default loadout to the player
+function PYS.GiveDefaultLoadout(ply)
   ply:Give("gmod_tool")
   ply:Give("weapon_physgun")
   ply:Give("weapon_physcannon")
   ply:Give("gmod_camera")
 end
 
--- PlayerGiveAdminLoadout: Give the admin loadout to the player
-local function PlayerGiveAdminLoadout(ply)
+-- GiveAdminLoadout: Give the admin loadout to the player
+function PYS.GiveAdminLoadout(ply)
   ply:GiveAmmo(24, "357", true)
   ply:Give("weapon_crowbar")
   ply:Give("weapon_357")
 end
 
--- PlayerSetLoadout: Set the loadout for the player
-local function PlayerSetLoadout(ply)
-  PlayerStripLoadout(ply)
-  PlayerGiveDefaultLoadout(ply)
+-- SetLoadout: Set the loadout for the player
+function PYS.SetLoadout(ply)
+  PYS.StripLoadout(ply)
+  PYS.GiveDefaultLoadout(ply)
 
   -- And if the player is an admin we give them some toys
   if (ply:IsAdmin()) then
-    PlayerGiveAdminLoadout(ply)
+    PYS.GiveAdminLoadout(ply)
   end
 end
 
--- PlayerSetDefaultCollision: Set the default collission for a player
-local function PlayerSetDefaultCollision(ply)
-  ply:SetCollisionGroup(PLAYERS.DEFAULT_COLLISION_GROUP) -- Doesn't collide with players and vehicles
+-- SetDefaultCollision: Set the default collission for a player
+function PYS.SetDefaultCollision(ply)
+  ply:SetCollisionGroup(PYS.DEFAULT_COLLISION_GROUP) -- Doesn't collide with players and vehicles
 end
 
--- PlayerSpawn: Called everytime a player spawns
-local function PlayerSpawn(ply)
-  PlayerSetLoadout(ply)
-  PlayerSetDefaultCollision(ply)
+-- Spawn: Called everytime a player spawns
+function PYS.Spawn(ply)
+  PYS.SetLoadout(ply)
+  PYS.SetDefaultCollision(ply)
 
   ply:SelectWeapon("weapon_physgun")
   ply:SetTeam(TEAMS.BUILDING)
 end
 
-hook.Add("PlayerSpawn", "SBRPlayerSpawn", PlayerSpawn)
+hook.Add("PlayerSpawn", "SBR.PYS.Spawn", PYS.Spawn)
 
--- PlayerInitialSpawn: Called when a player joins the server
-local function PlayerInitialSpawn(ply)
-  PlayerSpawn(ply)
+-- InitialSpawn: Called when a player joins the server
+function PYS.InitialSpawn(ply)
+  PYS.Spawn(ply)
 
   -- Notify of a new player
   for k, v in pairs(player.GetAll()) do
@@ -57,13 +61,13 @@ local function PlayerInitialSpawn(ply)
   end
 
   -- Check the map and warn the player, let him know our gamemode isn't the problem
-  CheckMap(ply)
+  CHK.CheckMap(ply)
 end
 
-hook.Add("PlayerInitialSpawn", "SBRPlayerInitialSpawn", PlayerInitialSpawn)
+hook.Add("PlayerInitialSpawn", "SBR.PYS.InitialSpawn", PYS.InitialSpawn)
 
--- PlayerRestrictNoclip: Only enable noclip on Admins
-function PlayerRestrictNoclip(ply, bool)
+-- RestrictNoclip: Prevent the player from using noclip
+function PYS.RestrictNoclip(ply, bool)
   if (ply:IsAdmin()) then
     return true
   end
@@ -72,14 +76,14 @@ function PlayerRestrictNoclip(ply, bool)
   return false
 end
 
-hook.Add("PlayerNoClip", "SBRPlayerRestrictNoclip", PlayerRestrictNoclip)
+hook.Add("PlayerNoClip", "SBR.PYS.RestrictNoclip", PYS.RestrictNoclip)
 
--- PlayerRemoveDeathSound: Remove the death sound of the player
-function PlayerRemoveDeathSound()
+-- RemoveDeathSound: Remove the death sound of the player
+function PYS.RemoveDeathSound()
   return true
 end
 
-hook.Add("PlayerDeathSound", "SBRPlayerRemoveDeathSound", PlayerRemoveDeathSound)
+hook.Add("PlayerDeathSound", "SBR.PYS.RemoveDeathSound", PYS.RemoveDeathSound)
 
 -- TODO: Whah do this do???
 -- TODO: Maybe find a way to not override this?

@@ -1,24 +1,26 @@
-STATE = {
-  totalRounds = 0,
-  -- RECORD_TIME,
-  -- START_TIME = 0,
-  state = ROUND_STATES.WAITING,
-  -- RESULT = {}
+RND = {
+  STATE = {
+    totalRounds = 0,
+    -- RECORD_TIME,
+    -- START_TIME = 0,
+    stage = ROUND_STAGES.WAITING,
+    -- RESULT = {}
+  }
 }
 
--- RoundsIncrementTotal: Add 1 to the total rounds
-function RoundsIncrementTotal()
-  STATE.totalRounds = STATE.totalRounds + 1
+-- IncrementTotal: Add 1 to the total rounds
+function RND.IncrementTotal()
+  RND.STATE.totalRounds = RND.STATE.totalRounds + 1
 end
 
--- RoundStarting: Starts a new race
-function RoundStarting(round)
-  STATE.state = ROUND_STATES.STARTING
+-- Starting: Starts a new race
+function RND.Starting(round)
+  RND.STATE.stage = ROUND_STAGES.STARTING
 
-  RoundsIncrementTotal()
+  RND.IncrementTotal()
 
   for k, v in pairs(player:GetAll()) do
-    v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Race #" .. STATE.totalRounds .. " just begun!")
+    v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Race #" .. RND.STATE.totalRounds .. " just begun!")
 
     if (v:Team() == TEAMS.RACING) then
       if (v:InVehicle()) then
@@ -40,33 +42,34 @@ function RoundStarting(round)
   -- TODO: Notify of the new race
 
   -- Let the map know we are starting
-  GatesOpen()
-  PushersEnable()
+  MAP.GatesOpen()
+  MAP.PushersEnable()
 
-  timer.Create("RoundRacingTimer", ROUNDS.START_TIME, 1, function() RoundRacing(round) end) -- We queue the next action
+  timer.Create("SBR.RacingTimer", ROUNDS.START_TIME, 1, function() RND.Racing(round) end) -- We queue the next action
 end
 
--- RoundRacing: We are now officialy racing
-function RoundRacing(round)
-  STATE.state = ROUND_STATES.RACING
+-- Racing: We are now officialy racing
+function RND.Racing(round)
+  RND.STATE.stage = ROUND_STAGES.RACING
 
   print("Round started!") --TODO: Remove, debug
 
   -- Starting time is over
-  GatesClose()
-  PushersDisable()
+  MAP.GatesClose()
+  MAP.PushersDisable()
 
-  timer.Create("RoundEndTimer", ROUNDS.RACE_TIME, 1, function() RoundEnd(round) end) -- We queue the next action
+  timer.Create("SBR.EndTimer", ROUNDS.RACE_TIME, 1, function() RND.End(round) end) -- We queue the next action
 end
 
--- RoundEnd: End the current race
-function RoundEnd(round)
+-- End: End the current race
+function RND.End(round)
+  RND.STATE.stage = ROUND_STAGES.FINISHED
   print("Round ended!") --TODO: Remove, debug
 
   -- TODO: Return players to the building area
 
-  timer.Create("RoundStartTimer", ROUNDS.WAIT_TIME, 1, function() RoundStarting(round) end) -- We queue the next action
+  timer.Create("SBR.StartTimer", ROUNDS.WAIT_TIME, 1, function() RND.Starting(round) end) -- We queue the next action
 end
 
 local round = {}
-timer.Create("TestTimer", 5, 1, function() RoundStarting(round) end)
+timer.Create("SBR.TestTimer", 5, 1, function() RND.Starting(round) end)

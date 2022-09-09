@@ -8,7 +8,7 @@ GM.Website = "jotalanusse.github.io"
 -- TODO: Should these variables be only available to the server?
 -- Global shared variables
 CONSOLE_PREFIX = "[SBR] "
-ROUND_STATES = {
+ROUND_STAGES = {
   WAITING = 1,
   STARTING = 2,
   RACING = 3,

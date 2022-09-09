@@ -2,7 +2,7 @@
 -- PlayerStartZoneStartTouch: Called when a player touches the start zone
 function PlayerStartZoneStartTouch(ply)
   -- You cant enter the start zone while the race begins
-  if (STATE.state == ROUND_STATES.STARTING) then
+  if (RND.STATE.stage == ROUND_STAGES.STARTING) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't enter the start zone while the race is starting!")
     ply:Kill()
   else
@@ -16,7 +16,7 @@ end
 
 -- PlayerStartZoneEndTouch: Called when a player leaves the start zone
 function PlayerStartZoneEndTouch(ply)
-  if (STATE.state == ROUND_STATES.STARTING) then
+  if (RND.STATE.stage == ROUND_STAGES.STARTING) then
     -- You cant leave the start zone without a vehicle
     if (ply:Team() == TEAMS.RACING and not ply:InVehicle()) then
       ply:PrintMessage(HUD_PRINTTALK,
