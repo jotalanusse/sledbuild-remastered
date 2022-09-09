@@ -1,12 +1,23 @@
 RND = {
   STATE = {
     totalRounds = 0,
-    -- RECORD_TIME,
-    -- START_TIME = 0,
     stage = ROUND_STAGES.WAITING,
-    -- RESULT = {}
   }
 }
+--[[
+local RACER_EXAMPLE = {
+  ply = nil, -- TODO: Check if the player entity changes, or if this is just a reference
+  time = 0,
+  maxSpeed = 0,
+  finished = false,
+  disqualified = false, -- Might be death, disconnection, etc.
+}
+local ROUND_EXAMPLE = {
+  racers = {
+    "STEAM_ID" = RACER_EXAMPLE
+  }
+}
+--]]
 
 -- IncrementTotal: Add 1 to the total rounds
 function RND.IncrementTotal()
@@ -22,24 +33,33 @@ function RND.Starting(round)
   for k, v in pairs(player:GetAll()) do
     v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Race #" .. RND.STATE.totalRounds .. " just begun!")
 
+    round.startTime = CurTime()
+
     if (v:Team() == TEAMS.RACING) then
       if (v:InVehicle()) then
-        -- TODO: Set the player as racing state?
         v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Here we go!")
+
+        -- Add the race to the round
+        round.racers[v:SteamID()] = {
+          ply = v,
+          time = 0,
+          maxSpeed = 0,
+          finished = false,
+          disqualified = false,
+        }
       else
-        -- TODO: Technically the player is assured to be in the starting area, so the message could be different
         v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't be a racer and not have a vehicle!")
         v:Kill()
       end
     elseif (v:Team() == TEAMS.BUILDING) then
-      -- TODO: Actually do nothing?
+      -- Look at them go!
     elseif (v:Team() == TEAMS.SPECTATING) then
       v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Make your bets!")
     end
   end
 
-  -- TODO: Track players and times
-  -- TODO: Notify of the new race
+  -- TODO: Track players and times (network)
+  -- TODO: Notify of the new race (network)
 
   -- Let the map know we are starting
   MAP.GatesOpen()
@@ -66,10 +86,25 @@ function RND.End(round)
   RND.STATE.stage = ROUND_STAGES.FINISHED
   print("Round ended!") --TODO: Remove, debug
 
+  for k, v in pairs(round.racers) do
+    local ply = v.ply -- Shorthand
+    if (v.finished == false) then
+      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "It seems like you didn't finish the race, better luck next time.")
+
+
+    end
+  end
+
+
+
+
   -- TODO: Return players to the building area
 
   timer.Create("SBR.StartTimer", ROUNDS.WAIT_TIME, 1, function() RND.Starting(round) end) -- We queue the next action
 end
 
-local round = {}
+local round = {
+  startTime = 0, -- Use this to calculate the fastest player
+  racers = {}
+}
 timer.Create("SBR.TestTimer", 5, 1, function() RND.Starting(round) end)
