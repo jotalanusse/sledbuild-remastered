@@ -1,5 +1,13 @@
--- VehicleLimitType: Limit the kind of vehicles that can be used
-function VehicleLimitType(ply, model, name, table)
+VEH = {
+  WHITELIST = {
+    "models/vehicles/prisoner_pod_inner.mdl",
+    "models/nova/airboat_seat.mdl"
+  },
+  DEFAULT_COLLISION_GROUP = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+}
+
+-- LimitType: Limit the kind of vehicles that can be used
+function VEH.LimitType(ply, model, name, table)
   for k, v in pairs(VEHICLES.WHITELIST) do
     if (string.find(model, v)) then
       return true
@@ -10,20 +18,20 @@ function VehicleLimitType(ply, model, name, table)
   return false
 end
 
-hook.Add("PlayerSpawnVehicle", "SBRVehicleLimitType", VehicleLimitType)
+hook.Add("PlayerSpawnVehicle", "SBR.VEH.LimitType", VEH.LimitType)
 
 -- TODO: Whah do this do???
--- VehicleSetDefaultCollissions: Set the default collission for the spawned vehicle
-function VehicleSetDefaultCollissions(ply, entity)
-  entity:SetCollisionGroup(VEHICLES.DEFAULT_COLLISION_GROUP)
+-- SetDefaultCollissions: Set the default collission for the spawned vehicle
+function VEH.SetDefaultCollissions(ply, entity)
+  entity:SetCollisionGroup(VEH.DEFAULT_COLLISION_GROUP)
 end
 
-hook.Add("PlayerSpawnedVehicle", "SBRVehicleSetDefaultCollissions", VehicleSetDefaultCollissions)
+hook.Add("PlayerSpawnedVehicle", "SBR.VEH.SetDefaultCollissions", VEH.SetDefaultCollissions)
 
--- TODO: Whah do this do???
--- VehiclePlayerLeave: Called when the player exits a vehicle
-function VehiclePlayerLeave(ply, vehicle)
+-- PlayerLeave: Called when the player exits a vehicle
+function VEH.PlayerLeave(ply, vehicle)
+  -- TODO: Kill player if team racing
   ply:SetCollisionGroup(PLAYERS.DEFAULT_COLLISION_GROUP)
 end
 
-hook.Add("PlayerLeaveVehicle", "SBRVehiclePlayerLeave", VehiclePlayerLeave)
+hook.Add("PlayerLeaveVehicle", "SBR.VEH.PlayerLeave", VEH.PlayerLeave)
