@@ -16,7 +16,7 @@ end
 
 -- EndTouch: Called when an entity leaves the trigger
 function ENT:EndTouch(entity)
-  -- We also check if the player is alive to avoid useless messages
+  -- We also check if the player is alive to avoid useless messages (maybe?)
   if (entity:IsPlayer() and entity:Alive()) then
     ZN.END.PLYS.EndTouch(entity)
   end
