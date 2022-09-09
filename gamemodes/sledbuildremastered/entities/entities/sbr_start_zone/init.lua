@@ -10,7 +10,7 @@ function ENT:Initialize() end
 function ENT:StartTouch(entity)
   -- No need to check if the player is alive, otherwise they can't enter
   if (entity:IsPlayer()) then
-    PlayerStartZoneStartTouch(entity)
+    ZN.STRT.PLYS.StartTouch(entity)
   end
 end
 
@@ -18,6 +18,6 @@ end
 function ENT:EndTouch(entity)
   -- We also check if the player is alive to avoid duplicate messages
   if (entity:IsPlayer() and entity:Alive()) then
-    PlayerStartZoneEndTouch(entity)
+    ZN.STRT.PLYS.EndTouch(entity)
   end
 end

@@ -5,6 +5,7 @@ include("shared.lua")
 
 -- Map check
 include("sv_map_check.lua")
+include("sv_zones.lua")
 
 -- Rules and restrictions
 include("sv_players.lua")
