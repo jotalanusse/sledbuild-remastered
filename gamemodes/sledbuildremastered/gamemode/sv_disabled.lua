@@ -1,33 +1,33 @@
-DSE = {}
+DSBE = {}
 
 -- EffectsDisableSpawning: Disable effects from being spawned
-function DSE.EffectsDisableSpawning(ply)
+function DSBE.EffectsDisableSpawning(ply)
   ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Effects cannot be spawned.")
   return false
 end
 
-hook.Add("PlayerSpawnEffect", "SBR.DSE.EffectsDisableSpawning", DSE.EffectsDisableSpawning)
+hook.Add("PlayerSpawnEffect", "SBR.DSBE.EffectsDisableSpawning", DSBE.EffectsDisableSpawning)
 
 -- NPCDisableSpawning: Disable NPCs from being spawned
-function DSE.NPCDisableSpawning(ply)
+function DSBE.NPCDisableSpawning(ply)
   ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "NPCs cannot be spawned.")
   return false
 end
 
-hook.Add("PlayerSpawnNPC", "SBR.DSE.NPCDisableSpawning", DSE.NPCDisableSpawning)
+hook.Add("PlayerSpawnNPC", "SBR.DSBE.NPCDisableSpawning", DSBE.NPCDisableSpawning)
 
 -- RagdollDisableSpawning: Disable ragdolls from being spawned
-function DSE.RagdollDisableSpawning(ply)
+function DSBE.RagdollDisableSpawning(ply)
   ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Ragdolls cannot be spawned.")
   return false
 end
 
-hook.Add("PlayerSpawnRagdoll", "SBR.DSE.RagdollDisableSpawning", DSE.RagdollDisableSpawning)
+hook.Add("PlayerSpawnRagdoll", "SBR.DSBE.RagdollDisableSpawning", DSBE.RagdollDisableSpawning)
 
 -- SWEPDisableSpawning: Disable SWEPs from being spawned
-function DSE.SWEPDisableSpawning(ply)
+function DSBE.SWEPDisableSpawning(ply)
   ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "SWEPs cannot be spawned.")
   return false
 end
 
-hook.Add("PlayerSpawnSWEP", "SBR.DSE.SWEPDisableSpawning", DSE.SWEPDisableSpawning)
+hook.Add("PlayerSpawnSWEP", "SBR.DSBE.SWEPDisableSpawning", DSBE.SWEPDisableSpawning)

@@ -1,7 +1,7 @@
-CHK = {}
+MCHK = {}
 
 -- CountByName: Count the amount of entities with a given name
-function CHK.CountByName(name)
+function MCHK.CountByName(name)
   local count = 0
 
   for k, v in pairs(ents.FindByName(name)) do
@@ -12,7 +12,7 @@ function CHK.CountByName(name)
 end
 
 -- CountByClass: Count the amount of entities with a given class
-function CHK.CountByClass(class)
+function MCHK.CountByClass(class)
   local count = 0
 
   for k, v in pairs(ents.FindByClass(class)) do
@@ -23,52 +23,52 @@ function CHK.CountByClass(class)
 end
 
 -- CheckMap: Checks the map for the neccesary entities/objects and warn the user if something is wrong
-function CHK.CheckMap(ply)
+function MCHK.CheckMap(ply)
   local completeMap = true
 
-  local totalStartZones = CHK.CountByClass(ENTITY_NAMES.START_ZONE_CLASS)
+  local totalStartZones = MCHK.CountByClass(ENTITY_NAMES.START_ZONE_CLASS)
   if (totalStartZones == 0) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "ERROR: No start zones found!")
     completeMap = false
   end
 
-  local totalFinishZones = CHK.CountByClass(ENTITY_NAMES.FINISH_ZONE_CLASS)
+  local totalFinishZones = MCHK.CountByClass(ENTITY_NAMES.FINISH_ZONE_CLASS)
   if (totalFinishZones == 0) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "ERROR: No finish zones found!")
     completeMap = false
   end
 
-  local totalGates = CHK.CountByName(ENTITY_NAMES.GATE_NAME)
+  local totalGates = MCHK.CountByName(ENTITY_NAMES.GATE_NAME)
   if (totalGates == 0) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "ERROR: No gates found!")
     completeMap = false
   end
 
-  local totalPushers = CHK.CountByName(ENTITY_NAMES.PUSHER_NAME)
+  local totalPushers = MCHK.CountByName(ENTITY_NAMES.PUSHER_NAME)
   if (totalGates == 0) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "ERROR: No pushers found!")
     completeMap = false
   end
 
-  local totalSpawns1 = CHK.CountByName(ENTITY_NAMES.SPAWN_1_NAME)
+  local totalSpawns1 = MCHK.CountByName(ENTITY_NAMES.SPAWN_1_NAME)
   if (totalSpawns1 == 0) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "ERROR: No specific spawn 1 found!")
     completeMap = false
   end
 
-  local totalSpawns2 = CHK.CountByName(ENTITY_NAMES.SPAWN_2_NAME)
+  local totalSpawns2 = MCHK.CountByName(ENTITY_NAMES.SPAWN_2_NAME)
   if (totalSpawns2 == 0) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "ERROR: No specific spawn 2 found!")
     completeMap = false
   end
 
-  local totalSpawns3 = CHK.CountByName(ENTITY_NAMES.SPAWN_3_NAME)
+  local totalSpawns3 = MCHK.CountByName(ENTITY_NAMES.SPAWN_3_NAME)
   if (totalSpawns3 == 0) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "ERROR: No specific spawn 3 found!")
     completeMap = false
   end
 
-  local totalSpawns = CHK.CountByName(ENTITY_NAMES.SPAWN_NAME)
+  local totalSpawns = MCHK.CountByName(ENTITY_NAMES.SPAWN_NAME)
   if (totalSpawns == 0) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "ERROR: No additional spawns found!")
     completeMap = false

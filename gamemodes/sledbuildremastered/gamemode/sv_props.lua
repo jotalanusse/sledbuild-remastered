@@ -1,4 +1,4 @@
-PPS = {
+PRPS = {
   MAX_RADIUS = 128,
   BLACKLIST = {
     "models/props_phx/oildrum001_explosive.mdl",
@@ -18,7 +18,7 @@ PPS = {
 }
 
 -- DisableRacingSpawning: Restricts a player from spawning props when racing
-function PPS.DisableRacingSpawning(ply)
+function PRPS.DisableRacingSpawning(ply)
   if (ply:Team()) == TEAMS.RACING then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Props cannot be spawned while being a racer!")
     return false
@@ -27,24 +27,24 @@ function PPS.DisableRacingSpawning(ply)
   return true
 end
 
-hook.Add("PlayerSpawnObject", "SBR.PPS.DisableRacingSpawning", PPS.DisableRacingSpawning)
+hook.Add("PlayerSpawnObject", "SBR.PRPS.DisableRacingSpawning", PRPS.DisableRacingSpawning)
 
 -- Spawned: Called when a player spawns a prop
-function PPS.Spawned(ply, model, prop)
+function PRPS.Spawned(ply, model, prop)
   -- Limit the max size of the prop that can be spawned
-  if (prop:BoundingRadius() > PPS.MAX_RADIUS) then
+  if (prop:BoundingRadius() > PRPS.MAX_RADIUS) then
     prop:Remove()
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "That prop is way too large for a sled.")
   end
 
-  prop:SetCollisionGroup(PPS.DEFAULT_COLLISION_GROUP) -- TODO: Wah do this do???
+  prop:SetCollisionGroup(PRPS.DEFAULT_COLLISION_GROUP) -- TODO: Wah do this do???
 end
 
-hook.Add("PlayerSpawnedProp", "SBR.PPS.Spawned", PPS.Spawned)
+hook.Add("PlayerSpawnedProp", "SBR.PRPS.Spawned", PRPS.Spawned)
 
 -- Block: Restrict the spawning of props in the blacklist
-function PPS.Block(ply, model)
-  for k, v in pairs(PPS.BLACKLIST) do
+function PRPS.Block(ply, model)
+  for k, v in pairs(PRPS.BLACKLIST) do
     if (string.find(model, v)) then
       ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This prop is blacklisted.")
       return false
@@ -52,4 +52,4 @@ function PPS.Block(ply, model)
   end
 end
 
-hook.Add("PlayerSpawnProp", "SBR.PPS.Block", PPS.Block)
+hook.Add("PlayerSpawnProp", "SBR.PRPS.Block", PRPS.Block)
