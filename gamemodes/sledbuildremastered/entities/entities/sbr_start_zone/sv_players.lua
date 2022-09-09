@@ -6,9 +6,11 @@ function PlayerStartZoneStartTouch(ply)
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't enter the start zone while the race is starting!")
     ply:Kill()
   else
-    -- If the player is in the start zone we consider them a player
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You are now a racer!")
-    ply:SetTeam(TEAMS.RACING)
+    -- If the player is in the start zone we consider them a racer
+    if (ply:Team() == TEAMS.BUILDING) then
+      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You are now a racer!") -- TODO: Replace for a UI element
+      ply:SetTeam(TEAMS.RACING)
+    end
   end
 end
 
@@ -16,14 +18,16 @@ end
 function PlayerStartZoneEndTouch(ply)
   if (STATE.state == ROUND_STATES.STARTING) then
     -- You cant leave the start zone without a vehicle
-    if (not ply:InVehicle()) then
+    if (ply:Team() == TEAMS.RACING and not ply:InVehicle()) then
       ply:PrintMessage(HUD_PRINTTALK,
         CONSOLE_PREFIX .. "You can't leave the start zone without a vehicle while the race is starting!")
       ply:Kill()
     end
   else
     -- If the player leaves the start zone we consider them a builder
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You are now a builder!")
-    ply:SetTeam(TEAMS.BUILDING)
+    if (ply:Team() == TEAMS.RACING) then
+      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You are now a builder!") -- TODO: Replace for a UI element
+      ply:SetTeam(TEAMS.BUILDING)
+    end
   end
 end

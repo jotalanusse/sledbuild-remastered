@@ -12,7 +12,7 @@ ROUND_STATES = {
   WAITING = 1,
   STARTING = 2,
   RACING = 3,
-  FINISHED = 4,
+  FINISHED = 4, -- TODO: Do we need this?
 }
 
 -- Team enumerations
