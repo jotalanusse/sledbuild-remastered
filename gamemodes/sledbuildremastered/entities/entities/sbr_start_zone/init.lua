@@ -4,8 +4,7 @@ ENT.Type = "brush"
 include("sv_players.lua")
 
 -- Initialize: Called when the entity is created
-function ENT:Initialize()
-end
+function ENT:Initialize() end
 
 -- StartTouch: Called when an entity touches the trigger
 function ENT:StartTouch(entity)
