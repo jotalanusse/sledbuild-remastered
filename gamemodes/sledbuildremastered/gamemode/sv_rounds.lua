@@ -41,7 +41,7 @@ function RoundStarting(round)
 
   -- Let the map know we are starting
   GatesOpen()
-  PusherEnable()
+  PushersEnable()
 
   timer.Create("RoundRacingTimer", ROUNDS.START_TIME, 1, function() RoundRacing(round) end) -- We queue the next action
 end
@@ -54,7 +54,7 @@ function RoundRacing(round)
 
   -- Starting time is over
   GatesClose()
-  PusherDisable()
+  PushersDisable()
 
   timer.Create("RoundEndTimer", ROUNDS.RACE_TIME, 1, function() RoundEnd(round) end) -- We queue the next action
 end

@@ -12,15 +12,15 @@ function GatesClose()
 	end
 end
 
--- PusherEnable: Enables the pusher to move players on round start
-function PusherEnable()
+-- PushersEnable: Enables the pushers to move players on round start
+function PushersEnable()
 	for k, v in pairs(ents.FindByName(ENTITY_NAMES.PUSHER_NAME)) do
 		v:Fire("Enable", "", "0") -- Enable the pusher with a delay of 0
 	end
 end
 
--- PusherDisable: Disables the pusher
-function PusherDisable()
+-- PushersDisable: Disables the pushers
+function PushersDisable()
 	for k, v in pairs(ents.FindByName(ENTITY_NAMES.PUSHER_NAME)) do
 		v:Fire("Disable", "", "0") -- Disable the pusher with a delay of 0
 	end
