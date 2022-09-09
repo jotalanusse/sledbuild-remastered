@@ -5,3 +5,4 @@
 - Prevent exiting the vehicle while racing
 - Avoid players boosting with the physgun
 - Add module descriptions
+- Make restrictions dont apply to admins

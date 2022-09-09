@@ -30,8 +30,25 @@ hook.Add("PlayerSpawnedVehicle", "SBR.VEHS.SetDefaultCollissions", VEHS.SetDefau
 
 -- PlayerLeave: Called when the player exits a vehicle
 function VEHS.PlayerLeave(ply, vehicle)
-  -- TODO: Kill player if team racing
-  ply:SetCollisionGroup(PLYS.DEFAULT_COLLISION_GROUP)
+  -- TODO: We kill the players if they are part of the current race
+  -- There is a weird bug where the game crashes when trying to kill the player
+  -- so for now we just won't allow players to exit their vehicles
+
+    ply:SetCollisionGroup(PLYS.DEFAULT_COLLISION_GROUP)
 end
 
 hook.Add("PlayerLeaveVehicle", "SBR.VEHS.PlayerLeave", VEHS.PlayerLeave)
+
+-- CanExitVehicle: Called when the player tries to exit a vehicle
+function VEHS.CanExitVehicle(vehicle, ply)
+  if (ply:IsAdmin()) then
+    return true
+  end
+
+  if(RND.IsPlayerRacing(ply)) then
+    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't leave your sled while racing!")
+    return false
+  end
+end
+
+hook.Add("CanExitVehicle", "SBR.VEHS.CanExitVehicle", VEHS.CanExitVehicle)
