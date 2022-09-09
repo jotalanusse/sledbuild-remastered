@@ -1,7 +1,12 @@
 ENTITY_NAMES = {
   GATE_NAME = "sbr_gate",
   PUSHER_NAME = "sbr_pusher",
-  START_ZONE_NAME = "sbr_start_zone",
+  SPAWN_1_NAME = "sbr_spawn_1",
+  SPAWN_2_NAME = "sbr_spawn_2",
+  SPAWN_3_NAME = "sbr_spawn_3",
+  SPAWN_NAME = "sbr_spawn",
+  START_ZONE_CLASS = "sbr_start_zone",
+  FINISH_ZONE_CLASS = "sbr_finish_zone",
 }
 ROUNDS = {
   START_TIME = 10,

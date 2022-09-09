@@ -55,6 +55,9 @@ local function PlayerInitialSpawn(ply)
   for k, v in pairs(player.GetAll()) do
     v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. ply:Nick() .. " has joined the server!")
   end
+
+  -- Check the map and warn the player, let him know our gamemode isn't the problem
+  CheckMap(ply)
 end
 
 hook.Add("PlayerInitialSpawn", "SBRPlayerInitialSpawn", PlayerInitialSpawn)

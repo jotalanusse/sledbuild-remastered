@@ -3,6 +3,9 @@ include("sv_globals.lua")
 -- Run LUA files
 include("shared.lua")
 
+-- Map check
+include("sv_map_check.lua")
+
 -- Rules and restrictions
 include("sv_players.lua")
 include("sv_props.lua")
