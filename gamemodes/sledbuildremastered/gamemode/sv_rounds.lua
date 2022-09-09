@@ -2,6 +2,7 @@ RND = {
   STATE = {
     totalRounds = 0,
     stage = ROUND_STAGES.WAITING,
+    round = {}
   }
 }
 --[[
@@ -88,10 +89,16 @@ function RND.End(round)
 
   for k, v in pairs(round.racers) do
     local ply = v.ply -- Shorthand
+
+    -- TODO: Add a total races count
+
     if (v.finished == false) then
       ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "It seems like you didn't finish the race, better luck next time.")
 
+      local spawn = MAP.SelectRandomSpawn()
+      TLPT.Vehicle(ply:GetVehicle(), spawn:GetPos()) -- Teleport losers back
 
+      ply:SetTeam(TEAMS.BUILDING)
     end
   end
 
@@ -100,11 +107,19 @@ function RND.End(round)
 
   -- TODO: Return players to the building area
 
+  -- Reset the round information
+  round = {
+    startTime = 0,
+    racers = {}
+  }
   timer.Create("SBR.StartTimer", ROUNDS.WAIT_TIME, 1, function() RND.Starting(round) end) -- We queue the next action
 end
 
-local round = {
+-- TODO: Passing the round object works by reference or by instance?
+-- TODO: If this works by instance we will need nother way of hanlding the variables
+RND.STATE.round = {
   startTime = 0, -- Use this to calculate the fastest player
   racers = {}
 }
-timer.Create("SBR.TestTimer", 5, 1, function() RND.Starting(round) end)
+
+timer.Create("SBR.TestTimer", 10, 1, function() RND.Starting(RND.STATE.round) end) -- TODO: Testing, move?

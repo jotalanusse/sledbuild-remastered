@@ -1,7 +1,7 @@
 ROUNDS = {
-  START_TIME = 10,
-  RACE_TIME = 10,
-  WAIT_TIME = 10,
+  START_TIME = 5,
+  RACE_TIME = 5,
+  WAIT_TIME = 5,
 }
 ENTITY_NAMES = {
   GATE_NAME = "sbr_gate",

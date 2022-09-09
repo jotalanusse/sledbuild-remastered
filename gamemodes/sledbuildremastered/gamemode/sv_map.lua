@@ -1,5 +1,27 @@
 MAP = {}
 
+-- CountByName: Count the amount of entities with a given name
+function MAP.CountByName(name)
+  local count = 0
+
+  for k, v in pairs(ents.FindByName(name)) do
+    count = count + 1
+  end
+
+  return count
+end
+
+-- CountByClass: Count the amount of entities with a given class
+function MAP.CountByClass(class)
+  local count = 0
+
+  for k, v in pairs(ents.FindByClass(class)) do
+    count = count + 1
+  end
+
+  return count
+end
+
 -- GatesOpen: Open the gates so the player can race
 function MAP.GatesOpen()
 	for k, v in pairs(ents.FindByName(ENTITY_NAMES.GATE_NAME)) do
@@ -26,4 +48,12 @@ function MAP.PushersDisable()
 	for k, v in pairs(ents.FindByName(ENTITY_NAMES.PUSHER_NAME)) do
 		v:Fire("Disable", "", "0") -- Disable the pusher with a delay of 0
 	end
+end
+
+-- SelectRandomSpawn: Selects a random spawn position
+function MAP.SelectRandomSpawn()
+	local spawns = ents.FindByName(ENTITY_NAMES.SPAWN_NAME)
+	local selectedSpawnIndex = math.random(1, MAP.CountByName(ENTITY_NAMES.SPAWN_NAME))
+
+	return spawns[selectedSpawnIndex]
 end

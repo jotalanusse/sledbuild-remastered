@@ -16,6 +16,7 @@ include("sv_disabled.lua")
 
 -- Map control
 include("sv_map.lua")
+include("sv_teleport.lua")
 include("sv_rounds.lua")
 -- include("sv_start_zone.lua")
 

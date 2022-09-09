@@ -2,6 +2,7 @@
 function ZN.STRT.PLYS.StartTouch(ply)
   -- You cant enter the start zone while the race begins
   if (RND.STATE.stage == ROUND_STAGES.STARTING) then
+    -- TODO: Can you re-enter as a racer?
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't enter the start zone while the race is starting!")
     ply:Kill()
   else
