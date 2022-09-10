@@ -1,6 +1,6 @@
 include("sv_globals.lua")
 
--- Run LUA files
+-- Shared functionality
 include("shared.lua")
 
 -- Network

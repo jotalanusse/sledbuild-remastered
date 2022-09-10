@@ -79,7 +79,8 @@ function PLYS.InitialSpawn(ply)
 
   -- Notify of a new player
   for k, v in pairs(player.GetAll()) do
-    v:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. ply:Nick() .. " has joined the server!")
+    -- v:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. ply:Nick() .. " has joined the server!")
+    NET.SendGamemodeMessage(v, ply:Nick() .. " has joined the server!")
   end
 
   -- Check the map and warn the player, let him know our gamemode isn't the problem
