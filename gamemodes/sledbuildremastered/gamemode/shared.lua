@@ -19,7 +19,6 @@ ROUND_STAGES = {
   WAITING = 1,
   STARTING = 2,
   RACING = 3,
-  FINISHED = 4, -- TODO: Do we need this?
 }
 
 -- Team enumerations
