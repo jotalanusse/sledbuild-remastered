@@ -35,6 +35,16 @@ function PLYS.SetLoadout(ply)
   end
 end
 
+-- Teleport: Teleport a player to the specified target
+function PLYS.Teleport(ply, target)
+  if ply and ply:IsPlayer() then
+    ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+    ply:SetCollisionGroup(PLYS.DEFAULT_COLLISION_GROUP)
+    ply:SetPos(target)
+    ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+  end
+end
+
 -- SetTeam: Set the team for the player
 function PLYS.SetTeam(ply, team)
   ply:SetTeam(team)

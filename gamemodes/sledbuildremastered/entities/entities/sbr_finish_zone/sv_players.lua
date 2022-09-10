@@ -27,7 +27,17 @@ function ZN.END.PLYS.StartTouch(ply)
 
       -- Teleport racer back
       local spawn = MAP.SelectRandomSpawn()
-      timer.Simple(3, function() VEHS.Teleport(ply:GetVehicle(), spawn:GetPos()) end)
+      local vehicle = ply:GetVehicle()
+
+      timer.Simple(3, function() 
+        VEHS.Teleport(vehicle, spawn:GetPos())
+
+        -- A player might get off after finishing the race
+        if (not ply:InVehicle()) then
+          NET.SendGamemodeMessage(ply, "Remember to stay in your sled!")
+          PLYS.Teleport(ply, spawn:GetPos())
+        end
+      end)
     else
       -- This code should be unreachable, players shouldn't be able to get off
       NET.SendGamemodeMessage(ply, "How did you finish without a sled? You shouldn't even be alive.",
