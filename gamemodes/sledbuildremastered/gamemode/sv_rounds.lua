@@ -66,7 +66,7 @@ function RND.ResetRacers(round)
         if (ply:InVehicle()) then
           -- Teleport back to spawn
           local spawn = MAP.SelectRandomSpawn()
-          TLPT.Vehicle(ply:GetVehicle(), spawn:GetPos())
+          VEHS.Teleport(ply:GetVehicle(), spawn:GetPos())
         else
           -- This code should be unreachable, players shouldn't be able to get off
           ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you get off your sled? You shouldn't even be alive.")

@@ -1,4 +1,4 @@
--- StartTouch: Called when a player touches the start zone
+-- StartTouch: Called when a player enters the start zone
 function ZN.STRT.PLYS.StartTouch(ply)
   -- You cant enter the start zone while the race begins
   if (RND.STATE.stage == ROUND_STAGES.STARTING) then

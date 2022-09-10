@@ -5,5 +5,7 @@ ZN = {
   },
   END = {
     PLYS = {},
+    PRPS = {},
+    VEHS = {},
   },
 }

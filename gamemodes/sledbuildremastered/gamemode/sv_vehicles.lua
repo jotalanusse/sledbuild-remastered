@@ -6,6 +6,34 @@ VEHS = {
   DEFAULT_COLLISION_GROUP = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
 }
 
+-- Teleport: Teleport a vehicle to the specified target
+function VEHS.Teleport(vehicle, destination)
+	local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
+
+	for k, v in pairs(constrainedEntities) do
+		if v and v:IsValid() then
+			v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+			v:SetCollisionGroup(VEHS.DEFAULT_COLLISION_GROUP)
+			v:SetPos(destination) -- TODO: Teleport props to their relative destination
+			v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+		end
+	end
+end
+
+-- IsSled: Checks if a set of constrained props is considered a sled
+function VEHS.IsSled(entity)
+  local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
+
+  for k, v in pairs(constrainedEntities) do
+    -- TODO: Store entity class in a gobal variable?
+    if (v:GetClass() == "prop_vehicle_prisoner_pod") then
+      return true
+    end
+  end
+
+  return false
+end
+
 -- LimitType: Limit the kind of vehicles that can be used
 function VEHS.LimitType(ply, model, name, table)
   for k, v in pairs(VEHS.WHITELIST) do

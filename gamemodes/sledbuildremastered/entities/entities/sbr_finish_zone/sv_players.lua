@@ -1,4 +1,4 @@
--- StartTouch: Called when a player touches the end zone
+-- StartTouch: Called when a player enters the end zone
 function ZN.END.PLYS.StartTouch(ply)
   if (RND.IsPlayerRacing(ply)) then
     if (ply:InVehicle()) then
@@ -27,7 +27,7 @@ function ZN.END.PLYS.StartTouch(ply)
 
       -- Teleport racer back
       local spawn = MAP.SelectRandomSpawn()
-      TLPT.Vehicle(ply:GetVehicle(), spawn:GetPos())
+      VEHS.Teleport(ply:GetVehicle(), spawn:GetPos())
     else
       -- This code should be unreachable, players shouldn't be able to get off
       ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you finish without a sled? You shouldn't even be alive.")
