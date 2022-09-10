@@ -15,10 +15,18 @@ CONSOLE = {
     TEXT = Color(220, 220, 220) -- TODO: Find the best color
   }
 }
-ROUND_STAGES = {
-  WAITING = 1,
-  STARTING = 2,
-  RACING = 3,
+ROUND = {
+  TIMES = {
+    START = 5,
+    RACE = 18,
+    WAIT = 5,
+  },
+
+  STAGES = {
+    WAITING = 1,
+    STARTING = 2,
+    RACING = 3,
+  }
 }
 
 -- Team enumerations

@@ -1,9 +1,4 @@
-ROUNDS = {
-  START_TIME = 5,
-  RACE_TIME = 18,
-  WAIT_TIME = 5,
-}
-ENTITY = {
+ENTITIES = {
   NAMES = {
     GATE_NAME = "sbr_gate",
     PUSHER_NAME = "sbr_pusher",

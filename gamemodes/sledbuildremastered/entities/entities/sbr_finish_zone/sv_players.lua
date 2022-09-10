@@ -1,6 +1,6 @@
 -- StartTouch: Called when a player enters the end zone
 function ZN.END.PLYS.StartTouch(ply)
-  if (RND.STATE.stage == ROUND_STAGES.RACING) then
+  if (RND.STATE.stage == ROUND.STAGES.RACING) then
     if (RND.IsPlayerRacing(ply)) then
       if (ply:InVehicle()) then
         -- The player finished the race!

@@ -1,7 +1,7 @@
 RND = {
   STATE = {
     totalRounds = 0,
-    stage = ROUND_STAGES.WAITING,
+    stage = ROUND.STAGES.WAITING,
     round = {
       startTime = 0,
       racers = {},
@@ -85,7 +85,7 @@ end
 
 -- Starting: Starts a new race
 function RND.Starting(round)
-  RND.STATE.stage = ROUND_STAGES.STARTING
+  RND.STATE.stage = ROUND.STAGES.STARTING
 
   PLYS.ResetAllColors() -- Reset all player colors
   RND.IncrementTotal() -- Add one to the total races counter
@@ -118,12 +118,12 @@ function RND.Starting(round)
   MAP.GatesOpen()
   MAP.PushersEnable()
 
-  timer.Create("SBR.RacingTimer", ROUNDS.START_TIME, 1, function() RND.Racing(round) end) -- We queue the next action
+  timer.Create("SBR.RacingTimer", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
 end
 
 -- Racing: We are now officialy racing
 function RND.Racing(round)
-  RND.STATE.stage = ROUND_STAGES.RACING
+  RND.STATE.stage = ROUND.STAGES.RACING
 
   print("Round started!") --TODO: Remove, debug
 
@@ -131,12 +131,12 @@ function RND.Racing(round)
   MAP.GatesClose()
   MAP.PushersDisable()
 
-  timer.Create("SBR.EndTimer", ROUNDS.RACE_TIME, 1, function() RND.End(round) end) -- We queue the next action
+  timer.Create("SBR.EndTimer", ROUND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
 end
 
 -- End: End the current race
 function RND.End(round)
-  RND.STATE.stage = ROUND_STAGES.FINISHED
+  RND.STATE.stage = ROUND.STAGES.FINISHED
   print("Round ended!") --TODO: Remove, debug
 
   -- TODO: Add a total races count (player stats)
@@ -146,5 +146,5 @@ function RND.End(round)
   round.startTime = 0
   round.racers = {}
 
-  timer.Create("SBR.StartTimer", ROUNDS.WAIT_TIME, 1, function() RND.Starting(round) end) -- We queue the next action
+  timer.Create("SBR.StartTimer", ROUND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
 end
