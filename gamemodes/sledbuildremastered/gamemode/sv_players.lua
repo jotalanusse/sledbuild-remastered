@@ -91,9 +91,10 @@ hook.Add("PlayerInitialSpawn", "SBR.PLYS.InitialSpawn", PLYS.InitialSpawn)
 
 -- RestrictNoclip: Prevent the player from using noclip
 function PLYS.RestrictNoclip(ply, bool)
-  if (ply:IsAdmin()) then
-    return true
-  end
+  -- TODO: Enable after testing
+  -- if (ply:IsAdmin()) then
+  --   return true
+  -- end
 
   ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Only admins may use noclip.")
   return false

@@ -2,24 +2,24 @@ MAP = {}
 
 -- CountByName: Count the amount of entities with a given name
 function MAP.CountByName(name)
-  local count = 0
+	local count = 0
 
-  for k, v in pairs(ents.FindByName(name)) do
-    count = count + 1
-  end
+	for k, v in pairs(ents.FindByName(name)) do
+		count = count + 1
+	end
 
-  return count
+	return count
 end
 
 -- CountByClass: Count the amount of entities with a given class
 function MAP.CountByClass(class)
-  local count = 0
+	local count = 0
 
-  for k, v in pairs(ents.FindByClass(class)) do
-    count = count + 1
-  end
+	for k, v in pairs(ents.FindByClass(class)) do
+		count = count + 1
+	end
 
-  return count
+	return count
 end
 
 -- GatesOpen: Open the gates so the player can race

@@ -1,33 +1,50 @@
 TLS = {
-  BLACKLIST = {
-    "balloon", "ballsocket_adv", "button",
-    "dynamite", "elastic", "emitter",
-    "eyeposer", "faceposer", "finger",
-    "hoverball", "hydraulic", "ignite",
-    "inflator", "lamp", "light",
-    "magnetise", "muscle", "nail",
-    "paint", "physprop", "pulley",
-    "rope", "slider", "spawner",
-    "statue", "thruster", "turret",
-    "winch", "duplicator" -- TODO: See if duplicator should be disabled
+  RESTRICTED = {
+    ["balloon"] = true,
+    ["ballsocket_adv"] = true,
+    ["button"] = true,
+    ["dynamite"] = true,
+    ["elastic"] = true,
+    ["emitter"] = true,
+    ["eyeposer"] = true,
+    ["faceposer"] = true,
+    ["finger"] = true,
+    ["hoverball"] = true,
+    ["hydraulic"] = true,
+    ["ignite"] = true,
+    ["inflator"] = true,
+    ["lamp"] = true,
+    ["light"] = true,
+    ["magnetise"] = true,
+    ["muscle"] = true,
+    ["nail"] = true,
+    ["paint"] = true,
+    ["physprop"] = true,
+    ["pulley"] = true,
+    ["rope"] = true,
+    ["slider"] = true,
+    ["spawner"] = true,
+    ["statue"] = true,
+    ["thruster"] = true,
+    ["turret"] = true,
+    ["winch"] = true,
   }
 }
 
--- BlacklistToolgun: Blacklist certain tools of the toolgun
-function TLS.BlacklistToolgun(ply, trace, toolname)
-  if (ply:IsAdmin()) then
-    return true
-  end
+-- RestrictToolgun: Restrict certain tools of the toolgun
+function TLS.RestrictToolgun(ply, trace, toolname)
+  -- TODO: Enable after testing
+  -- if (ply:IsAdmin()) then
+  --   return true
+  -- end
 
-  for k, v in pairs(TLS.BLACKLIST) do
-    if (toolname == v) then
-      ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "This tool is restricted.")
-      return false
-    end
+  if (TLS.RESTRICTED[toolname]) then
+    ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "This tool is restricted.")
+    return false
   end
 end
 
-hook.Add("CanTool", "SBR.TLS.BlacklistToolgun", TLS.BlacklistToolgun)
+hook.Add("CanTool", "SBR.TLS.BlacklistToolgun", TLS.RestrictToolgun)
 
 -- TODO: Test if this function actually does something
 -- LimitToolgun: Limit what the player can affect with their toolgun
@@ -54,11 +71,12 @@ function TLS.LimitPhysgun(ply, entity)
   end
 
   if (entity:IsPlayer()) then
-    if (ply:IsAdmin()) then
-      return true
-    else
-      return false
-    end
+    -- TODO: Enable after testing
+    -- if (ply:IsAdmin()) then
+    --   return true
+    -- end
+
+    return false
   end
 end
 
