@@ -1,7 +1,7 @@
 VEHS = {
-  WHITELIST = {
-    "models/vehicles/prisoner_pod_inner.mdl",
-    "models/nova/airboat_seat.mdl"
+  ALLOWED = {
+    ["models/vehicles/prisoner_pod_inner.mdl"] = true,
+    ["models/nova/airboat_seat.mdl"] = true
   },
   DEFAULT_COLLISION_GROUP = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
 }
@@ -9,16 +9,16 @@ VEHS = {
 -- Teleport: Teleport a vehicle to the specified target
 function VEHS.Teleport(vehicle, destination)
   local originalVehiclePos = vehicle:GetPos() -- Use this so the props don't tp to an unwanted position
-	local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
+  local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
 
-	for k, v in pairs(constrainedEntities) do
-		if v and v:IsValid() then
-			v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-			v:SetCollisionGroup(VEHS.DEFAULT_COLLISION_GROUP)
-			v:SetPos(destination + (v:GetPos() - originalVehiclePos))
-			v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-		end
-	end
+  for k, v in pairs(constrainedEntities) do
+    if v and v:IsValid() then
+      v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+      v:SetCollisionGroup(VEHS.DEFAULT_COLLISION_GROUP)
+      v:SetPos(destination + (v:GetPos() - originalVehiclePos))
+      v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+    end
+  end
 end
 
 -- IsSled: Checks if a set of constrained props is considered a sled
@@ -52,19 +52,17 @@ function VEHS.HasPlayer(entity)
   return false
 end
 
--- LimitType: Limit the kind of vehicles that can be used
-function VEHS.LimitType(ply, model, name, table)
-  for k, v in pairs(VEHS.WHITELIST) do
-    if (string.find(model, v)) then
-      return true
-    end
+-- Restrict: Restrict the kind of vehicles that can be used
+function VEHS.Restrict(ply, model, name, table)
+  if (VEHS.ALLOWED[model]) then
+    return true
   end
 
   ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Only a Pod or Airboat Seat can be used.")
   return false
 end
 
-hook.Add("PlayerSpawnVehicle", "SBR.VEHS.LimitType", VEHS.LimitType)
+hook.Add("PlayerSpawnVehicle", "SBR.VEHS.LimitType", VEHS.Restrict)
 
 -- TODO: Whah do this do???
 -- SetDefaultCollissions: Set the default collission for the spawned vehicle
@@ -80,18 +78,19 @@ function VEHS.PlayerLeave(ply, vehicle)
   -- There is a weird bug where the game crashes when trying to kill the player
   -- so for now we just won't allow players to exit their vehicles
 
-    ply:SetCollisionGroup(PLYS.DEFAULT_COLLISION_GROUP)
+  ply:SetCollisionGroup(PLYS.DEFAULT_COLLISION_GROUP)
 end
 
 hook.Add("PlayerLeaveVehicle", "SBR.VEHS.PlayerLeave", VEHS.PlayerLeave)
 
 -- CanExitVehicle: Called when the player tries to exit a vehicle
 function VEHS.CanExitVehicle(vehicle, ply)
-  if (ply:IsAdmin()) then
-    return true
-  end
+  -- TODO: Enable after testing
+  -- if (ply:IsAdmin()) then
+  --   return true
+  -- end
 
-  if(RND.IsPlayerRacing(ply)) then
+  if (RND.IsPlayerRacing(ply)) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "You can't leave your sled while racing!")
     return false
   end

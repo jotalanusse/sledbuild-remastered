@@ -55,6 +55,7 @@ function MCHK.CheckMap(ply)
   if (not completeMap) then
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "ERROR: The map is not complete, gameplay might be broken!")
     ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "ERROR: Please check the map for missing entities!")
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "ERROR: If you can, contact the map creator and tell him about this!")
+    ply:PrintMessage(HUD_PRINTTALK,
+      CONSOLE.PREFIX .. "ERROR: If you can, contact the map creator and tell him about this!")
   end
 end
