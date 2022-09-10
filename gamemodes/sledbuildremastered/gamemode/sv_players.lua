@@ -41,7 +41,7 @@ end
 function PLYS.Teleport(ply, target)
   if ply and ply:IsPlayer() then
     ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-    ply:SetCollisionGroup(PLYS.DEFAULT_COLLISION_GROUP)
+    ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
     ply:SetPos(target)
     ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
   end
@@ -71,7 +71,7 @@ end
 
 -- SetDefaultCollision: Set the default collission for a player
 function PLYS.SetDefaultCollision(ply)
-  ply:SetCollisionGroup(PLYS.DEFAULT_COLLISION_GROUP) -- Doesn't collide with players and vehicles
+  ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT) -- Doesn't collide with players and vehicles
 end
 
 -- Spawn: Called everytime a player spawns

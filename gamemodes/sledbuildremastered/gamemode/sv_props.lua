@@ -1,5 +1,8 @@
 PRPS = {
   MAX_RADIUS = 128,
+  COLLISIONS = {
+    DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+  },
   RESTRICTED = {
     ["models/props_phx/oildrum001_explosive.mdl"] = true,
     ["models/props_junk/gascan001a.mdl"] = true,
@@ -13,9 +16,6 @@ PRPS = {
     ["models/props_phx/cannonball.mdl"] = true,
     ["models/props_phx/torpedo.mdl"] = true
   },
-  COLLISIONS = {
-    DEFUALT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
-  }
 }
 
 -- DisableRacingSpawning: Restricts a player from spawning props when racing
@@ -38,7 +38,7 @@ function PRPS.Spawned(ply, model, prop)
     prop:Remove()
   end
 
-  prop:SetCollisionGroup(PRPS.DEFAULT_COLLISION_GROUP) -- TODO: Wah do this do???
+  prop:SetCollisionGroup(PRPS.COLLISIONS.DEFAULT) -- TODO: Wah do this do???
 end
 
 hook.Add("PlayerSpawnedProp", "SBR.PRPS.Spawned", PRPS.Spawned)
