@@ -20,6 +20,41 @@ function RND.IsPlayerRacing(ply)
   end
 end
 
+-- AddPlayer: Adds a new player to the round
+function RND.AddPlayer(ply, round)
+  round.racers[ply:SteamID()] = {
+    ply = ply,
+    maxSpeed = 0,
+    disqualified = false,
+  }
+end
+
+-- ResetPlayers: Bring players back to the spawn on round end
+function RND.ResetPlayers(round)
+  for k, v in pairs(round.racers) do
+    local ply = v.ply
+
+    -- Only iterate over non-disquialified racers (avoid deaths, and disconnections)
+    if (RND.IsPlayerRacing(ply)) then
+      if (not v.finished) then
+        ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You didn't finish the race, better luck next time.")
+
+        if (ply:InVehicle()) then
+          -- Teleport back to spawn
+          local spawn = MAP.SelectRandomSpawn()
+          TLPT.Vehicle(ply:GetVehicle(), spawn:GetPos())
+        else
+          -- This code should be unreachable, players shouldn't be able to get off
+          ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you get off your sled? You shouldn't even be alive.")
+          ply:Kill()
+        end
+
+        ply:SetTeam(TEAMS.BUILDING)
+      end
+    end
+  end
+end
+
 -- IncrementTotal: Add 1 to the total rounds
 function RND.IncrementTotal()
   RND.STATE.totalRounds = RND.STATE.totalRounds + 1
@@ -34,20 +69,12 @@ function RND.Starting(round)
   for k, v in pairs(player:GetAll()) do
     v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Race #" .. RND.STATE.totalRounds .. " just begun!")
 
-    round.startTime = CurTime()
-
     if (v:Team() == TEAMS.RACING) then
       if (v:InVehicle()) then
         v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Here we go!")
-
-        -- Add the race to the round
-        round.racers[v:SteamID()] = {
-          ply = v,
-          maxSpeed = 0,
-          disqualified = false,
-        }
+        RND.AddPlayer(v, round)
       else
-        v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't be a racer and not have a vehicle!")
+        v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't be a racer and not be in a vehicle!")
         v:Kill()
       end
     elseif (v:Team() == TEAMS.BUILDING) then
@@ -56,6 +83,9 @@ function RND.Starting(round)
       v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Make your bets!")
     end
   end
+
+  -- Set round state
+  round.startTime = CurTime()
 
   -- TODO: Track players and times (network)
   -- TODO: Notify of the new race (network)
@@ -85,43 +115,12 @@ function RND.End(round)
   RND.STATE.stage = ROUND_STAGES.FINISHED
   print("Round ended!") --TODO: Remove, debug
 
-  for k, v in pairs(round.racers) do
-    local ply = v.ply -- Shorthand
+  -- TODO: Add a total races count (player stats)
+  RND.ResetPlayers(round)
 
-    -- TODO: Add a total races count
-
-    -- Only iterate over non-disquialified racers (avoid deaths, and disconnections)
-    -- TODO: Should we use "not v.disquialified"? Current approach seems more consistent
-    if(RND.IsPlayerRacing(ply)) then
-      if (not v.finished) then
-        ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You didn't finish the race, better luck next time.")
-  
-        if (ply:InVehicle()) then
-          -- Teleport losers back
-          local spawn = MAP.SelectRandomSpawn()
-          TLPT.Vehicle(ply:GetVehicle(), spawn:GetPos())
-        else 
-          -- This code should be unreachable, players shouldn't be able to get off
-          ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you get off your sled? You shouldn't even be alive.")
-          ply:Kill()
-        end
-  
-        ply:SetTeam(TEAMS.BUILDING)
-      end
-    end
-  end
-
-  -- TODO: Return players to the building area
-
-  -- Reset the round information
-  -- We do it this way because we can't redefine the table
+  -- Reset the round information (don;t change the object reference)
   round.startTime = 0
   round.racers = {}
 
   timer.Create("SBR.StartTimer", ROUNDS.WAIT_TIME, 1, function() RND.Starting(round) end) -- We queue the next action
 end
-
--- TODO: Passing the round object works by reference or by instance?
--- TODO: If this works by instance we will need nother way of hanlding the variables
-
-timer.Create("SBR.TestTimer", 10, 1, function() RND.Starting(RND.STATE.round) end) -- TODO: Testing, move?

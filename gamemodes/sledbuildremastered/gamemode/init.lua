@@ -23,3 +23,6 @@ include("sv_rounds.lua")
 -- Send LUA files
 AddCSLuaFile("shared.lua")
 -- AddCSLuaFile("cl_init.lua")
+
+-- ###################### Initialize ###################### --
+timer.Simple(10, function() RND.Starting(RND.STATE.round) end) -- Start the first round to start the cycle
