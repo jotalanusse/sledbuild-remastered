@@ -8,25 +8,12 @@ RND = {
     }
   }
 }
---[[
-local RACER_EXAMPLE = {
-  ply = nil, -- TODO: Check if the player entity changes, or if this is just a reference
-  time = 0,
-  maxSpeed = 0,
-  finished = false,
-  disqualified = false, -- Might be death, disconnection, etc.
-}
-local ROUND_EXAMPLE = {
-  racers = {
-    "STEAM_ID" = RACER_EXAMPLE
-  }
-}
---]]
 
 -- IsPlayerRacing: Returns true if the player is racing
 function RND.IsPlayerRacing(ply)
   -- TODO: Should we compare this against "nil"?
-  if (RND.STATE.round.racers[ply:SteamID()]) then
+  local racer = RND.STATE.round.racers[ply:SteamID()]
+  if (racer and not racer.disqualified) then
     return true
   else
     return false
@@ -56,9 +43,7 @@ function RND.Starting(round)
         -- Add the race to the round
         round.racers[v:SteamID()] = {
           ply = v,
-          time = 0,
           maxSpeed = 0,
-          finished = false,
           disqualified = false,
         }
       else
@@ -105,20 +90,24 @@ function RND.End(round)
 
     -- TODO: Add a total races count
 
-    if (v.finished == false) then
-      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You didn't finish the race, better luck next time.")
-
-      if (ply:InVehicle()) then
-        -- Teleport losers back
-        local spawn = MAP.SelectRandomSpawn()
-        TLPT.Vehicle(ply:GetVehicle(), spawn:GetPos())
-      else 
-        -- This code should be unreachable, players shouldn't be able to get off
-        ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you get off your sled? You shouldn't even be alive.")
-        ply:Kill()
+    -- Only iterate over non-disquialified racers (avoid deaths, and disconnections)
+    -- TODO: Should we use "not v.disquialified"? Current approach seems more consistent
+    if(RND.IsPlayerRacing(ply)) then
+      if (not v.finished) then
+        ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You didn't finish the race, better luck next time.")
+  
+        if (ply:InVehicle()) then
+          -- Teleport losers back
+          local spawn = MAP.SelectRandomSpawn()
+          TLPT.Vehicle(ply:GetVehicle(), spawn:GetPos())
+        else 
+          -- This code should be unreachable, players shouldn't be able to get off
+          ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you get off your sled? You shouldn't even be alive.")
+          ply:Kill()
+        end
+  
+        ply:SetTeam(TEAMS.BUILDING)
       end
-
-      ply:SetTeam(TEAMS.BUILDING)
     end
   end
 

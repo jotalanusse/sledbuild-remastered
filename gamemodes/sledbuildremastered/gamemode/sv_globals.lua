@@ -1,6 +1,6 @@
 ROUNDS = {
   START_TIME = 5,
-  RACE_TIME = 30,
+  RACE_TIME = 18,
   WAIT_TIME = 5,
 }
 ENTITY_NAMES = {
