@@ -29,12 +29,36 @@ function RND.AddPlayer(ply, round)
   }
 end
 
--- ResetPlayers: Bring players back to the spawn on round end
-function RND.ResetPlayers(round)
+-- DisqualifyPlayer: Disquialifies a player from the round
+function RND.DisqualifyPlayer(ply, round)
+  -- Check if player is even racing (on disconnection and death this will probably be called)
+  if (RND.IsPlayerRacing(ply)) then
+    round.racers[ply:SteamID()].disqualified = true
+  end
+end
+
+-- TODO: Naming is sus
+-- FinishPlayerRace: Updates a player when they finish the race
+function RND.FinishPlayerRace(ply, round)
+  local racer = RND.STATE.round.racers[ply:SteamID()]
+
+  local index = table.maxn(round.racers) + 1
+  round.racers[index] = {
+    ply = ply,
+    maxSpeed = racer.maxSpeed,
+    time = CurTime() - round.startTime,
+  }
+
+  -- Once the racer finishes we can reset their state
+  RND.STATE.round.racers[ply:SteamID()] = nil -- Remove the player from the racing list
+end
+
+-- ResetRacers: Bring racers back to the spawn on round end
+function RND.ResetRacers(round)
   for k, v in pairs(round.racers) do
     local ply = v.ply
 
-    -- Only iterate over non-disquialified racers (avoid deaths, and disconnections)
+    -- Only iterate over non-disqualified racers (avoid deaths, and disconnections)
     if (RND.IsPlayerRacing(ply)) then
       if (not v.finished) then
         ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You didn't finish the race, better luck next time.")
@@ -48,8 +72,6 @@ function RND.ResetPlayers(round)
           ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you get off your sled? You shouldn't even be alive.")
           ply:Kill()
         end
-
-        ply:SetTeam(TEAMS.BUILDING)
       end
     end
   end
@@ -64,7 +86,8 @@ end
 function RND.Starting(round)
   RND.STATE.stage = ROUND_STAGES.STARTING
 
-  RND.IncrementTotal()
+  PLYS.ResetAllColors() -- Reset all player colors
+  RND.IncrementTotal() -- Add one to the total races counter
 
   for k, v in pairs(player:GetAll()) do
     v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Race #" .. RND.STATE.totalRounds .. " just begun!")
@@ -116,7 +139,7 @@ function RND.End(round)
   print("Round ended!") --TODO: Remove, debug
 
   -- TODO: Add a total races count (player stats)
-  RND.ResetPlayers(round)
+  RND.ResetRacers(round) -- Reset all racers and bring them back
 
   -- Reset the round information (don;t change the object reference)
   round.startTime = 0

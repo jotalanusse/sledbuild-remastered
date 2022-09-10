@@ -3,13 +3,13 @@ function ZN.STRT.PLYS.StartTouch(ply)
   -- You cant enter the start zone while the race begins
   if (RND.STATE.stage == ROUND_STAGES.STARTING) then
     -- TODO: Can you re-enter as a racer?
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't enter the start zone while the race is starting!")
+    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't step in the start zone while the race is starting!")
     ply:Kill()
   else
     -- If the player is in the start zone we consider them a racer
     if (ply:Team() == TEAMS.BUILDING) then
       ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You are now a racer!") -- TODO: Replace for a UI element
-      ply:SetTeam(TEAMS.RACING)
+      PLYS.SetTeam(ply, TEAMS.RACING)
     end
   end
 end
@@ -27,7 +27,7 @@ function ZN.STRT.PLYS.EndTouch(ply)
     -- If the player leaves the start zone we consider them a builder
     if (ply:Team() == TEAMS.RACING) then
       ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You are now a builder!") -- TODO: Replace for a UI element
-      ply:SetTeam(TEAMS.BUILDING)
+      PLYS.SetTeam(ply, TEAMS.BUILDING)
     end
   end
 end

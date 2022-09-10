@@ -1,43 +1,45 @@
 -- StartTouch: Called when a player touches the end zone
 function ZN.END.PLYS.StartTouch(ply)
   if (RND.IsPlayerRacing(ply)) then
-    -- The player finished the race!
-    local round = RND.STATE.round
-    local racer = RND.STATE.round.racers[ply:SteamID()]
-
-    -- Add the racer to the finished list
-    local index = table.maxn(round.racers) + 1
-    round.racers[index] = {
-      ply = ply,
-      maxSpeed = racer.maxSpeed,
-      time = CurTime() - round.startTime,
-    }
-
-    -- Once the racer finishes we can reset their state
-    RND.STATE.round.racers[ply:SteamID()] = nil -- Remove the player from the racing list
-    ply:SetTeam(TEAMS.BUILDING) -- Set the player team back to building
-
-    -- Calculate the time
-    local timeTable = string.FormattedTime(round.racers[index].time)
-    local formattedTime = string.format("%02i:%02i.%03i", timeTable.m, timeTable.s, timeTable.ms * 10)
-
-    -- Messages and that things...
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Finished #" .. index .. "! Your time is [" .. formattedTime .. "]")
-
     if (ply:InVehicle()) then
+      -- The player finished the race!
+      local round = RND.STATE.round
+      RND.FinishPlayerRace(ply, round)
+      local position = table.maxn(round.racers)
+
+      PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
+
+      if (position == 1) then
+        PLYS.SetColor(ply, Color(0, 255, 0)) -- Green
+      elseif (position == 2) then
+        PLYS.SetColor(ply, Color(255, 255, 0)) -- Yellow
+      elseif (position == 3) then
+        PLYS.SetColor(ply, Color(255, 165, 0)) -- Orange
+      end
+
+      -- Calculate the time
+      local timeTable = string.FormattedTime(round.racers[position].time)
+      local formattedTime = string.format("%02i:%02i.%03i", timeTable.m, timeTable.s, timeTable.ms * 10)
+
+      -- Messages and that things...
+      ply:PrintMessage(HUD_PRINTTALK,
+        CONSOLE_PREFIX .. "Finished #" .. position .. "! Your time is [" .. formattedTime .. "]")
+
       -- Teleport racer back
       local spawn = MAP.SelectRandomSpawn()
       TLPT.Vehicle(ply:GetVehicle(), spawn:GetPos())
     else
       -- This code should be unreachable, players shouldn't be able to get off
-      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you get off your sled? You shouldn't even be alive.")
+      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you finish without a sled? You shouldn't even be alive.")
+      RND.DisqualifyPlayer(ply, RND.STATE.round)
       ply:Kill()
     end
 
     -- TODO: Check if the racer is the last one to finish
   else
     -- This code should be unreachable
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you finish the race without being a racer? You shouldn't even be alive.")
+    ply:PrintMessage(HUD_PRINTTALK,
+      CONSOLE_PREFIX .. "How are you at the finish line without being a racer? You shouldn't even be alive.")
     ply:Kill()
   end
 end

@@ -35,6 +35,28 @@ function PLYS.SetLoadout(ply)
   end
 end
 
+-- SetTeam: Set the team for the player
+function PLYS.SetTeam(ply, team)
+  ply:SetTeam(team)
+end
+
+-- SetColor: Set the color for the player
+function PLYS.SetColor(ply, color)
+  ply:SetColor(color)
+end
+
+-- ResetColor: Reset the color for the player
+function PLYS.ResetColor(ply)
+  ply:SetColor(Color(255, 255, 255, 255))
+end
+
+-- ResetAllColors: Reset the color for all players
+function PLYS.ResetAllColors()
+  for k, v in pairs(player.GetAll()) do
+    v:SetColor(Color(255, 255, 255, 255))
+  end
+end
+
 -- SetDefaultCollision: Set the default collission for a player
 function PLYS.SetDefaultCollision(ply)
   ply:SetCollisionGroup(PLYS.DEFAULT_COLLISION_GROUP) -- Doesn't collide with players and vehicles
@@ -46,7 +68,7 @@ function PLYS.Spawn(ply)
   PLYS.SetDefaultCollision(ply)
 
   ply:SelectWeapon("weapon_physgun")
-  ply:SetTeam(TEAMS.BUILDING)
+  PLYS.SetTeam(ply, TEAMS.BUILDING)
 end
 
 hook.Add("PlayerSpawn", "SBR.PLYS.Spawn", PLYS.Spawn)
