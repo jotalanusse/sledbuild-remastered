@@ -1,8 +1,6 @@
 - Restrict the spawning of weapons
-- Check if the map is complete/compatible
 - Reset server if more than 6 hours of uptime
 - Read convars for settings
-- Prevent exiting the vehicle while racing
 - Avoid players boosting with the physgun
 - Add module descriptions
-- Make restrictions dont apply to admins
+- Make restrictions dont apply to admins (done, kinda)
