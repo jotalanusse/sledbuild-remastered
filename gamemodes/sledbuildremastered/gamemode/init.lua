@@ -3,6 +3,9 @@ include("sv_globals.lua")
 -- Run LUA files
 include("shared.lua")
 
+-- Network
+include("sv_net.lua")
+
 -- Map check
 include("sv_map_check.lua")
 include("sv_zones.lua")

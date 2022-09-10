@@ -61,7 +61,7 @@ function RND.ResetRacers(round)
     -- Only iterate over non-disqualified racers (avoid deaths, and disconnections)
     if (RND.IsPlayerRacing(ply)) then
       if (not v.finished) then
-        ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You didn't finish the race, better luck next time.")
+        ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "You didn't finish the race, better luck next time.")
 
         if (ply:InVehicle()) then
           -- Teleport back to spawn
@@ -69,7 +69,7 @@ function RND.ResetRacers(round)
           VEHS.Teleport(ply:GetVehicle(), spawn:GetPos())
         else
           -- This code should be unreachable, players shouldn't be able to get off
-          ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you get off your sled? You shouldn't even be alive.")
+          ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "How did you get off your sled? You shouldn't even be alive.")
           ply:Kill()
         end
       end
@@ -90,20 +90,20 @@ function RND.Starting(round)
   RND.IncrementTotal() -- Add one to the total races counter
 
   for k, v in pairs(player:GetAll()) do
-    v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Race #" .. RND.STATE.totalRounds .. " just begun!")
+    v:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Race #" .. RND.STATE.totalRounds .. " just begun!")
 
     if (v:Team() == TEAMS.RACING) then
       if (v:InVehicle()) then
-        v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Here we go!")
+        v:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Here we go!")
         RND.AddPlayer(v, round)
       else
-        v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't be a racer and not be in a vehicle!")
+        v:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "You can't be a racer and not be in a vehicle!")
         v:Kill()
       end
     elseif (v:Team() == TEAMS.BUILDING) then
       -- Look at them go!
     elseif (v:Team() == TEAMS.SPECTATING) then
-      v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Make your bets!")
+      v:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Make your bets!")
     end
   end
 

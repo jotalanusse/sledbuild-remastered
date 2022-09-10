@@ -24,14 +24,14 @@ function ZN.END.PLYS.StartTouch(ply)
 
       -- Messages and that things...
       ply:PrintMessage(HUD_PRINTTALK,
-        CONSOLE_PREFIX .. "Finished #" .. position .. "! Your time is [" .. formattedTime .. "]")
+        CONSOLE.PREFIX .. "Finished #" .. position .. "! Your time is [" .. formattedTime .. "]")
 
       -- Teleport racer back
       local spawn = MAP.SelectRandomSpawn()
       timer.Simple(3, function() VEHS.Teleport(ply:GetVehicle(), spawn:GetPos()) end)
     else
       -- This code should be unreachable, players shouldn't be able to get off
-      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "How did you finish without a sled? You shouldn't even be alive.")
+      ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "How did you finish without a sled? You shouldn't even be alive.")
       RND.DisqualifyPlayer(ply, RND.STATE.round)
       ply:Kill()
     end
@@ -40,7 +40,7 @@ function ZN.END.PLYS.StartTouch(ply)
   else
     -- This code should be unreachable
     ply:PrintMessage(HUD_PRINTTALK,
-      CONSOLE_PREFIX .. "How are you at the finish line without being a racer? You shouldn't even be alive.")
+      CONSOLE.PREFIX .. "How are you at the finish line without being a racer? You shouldn't even be alive.")
     ply:Kill()
   end
 end

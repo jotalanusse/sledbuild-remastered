@@ -21,7 +21,7 @@ function TLS.BlacklistToolgun(ply, trace, toolname)
 
   for k, v in pairs(TLS.BLACKLIST) do
     if (toolname == v) then
-      ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This tool is restricted.")
+      ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "This tool is restricted.")
       return false
     end
   end
@@ -40,7 +40,7 @@ function TLS.LimitToolgun(ply, trace)
   local entityClass = trace.Entity:GetClass()
 
   if (entityClass == "func_brush" or entityClass == "player") then
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "This entity cannot be toolgunned.")
+    ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "This entity cannot be toolgunned.")
     return false
   end
 end

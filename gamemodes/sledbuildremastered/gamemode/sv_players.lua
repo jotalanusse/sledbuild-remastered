@@ -79,7 +79,7 @@ function PLYS.InitialSpawn(ply)
 
   -- Notify of a new player
   for k, v in pairs(player.GetAll()) do
-    v:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. ply:Nick() .. " has joined the server!")
+    v:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. ply:Nick() .. " has joined the server!")
   end
 
   -- Check the map and warn the player, let him know our gamemode isn't the problem
@@ -94,7 +94,7 @@ function PLYS.RestrictNoclip(ply, bool)
     return true
   end
 
-  ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Only admins may use noclip.")
+  ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Only admins may use noclip.")
   return false
 end
 

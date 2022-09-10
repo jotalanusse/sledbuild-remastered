@@ -5,9 +5,12 @@ GM.Author  = "jotalanusse"
 GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
--- TODO: Should these variables be only available to the server?
 -- Global shared variables
-CONSOLE_PREFIX = "[SBR] "
+CONSOLE = {
+  PREFIX = "[SBR] ",
+  PREFIX_COLOR = Color(60, 60, 255), -- TODO: Change color
+  TEXT_COLOR = Color(255, 255, 255)
+}
 ROUND_STAGES = {
   WAITING = 1,
   STARTING = 2,
@@ -30,7 +33,7 @@ end
 
 -- Initialize
 function GM:Initialize()
-  print(CONSOLE_PREFIX .. "SledBuild Remastered initialized!")
+  print(CONSOLE.PREFIX .. "SledBuild Remastered initialized!")
 
   SetTeams()
 end

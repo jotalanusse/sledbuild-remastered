@@ -60,7 +60,7 @@ function VEHS.LimitType(ply, model, name, table)
     end
   end
 
-  ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "Only a Pod or Airboat Seat can be used.")
+  ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Only a Pod or Airboat Seat can be used.")
   return false
 end
 
@@ -92,7 +92,7 @@ function VEHS.CanExitVehicle(vehicle, ply)
   end
 
   if(RND.IsPlayerRacing(ply)) then
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE_PREFIX .. "You can't leave your sled while racing!")
+    ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "You can't leave your sled while racing!")
     return false
   end
 end
