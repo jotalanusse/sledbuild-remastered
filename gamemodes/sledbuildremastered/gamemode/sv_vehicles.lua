@@ -10,7 +10,7 @@ VEHS = {
 function VEHS.Teleport(vehicle, destination)
   local originalVehiclePos = vehicle:GetPos() -- Use this so the props don't tp to an unwanted position
 	local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
-  
+
 	for k, v in pairs(constrainedEntities) do
 		if v and v:IsValid() then
 			v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
@@ -29,6 +29,23 @@ function VEHS.IsSled(entity)
     -- TODO: Store entity class in a gobal variable?
     if (v:GetClass() == "prop_vehicle_prisoner_pod") then
       return true
+    end
+  end
+
+  return false
+end
+
+-- HasPlayer: Checks if a set of constrained props have a player
+function VEHS.HasPlayer(entity)
+  local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
+
+  for k, v in pairs(constrainedEntities) do
+    -- TODO: Store entity class in a gobal variable?
+    if (v:GetClass() == "prop_vehicle_prisoner_pod") then
+      -- TODO: Do I need the "v:GetDriver()" check?
+      if (v:GetDriver() and v:GetDriver():IsValid()) then
+        return true
+      end
     end
   end
 
