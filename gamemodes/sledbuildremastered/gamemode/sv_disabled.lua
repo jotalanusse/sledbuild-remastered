@@ -7,7 +7,7 @@ function DSBE.EffectsDisableSpawning(ply)
   --   return true
   -- end
 
-  ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Effects cannot be spawned.")
+  NET.SendGamemodeMessage(ply, "Effects cannot be spawned.")
   return false
 end
 
@@ -20,7 +20,7 @@ function DSBE.NPCDisableSpawning(ply)
   --   return true
   -- end
 
-  ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "NPCs cannot be spawned.")
+  NET.SendGamemodeMessage(ply, "NPCs cannot be spawned.")
   return false
 end
 
@@ -33,7 +33,7 @@ function DSBE.RagdollDisableSpawning(ply)
   --   return true
   -- end
 
-  ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Ragdolls cannot be spawned.")
+  NET.SendGamemodeMessage(ply, "Ragdolls cannot be spawned.")
   return false
 end
 
@@ -46,7 +46,7 @@ function DSBE.SWEPDisableSpawning(ply)
   --   return true
   -- end
 
-  ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "SWEPs cannot be spawned.")
+  NET.SendGamemodeMessage(ply, "SWEPs cannot be spawned.")
   return false
 end
 

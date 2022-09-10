@@ -23,15 +23,15 @@ function ZN.END.PLYS.StartTouch(ply)
       local formattedTime = string.format("%02i:%02i.%03i", timeTable.m, timeTable.s, timeTable.ms * 10)
 
       -- Messages and that things...
-      ply:PrintMessage(HUD_PRINTTALK,
-        CONSOLE.PREFIX .. "Finished #" .. position .. "! Your time is [" .. formattedTime .. "]")
+      NET.SendGamemodeMessage(ply, "Finished #" .. position .. "! Your time is [" .. formattedTime .. "]") -- TODO: Costumize
 
       -- Teleport racer back
       local spawn = MAP.SelectRandomSpawn()
       timer.Simple(3, function() VEHS.Teleport(ply:GetVehicle(), spawn:GetPos()) end)
     else
       -- This code should be unreachable, players shouldn't be able to get off
-      ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "How did you finish without a sled? You shouldn't even be alive.")
+      NET.SendGamemodeMessage(ply, "How did you finish without a sled? You shouldn't even be alive.",
+        CONSOLE.WARNING_COLOR)
       RND.DisqualifyPlayer(ply, RND.STATE.round)
       ply:Kill()
     end
@@ -39,8 +39,9 @@ function ZN.END.PLYS.StartTouch(ply)
     -- TODO: Check if the racer is the last one to finish
   else
     -- This code should be unreachable
-    ply:PrintMessage(HUD_PRINTTALK,
-      CONSOLE.PREFIX .. "How are you at the finish line without being a racer? You shouldn't even be alive.")
+
+    NET.SendGamemodeMessage(ply, "How are you at the finish line without being a racer? You shouldn't even be alive.",
+      CONSOLE.WARNING_COLOR)
     ply:Kill()
   end
 end

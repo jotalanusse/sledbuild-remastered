@@ -8,8 +8,10 @@ GM.Website = "jotalanusse.github.io"
 -- Global shared variables
 CONSOLE = {
   PREFIX = "[SBR] ",
-  PREFIX_COLOR = Color(60, 60, 255), -- TODO: Change color
-  TEXT_COLOR = Color(255, 255, 255)
+  PREFIX_COLOR = Color(150, 0, 255),
+  WARNING_COLOR = Color(230, 225, 0),
+  ERROR_COLOR = Color(230, 0, 0),
+  TEXT_COLOR = Color(220, 220, 220) -- TODO: Find the best color
 }
 ROUND_STAGES = {
   WAITING = 1,

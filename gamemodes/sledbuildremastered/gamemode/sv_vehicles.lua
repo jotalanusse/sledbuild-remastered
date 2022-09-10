@@ -58,7 +58,7 @@ function VEHS.Restrict(ply, model, name, table)
     return true
   end
 
-  ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Only a Pod or Airboat Seat can be used.")
+  NET.SendGamemodeMessage(ply, "Only a Pod or Airboat Seat can be used.")
   return false
 end
 
@@ -91,7 +91,7 @@ function VEHS.CanExitVehicle(vehicle, ply)
   -- end
 
   if (RND.IsPlayerRacing(ply)) then
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "You can't leave your sled while racing!")
+    NET.SendGamemodeMessage(ply, "You can't leave your sled while racing!")
     return false
   end
 end

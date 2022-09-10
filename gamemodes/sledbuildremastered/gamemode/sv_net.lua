@@ -5,14 +5,20 @@ NET = {
 util.AddNetworkString("SendGamemodeMessage")
 
 -- SendGamemodeMessage: Send a simple game mode message to the client
-function NET.SendGamemodeMessage(ply, message)
+function NET.SendGamemodeMessage(ply, message, color)
+  color = color or CONSOLE.PREFIX_COLOR
+
   net.Start("SendGamemodeMessage")
+  net.WriteColor(color)
   net.WriteString(message)
   net.Send(ply)
 end
 
--- function NET.BroadcastGamemodeMessage()
---   net.Start("SendGamemodeMessage")
---   net.WriteString("You have been stripped of your loadout.")
---   net.Send(ply)
--- end
+function NET.BroadcastGamemodeMessage(message, color)
+  color = color or CONSOLE.PREFIX_COLOR
+
+  net.Start("SendGamemodeMessage")
+  net.WriteColor(color)
+  net.WriteString(message)
+  net.Broadcast()
+end

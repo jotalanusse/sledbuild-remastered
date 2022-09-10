@@ -20,7 +20,7 @@ PRPS = {
 -- DisableRacingSpawning: Restricts a player from spawning props when racing
 function PRPS.DisableRacingSpawning(ply)
   if (ply:Team()) == TEAMS.RACING then
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "Props cannot be spawned while being a racer!")
+    NET.SendGamemodeMessage(ply, "Props cannot be spawned while being a racer.")
     return false
   end
 
@@ -33,8 +33,8 @@ hook.Add("PlayerSpawnObject", "SBR.PRPS.DisableRacingSpawning", PRPS.DisableRaci
 function PRPS.Spawned(ply, model, prop)
   -- Limit the max size of the prop that can be spawned
   if (prop:BoundingRadius() > PRPS.MAX_RADIUS) then
+    NET.SendGamemodeMessage(ply, "That prop is way too large for a sled.")
     prop:Remove()
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "That prop is way too large for a sled.")
   end
 
   prop:SetCollisionGroup(PRPS.DEFAULT_COLLISION_GROUP) -- TODO: Wah do this do???
@@ -50,7 +50,7 @@ function PRPS.Restrict(ply, model)
   -- end
 
   if (PRPS.RESTRICTED[model]) then
-    ply:PrintMessage(HUD_PRINTTALK, CONSOLE.PREFIX .. "This prop is restricted.")
+    NET.SendGamemodeMessage(ply, "This prop is restricted.")
     return false
   end
 end
