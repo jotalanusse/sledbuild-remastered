@@ -42,7 +42,7 @@ function ZN.END.PLYS.StartTouch(ply)
       else
         -- This code should be unreachable, players shouldn't be able to get off
         NET.SendGamemodeMessage(ply, "How did you finish without a sled? You shouldn't even be alive.",
-          CONSOLE.WARNING_COLOR)
+          CONSOLE.COLORS.WARNING)
         RND.DisqualifyPlayer(ply, RND.STATE.round)
         ply:Kill()
       end
@@ -54,14 +54,14 @@ function ZN.END.PLYS.StartTouch(ply)
       -- This code should be unreachable
 
       -- NET.SendGamemodeMessage(ply, "How are you at the finish line without being a racer? You shouldn't even be alive.",
-      --   CONSOLE.WARNING_COLOR)
+      --   CONSOLE.COLORS.WARNING)
       -- ply:Kill()
     end
   else
     -- This code should be unreachable
 
     NET.SendGamemodeMessage(ply, "How are you at the finish line, we are not even racing? You shouldn't even be alive.",
-      CONSOLE.WARNING_COLOR)
+      CONSOLE.COLORS.WARNING)
     ply:Kill()
   end
 end

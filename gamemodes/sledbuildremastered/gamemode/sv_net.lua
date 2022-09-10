@@ -6,7 +6,7 @@ util.AddNetworkString("SendGamemodeMessage")
 
 -- SendGamemodeMessage: Send a simple game mode message to the client
 function NET.SendGamemodeMessage(ply, message, color)
-  color = color or CONSOLE.PREFIX_COLOR
+  color = color or CONSOLE.COLORS.DEFAULT
 
   net.Start("SendGamemodeMessage")
   net.WriteColor(color)
@@ -15,7 +15,7 @@ function NET.SendGamemodeMessage(ply, message, color)
 end
 
 function NET.BroadcastGamemodeMessage(message, color)
-  color = color or CONSOLE.PREFIX_COLOR
+  color = color or CONSOLE.COLORS.DEFAULT
 
   net.Start("SendGamemodeMessage")
   net.WriteColor(color)

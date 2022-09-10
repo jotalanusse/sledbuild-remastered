@@ -70,7 +70,7 @@ function RND.ResetRacers(round)
         else
           -- This code should be unreachable, players shouldn't be able to get off
           NET.SendGamemodeMessage(ply, "How did you get off your sled? You shouldn't even be alive.",
-            CONSOLE.WARNING_COLOR)
+            CONSOLE.COLORS.WARNING)
           ply:Kill()
         end
       end
@@ -98,7 +98,7 @@ function RND.Starting(round)
         NET.SendGamemodeMessage(v, "Here we go!")
         RND.AddPlayer(v, round)
       else
-        NET.SendGamemodeMessage(v, "You can't be a racer and not be in a vehicle!", CONSOLE.WARNING_COLOR)
+        NET.SendGamemodeMessage(v, "You can't be a racer and not be in a vehicle!", CONSOLE.COLORS.WARNING)
         v:Kill()
       end
     elseif (v:Team() == TEAMS.BUILDING) then

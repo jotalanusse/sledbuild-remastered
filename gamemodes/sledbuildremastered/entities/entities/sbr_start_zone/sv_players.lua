@@ -3,7 +3,7 @@ function ZN.STRT.PLYS.StartTouch(ply)
   -- You cant enter the start zone while the race begins
   if (RND.STATE.stage == ROUND_STAGES.STARTING) then
     -- TODO: Can you re-enter as a racer?
-    NET.SendGamemodeMessage(ply, "You can't step in the start zone while the race is starting!", CONSOLE.WARNING_COLOR)
+    NET.SendGamemodeMessage(ply, "You can't step in the start zone while the race is starting!", CONSOLE.COLORS.WARNING)
     ply:Kill()
   else
     -- If the player is in the start zone we consider them a racer
@@ -19,7 +19,7 @@ function ZN.STRT.PLYS.EndTouch(ply)
   if (RND.STATE.stage == ROUND_STAGES.STARTING) then
     -- You cant leave the start zone without a vehicle
     if (ply:Team() == TEAMS.RACING and not ply:InVehicle()) then
-      NET.SendGamemodeMessage(ply, "You can't leave the start zone without a vehicle while the race is starting!", CONSOLE.WARNING_COLOR)
+      NET.SendGamemodeMessage(ply, "You can't leave the start zone without a vehicle while the race is starting!", CONSOLE.COLORS.WARNING)
       ply:Kill()
     end
   else
