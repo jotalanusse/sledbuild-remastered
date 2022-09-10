@@ -1,5 +1,7 @@
 PLYS = {
-  DEFAULT_COLLISION_GROUP = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
+  COLLISIONS = {
+    DEFAULT = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
+  }
 }
 
 -- StripLoadout: Remove the player's loadout completely

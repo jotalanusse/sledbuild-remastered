@@ -13,8 +13,9 @@ PRPS = {
     ["models/props_phx/cannonball.mdl"] = true,
     ["models/props_phx/torpedo.mdl"] = true
   },
-  DEFAULT_COLLISION_GROUP = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
-
+  COLLISIONS = {
+    DEFUALT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+  }
 }
 
 -- DisableRacingSpawning: Restricts a player from spawning props when racing

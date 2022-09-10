@@ -3,7 +3,9 @@ VEHS = {
     ["models/vehicles/prisoner_pod_inner.mdl"] = true,
     ["models/nova/airboat_seat.mdl"] = true
   },
-  DEFAULT_COLLISION_GROUP = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+  COLLISIONS = {
+    DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+  }
 }
 
 -- Teleport: Teleport a vehicle to the specified target
@@ -16,7 +18,7 @@ function VEHS.Teleport(vehicle, target)
     for k, v in pairs(constrainedEntities) do
       if v and v:IsValid() then
         v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-        v:SetCollisionGroup(VEHS.DEFAULT_COLLISION_GROUP)
+        v:SetCollisionGroup(VEHS.COLLISIONS.DEFAULT)
         v:SetPos(target + (v:GetPos() - originalVehiclePos))
         v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
       end
@@ -70,7 +72,7 @@ hook.Add("PlayerSpawnVehicle", "SBR.VEHS.LimitType", VEHS.Restrict)
 -- TODO: Whah do this do???
 -- SetDefaultCollissions: Set the default collission for the spawned vehicle
 function VEHS.SetDefaultCollissions(ply, entity)
-  entity:SetCollisionGroup(VEHS.DEFAULT_COLLISION_GROUP)
+  entity:SetCollisionGroup(VEHS.COLLISIONS.DEFAULT)
 end
 
 hook.Add("PlayerSpawnedVehicle", "SBR.VEHS.SetDefaultCollissions", VEHS.SetDefaultCollissions)
@@ -81,7 +83,7 @@ function VEHS.PlayerLeave(ply, vehicle)
   -- There is a weird bug where the game crashes when trying to kill the player
   -- so for now we just won't allow players to exit their vehicles
 
-  ply:SetCollisionGroup(PLYS.DEFAULT_COLLISION_GROUP)
+  ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
 end
 
 hook.Add("PlayerLeaveVehicle", "SBR.VEHS.PlayerLeave", VEHS.PlayerLeave)
