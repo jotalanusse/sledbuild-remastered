@@ -9,6 +9,7 @@ function ZN.END.PLYS.StartTouch(ply)
 
       PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
 
+      -- TODO: Winner winner chicken dinner, what tf do I do now?
       if (position == 1) then
         PLYS.SetColor(ply, Color(0, 255, 0)) -- Green
       elseif (position == 2) then

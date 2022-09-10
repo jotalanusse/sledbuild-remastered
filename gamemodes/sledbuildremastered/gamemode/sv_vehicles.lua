@@ -14,7 +14,7 @@ function VEHS.Teleport(vehicle, destination)
 		if v and v:IsValid() then
 			v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
 			v:SetCollisionGroup(VEHS.DEFAULT_COLLISION_GROUP)
-			v:SetPos(destination) -- TODO: Teleport props to their relative destination
+			v:SetPos(destination + (v:GetPos() - vehicle:GetPos())) -- Teleport props to their relative destination
 			v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
 		end
 	end
