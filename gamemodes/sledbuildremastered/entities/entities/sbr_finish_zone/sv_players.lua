@@ -49,11 +49,13 @@ function ZN.END.PLYS.StartTouch(ply)
 
       -- TODO: Check if the racer is the last one to finish
     else
+      -- The player might cross multiple finish lines depending on the map design
+
       -- This code should be unreachable
 
-      NET.SendGamemodeMessage(ply, "How are you at the finish line without being a racer? You shouldn't even be alive.",
-        CONSOLE.WARNING_COLOR)
-      ply:Kill()
+      -- NET.SendGamemodeMessage(ply, "How are you at the finish line without being a racer? You shouldn't even be alive.",
+      --   CONSOLE.WARNING_COLOR)
+      -- ply:Kill()
     end
   else
     -- This code should be unreachable

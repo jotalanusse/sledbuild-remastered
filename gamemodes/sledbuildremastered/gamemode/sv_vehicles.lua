@@ -8,15 +8,18 @@ VEHS = {
 
 -- Teleport: Teleport a vehicle to the specified target
 function VEHS.Teleport(vehicle, target)
-  local originalVehiclePos = vehicle:GetPos() -- Use this so the props don't tp to an unwanted position
-  local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
+  -- The vehicle could despawn at any time
+  if (vehicle:IsValid()) then
+    local originalVehiclePos = vehicle:GetPos() -- Use this so the props don't tp to an unwanted position
+    local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
 
-  for k, v in pairs(constrainedEntities) do
-    if v and v:IsValid() then
-      v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-      v:SetCollisionGroup(VEHS.DEFAULT_COLLISION_GROUP)
-      v:SetPos(target + (v:GetPos() - originalVehiclePos))
-      v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+    for k, v in pairs(constrainedEntities) do
+      if v and v:IsValid() then
+        v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+        v:SetCollisionGroup(VEHS.DEFAULT_COLLISION_GROUP)
+        v:SetPos(target + (v:GetPos() - originalVehiclePos))
+        v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+      end
     end
   end
 end
