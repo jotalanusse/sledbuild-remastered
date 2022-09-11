@@ -62,11 +62,12 @@ function RND.ResetRacers(round)
     if (RND.IsPlayerRacing(ply)) then
       if (not v.finished) then
         NET.SendGamemodeMessage(ply, "You didn't finish the race, better luck next time.")
-
         if (ply:InVehicle()) then
           -- Teleport back to spawn
           local spawn = MAP.SelectRandomSpawn()
           VEHS.Teleport(ply:GetVehicle(), spawn:GetPos())
+
+          PLYS.SetTeam(ply, TEAMS.BUILDING)
         else
           -- This code should be unreachable, players shouldn't be able to get off
           NET.SendGamemodeMessage(ply, "How did you get off your sled? You shouldn't even be alive.",

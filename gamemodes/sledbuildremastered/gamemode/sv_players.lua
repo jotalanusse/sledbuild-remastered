@@ -1,41 +1,24 @@
 PLYS = {
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
+  },
+  LOADOUTS = {
+    DEFAULT = {
+      "gmod_tool",
+      "weapon_physgun",
+      "weapon_physcannon",
+      "gmod_camera",
+    },
+    ADMIN = {
+      "gmod_tool",
+      "weapon_physgun",
+      "weapon_physcannon",
+      "gmod_camera",
+      "weapon_crowbar",
+      "weapon_357",
+    },
   }
 }
-
--- StripLoadout: Remove the player's loadout completely
-function PLYS.StripLoadout(ply)
-  -- TODO: Why is this not working?
-  ply:StripWeapons()
-  ply:StripAmmo()
-end
-
--- GiveDefaultLoadout: Give the default loadout to the player
-function PLYS.GiveDefaultLoadout(ply)
-  ply:Give("gmod_tool")
-  ply:Give("weapon_physgun")
-  ply:Give("weapon_physcannon")
-  ply:Give("gmod_camera")
-end
-
--- GiveAdminLoadout: Give the admin loadout to the player
-function PLYS.GiveAdminLoadout(ply)
-  ply:GiveAmmo(24, "357", true)
-  ply:Give("weapon_crowbar")
-  ply:Give("weapon_357")
-end
-
--- SetLoadout: Set the loadout for the player
-function PLYS.SetLoadout(ply)
-  PLYS.StripLoadout(ply)
-  PLYS.GiveDefaultLoadout(ply)
-
-  -- And if the player is an admin we give them some toys
-  if (ply:IsAdmin()) then
-    PLYS.GiveAdminLoadout(ply)
-  end
-end
 
 -- Teleport: Teleport a player to the specified target
 function PLYS.Teleport(ply, target)
@@ -49,6 +32,22 @@ function PLYS.Teleport(ply, target)
     end
   end
 
+end
+
+-- StripLoadout: Remove the player's loadout completely
+function PLYS.StripLoadout(ply)
+  -- TODO: Why is this not working?
+  ply:StripWeapons()
+  ply:StripAmmo()
+end
+
+-- SetLoadout: Set the loadout for the player
+function PLYS.SetLoadout(ply, loadout)
+  PLYS.StripLoadout(ply)
+
+  for k, v in pairs(loadout) do
+    ply:Give(v)
+  end
 end
 
 -- SetTeam: Set the team for the player
@@ -80,7 +79,12 @@ end
 
 -- Spawn: Called everytime a player spawns
 function PLYS.Spawn(ply)
-  PLYS.SetLoadout(ply)
+  if (ply:IsAdmin()) then
+    PLYS.SetLoadout(ply, PLYS.LOADOUTS.ADMIN)
+  else
+    PLYS.SetLoadout(ply, PLYS.LOADOUTS.DEFAULT)
+  end
+
   PLYS.SetDefaultCollision(ply)
 
   ply:SelectWeapon("weapon_physgun")
@@ -122,9 +126,7 @@ end
 
 hook.Add("PlayerDeathSound", "SBR.PLYS.RemoveDeathSound", PLYS.RemoveDeathSound)
 
--- TODO: Whah do this do???
--- TODO: Maybe find a way to not override this?
 -- DoPlayerDeath: Handle the player's death
 function GM:DoPlayerDeath(ply, attacker, dmginfo)
-  ply:CreateRagdoll()
+  ply:CreateRagdoll() -- Create a ragdooll for the memes
 end
