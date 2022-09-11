@@ -31,8 +31,7 @@ function RND.AddPlayer(ply, round)
   }
 
   -- Update the player stats
-  local pl = PLYS.players[ply:SteamID()]
-  pl.rounds = pl.rounds + 1
+  ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
 end
 
 -- DisqualifyPlayer: Disquialifies a player from the round
@@ -42,8 +41,7 @@ function RND.DisqualifyPlayer(ply, round)
     round.racers[ply:SteamID()].disqualified = true
 
     -- Update the player stats
-    local pl = PLYS.players[ply:SteamID()]
-    pl.losses = pl.losses + 1
+    ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
   end
 end
 
@@ -59,24 +57,22 @@ function RND.FinishPlayerRace(ply, round)
   racer.finished = true
 
   -- Update the player stats
-  local pl = PLYS.players[ply:SteamID()]
-  -- pl.rounds = pl.rounds + 1 -- Done when added
-  pl.topSpeed = math.max(pl.topSpeed, racer.maxSpeed)
+  ply:SetNWFloat("SBR:MaxSpeed", math.max(ply:GetNWFloat("SBR:MaxSpeed"), racer.maxSpeed))
 
-  if (pl.bestTime) then
-    pl.bestTime = math.min(pl.bestTime, racer.time)
+  if (ply:GetNWFloat("SBR:BestTime")) then
+    ply:SetNWFloat("SBR:BestTime", math.min(ply:GetNWFloat("SBR:BestTime"), racer.time))
   else
-    pl.bestTime = racer.time
+    ply:SetNWFloat("SBR:BestTime", racer.time)
   end
 
   if (position == 1) then
-    pl.wins = pl.wins + 1
+    ply:SetNWInt("SBR:Wins", ply:GetNWInt("SBR:Wins") + 1)
   else
-    pl.losses = pl.losses + 1
+    ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
   end
 
   if (position <= 3) then
-    pl.podiums = pl.podiums + 1
+    ply:SetNWInt("SBR:Podiums", ply:GetNWInt("SBR:Podiums") + 1)
   end
 end
 
@@ -148,7 +144,7 @@ function RND.Starting(round)
   MAP.GatesOpen()
   MAP.PushersEnable()
 
-  timer.Create("SBR.RacingTimer", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
+  timer.Create("SBR:RacingTimer", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
 end
 
 -- Racing: We are now officialy racing
@@ -161,7 +157,7 @@ function RND.Racing(round)
   MAP.GatesClose()
   MAP.PushersDisable()
 
-  timer.Create("SBR.EndTimer", ROUND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
+  timer.Create("SBR:EndTimer", ROUND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
 end
 
 -- End: End the current race
@@ -176,5 +172,5 @@ function RND.End(round)
   round.startTime = 0
   round.racers = {}
 
-  timer.Create("SBR.StartTimer", ROUND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
+  timer.Create("SBR:StartTimer", ROUND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
 end
