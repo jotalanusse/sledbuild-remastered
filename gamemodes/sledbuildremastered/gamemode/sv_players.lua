@@ -21,11 +21,11 @@ PLYS = {
   }
 }
 
--- AddPlayer: Adds a new player to the server list
-function PLYS.AddPlayer(ply)
+-- Add: Adds a new player to the server list
+function PLYS.Add(ply)
   PLYS.players[ply:SteamID()] = {
     ply = ply,
-    roundsPlayed = 0,
+    rounds = 0, -- TODO: SHould i rename to "roundsPlayed"?
     wins = 0,
     losses = 0,
     podiums = 0,
@@ -36,8 +36,8 @@ function PLYS.AddPlayer(ply)
   -- TODO: Add networking, inform clients
 end
 
--- RemovePlayer: Removes a player from the server list
-function PLYS.RemovePlayer(ply)
+-- Remove: Removes a player from the server list
+function PLYS.Remove(ply)
   PLYS.players[ply:SteamID()] = nil
 
   -- TODO: Add networking, inform clients
@@ -118,6 +118,7 @@ hook.Add("PlayerSpawn", "SBR.PLYS.Spawn", PLYS.Spawn)
 
 -- InitialSpawn: Called when a player joins the server
 function PLYS.InitialSpawn(ply)
+  PLYS.Add(ply)
   PLYS.Spawn(ply)
 
   -- Notify of a new player
@@ -128,6 +129,16 @@ function PLYS.InitialSpawn(ply)
 end
 
 hook.Add("PlayerInitialSpawn", "SBR.PLYS.InitialSpawn", PLYS.InitialSpawn)
+
+-- Diconnected: Called when a player leaves the server
+function PLYS.Diconnected(ply)
+  PLYS.Remove(ply)
+
+  -- Notify of player leaving
+  NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.") -- TODO: Costumize
+end
+
+hook.Add("PlayerDisconnected", "SBR.PLYS.Diconnected", PLYS.Diconnected)
 
 -- RestrictNoclip: Prevent the player from using noclip
 function PLYS.RestrictNoclip(ply, bool)

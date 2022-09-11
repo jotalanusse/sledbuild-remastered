@@ -5,26 +5,27 @@ function ZN.END.PLYS.StartTouch(ply)
       if (ply:InVehicle()) then
         -- The player finished the race!
         local round = RND.STATE.round
-        RND.FinishPlayerRace(ply, round)
-        local position = table.maxn(round.racers)
 
-        PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
+        RND.FinishPlayerRace(ply, round)
+        local racer = RND.STATE.round.racers[ply:SteamID()]
 
         -- TODO: Winner winner chicken dinner, what tf do I do now?
-        if (position == 1) then
+        if (racer.position == 1) then
           PLYS.SetColor(ply, Color(0, 255, 0)) -- Green
-        elseif (position == 2) then
+        elseif (racer.position == 2) then
           PLYS.SetColor(ply, Color(255, 255, 0)) -- Yellow
-        elseif (position == 3) then
+        elseif (racer.position == 3) then
           PLYS.SetColor(ply, Color(255, 165, 0)) -- Orange
         end
 
         -- Calculate the time
-        local timeTable = string.FormattedTime(round.racers[position].time)
+        local timeTable = string.FormattedTime(racer.time)
         local formattedTime = string.format("%02i:%02i.%03i", timeTable.m, timeTable.s, timeTable.ms * 10)
 
         -- Messages and that things...
-        NET.SendGamemodeMessage(ply, "Finished #" .. position .. "! Your time is [" .. formattedTime .. "]") -- TODO: Costumize
+        NET.SendGamemodeMessage(ply, "Finished #" .. racer.position .. "! Your time is [" .. formattedTime .. "]") -- TODO: Costumize
+
+        PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
 
         -- Teleport racer back
         local spawn = MAP.SelectRandomSpawn()

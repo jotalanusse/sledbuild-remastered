@@ -11,9 +11,8 @@ RND = {
 
 -- IsPlayerRacing: Returns true if the player is racing
 function RND.IsPlayerRacing(ply)
-  -- TODO: Should we compare this against "nil"?
   local racer = RND.STATE.round.racers[ply:SteamID()]
-  if (racer and not racer.disqualified) then
+  if (racer and not racer.finished and not racer.disqualified) then
     return true
   else
     return false
@@ -24,7 +23,10 @@ end
 function RND.AddPlayer(ply, round)
   round.racers[ply:SteamID()] = {
     ply = ply,
+    position = nil,
     maxSpeed = 0,
+    time = nil, -- TODO: Should this value be here?
+    finished = false,
     disqualified = false,
   }
 end
@@ -41,19 +43,36 @@ end
 -- FinishPlayerRace: Updates a player when they finish the race
 function RND.FinishPlayerRace(ply, round)
   local racer = RND.STATE.round.racers[ply:SteamID()]
+  local position = table.maxn(round.racers) + 1
 
-  local index = table.maxn(round.racers) + 1
-  round.racers[index] = {
-    ply = ply,
-    maxSpeed = racer.maxSpeed,
-    time = CurTime() - round.startTime,
-  }
+  -- Update the racer stats
+  racer.position = position
+  racer.time = CurTime() - round.startTime
+  racer.finished = true
 
-  -- Once the racer finishes we can remove them
-  RND.STATE.round.racers[ply:SteamID()] = nil -- Remove the player from the racing list
-
+  -- Update the player stats
   local pl = PLYS.players[ply:SteamID()]
+  pl.rounds = pl.rounds + 1
+  pl.topSpeed = math.max(pl.topSpeed, racer.maxSpeed)
+  
+  if (pl.bestTime) then
+    pl.bestTime = math.min(pl.bestTime, racer.time)
+  else
+    pl.bestTime = racer.time
+  end
+
+  if (position == 1) then
+    pl.wins = pl.wins + 1
+  else
+    pl.losses = pl.losses + 1
+  end
+
+  if (position <= 3) then
+    pl.podiums = pl.podiums + 1
+  end
 end
+
+-- TODO: Add RemovePlayer player
 
 -- ResetRacers: Bring racers back to the spawn on round end
 function RND.ResetRacers(round)
