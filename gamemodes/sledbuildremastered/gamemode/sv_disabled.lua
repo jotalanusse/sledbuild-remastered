@@ -11,7 +11,7 @@ function DSBE.EffectsDisableSpawning(ply)
   return false
 end
 
-hook.Add("PlayerSpawnEffect", "SBR.DSBE.EffectsDisableSpawning", DSBE.EffectsDisableSpawning)
+hook.Add("PlayerSpawnEffect", "SBR:DSBE:EffectsDisableSpawning", DSBE.EffectsDisableSpawning)
 
 -- NPCDisableSpawning: Disable NPCs from being spawned
 function DSBE.NPCDisableSpawning(ply)
@@ -24,7 +24,7 @@ function DSBE.NPCDisableSpawning(ply)
   return false
 end
 
-hook.Add("PlayerSpawnNPC", "SBR.DSBE.NPCDisableSpawning", DSBE.NPCDisableSpawning)
+hook.Add("PlayerSpawnNPC", "SBR:DSBE:NPCDisableSpawning", DSBE.NPCDisableSpawning)
 
 -- RagdollDisableSpawning: Disable ragdolls from being spawned
 function DSBE.RagdollDisableSpawning(ply)
@@ -37,7 +37,7 @@ function DSBE.RagdollDisableSpawning(ply)
   return false
 end
 
-hook.Add("PlayerSpawnRagdoll", "SBR.DSBE.RagdollDisableSpawning", DSBE.RagdollDisableSpawning)
+hook.Add("PlayerSpawnRagdoll", "SBR:DSBE:RagdollDisableSpawning", DSBE.RagdollDisableSpawning)
 
 -- SWEPDisableSpawning: Disable SWEPs from being spawned
 function DSBE.SWEPDisableSpawning(ply)
@@ -50,4 +50,4 @@ function DSBE.SWEPDisableSpawning(ply)
   return false
 end
 
-hook.Add("PlayerSpawnSWEP", "SBR.DSBE.SWEPDisableSpawning", DSBE.SWEPDisableSpawning)
+hook.Add("PlayerSpawnSWEP", "SBR:DSBE:SWEPDisableSpawning", DSBE.SWEPDisableSpawning)

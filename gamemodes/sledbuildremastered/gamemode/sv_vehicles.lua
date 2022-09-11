@@ -66,7 +66,7 @@ function VEHS.Restrict(ply, model, name, table)
   return false
 end
 
-hook.Add("PlayerSpawnVehicle", "SBR.VEHS.LimitType", VEHS.Restrict)
+hook.Add("PlayerSpawnVehicle", "SBR:VEHS:LimitType", VEHS.Restrict)
 
 -- TODO: Whah do this do???
 -- SetDefaultCollissions: Set the default collission for the spawned vehicle
@@ -74,7 +74,7 @@ function VEHS.SetDefaultCollissions(ply, entity)
   entity:SetCollisionGroup(VEHS.COLLISIONS.DEFAULT)
 end
 
-hook.Add("PlayerSpawnedVehicle", "SBR.VEHS.SetDefaultCollissions", VEHS.SetDefaultCollissions)
+hook.Add("PlayerSpawnedVehicle", "SBR:VEHS:SetDefaultCollissions", VEHS.SetDefaultCollissions)
 
 -- PlayerLeave: Called when the player exits a vehicle
 function VEHS.PlayerLeave(ply, vehicle)
@@ -85,7 +85,7 @@ function VEHS.PlayerLeave(ply, vehicle)
   ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
 end
 
-hook.Add("PlayerLeaveVehicle", "SBR.VEHS.PlayerLeave", VEHS.PlayerLeave)
+hook.Add("PlayerLeaveVehicle", "SBR:VEHS:PlayerLeave", VEHS.PlayerLeave)
 
 -- CanExitVehicle: Called when the player tries to exit a vehicle
 function VEHS.CanExitVehicle(vehicle, ply)
@@ -100,4 +100,4 @@ function VEHS.CanExitVehicle(vehicle, ply)
   end
 end
 
-hook.Add("CanExitVehicle", "SBR.VEHS.CanExitVehicle", VEHS.CanExitVehicle)
+hook.Add("CanExitVehicle", "SBR:VEHS:CanExitVehicle", VEHS.CanExitVehicle)

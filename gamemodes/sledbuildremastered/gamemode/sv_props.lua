@@ -28,7 +28,7 @@ function PRPS.DisableRacingSpawning(ply)
   return true
 end
 
-hook.Add("PlayerSpawnObject", "SBR.PRPS.DisableRacingSpawning", PRPS.DisableRacingSpawning)
+hook.Add("PlayerSpawnObject", "SBR:PRPS:DisableRacingSpawning", PRPS.DisableRacingSpawning)
 
 -- Spawned: Called when a player spawns a prop
 function PRPS.Spawned(ply, model, prop)
@@ -41,7 +41,7 @@ function PRPS.Spawned(ply, model, prop)
   prop:SetCollisionGroup(PRPS.COLLISIONS.DEFAULT) -- TODO: Wah do this do???
 end
 
-hook.Add("PlayerSpawnedProp", "SBR.PRPS.Spawned", PRPS.Spawned)
+hook.Add("PlayerSpawnedProp", "SBR:PRPS:Spawned", PRPS.Spawned)
 
 -- Restrict: Restrict the spawning of certain props
 function PRPS.Restrict(ply, model)
@@ -56,4 +56,4 @@ function PRPS.Restrict(ply, model)
   end
 end
 
-hook.Add("PlayerSpawnProp", "SBR.PRPS.Block", PRPS.Restrict)
+hook.Add("PlayerSpawnProp", "SBR:PRPS:Block", PRPS.Restrict)

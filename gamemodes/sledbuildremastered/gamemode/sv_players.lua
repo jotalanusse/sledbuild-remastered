@@ -23,6 +23,8 @@ PLYS = {
 
 -- Add: Adds a new player to the server list
 function PLYS.Add(ply)
+  ply.SetNWInt("SBR:Score", 0)
+
   PLYS.players[ply:SteamID()] = {
     ply = ply,
     rounds = 0, -- TODO: SHould i rename to "roundsPlayed"?
@@ -112,7 +114,7 @@ function PLYS.Spawn(ply)
   PLYS.SetTeam(ply, TEAMS.BUILDING)
 end
 
-hook.Add("PlayerSpawn", "SBR.PLYS.Spawn", PLYS.Spawn)
+hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)
 
 -- InitialSpawn: Called when a player joins the server
 function PLYS.InitialSpawn(ply)
@@ -126,7 +128,7 @@ function PLYS.InitialSpawn(ply)
   MCHK.CheckMap(ply)
 end
 
-hook.Add("PlayerInitialSpawn", "SBR.PLYS.InitialSpawn", PLYS.InitialSpawn)
+hook.Add("PlayerInitialSpawn", "SBR:PLYS:InitialSpawn", PLYS.InitialSpawn)
 
 -- Disconnected: Called when a player leaves the server
 function PLYS.Disconnected(ply)
@@ -136,7 +138,7 @@ function PLYS.Disconnected(ply)
   NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.") -- TODO: Costumize
 end
 
-hook.Add("PlayerDisconnected", "SBR.PLYS.Disconnected", PLYS.Disconnected)
+hook.Add("PlayerDisconnected", "SBR:PLYS:Disconnected", PLYS.Disconnected)
 
 -- RestrictNoclip: Prevent the player from using noclip
 function PLYS.RestrictNoclip(ply, bool)
@@ -149,14 +151,14 @@ function PLYS.RestrictNoclip(ply, bool)
   return false
 end
 
-hook.Add("PlayerNoClip", "SBR.PLYS.RestrictNoclip", PLYS.RestrictNoclip)
+hook.Add("PlayerNoClip", "SBR:PLYS:RestrictNoclip", PLYS.RestrictNoclip)
 
 -- RemoveDeathSound: Remove the death sound of the player
 function PLYS.RemoveDeathSound()
   return true
 end
 
-hook.Add("PlayerDeathSound", "SBR.PLYS.RemoveDeathSound", PLYS.RemoveDeathSound)
+hook.Add("PlayerDeathSound", "SBR:PLYS:RemoveDeathSound", PLYS.RemoveDeathSound)
 
 -- DoPlayerDeath: Handle the player's death
 function GM:DoPlayerDeath(ply, attacker, dmginfo)

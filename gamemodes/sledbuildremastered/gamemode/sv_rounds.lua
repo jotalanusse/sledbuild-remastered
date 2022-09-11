@@ -148,7 +148,7 @@ function RND.Starting(round)
   MAP.GatesOpen()
   MAP.PushersEnable()
 
-  timer.Create("SBR.RacingTimer", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
+  timer.Create("SBR:RacingTimer", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
 end
 
 -- Racing: We are now officialy racing
@@ -161,7 +161,7 @@ function RND.Racing(round)
   MAP.GatesClose()
   MAP.PushersDisable()
 
-  timer.Create("SBR.EndTimer", ROUND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
+  timer.Create("SBR:EndTimer", ROUND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
 end
 
 -- End: End the current race
@@ -176,5 +176,5 @@ function RND.End(round)
   round.startTime = 0
   round.racers = {}
 
-  timer.Create("SBR.StartTimer", ROUND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
+  timer.Create("SBR:StartTimer", ROUND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
 end

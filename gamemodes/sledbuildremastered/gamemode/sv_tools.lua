@@ -44,7 +44,7 @@ function TLS.RestrictToolgun(ply, trace, toolname)
   end
 end
 
-hook.Add("CanTool", "SBR.TLS.BlacklistToolgun", TLS.RestrictToolgun)
+hook.Add("CanTool", "SBR:TLS:BlacklistToolgun", TLS.RestrictToolgun)
 
 -- TODO: Test if this function actually does something
 -- LimitToolgun: Limit what the player can affect with their toolgun
@@ -62,7 +62,7 @@ function TLS.LimitToolgun(ply, trace)
   end
 end
 
-hook.Add("CanTool", "SBR.TLS.LimitToolgun", TLS.LimitToolgun)
+hook.Add("CanTool", "SBR:TLS:LimitToolgun", TLS.LimitToolgun)
 
 -- LimitPhysgun: Limit what the player can affect with their physgun
 function TLS.LimitPhysgun(ply, entity)
@@ -80,4 +80,4 @@ function TLS.LimitPhysgun(ply, entity)
   end
 end
 
-hook.Add("PhysgunPickup", "SBR.TLS.LimitPhysgun", TLS.LimitPhysgun)
+hook.Add("PhysgunPickup", "SBR:TLS:LimitPhysgun", TLS.LimitPhysgun)
