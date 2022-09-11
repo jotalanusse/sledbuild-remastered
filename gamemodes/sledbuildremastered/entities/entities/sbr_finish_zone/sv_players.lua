@@ -18,11 +18,9 @@ function ZN.END.PLYS.StartTouch(ply)
           PLYS.SetColor(ply, Color(255, 165, 0)) -- Orange
         end
 
-        -- Calculate the time
+        -- Messages and that things...
         local timeTable = string.FormattedTime(racer.time)
         local formattedTime = string.format("%02i:%02i.%03i", timeTable.m, timeTable.s, timeTable.ms * 10)
-
-        -- Messages and that things...
         NET.SendGamemodeMessage(ply, "Finished #" .. racer.position .. "! Your time is [" .. formattedTime .. "]") -- TODO: Costumize
 
         PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
@@ -30,14 +28,25 @@ function ZN.END.PLYS.StartTouch(ply)
         -- Teleport racer back
         local spawn = MAP.SelectRandomSpawn()
         local vehicle = ply:GetVehicle()
-
         timer.Simple(3, function()
-          VEHS.Teleport(vehicle, spawn:GetPos())
+          if (vehicle:IsValid()) then
+            VEHS.Teleport(vehicle, spawn:GetPos())
+          end
 
-          -- A player might get off after finishing the race
-          if (not ply:InVehicle()) then
-            NET.SendGamemodeMessage(ply, "Remember to stay in your sled!")
-            PLYS.Teleport(ply, spawn:GetPos())
+          -- Here we should check that everything exists as we wait 3 seconds
+          if (ply) then
+            if (ply:Alive()) then
+              -- A player might get off their sled
+              if (not ply:InVehicle()) then
+                NET.SendGamemodeMessage(ply, "Remember to stay in your sled!")
+                PLYS.Teleport(ply, spawn:GetPos())
+              end
+            else
+              -- A player might straight up die
+              NET.SendGamemodeMessage(ply, "How are you dead? You just finished the race!")
+            end
+          else
+            -- Bro straight up disconnected
           end
         end)
       else

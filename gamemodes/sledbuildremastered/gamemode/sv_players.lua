@@ -45,16 +45,14 @@ end
 
 -- Teleport: Teleport a player to the specified target
 function PLYS.Teleport(ply, target)
-  -- The player could disappear at any time
-  if (ply:IsValid()) then
-    if ply:IsPlayer() then
-      ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-      ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
-      ply:SetPos(target)
-      ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-    end
-  end
+  -- TODO: Should we check here if the player exists?
 
+  if ply:IsPlayer() then
+    ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+    ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
+    ply:SetPos(target)
+    ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+  end
 end
 
 -- StripLoadout: Remove the player's loadout completely
@@ -130,15 +128,15 @@ end
 
 hook.Add("PlayerInitialSpawn", "SBR.PLYS.InitialSpawn", PLYS.InitialSpawn)
 
--- Diconnected: Called when a player leaves the server
-function PLYS.Diconnected(ply)
+-- Disconnected: Called when a player leaves the server
+function PLYS.Disconnected(ply)
   PLYS.Remove(ply)
 
   -- Notify of player leaving
   NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.") -- TODO: Costumize
 end
 
-hook.Add("PlayerDisconnected", "SBR.PLYS.Diconnected", PLYS.Diconnected)
+hook.Add("PlayerDisconnected", "SBR.PLYS.Disconnected", PLYS.Disconnected)
 
 -- RestrictNoclip: Prevent the player from using noclip
 function PLYS.RestrictNoclip(ply, bool)

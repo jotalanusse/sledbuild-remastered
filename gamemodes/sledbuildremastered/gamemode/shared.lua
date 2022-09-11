@@ -18,7 +18,7 @@ CONSOLE = {
 ROUND = {
   TIMES = {
     START = 5,
-    RACE = 18,
+    RACE = 8,
     WAIT = 5,
   },
 

@@ -29,6 +29,10 @@ function RND.AddPlayer(ply, round)
     finished = false,
     disqualified = false,
   }
+
+  -- Update the player stats
+  local pl = PLYS.players[ply:SteamID()]
+  pl.rounds = pl.rounds + 1
 end
 
 -- DisqualifyPlayer: Disquialifies a player from the round
@@ -36,6 +40,10 @@ function RND.DisqualifyPlayer(ply, round)
   -- Check if player is even racing (on disconnection and death this will probably be called)
   if (RND.IsPlayerRacing(ply)) then
     round.racers[ply:SteamID()].disqualified = true
+
+    -- Update the player stats
+    local pl = PLYS.players[ply:SteamID()]
+    pl.losses = pl.losses + 1
   end
 end
 
@@ -52,9 +60,9 @@ function RND.FinishPlayerRace(ply, round)
 
   -- Update the player stats
   local pl = PLYS.players[ply:SteamID()]
-  pl.rounds = pl.rounds + 1
+  -- pl.rounds = pl.rounds + 1 -- Done when added
   pl.topSpeed = math.max(pl.topSpeed, racer.maxSpeed)
-  
+
   if (pl.bestTime) then
     pl.bestTime = math.min(pl.bestTime, racer.time)
   else
@@ -72,7 +80,7 @@ function RND.FinishPlayerRace(ply, round)
   end
 end
 
--- TODO: Add RemovePlayer player
+-- TODO: Add RemovePlayer player (or we could just waait until round end)
 
 -- ResetRacers: Bring racers back to the spawn on round end
 function RND.ResetRacers(round)
