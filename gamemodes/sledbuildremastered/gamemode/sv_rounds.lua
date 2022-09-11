@@ -49,8 +49,10 @@ function RND.FinishPlayerRace(ply, round)
     time = CurTime() - round.startTime,
   }
 
-  -- Once the racer finishes we can reset their state
+  -- Once the racer finishes we can remove them
   RND.STATE.round.racers[ply:SteamID()] = nil -- Remove the player from the racing list
+
+  local pl = PLYS.players[ply:SteamID()]
 end
 
 -- ResetRacers: Bring racers back to the spawn on round end

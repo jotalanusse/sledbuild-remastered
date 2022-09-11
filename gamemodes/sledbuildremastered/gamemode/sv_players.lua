@@ -1,4 +1,5 @@
 PLYS = {
+  players = {},
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
   },
@@ -19,6 +20,28 @@ PLYS = {
     },
   }
 }
+
+-- AddPlayer: Adds a new player to the server list
+function PLYS.AddPlayer(ply)
+  PLYS.players[ply:SteamID()] = {
+    ply = ply,
+    roundsPlayed = 0,
+    wins = 0,
+    losses = 0,
+    podiums = 0,
+    topSpeed = 0,
+    bestTime = nil, -- TODO: Should this be initialized in other value?
+  }
+
+  -- TODO: Add networking, inform clients
+end
+
+-- RemovePlayer: Removes a player from the server list
+function PLYS.RemovePlayer(ply)
+  PLYS.players[ply:SteamID()] = nil
+
+  -- TODO: Add networking, inform clients
+end
 
 -- Teleport: Teleport a player to the specified target
 function PLYS.Teleport(ply, target)
