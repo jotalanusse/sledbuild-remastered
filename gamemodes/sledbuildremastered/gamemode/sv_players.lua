@@ -39,12 +39,16 @@ end
 
 -- Teleport: Teleport a player to the specified target
 function PLYS.Teleport(ply, target)
-  if ply and ply:IsPlayer() then
-    ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-    ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
-    ply:SetPos(target)
-    ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+  -- The player could disappear at any time
+  if (ply:IsValid()) then
+    if ply:IsPlayer() then
+      ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+      ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
+      ply:SetPos(target)
+      ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+    end
   end
+
 end
 
 -- SetTeam: Set the team for the player
