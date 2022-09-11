@@ -19,8 +19,7 @@ function ZN.END.PLYS.StartTouch(ply)
         end
 
         -- Messages and that things...
-        local timeTable = string.FormattedTime(racer.time)
-        local formattedTime = string.format("%02i:%02i.%03i", timeTable.m, timeTable.s, timeTable.ms * 10)
+        local formattedTime = MSG.FormatTime(racer.time)
         NET.SendGamemodeMessage(ply, "Finished #" .. racer.position .. "! Your time is [" .. formattedTime .. "]") -- TODO: Costumize
 
         PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
@@ -60,12 +59,6 @@ function ZN.END.PLYS.StartTouch(ply)
       -- TODO: Check if the racer is the last one to finish
     else
       -- The player might cross multiple finish lines depending on the map design
-
-      -- This code should be unreachable
-
-      -- NET.SendGamemodeMessage(ply, "How are you at the finish line without being a racer? You shouldn't even be alive.",
-      --   CONSOLE.COLORS.WARNING)
-      -- ply:Kill()
     end
   else
     -- This code should be unreachable
