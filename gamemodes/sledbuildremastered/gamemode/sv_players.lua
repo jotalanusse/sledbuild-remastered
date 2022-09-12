@@ -126,6 +126,11 @@ hook.Add("PlayerInitialSpawn", "SBR:PLYS:InitialSpawn", PLYS.InitialSpawn)
 
 -- Disconnected: Called when a player leaves the server
 function PLYS.Disconnected(ply)
+  -- Remove the player from the race on disconnect
+  if (RND.IsPlayerRacing(ply)) then
+    RND.RemovePlayer(ply)
+  end
+
   -- Notify of player leaving
   NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.") -- TODO: Costumize
 end
@@ -154,5 +159,11 @@ hook.Add("PlayerDeathSound", "SBR:PLYS:RemoveDeathSound", PLYS.RemoveDeathSound)
 
 -- DoPlayerDeath: Handle the player's death
 function GM:DoPlayerDeath(ply, attacker, dmginfo)
+  -- Disquialify the player on death
+  if (RND.IsPlayerRacing(ply)) then
+    NET.SendGamemodeMessage(ply, "You have died while racing, you have been disqualified.")
+    RND.DisquialifyPlayer(ply, RND.STATE.round)
+  end
+
   ply:CreateRagdoll() -- Create a ragdooll for the memes
 end

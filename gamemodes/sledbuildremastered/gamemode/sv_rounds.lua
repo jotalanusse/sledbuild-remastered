@@ -31,12 +31,12 @@ function RND.AddPlayer(ply, round)
   }
 
   -- Update the player stats
-  ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
+  ply:SetNWInt("SBR:Rounds", ply:GetNWInt("SBR:Rounds") + 1)
 end
 
 -- DisqualifyPlayer: Disquialifies a player from the round
 function RND.DisqualifyPlayer(ply, round)
-  -- Check if player is even racing (on disconnection and death this will probably be called)
+  -- Check if player is even racing
   if (RND.IsPlayerRacing(ply)) then
     round.racers[ply:SteamID()].disqualified = true
 
@@ -48,7 +48,7 @@ end
 -- TODO: Naming is sus
 -- FinishPlayerRace: Updates a player when they finish the race
 function RND.FinishPlayerRace(ply, round)
-  local racer = RND.STATE.round.racers[ply:SteamID()]
+  local racer = round.racers[ply:SteamID()]
   local position = table.maxn(round.racers) + 1
 
   -- Update the racer stats
@@ -57,14 +57,6 @@ function RND.FinishPlayerRace(ply, round)
   racer.finished = true
 
   -- Update the player stats
-  ply:SetNWFloat("SBR:MaxSpeed", math.max(ply:GetNWFloat("SBR:MaxSpeed"), racer.maxSpeed))
-
-  if (ply:GetNWFloat("SBR:BestTime")) then
-    ply:SetNWFloat("SBR:BestTime", math.min(ply:GetNWFloat("SBR:BestTime"), racer.time))
-  else
-    ply:SetNWFloat("SBR:BestTime", racer.time)
-  end
-
   if (position == 1) then
     ply:SetNWInt("SBR:Wins", ply:GetNWInt("SBR:Wins") + 1)
   else
@@ -74,9 +66,22 @@ function RND.FinishPlayerRace(ply, round)
   if (position <= 3) then
     ply:SetNWInt("SBR:Podiums", ply:GetNWInt("SBR:Podiums") + 1)
   end
+
+  ply:SetNWFloat("SBR:MaxSpeed", math.max(ply:GetNWFloat("SBR:MaxSpeed"), racer.maxSpeed))
+
+  if (ply:GetNWFloat("SBR:BestTime")) then
+    ply:SetNWFloat("SBR:BestTime", math.min(ply:GetNWFloat("SBR:BestTime"), racer.time))
+  else
+    ply:SetNWFloat("SBR:BestTime", racer.time)
+  end
 end
 
--- TODO: Add RemovePlayer player (or we could just waait until round end)
+-- RemovePlayer: Removes a player from the round (use carefully)
+function RND.RemovePlayer(ply, round)
+  if (round.racers[ply:SteamID()]) then
+    round.racers[ply:SteamID()] = nil
+  end
+end
 
 -- ResetRacers: Bring racers back to the spawn on round end
 function RND.ResetRacers(round)
@@ -87,6 +92,8 @@ function RND.ResetRacers(round)
     if (RND.IsPlayerRacing(ply)) then
       if (not v.finished) then
         NET.SendGamemodeMessage(ply, "You didn't finish the race, better luck next time.")
+
+        ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
         if (ply:InVehicle()) then
           -- Teleport back to spawn
           local spawn = MAP.SelectRandomSpawn()
@@ -95,7 +102,7 @@ function RND.ResetRacers(round)
           PLYS.SetTeam(ply, TEAMS.BUILDING)
         else
           -- This code should be unreachable, players shouldn't be able to get off
-          NET.SendGamemodeMessage(ply, "How did you get off your sled? You shouldn't even be alive.",
+          NET.SendGamemodeMessage(ply, "How did you get off your sled? You shouldn't be alive.",
             CONSOLE.COLORS.WARNING)
           ply:Kill()
         end
@@ -122,9 +129,11 @@ function RND.Starting(round)
     if (v:Team() == TEAMS.RACING) then
       if (v:InVehicle()) then
         NET.SendGamemodeMessage(v, "Here we go!")
+
         RND.AddPlayer(v, round)
       else
         NET.SendGamemodeMessage(v, "You can't be a racer and not be in a vehicle!", CONSOLE.COLORS.WARNING)
+        
         v:Kill()
       end
     elseif (v:Team() == TEAMS.BUILDING) then
