@@ -101,6 +101,14 @@ end
 
 hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)
 
+-- Death: Called everytime a player dies
+function PLYS.Death(ply)
+  -- We don't reset color because the round start already does that
+  PLYS.SetTeam(ply, TEAMS.BUILDING)
+end
+
+hook.Add("PlayerDeath", "SBR:PLYS:Detah", PLYS.Death)
+
 -- InitialSpawn: Called when a player joins the server
 function PLYS.InitialSpawn(ply)
   PLYS.AddNetworkVariables(ply)
