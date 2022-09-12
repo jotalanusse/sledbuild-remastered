@@ -11,6 +11,7 @@ SCOREBOARD = {
     HEIGHT_PERCENTAGE = 60,
     HEADER_HEIGHT = 35,
   },
+  ROW_OPACITY = 150,
 }
 
 local menu = menu or {}
@@ -41,12 +42,11 @@ function CreateBasePanel(width, heightPercentage)
   DisableIntercation(frame)
 
   frame:SetSize(width, (ScrH() / 100) * heightPercentage)
-
   frame:Center()
   frame:MakePopup()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 100)) -- TODO: Base panel must be invisible
+    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Base panel must be invisible
   end
 
   return frame
@@ -61,7 +61,7 @@ function CreateScoreboard(parent, width, heightPercentage)
   frame:Center()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 191)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 190)) -- TODO: Change color
   end
 
   return frame
@@ -69,8 +69,35 @@ end
 
 function CreatePlayerList(parent)
   local listHeaders = CreateListHeaders(parent, SCOREBOARD.SIZE.HEADER_HEIGHT)
-  local testRow = CreateRow(parent, SCOREBOARD.SIZE.HEADER_HEIGHT, LocalPlayer())
-  testRow:SetPos(0, SCOREBOARD.SIZE.HEADER_HEIGHT)
+
+  local index = 1
+  local offset = SCOREBOARD.SIZE.HEADER_HEIGHT
+
+  -- TODO: Remove
+  local testPlayers = {
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+  }
+
+  for _, v in pairs(testPlayers) do
+    local opacity = SCOREBOARD.ROW_OPACITY
+
+    if (index % 2 == 0) then
+      opacity = opacity / 2
+    end
+
+    local playerRow = CreatePlayerRow(parent, SCOREBOARD.SIZE.HEADER_HEIGHT, Color(32, 32,32, opacity), v)
+    playerRow:SetPos(0, offset)
+
+    index = index + 1
+    offset = offset + playerRow:GetTall()
+  end
 end
 
 function CreateListHeaders(parent, height)
@@ -81,7 +108,7 @@ function CreateListHeaders(parent, height)
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(255, 32, 32, 191)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 150)) -- TODO: Change color
   end
 
   local headers = {
@@ -114,7 +141,7 @@ function CreateHeader(parent, text, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 100, 32, 191)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
   end
 
   CreateLabel(frame, text)
@@ -122,7 +149,7 @@ function CreateHeader(parent, text, widthPercentage, offsetPercentage)
   return frame
 end
 
-function CreateRow(parent, height, ply)
+function CreatePlayerRow(parent, height, color, ply)
   local frame = vgui.Create("DFrame", parent)
 
   DisableIntercation(frame)
@@ -130,7 +157,7 @@ function CreateRow(parent, height, ply)
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 255, 191)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, color) -- TODO: Change color
   end
 
   local values = {
@@ -167,7 +194,7 @@ function CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 100, 32, 191)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
   end
 
   CreateLabel(frame, text)
@@ -179,8 +206,9 @@ function CreateLabel(parent, text)
   local label = vgui.Create("DLabel", parent)
 
   label:SetText(text)
+  label:SetSize(parent:GetWide(), parent:GetTall())
   label:SetFont("DermaDefaultBold") -- TODO: Make global variable
-  label:SetTextColor(Color(255, 255, 255, 255))
+  label:SetTextColor(Color(255, 255, 255, 255)) -- TODO: Change color
   label:SetContentAlignment(5)
 
   label:Center()
