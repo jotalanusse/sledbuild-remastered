@@ -3,6 +3,7 @@ SBRD = {
     WIDTH = 1000,
     HEIGHT_PERCENTAGE = 60,
     HEADER_HEIGHT = 35,
+    ROW_HEIGHT = 25,
   },
   ROW_OPACITY = 150,
 }
@@ -38,6 +39,14 @@ function SBRD:CreatePlayerList(parent)
     LocalPlayer(),
     LocalPlayer(),
     LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
+    LocalPlayer(),
   }
 
   for _, v in pairs(testPlayers) do
@@ -47,7 +56,7 @@ function SBRD:CreatePlayerList(parent)
       opacity = opacity / 2
     end
 
-    local playerRow = SBRD:CreatePlayerRow(parent, SBRD.SIZE.HEADER_HEIGHT, Color(32, 32,32, opacity), v)
+    local playerRow = SBRD:CreatePlayerRow(parent, SBRD.SIZE.ROW_HEIGHT, Color(32, 32,32, opacity), v)
     playerRow:SetPos(0, offset)
 
     index = index + 1
