@@ -44,7 +44,7 @@ end
 
 -- Initialize
 function GM:Initialize()
-  print(CONSOLE.PREFIX .. "SledBuild Remastered initialized!")
+  print(CONSOLE.PREFIX .. "SledBuild Remastered initialized!") -- TODO: Remove
 
   SetTeams()
 end
