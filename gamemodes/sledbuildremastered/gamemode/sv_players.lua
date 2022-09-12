@@ -24,8 +24,9 @@ PLYS = {
 function PLYS.AddNetworkVariables(ply)
   ply:SetNWInt("SBR:Rounds", 0)
   ply:SetNWInt("SBR:Wins", 0)
-  ply:SetNWInt("SBR:Losses", 0)
   ply:SetNWInt("SBR:Podiums", 0)
+  ply:SetNWInt("SBR:Losses", 0)
+  ply:SetNWFloat("SBR:CurrentSpeed", 0)
   ply:SetNWFloat("SBR:MaxSpeed", 0)
   ply:SetNWFloat("SBR:BestTime", nil) -- TODO: Can this be "nil"?
 end
