@@ -7,5 +7,7 @@ include("shared.lua")
 include("cl_net.lua")
 
 -- Interface
-include("cl_ui.lua")
+include("cl_helpers.lua")
+-- include("cl_ui.lua")
+include("cl_scoreboard.lua")
 include("cl_menu.lua")
