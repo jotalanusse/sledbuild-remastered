@@ -35,7 +35,7 @@ end
 function PLYS.Teleport(ply, target)
   -- TODO: Should we check here if the player exists?
 
-  if ply:IsPlayer() then
+  if (ply:IsPlayer()) then
     ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
     ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
     ply:SetPos(target)

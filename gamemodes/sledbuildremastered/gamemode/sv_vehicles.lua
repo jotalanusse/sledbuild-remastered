@@ -16,7 +16,7 @@ function VEHS.Teleport(vehicle, target)
   local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
 
   for _, v in pairs(constrainedEntities) do
-    if v and v:IsValid() then
+    if (v and v:IsValid()) then
       v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
       v:SetCollisionGroup(VEHS.COLLISIONS.DEFAULT)
       v:SetPos(target + (v:GetPos() - originalVehiclePos))

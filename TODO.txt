@@ -4,4 +4,3 @@
 - Avoid players boosting with the physgun
 - Add module descriptions
 - Make restrictions dont apply to admins (done, kinda)
-- Podiums goes after wins
