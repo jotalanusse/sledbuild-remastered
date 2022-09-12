@@ -68,6 +68,18 @@ end
 
 hook.Add("PlayerSpawnVehicle", "SBR:VEHS:LimitType", VEHS.Restrict)
 
+-- DisableRacingSpawning: Restricts a player from spawning vehicles when racing
+function VEHS.DisableRacingSpawning(ply, model, name, table)
+  if (ply:Team() == TEAMS.RACING) then
+    NET.SendGamemodeMessage(ply, "Vehicles cannot be spawned while being a racer.")
+    return false
+  end
+
+  return true
+end
+
+hook.Add("PlayerSpawnVehicle", "SBR:VEHS:DisableRacingSpawning", VEHS.DisableRacingSpawning)
+
 -- TODO: Whah do this do???
 -- SetDefaultCollissions: Set the default collission for the spawned vehicle
 function VEHS.SetDefaultCollissions(ply, entity)

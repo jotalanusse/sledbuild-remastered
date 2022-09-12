@@ -139,9 +139,9 @@ function CreateRow(parent, height, ply)
     { ply:GetNWInt("SBR:Wins"), 6 },
     { ply:GetNWInt("SBR:Podiums"), 6 },
     { ply:GetNWInt("SBR:Losses"), 6 },
-    { ply:GetNWInt("SBR:Speed"), 10 },
-    { ply:GetNWInt("SBR:TopSpeed"), 10 },
-    { ply:GetNWInt("SBR:BestTime"), 10 },
+    { ply:GetNWFloat("SBR:Speed"), 10 },
+    { ply:GetNWFloat("SBR:TopSpeed"), 10 },
+    { ply:GetNWFloat("SBR:BestTime"), 10 },
     { ply:Ping(), 6 },
   }
 

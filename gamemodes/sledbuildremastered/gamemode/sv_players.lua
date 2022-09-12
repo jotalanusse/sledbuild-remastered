@@ -28,7 +28,7 @@ function PLYS.AddNetworkVariables(ply)
   ply:SetNWInt("SBR:Losses", 0)
   ply:SetNWFloat("SBR:CurrentSpeed", 0)
   ply:SetNWFloat("SBR:MaxSpeed", 0)
-  ply:SetNWFloat("SBR:BestTime", nil) -- TODO: Can this be "nil"?
+  ply:SetNWFloat("SBR:BestTime", 0)
 end
 
 -- Teleport: Teleport a player to the specified target

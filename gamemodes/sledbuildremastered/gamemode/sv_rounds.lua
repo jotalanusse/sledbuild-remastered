@@ -67,7 +67,8 @@ function RND.FinishPlayerRace(ply, round)
 
   ply:SetNWFloat("SBR:MaxSpeed", math.max(ply:GetNWFloat("SBR:MaxSpeed"), racer.maxSpeed))
 
-  if (ply:GetNWFloat("SBR:BestTime")) then
+  -- No record can be 0, so we are safe to check for this
+  if (ply:GetNWFloat("SBR:BestTime") ~= 0) then
     ply:SetNWFloat("SBR:BestTime", math.min(ply:GetNWFloat("SBR:BestTime"), racer.time))
   else
     ply:SetNWFloat("SBR:BestTime", racer.time)
