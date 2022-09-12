@@ -157,7 +157,7 @@ function CreateListRow(parent, height, ply)
   }
 
   local offset = 0
-  for k, v in pairs(headers) do
+  for _, v in pairs(headers) do
     local header = CreateHeader(frame, v[1], v[2], offset)
     offset = offset + v[2]
   end

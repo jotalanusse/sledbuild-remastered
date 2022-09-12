@@ -54,7 +54,7 @@ end
 function PLYS.SetLoadout(ply, loadout)
   PLYS.StripLoadout(ply)
 
-  for k, v in pairs(loadout) do
+  for _, v in pairs(loadout) do
     ply:Give(v)
   end
 end
@@ -76,7 +76,7 @@ end
 
 -- ResetAllColors: Reset the color for all players
 function PLYS.ResetAllColors()
-  for k, v in pairs(player.GetAll()) do
+  for _, v in pairs(player.GetAll()) do
     v:SetColor(Color(255, 255, 255, 255))
   end
 end

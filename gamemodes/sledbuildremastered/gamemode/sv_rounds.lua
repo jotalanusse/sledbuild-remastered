@@ -80,7 +80,7 @@ end
 
 -- ResetRacers: Bring racers back to the spawn on round end
 function RND.ResetRacers(round)
-  for k, v in pairs(round.racers) do
+  for _, v in pairs(round.racers) do
     local ply = v.ply
 
     -- Only iterate over non-disqualified racers (avoid deaths, and disconnections)
@@ -118,7 +118,7 @@ function RND.Starting(round)
 
   NET.BroadcastGamemodeMessage("Race #" .. RND.STATE.totalRounds .. " just begun!") -- TODO: Costumize
 
-  for k, v in pairs(player:GetAll()) do
+  for _, v in pairs(player:GetAll()) do
     if (v:Team() == TEAMS.RACING) then
       if (v:InVehicle()) then
         NET.SendGamemodeMessage(v, "Here we go!")
