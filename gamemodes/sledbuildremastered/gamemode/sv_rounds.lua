@@ -29,12 +29,9 @@ function RND.AddPlayer(ply, round)
     finished = false,
     disqualified = false,
   }
-
-  -- Update the player stats
-  ply:SetNWInt("SBR:Rounds", ply:GetNWInt("SBR:Rounds") + 1)
 end
 
--- DisqualifyPlayer: Disquialifies a player from the round
+-- DisqualifyPlayer: Disqualify a player from the round
 function RND.DisqualifyPlayer(ply, round)
   -- Check if player is even racing
   if (RND.IsPlayerRacing(ply)) then
@@ -57,6 +54,7 @@ function RND.FinishPlayerRace(ply, round)
   racer.finished = true
 
   -- Update the player stats
+  ply:SetNWInt("SBR:Rounds", ply:GetNWInt("SBR:Rounds") + 1)
   if (position == 1) then
     ply:SetNWInt("SBR:Wins", ply:GetNWInt("SBR:Wins") + 1)
   else
@@ -92,7 +90,10 @@ function RND.ResetRacers(round)
     if (RND.IsPlayerRacing(ply)) then
       if (not v.finished) then
         NET.SendGamemodeMessage(ply, "You didn't finish the race, better luck next time.")
+        RND.RemovePlayer(ply, round)
 
+        -- Update the player stats
+        ply:SetNWInt("SBR:Rounds", ply:GetNWInt("SBR:Rounds") + 1)
         ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
         if (ply:InVehicle()) then
           -- Teleport back to spawn
@@ -133,7 +134,7 @@ function RND.Starting(round)
         RND.AddPlayer(v, round)
       else
         NET.SendGamemodeMessage(v, "You can't be a racer and not be in a vehicle!", CONSOLE.COLORS.WARNING)
-        
+
         v:Kill()
       end
     elseif (v:Team() == TEAMS.BUILDING) then

@@ -159,10 +159,10 @@ hook.Add("PlayerDeathSound", "SBR:PLYS:RemoveDeathSound", PLYS.RemoveDeathSound)
 
 -- DoPlayerDeath: Handle the player's death
 function GM:DoPlayerDeath(ply, attacker, dmginfo)
-  -- Disquialify the player on death
+  -- Disqualify the player on death
   if (RND.IsPlayerRacing(ply)) then
-    NET.SendGamemodeMessage(ply, "You have died while racing, you have been disqualified.")
-    RND.DisquialifyPlayer(ply, RND.STATE.round)
+    NET.SendGamemodeMessage(ply, "You have died while racing! What happened?", CONSOLE.COLORS.WARNING)
+    RND.RemovePlayer(ply, RND.STATE.round)
   end
 
   ply:CreateRagdoll() -- Create a ragdooll for the memes
