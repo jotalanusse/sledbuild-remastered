@@ -1,5 +1,4 @@
 PLYS = {
-  players = {},
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
   },
@@ -21,28 +20,14 @@ PLYS = {
   }
 }
 
--- Add: Adds a new player to the server list
-function PLYS.Add(ply)
-  ply.SetNWInt("SBR:Score", 0)
-
-  PLYS.players[ply:SteamID()] = {
-    ply = ply,
-    rounds = 0, -- TODO: SHould i rename to "roundsPlayed"?
-    wins = 0,
-    losses = 0,
-    podiums = 0,
-    topSpeed = 0,
-    bestTime = nil, -- TODO: Should this be initialized in other value?
-  }
-
-  -- TODO: Add networking, inform clients
-end
-
--- Remove: Removes a player from the server list
-function PLYS.Remove(ply)
-  PLYS.players[ply:SteamID()] = nil
-
-  -- TODO: Add networking, inform clients
+-- AddNetworkVariables: Adds the required network variables to the player
+function PLYS.AddNetworkVariables(ply)
+  ply:SetNWInt("SBR:Rounds", 0)
+  ply:SetNWInt("SBR:Wins", 0)
+  ply:SetNWInt("SBR:Losses", 0)
+  ply:SetNWInt("SBR:Podiums", 0)
+  ply:SetNWFloat("SBR:MaxSpeed", 0)
+  ply:SetNWFloat("SBR:BestTime", nil) -- TODO: Can this be "nil"?
 end
 
 -- Teleport: Teleport a player to the specified target
@@ -118,7 +103,7 @@ hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)
 
 -- InitialSpawn: Called when a player joins the server
 function PLYS.InitialSpawn(ply)
-  PLYS.Add(ply)
+  PLYS.AddNetworkVariables(ply)
   PLYS.Spawn(ply)
 
   -- Notify of a new player
@@ -132,8 +117,6 @@ hook.Add("PlayerInitialSpawn", "SBR:PLYS:InitialSpawn", PLYS.InitialSpawn)
 
 -- Disconnected: Called when a player leaves the server
 function PLYS.Disconnected(ply)
-  PLYS.Remove(ply)
-
   -- Notify of player leaving
   NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.") -- TODO: Costumize
 end
