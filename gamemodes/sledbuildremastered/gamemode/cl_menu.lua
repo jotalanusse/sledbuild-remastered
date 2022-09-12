@@ -9,9 +9,9 @@ local menu = menu or {}
 
 function menu:show()
 
-  local basePanel = MENU:CreateBasePanel(MENU.SIZE.WIDTH, MENU.SIZE.HEIGHT_PERCENTAGE)
-  local scoreboard = SBRD:CreateScoreboard(basePanel, SBRD.SIZE.WIDTH, SBRD.SIZE.HEIGHT_PERCENTAGE)
-  local playerList = SBRD:CreatePlayerList(scoreboard)
+  local basePanel = MENU.CreateBasePanel(MENU.SIZE.WIDTH, MENU.SIZE.HEIGHT_PERCENTAGE)
+  local scoreboard = SBRD.CreateScoreboard(basePanel, SBRD.SIZE.WIDTH, SBRD.SIZE.HEIGHT_PERCENTAGE)
+  local playerList = SBRD.CreatePlayerList(scoreboard)
 
   function menu:hide()
     basePanel:Remove()
@@ -27,7 +27,7 @@ function GM:ScoreboardHide()
 end
 
 -- CreateBasePanel: Create the base panel for almost all UI elements of the menu
-function MENU:CreateBasePanel(width, heightPercentage)
+function MENU.CreateBasePanel(width, heightPercentage)
   local frame = vgui.Create("DFrame")
 
   HLPS:DisableFrameIntercation(frame)

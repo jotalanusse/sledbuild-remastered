@@ -8,7 +8,7 @@ SBRD = {
   ROW_OPACITY = 150,
 }
 
-function SBRD:CreateScoreboard(parent, width, heightPercentage)
+function SBRD.CreateScoreboard(parent, width, heightPercentage)
   local frame = vgui.Create("DFrame", parent)
 
   HLPS:DisableFrameIntercation(frame)
@@ -23,8 +23,8 @@ function SBRD:CreateScoreboard(parent, width, heightPercentage)
   return frame
 end
 
-function SBRD:CreatePlayerList(parent)
-  local listHeaders = SBRD:CreateListHeaders(parent, SBRD.SIZE.HEADER_HEIGHT)
+function SBRD.CreatePlayerList(parent)
+  local listHeaders = SBRD.CreateListHeaders(parent, SBRD.SIZE.HEADER_HEIGHT)
 
   local index = 1
   local offset = SBRD.SIZE.HEADER_HEIGHT
@@ -56,7 +56,7 @@ function SBRD:CreatePlayerList(parent)
       opacity = opacity / 2
     end
 
-    local playerRow = SBRD:CreatePlayerRow(parent, SBRD.SIZE.ROW_HEIGHT, Color(32, 32,32, opacity), v)
+    local playerRow = SBRD.CreatePlayerRow(parent, SBRD.SIZE.ROW_HEIGHT, Color(32, 32,32, opacity), v)
     playerRow:SetPos(0, offset)
 
     index = index + 1
@@ -64,7 +64,7 @@ function SBRD:CreatePlayerList(parent)
   end
 end
 
-function SBRD:CreateListHeaders(parent, height)
+function SBRD.CreateListHeaders(parent, height)
   local frame = vgui.Create("DFrame", parent)
 
   HLPS:DisableFrameIntercation(frame)
@@ -89,14 +89,14 @@ function SBRD:CreateListHeaders(parent, height)
 
   local offset = 0
   for _, v in pairs(headers) do
-    local header = SBRD:CreateHeader(frame, v[1], v[2], offset)
+    local header = SBRD.CreateHeader(frame, v[1], v[2], offset)
     offset = offset + v[2]
   end
 
   return frame
 end
 
-function SBRD:CreateHeader(parent, text, widthPercentage, offsetPercentage)
+function SBRD.CreateHeader(parent, text, widthPercentage, offsetPercentage)
   local frame = vgui.Create("DFrame", parent)
 
   HLPS:DisableFrameIntercation(frame)
@@ -108,12 +108,12 @@ function SBRD:CreateHeader(parent, text, widthPercentage, offsetPercentage)
     draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
   end
 
-  SBRD:CreateLabel(frame, text)
+  SBRD.CreateLabel(frame, text)
 
   return frame
 end
 
-function SBRD:CreatePlayerRow(parent, height, color, ply)
+function SBRD.CreatePlayerRow(parent, height, color, ply)
   local frame = vgui.Create("DFrame", parent)
 
   HLPS:DisableFrameIntercation(frame)
@@ -140,7 +140,7 @@ function SBRD:CreatePlayerRow(parent, height, color, ply)
   local offset = 0
   for _, v in pairs(values) do
     print(v[1])
-    local rowColumn = SBRD:CreateRowColumn(frame, v[1], v[2], offset)
+    local rowColumn = SBRD.CreateRowColumn(frame, v[1], v[2], offset)
 
     index = index + 1
     offset = offset + v[2]
@@ -149,7 +149,7 @@ function SBRD:CreatePlayerRow(parent, height, color, ply)
   return frame
 end
 
-function SBRD:CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
+function SBRD.CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
   local frame = vgui.Create("DFrame", parent)
 
   HLPS:DisableFrameIntercation(frame)
@@ -161,12 +161,12 @@ function SBRD:CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
     draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
   end
 
-  SBRD:CreateLabel(frame, text)
+  SBRD.CreateLabel(frame, text)
 
   return frame
 end
 
-function SBRD:CreateLabel(parent, text)
+function SBRD.CreateLabel(parent, text)
   local label = vgui.Create("DLabel", parent)
 
   label:SetText(text)

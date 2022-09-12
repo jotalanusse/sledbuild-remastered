@@ -104,6 +104,12 @@ hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)
 
 -- Death: Called everytime a player dies
 function PLYS.Death(ply)
+  -- Disqualify the player on death
+  if (RND:IsPlayerRacing(ply)) then
+    NET:SendGamemodeMessage(ply, "You have died while racing! What happened?", CONSOLE.COLORS.WARNING)
+    RND:RemovePlayer(ply, RND.STATE.round)
+  end
+
   -- We don't reset color because the round start already does that
   PLYS.SetTeam(ply, TEAMS.BUILDING)
 end
@@ -159,11 +165,5 @@ hook.Add("PlayerDeathSound", "SBR:PLYS:RemoveDeathSound", PLYS.RemoveDeathSound)
 
 -- DoPlayerDeath: Handle the player's death
 function GM:DoPlayerDeath(ply, attacker, dmginfo)
-  -- Disqualify the player on death
-  if (RND.IsPlayerRacing(ply)) then
-    NET.SendGamemodeMessage(ply, "You have died while racing! What happened?", CONSOLE.COLORS.WARNING)
-    RND.RemovePlayer(ply, RND.STATE.round)
-  end
-
   ply:CreateRagdoll() -- Create a ragdooll for the memes
 end
