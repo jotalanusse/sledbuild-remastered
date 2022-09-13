@@ -63,7 +63,11 @@ function MENU.CreateHeader(parent, heightPercentage)
     draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0))
 
     surface.SetDrawColor(COLORS.MAIN)
-    surface.DrawOutlinedRect(0, 0, w, h, MENU.HEADER.BORDER_SIZE)
+
+    -- A quite primitive way of drawing a border without a side
+    surface.DrawOutlinedRect(0, 0, w, 0, MENU.HEADER.BORDER_SIZE)
+    surface.DrawOutlinedRect(0, 0, 0, h + MENU.HEADER.BORDER_SIZE, MENU.HEADER.BORDER_SIZE)
+    surface.DrawOutlinedRect(w, 0, 0, h + MENU.HEADER.BORDER_SIZE, MENU.HEADER.BORDER_SIZE)
   end
 
   local headerFrame = vgui.Create("DFrame", borderFrame)
@@ -71,10 +75,9 @@ function MENU.CreateHeader(parent, heightPercentage)
 
   headerFrame:SetSize(
     borderFrame:GetWide() - MENU.HEADER.BORDER_SIZE * 2,
-    borderFrame:GetTall() - MENU.HEADER.BORDER_SIZE * 2
+    borderFrame:GetTall() - MENU.HEADER.BORDER_SIZE
   )
-
-  headerFrame:Center()
+  headerFrame:SetPos(MENU.HEADER.BORDER_SIZE, MENU.HEADER.BORDER_SIZE)
 
   headerFrame.Paint = function(self, w, h)
     draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 100))
