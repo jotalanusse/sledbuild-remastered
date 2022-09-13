@@ -11,11 +11,11 @@ function ZN.END.PLYS.StartTouch(ply)
 
         -- TODO: Winner winner chicken dinner, what tf do I do now?
         if (racer.position == 1) then
-          PLYS.SetColor(ply, Color(0, 255, 0)) -- Green
+          PLYS.SetColor(ply, PLYS.COLORS.FIRST)
         elseif (racer.position == 2) then
-          PLYS.SetColor(ply, Color(255, 255, 0)) -- Yellow
+          PLYS.SetColor(ply, PLYS.COLORS.SECOND)
         elseif (racer.position == 3) then
-          PLYS.SetColor(ply, Color(255, 165, 0)) -- Orange
+          PLYS.SetColor(ply, PLYS.COLORS.THIRD)
         end
 
         -- Messages and that things...

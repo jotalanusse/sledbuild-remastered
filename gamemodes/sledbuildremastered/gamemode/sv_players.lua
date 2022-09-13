@@ -2,6 +2,12 @@ PLYS = {
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
   },
+  COLORS = {
+    FIRST = Color(0, 255, 0),
+    SECOND = Color(255, 255, 0),
+    THIRD = Color(255, 0, 0),
+    DEFAULT = Color(255, 255, 255)
+  },
   LOADOUTS = {
     DEFAULT = {
       "gmod_tool",
@@ -71,13 +77,13 @@ end
 
 -- ResetColor: Reset the color for the player
 function PLYS.ResetColor(ply)
-  ply:SetColor(Color(255, 255, 255, 255))
+  ply:SetColor(PLYS.COLORS.DEFAULT)
 end
 
 -- ResetAllColors: Reset the color for all players
 function PLYS.ResetAllColors()
   for _, v in pairs(player.GetAll()) do
-    v:SetColor(Color(255, 255, 255, 255))
+    v:SetColor(PLYS.COLORS.DEFAULT)
   end
 end
 
