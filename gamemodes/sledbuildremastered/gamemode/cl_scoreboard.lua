@@ -29,14 +29,13 @@ TEST = {
   }
 }
 
-
 -- CreateScoreboard: Create the scoreboard
-function SBRD.CreateScoreboard(parent, width, heightPercentage)
+function SBRD.CreateScoreboard(parent, width, heightPercentage, heightOffsetPercentage)
   local frame = vgui.Create("DFrame", parent)
   HLPS.DisableFrameIntercation(frame)
 
   frame:SetSize(width, (parent:GetWide() / 100) * heightPercentage)
-  frame:Center()
+  frame:SetPos(0, (parent:GetTall() / 100) * heightOffsetPercentage)
 
   frame.Paint = function(self, w, h)
     draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 190)) -- TODO: Change color
