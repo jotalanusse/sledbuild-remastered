@@ -12,7 +12,8 @@ CONSOLE = {
     PREFIX = Color(150, 0, 255),
     WARNING = Color(230, 225, 0),
     ERROR = Color(230, 0, 0),
-    TEXT = Color(220, 220, 220) -- TODO: Find the best color
+    TEXT = Color(200, 200, 200), -- TODO: Find the best color
+    RACE_ROUND = Color(0, 230, 0) -- TODO: Maybe change color?
   }
 }
 ROUND = {

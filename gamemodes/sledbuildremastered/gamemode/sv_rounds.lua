@@ -125,7 +125,7 @@ function RND.Starting(round)
   PLYS.ResetAllColors() -- Reset all player colors
   RND.IncrementTotal() -- Add one to the total races counter
 
-  NET.BroadcastGamemodeMessage("Race #" .. RND.STATE.totalRounds .. " just begun!") -- TODO: Costumize
+  NET.BroadcastRaceStartMessage(RND.STATE.totalRounds, CONSOLE.COLORS.PREFIX)
 
   for _, v in pairs(player:GetAll()) do
     if (v:Team() == TEAMS.RACING) then
