@@ -104,7 +104,7 @@ function RND.ResetRacers(round)
           PLYS.SetTeam(ply, TEAMS.BUILDING)
         else
           -- This code should be unreachable, players shouldn't be able to get off
-          NET.SendGamemodeMessage(ply, "How did you get off your sled? You shouldn't be alive.",
+          NET.SendGamemodeMessage(ply, "You can't get off your sled while racing! You shouldn't be alive.",
             CONSOLE.COLORS.WARNING)
           ply:Kill()
         end
@@ -125,7 +125,7 @@ function RND.Starting(round)
   PLYS.ResetAllColors() -- Reset all player colors
   RND.IncrementTotal() -- Add one to the total races counter
 
-  NET.BroadcastRaceStartMessage(RND.STATE.totalRounds, CONSOLE.COLORS.PREFIX)
+  NET.BroadcastRaceStartMessage(RND.STATE.totalRounds)
 
   for _, v in pairs(player:GetAll()) do
     if (v:Team() == TEAMS.RACING) then
@@ -162,8 +162,6 @@ end
 function RND.Racing(round)
   RND.STATE.stage = ROUND.STAGES.RACING
 
-  print("Round started!") --TODO: Remove, debug
-
   -- Starting time is over
   MAP.GatesClose()
   MAP.PushersDisable()
@@ -174,7 +172,8 @@ end
 -- End: End the current race
 function RND.End(round)
   RND.STATE.stage = ROUND.STAGES.FINISHED
-  print("Round ended!") --TODO: Remove, debug
+
+  NET.BroadcastGamemodeMessage("The race has finished!")
 
   -- TODO: Add a total races count (player stats)
   RND.ResetRacers(round) -- Reset all racers and bring them back

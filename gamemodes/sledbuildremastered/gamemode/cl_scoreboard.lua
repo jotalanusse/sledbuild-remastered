@@ -139,7 +139,6 @@ function SBRD.CreatePlayerRow(parent, height, color, ply)
   local index = 1
   local offset = 0
   for _, v in pairs(values) do
-    print(v[1])
     local rowColumn = SBRD.CreateRowColumn(frame, v[1], v[2], offset)
 
     index = index + 1

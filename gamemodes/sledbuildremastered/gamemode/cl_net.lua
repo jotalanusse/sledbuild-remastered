@@ -15,8 +15,6 @@ net.Receive("SendRaceStartMessage", function()
   local prefixColor = net.ReadColor()
   local round = net.ReadUInt(16)
 
-  print(round)
-
   chat.AddText(
     prefixColor,
     CONSOLE.PREFIX,
