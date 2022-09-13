@@ -30,7 +30,7 @@ end
 function MENU.CreateBasePanel(width, heightPercentage)
   local frame = vgui.Create("DFrame")
 
-  HLPS:DisableFrameIntercation(frame)
+  HLPS.DisableFrameIntercation(frame)
 
   frame:SetSize(width, (ScrH() / 100) * heightPercentage)
   frame:Center()

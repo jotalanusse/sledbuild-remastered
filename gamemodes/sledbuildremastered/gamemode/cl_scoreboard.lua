@@ -11,7 +11,7 @@ SBRD = {
 function SBRD.CreateScoreboard(parent, width, heightPercentage)
   local frame = vgui.Create("DFrame", parent)
 
-  HLPS:DisableFrameIntercation(frame)
+  HLPS.DisableFrameIntercation(frame)
 
   frame:SetSize(width, (parent:GetWide() / 100) * heightPercentage)
   frame:Center()
@@ -67,7 +67,7 @@ end
 function SBRD.CreateListHeaders(parent, height)
   local frame = vgui.Create("DFrame", parent)
 
-  HLPS:DisableFrameIntercation(frame)
+  HLPS.DisableFrameIntercation(frame)
 
   frame:SetSize(parent:GetWide(), height)
 
@@ -99,7 +99,7 @@ end
 function SBRD.CreateHeader(parent, text, widthPercentage, offsetPercentage)
   local frame = vgui.Create("DFrame", parent)
 
-  HLPS:DisableFrameIntercation(frame)
+  HLPS.DisableFrameIntercation(frame)
 
   frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
@@ -116,7 +116,7 @@ end
 function SBRD.CreatePlayerRow(parent, height, color, ply)
   local frame = vgui.Create("DFrame", parent)
 
-  HLPS:DisableFrameIntercation(frame)
+  HLPS.DisableFrameIntercation(frame)
 
   frame:SetSize(parent:GetWide(), height)
 
@@ -152,7 +152,7 @@ end
 function SBRD.CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
   local frame = vgui.Create("DFrame", parent)
 
-  HLPS:DisableFrameIntercation(frame)
+  HLPS.DisableFrameIntercation(frame)
 
   frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
