@@ -1,5 +1,6 @@
 RND = {
   STATE = {
+    initialized = false,
     totalRounds = 0,
     stage = ROUND.STAGES.WAITING,
     round = {
@@ -8,6 +9,19 @@ RND = {
     }
   }
 }
+
+-- Initialize: Called when we want the rounds funcitonality to start
+function RND.Initialize()
+  if (RND.STATE.initialized) then return end -- Don't initialize if we already have
+  
+  if (MCHK.IsComplete()) then
+    timer.Simple(10, function() RND.Starting(RND.STATE.round) end) -- Start the first round to start the cycle
+  end
+
+  RND.STATE.initialized = true
+end
+
+hook.Add("PlayerInitialSpawn", "SBR:RND:Bootstrap", RND.Initialize)
 
 -- IsPlayerRacing: Returns true if the player is racing
 function RND.IsPlayerRacing(ply)

@@ -6,16 +6,21 @@ GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
 -- Global shared variables
+COLORS = {
+  MAIN = Color(150, 0, 255)
+}
+
 CONSOLE = {
   PREFIX = "[SBR] ",
   COLORS = {
-    PREFIX = Color(150, 0, 255),
+    PREFIX = COLORS.MAIN,
     WARNING = Color(230, 225, 0),
     ERROR = Color(230, 0, 0),
     TEXT = Color(200, 200, 200), -- TODO: Find the best color
     RACE_ROUND = Color(0, 230, 0) -- TODO: Maybe change color?
   }
 }
+
 ROUND = {
   TIMES = {
     START = 5,
@@ -30,7 +35,6 @@ ROUND = {
   }
 }
 
--- Team enumerations
 TEAMS = {
   BUILDING = 1,
   RACING = 2,

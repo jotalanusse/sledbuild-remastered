@@ -131,7 +131,7 @@ function PLYS.InitialSpawn(ply)
   NET.BroadcastGamemodeMessage(ply:Nick() .. " has joined the server!") -- TODO: Costumize
 
   -- Check the map and warn the player, let him know our gamemode isn't the problem
-  MCHK.CheckMap(ply)
+  MCHK.WarnPlayer(ply)
 end
 
 hook.Add("PlayerInitialSpawn", "SBR:PLYS:InitialSpawn", PLYS.InitialSpawn)

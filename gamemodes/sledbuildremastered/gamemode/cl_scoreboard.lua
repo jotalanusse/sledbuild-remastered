@@ -56,38 +56,6 @@ function SBRD.CreatePlayerList(parent)
   local listRows = SBRD.CreateListRows(parent, columnWidthPercentages, SBRD.SIZE.ROW_HEIGHT)
 end
 
-function SBRD.CreateColumnShaders(parent, widthPercentages, height)
-  local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
-
-  frame:SetSize(parent:GetWide(), height)
-
-  frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
-  end
-
-  local offsetPercentage = 0
-  for i = 1, #widthPercentages do
-    if (i % 2 == 0) then
-      SBRD.CreateColumnShader(frame, widthPercentages[i], offsetPercentage)
-    end
-
-    offsetPercentage = offsetPercentage + widthPercentages[i]
-  end
-end
-
-function SBRD.CreateColumnShader(parent, widthPercentage, offsetPercentage)
-  local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
-
-  frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
-  frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
-
-  frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 100)) -- TODO: Change color
-  end
-end
-
 -- CreateListHeaders: Create the list headers
 function SBRD.CreateListHeaders(parent, widthPercentages, height)
   local frame = vgui.Create("DFrame", parent)
@@ -122,6 +90,26 @@ function SBRD.CreateListHeaders(parent, widthPercentages, height)
   return frame
 end
 
+-- CreateHeader: Create each specific header
+function SBRD.CreateHeader(parent, text, widthPercentage, offsetPercentage)
+  local frame = vgui.Create("DFrame", parent)
+  HLPS.DisableFrameIntercation(frame)
+
+  frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
+  frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
+
+  frame.Paint = function(self, w, h)
+    local headerColor = COLORS.MAIN
+    headerColor.a = 100
+
+    draw.RoundedBox(0, 0, 0, w, h, headerColor) -- TODO: Change color
+  end
+
+  SBRD.CreateLabel(frame, text)
+
+  return frame
+end
+
 function SBRD.CreateListRows(parent, widthPercentages, rowHeight)
   local rows = {}
 
@@ -144,23 +132,6 @@ function SBRD.CreateListRows(parent, widthPercentages, rowHeight)
   end
 
   return rows
-end
-
--- CreateHeader: Create each specific header
-function SBRD.CreateHeader(parent, text, widthPercentage, offsetPercentage)
-  local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
-
-  frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
-  frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
-
-  frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
-  end
-
-  SBRD.CreateLabel(frame, text)
-
-  return frame
 end
 
 -- CreatePlayerRow: Create a enw player row
@@ -211,6 +182,40 @@ function SBRD.CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
   SBRD.CreateLabel(frame, text)
 
   return frame
+end
+
+-- CreateColumnShaders: Create the column shaders for easy column identification
+function SBRD.CreateColumnShaders(parent, widthPercentages, height)
+  local frame = vgui.Create("DFrame", parent)
+  HLPS.DisableFrameIntercation(frame)
+
+  frame:SetSize(parent:GetWide(), height)
+
+  frame.Paint = function(self, w, h)
+    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
+  end
+
+  local offsetPercentage = 0
+  for i = 1, #widthPercentages do
+    if (i % 2 == 0) then
+      SBRD.CreateColumnShader(frame, widthPercentages[i], offsetPercentage)
+    end
+
+    offsetPercentage = offsetPercentage + widthPercentages[i]
+  end
+end
+
+-- CreateColumnShader: Create a single column shader
+function SBRD.CreateColumnShader(parent, widthPercentage, offsetPercentage)
+  local frame = vgui.Create("DFrame", parent)
+  HLPS.DisableFrameIntercation(frame)
+
+  frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
+  frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
+
+  frame.Paint = function(self, w, h)
+    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 100)) -- TODO: Change color
+  end
 end
 
 -- CreateLabel: Create a new label
