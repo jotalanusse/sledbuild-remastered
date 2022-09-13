@@ -7,7 +7,7 @@ function ZN.END.PLYS.StartTouch(ply)
         local round = RND.STATE.round
 
         RND.FinishPlayerRace(ply, round)
-        local racer = RND.STATE.round.racers[ply:SteamID()]
+        local racer = round.racers[ply:SteamID()]
 
         -- TODO: Winner winner chicken dinner, what tf do I do now?
         if (racer.position == 1) then
@@ -23,6 +23,7 @@ function ZN.END.PLYS.StartTouch(ply)
         NET.SendGamemodeMessage(ply, "Finished #" .. racer.position .. "! Your time is [" .. formattedTime .. "]") -- TODO: Costumize
 
         PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
+        RND.RemovePlayer(ply, round) -- Remove the player from the round
 
         -- Teleport racer back
         local spawn = MAP.SelectRandomSpawn()
@@ -50,9 +51,10 @@ function ZN.END.PLYS.StartTouch(ply)
         end)
       else
         -- This code should be unreachable, players shouldn't be able to get off
-        NET.SendGamemodeMessage(ply, "How did you finish without a sled? You shouldn't even be alive.",
+        NET.SendGamemodeMessage(ply, "You can't finish a race without a sled! You shouldn't be alive.",
           CONSOLE.COLORS.WARNING)
-        RND.DisqualifyPlayer(ply, RND.STATE.round)
+
+        RND.RemovePlayer(ply, RND.STATE.round)
         ply:Kill()
       end
 
@@ -63,7 +65,7 @@ function ZN.END.PLYS.StartTouch(ply)
   else
     -- This code should be unreachable
 
-    NET.SendGamemodeMessage(ply, "How are you at the finish line, we are not even racing? You shouldn't even be alive.",
+    NET.SendGamemodeMessage(ply, "How are you at the finish line, we are not even racing? You shouldn't be alive.",
       CONSOLE.COLORS.WARNING)
     ply:Kill()
   end

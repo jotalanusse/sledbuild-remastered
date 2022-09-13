@@ -24,17 +24,18 @@ PLYS = {
 function PLYS.AddNetworkVariables(ply)
   ply:SetNWInt("SBR:Rounds", 0)
   ply:SetNWInt("SBR:Wins", 0)
-  ply:SetNWInt("SBR:Losses", 0)
   ply:SetNWInt("SBR:Podiums", 0)
+  ply:SetNWInt("SBR:Losses", 0)
+  ply:SetNWFloat("SBR:CurrentSpeed", 0)
   ply:SetNWFloat("SBR:MaxSpeed", 0)
-  ply:SetNWFloat("SBR:BestTime", nil) -- TODO: Can this be "nil"?
+  ply:SetNWFloat("SBR:BestTime", 0)
 end
 
 -- Teleport: Teleport a player to the specified target
 function PLYS.Teleport(ply, target)
   -- TODO: Should we check here if the player exists?
 
-  if ply:IsPlayer() then
+  if (ply:IsPlayer()) then
     ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
     ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
     ply:SetPos(target)
@@ -53,7 +54,7 @@ end
 function PLYS.SetLoadout(ply, loadout)
   PLYS.StripLoadout(ply)
 
-  for k, v in pairs(loadout) do
+  for _, v in pairs(loadout) do
     ply:Give(v)
   end
 end
@@ -75,7 +76,7 @@ end
 
 -- ResetAllColors: Reset the color for all players
 function PLYS.ResetAllColors()
-  for k, v in pairs(player.GetAll()) do
+  for _, v in pairs(player.GetAll()) do
     v:SetColor(Color(255, 255, 255, 255))
   end
 end
@@ -103,6 +104,12 @@ hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)
 
 -- Death: Called everytime a player dies
 function PLYS.Death(ply)
+  -- Disqualify the player on death
+  if (RND.IsPlayerRacing(ply)) then
+    NET.SendGamemodeMessage(ply, "You have died while racing! What happened?", CONSOLE.COLORS.WARNING)
+    RND.RemovePlayer(ply, RND.STATE.round)
+  end
+
   -- We don't reset color because the round start already does that
   PLYS.SetTeam(ply, TEAMS.BUILDING)
 end
@@ -125,6 +132,11 @@ hook.Add("PlayerInitialSpawn", "SBR:PLYS:InitialSpawn", PLYS.InitialSpawn)
 
 -- Disconnected: Called when a player leaves the server
 function PLYS.Disconnected(ply)
+  -- Remove the player from the race on disconnect
+  if (RND.IsPlayerRacing(ply)) then
+    RND.RemovePlayer(ply)
+  end
+
   -- Notify of player leaving
   NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.") -- TODO: Costumize
 end

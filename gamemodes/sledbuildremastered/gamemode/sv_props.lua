@@ -20,7 +20,7 @@ PRPS = {
 
 -- DisableRacingSpawning: Restricts a player from spawning props when racing
 function PRPS.DisableRacingSpawning(ply)
-  if (ply:Team()) == TEAMS.RACING then
+  if (ply:Team() == TEAMS.RACING) then
     NET.SendGamemodeMessage(ply, "Props cannot be spawned while being a racer.")
     return false
   end

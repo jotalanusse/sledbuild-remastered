@@ -15,8 +15,8 @@ function VEHS.Teleport(vehicle, target)
   local originalVehiclePos = vehicle:GetPos() -- Use this so the props don't tp to an unwanted position
   local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
 
-  for k, v in pairs(constrainedEntities) do
-    if v and v:IsValid() then
+  for _, v in pairs(constrainedEntities) do
+    if (v and v:IsValid()) then
       v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
       v:SetCollisionGroup(VEHS.COLLISIONS.DEFAULT)
       v:SetPos(target + (v:GetPos() - originalVehiclePos))
@@ -29,7 +29,7 @@ end
 function VEHS.IsSled(entity)
   local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
 
-  for k, v in pairs(constrainedEntities) do
+  for _, v in pairs(constrainedEntities) do
     -- TODO: Store entity class in a gobal variable?
     if (v:GetClass() == "prop_vehicle_prisoner_pod") then
       return true
@@ -43,7 +43,7 @@ end
 function VEHS.HasPlayer(entity)
   local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
 
-  for k, v in pairs(constrainedEntities) do
+  for _, v in pairs(constrainedEntities) do
     -- TODO: Store entity class in a gobal variable?
     if (v:GetClass() == "prop_vehicle_prisoner_pod") then
       -- TODO: Do I need the "v:GetDriver()" check?
@@ -67,6 +67,18 @@ function VEHS.Restrict(ply, model, name, table)
 end
 
 hook.Add("PlayerSpawnVehicle", "SBR:VEHS:LimitType", VEHS.Restrict)
+
+-- DisableRacingSpawning: Restricts a player from spawning vehicles when racing
+function VEHS.DisableRacingSpawning(ply, model, name, table)
+  if (ply:Team() == TEAMS.RACING) then
+    NET.SendGamemodeMessage(ply, "Vehicles cannot be spawned while being a racer.")
+    return false
+  end
+
+  return true
+end
+
+hook.Add("PlayerSpawnVehicle", "SBR:VEHS:DisableRacingSpawning", VEHS.DisableRacingSpawning)
 
 -- TODO: Whah do this do???
 -- SetDefaultCollissions: Set the default collission for the spawned vehicle
