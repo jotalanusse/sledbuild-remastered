@@ -4,3 +4,4 @@
 - Avoid players boosting with the physgun
 - Add module descriptions
 - Make restrictions dont apply to admins (done, kinda)
+- Align scoreboard name left
