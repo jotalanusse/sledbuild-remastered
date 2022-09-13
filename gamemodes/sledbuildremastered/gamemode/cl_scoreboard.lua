@@ -42,6 +42,8 @@ function SBRD.CreateScoreboard(parent, width, heightPercentage)
     draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 190)) -- TODO: Change color
   end
 
+  local playerList = SBRD.CreatePlayerList(frame)
+
   return frame
 end
 

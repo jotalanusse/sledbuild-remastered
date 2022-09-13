@@ -1,7 +1,7 @@
 MENU = {
   SIZE = {
     WIDTH = 1000,
-    HEIGHT_PERCENTAGE = 80,
+    HEIGHT_PERCENTAGE = 90,
   },
 }
 
@@ -9,7 +9,6 @@ function MENU.Show()
 
   local basePanel = MENU.CreateBasePanel(MENU.SIZE.WIDTH, MENU.SIZE.HEIGHT_PERCENTAGE)
   local scoreboard = SBRD.CreateScoreboard(basePanel, SBRD.SIZE.WIDTH, SBRD.SIZE.HEIGHT_PERCENTAGE)
-  local playerList = SBRD.CreatePlayerList(scoreboard)
 
   function MENU.Hide()
     basePanel:Remove()
@@ -36,7 +35,7 @@ function MENU.CreateBasePanel(width, heightPercentage)
   frame:MakePopup()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 10)) -- TODO: Base panel must be invisible
+    draw.RoundedBox(0, 0, 0, w, h, Color(255, 32, 32, 10)) -- TODO: Base panel must be invisible
   end
 
   return frame
