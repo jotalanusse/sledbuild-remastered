@@ -100,10 +100,7 @@ function SBRD.CreateHeader(parent, text, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    local headerColor = COLORS.MAIN
-    headerColor.a = 100
-
-    draw.RoundedBox(0, 0, 0, w, h, headerColor) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, COLORS.MAIN) -- TODO: Change color
   end
 
   UI.CreateLabel(frame, text)
