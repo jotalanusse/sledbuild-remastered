@@ -106,7 +106,7 @@ function SBRD.CreateHeader(parent, text, widthPercentage, offsetPercentage)
     draw.RoundedBox(0, 0, 0, w, h, headerColor) -- TODO: Change color
   end
 
-  SBRD.CreateLabel(frame, text)
+  UI.CreateLabel(frame, text)
 
   return frame
 end
@@ -180,7 +180,7 @@ function SBRD.CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
     draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
   end
 
-  SBRD.CreateLabel(frame, text)
+  UI.CreateLabel(frame, text)
 
   return frame
 end
@@ -217,19 +217,4 @@ function SBRD.CreateColumnShader(parent, widthPercentage, offsetPercentage)
   frame.Paint = function(self, w, h)
     draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 100)) -- TODO: Change color
   end
-end
-
--- CreateLabel: Create a new label
-function SBRD.CreateLabel(parent, text)
-  local label = vgui.Create("DLabel", parent)
-
-  label:SetText(text)
-  label:SetSize(parent:GetWide(), parent:GetTall())
-  label:SetFont("DermaDefaultBold") -- TODO: Make global variable
-  label:SetTextColor(Color(255, 255, 255, 255)) -- TODO: Change color
-  label:SetContentAlignment(5)
-
-  label:Center()
-
-  return label
 end
