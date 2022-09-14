@@ -19,6 +19,9 @@ include("sv_vehicles.lua")
 include("sv_tools.lua")
 include("sv_disabled.lua")
 
+-- Test
+include("sv_speed.lua")
+
 -- Round control
 include("sv_rounds.lua")
 

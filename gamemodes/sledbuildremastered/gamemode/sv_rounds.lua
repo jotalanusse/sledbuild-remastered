@@ -13,7 +13,7 @@ RND = {
 -- Initialize: Called when we want the rounds funcitonality to start
 function RND.Initialize()
   if (RND.STATE.initialized) then return end -- Don't initialize if we already have
-  
+
   if (MCHK.IsComplete()) then
     timer.Simple(10, function() RND.Starting(RND.STATE.round) end) -- Start the first round to start the cycle
   end
@@ -141,35 +141,29 @@ function RND.Starting(round)
 
   NET.BroadcastRaceStartMessage(RND.STATE.totalRounds)
 
-  for _, v in pairs(player:GetAll()) do
-    if (v:Team() == TEAMS.RACING) then
-      if (v:InVehicle()) then
-        NET.SendGamemodeMessage(v, "Here we go!")
+  -- Add all valid players to the race, kill the others
+  for _, v in pairs(team.GetPlayers()) do
+    if (v:InVehicle()) then
+      NET.SendGamemodeMessage(v, "Here we go!")
 
-        RND.AddPlayer(v, round)
-      else
-        NET.SendGamemodeMessage(v, "You can't be a racer and not be in a vehicle!", CONSOLE.COLORS.WARNING)
+      RND.AddPlayer(v, round)
+    else
+      NET.SendGamemodeMessage(v, "You can't be a racer and not be in a vehicle!", CONSOLE.COLORS.WARNING)
 
-        v:Kill()
-      end
-    elseif (v:Team() == TEAMS.BUILDING) then
-      -- Look at them go!
-    elseif (v:Team() == TEAMS.SPECTATING) then
-      NET.SendGamemodeMessage(v, "Make your bets!")
+      v:Kill()
     end
   end
 
   -- Set round state
   round.startTime = CurTime()
 
-  -- TODO: Track players and times (network)
-  -- TODO: Notify of the new race (network)
+  SPD.StartTracking() -- Start tracking speed
 
   -- Let the map know we are starting
   MAP.GatesOpen()
   MAP.PushersEnable()
 
-  timer.Create("SBR:RacingTimer", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
+  timer.Create("SBR:RND:Racing", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
 end
 
 -- Racing: We are now officialy racing
@@ -180,7 +174,7 @@ function RND.Racing(round)
   MAP.GatesClose()
   MAP.PushersDisable()
 
-  timer.Create("SBR:EndTimer", ROUND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
+  timer.Create("SBR:RND:End", ROUND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
 end
 
 -- End: End the current race
@@ -191,10 +185,11 @@ function RND.End(round)
 
   -- TODO: Add a total races count (player stats)
   RND.ResetRacers(round) -- Reset all racers and bring them back
+  SPD.StopTracking() -- Stop tracking speed
 
   -- Reset the round information (don;t change the object reference)
   round.startTime = 0
   round.racers = {}
 
-  timer.Create("SBR:StartTimer", ROUND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
+  timer.Create("SBR:RND:Starting", ROUND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
 end
