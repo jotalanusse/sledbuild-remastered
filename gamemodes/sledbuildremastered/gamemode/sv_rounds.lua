@@ -38,7 +38,7 @@ function RND.AddPlayer(ply, round)
   round.racers[ply:SteamID()] = {
     ply = ply,
     position = nil,
-    maxSpeed = 0,
+    topSpeed = 0,
     time = nil, -- TODO: Should this value be here?
     finished = false,
     disqualified = false,
@@ -79,7 +79,7 @@ function RND.FinishPlayerRace(ply, round)
     ply:SetNWInt("SBR:Podiums", ply:GetNWInt("SBR:Podiums") + 1)
   end
 
-  ply:SetNWFloat("SBR:MaxSpeed", math.max(ply:GetNWFloat("SBR:MaxSpeed"), racer.maxSpeed))
+  ply:SetNWFloat("SBR:TopSpeed", math.max(ply:GetNWFloat("SBR:TopSpeed"), racer.topSpeed))
 
   -- No record can be 0, so we are safe to check for this
   if (ply:GetNWFloat("SBR:BestTime") ~= 0) then

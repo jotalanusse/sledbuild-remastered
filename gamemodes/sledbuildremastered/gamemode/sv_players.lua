@@ -32,8 +32,8 @@ function PLYS.AddNetworkVariables(ply)
   ply:SetNWInt("SBR:Wins", 0)
   ply:SetNWInt("SBR:Podiums", 0)
   ply:SetNWInt("SBR:Losses", 0)
-  ply:SetNWFloat("SBR:CurrentSpeed", 0)
-  ply:SetNWFloat("SBR:MaxSpeed", 0)
+  ply:SetNWFloat("SBR:Speed", 0)
+  ply:SetNWFloat("SBR:TopSpeed", 0)
   ply:SetNWFloat("SBR:BestTime", 0)
 end
 
