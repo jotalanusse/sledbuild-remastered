@@ -80,7 +80,6 @@ function SBRD.CreateListHeaders(parent, widthPercentages, height)
     "Ping",
   }
 
-
   local offset = 0
   for i = 1, #headers, 1 do
     local header = SBRD.CreateHeader(frame, headers[i], widthPercentages[i], offset)
@@ -111,21 +110,18 @@ end
 function SBRD.CreateListRows(parent, widthPercentages, rowHeight)
   local rows = {}
 
-  local index = 1
   local offset = SBRD.SIZE.HEADER_HEIGHT
-  for _, v in pairs(player.GetAll()) do
+  for i, v in ipairs(player.GetAll()) do
     local opacity = SBRD.ROW_OPACITY
 
-    if (index % 2 == 0) then
+    if (i % 2 == 0) then
       opacity = opacity / 2
     end
 
     local playerRow = SBRD.CreatePlayerRow(parent, widthPercentages, rowHeight, Color(32, 32, 32, opacity), v)
     playerRow:SetPos(0, offset)
 
-    rows[index] = playerRow
-
-    index = index + 1
+    rows[i] = playerRow
     offset = offset + rowHeight
   end
 

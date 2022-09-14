@@ -142,7 +142,7 @@ function RND.Starting(round)
   NET.BroadcastRaceStartMessage(RND.STATE.totalRounds)
 
   -- Add all valid players to the race, kill the others
-  for _, v in pairs(team.GetPlayers()) do
+  for _, v in pairs(team.GetPlayers(TEAMS.RACING)) do
     if (v:InVehicle()) then
       NET.SendGamemodeMessage(v, "Here we go!")
 

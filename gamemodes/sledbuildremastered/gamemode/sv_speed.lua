@@ -17,16 +17,17 @@ end
 
 -- UpdatePlayers: Get all racing players and keep track of their speed
 function SPD.UpdatePlayers()
-  print("UPDAtiNG PLAYER SPEEDS") -- TODO: Remove
-
   -- We only need players of the racing team
-  for _, v in (teams.GetPlayers(TEAMS.RACING)) do
+  for _, v in pairs(team.GetPlayers(TEAMS.RACING)) do
     -- We only need players that are racing
     if (RND.IsPlayerRacing(v)) then
       -- If the player is not in a vehicle it doesn't count
       if (v:InVehicle()) then
         local vehicle = v:GetVehicle()
-        local mph = vehicle:GetSpeed()
+        local velocity = vehicle:GetVelocity():Length()
+
+        -- Why the fuck does the US keep using these stupid units?
+        local mph = math.Round(velocity / 17.6, 2) -- TODO: For some reason the rounding is not working
 
         -- Update the player's speed
         SPD.UpdatePlayer(v, mph)
@@ -35,7 +36,7 @@ function SPD.UpdatePlayers()
   end
 end
 
--- UpdatePLayer: Update the player's speed
+-- UpdatePlayer: Update the player's speed
 function SPD.UpdatePlayer(ply, speed)
   ply:SetNWInt("SBR:Speed", speed)
 
