@@ -5,3 +5,4 @@
 - Add module descriptions
 - Make restrictions dont apply to admins (done, kinda)
 - Align scoreboard name left
+- REstrict player from undoinf their sled while racing

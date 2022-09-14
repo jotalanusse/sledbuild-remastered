@@ -9,6 +9,9 @@ MENU = {
     GRAPHICS = {
       WIDTH_PERCENTAGE = 20,
     },
+  },
+  LOGO = {
+    MATERIAL = Material("gui/sledbuildremastered/sbr_logo.png")
   }
 }
 
@@ -80,7 +83,7 @@ function MENU.CreateHeader(parent, heightPercentage)
   headerFrame:SetPos(MENU.HEADER.BORDER_SIZE, MENU.HEADER.BORDER_SIZE)
 
   headerFrame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 100))
+    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 200))
   end
 
   local graphics = MENU.CreateHeaderGraphics(headerFrame, MENU.HEADER.GRAPHICS.WIDTH_PERCENTAGE)
@@ -118,7 +121,7 @@ function MENU.CreateLogo(parent, width, height)
     draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 255, 0)) -- TODO: Change color
 
     surface.SetDrawColor(255, 255, 255, 255)
-    surface.SetMaterial(Material("gui/sledbuildremastered/sbr_logo.png"))
+    surface.SetMaterial(MENU.LOGO.MATERIAL)
     surface.DrawTexturedRect(0, 0, width, height)
   end
 
