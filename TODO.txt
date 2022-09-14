@@ -5,4 +5,6 @@
 - Add module descriptions
 - Make restrictions dont apply to admins (done, kinda)
 - Align scoreboard name left
-- REstrict player from undoinf their sled while racing
+- Restrict players from undoing their sled while racing
+- Add screen pop-ups when the podium player finish the race
+- Add a top left scoreboard of the last round
