@@ -1,15 +1,18 @@
+MUST:
 - Restrict the spawning of weapons
-- Reset server if more than 6 hours of uptime
 - Read convars for settings
 - Avoid players boosting with the physgun
+- Restrict players from undoing their sled while racing
+- Players should only be able to edit their props
+
+NICE:
+- Reset server if more than 6 hours of uptime
 - Make restrictions don't apply to admins (done, kinda)
 - Align scoreboard name left
-- Restrict players from undoing their sled while racing
 - Add screen pop-ups when the podium player finish the race
-- Add a top left scoreboard of the last round
-- Players should only be able to edit their props
-- Check player.GetAll() loops that could be replaced with a team check
-- Draw scoreboard text after shaders
 - Send a message when a sled is retrieved
+
+BONUS:
+- Add a top left scoreboard of the last round
 - Add gamemode commands
-- Update scoreboard UI periodically
+- Add scoring system

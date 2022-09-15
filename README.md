@@ -28,7 +28,7 @@ If you would like to create a map for SBR you can follow [this guide](MAPPING_GU
 If you would like to host a server for SBR I will be creating a guide on how to do so soon.
 
 ## Contributing:
-Pull requests are more than welcome. For major changes, please open an issue first to discuss what you would like to change.
+Pull requests are more than welcome (specially with the UI). For major changes, please open an issue first to discuss what you would like to change.
 
 This is my first project ever on LUA, so a lot of things might not follow the best practices and standards. If you see something that could be improved, please let me know.
 

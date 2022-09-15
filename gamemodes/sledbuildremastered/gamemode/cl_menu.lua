@@ -1,4 +1,5 @@
 MENU = {
+  UPDATE_FREQUENCY = 0.2, -- How often the menu is updated
   SIZE = {
     WIDTH = 1000,
     HEIGHT_PERCENTAGE = 90,
@@ -16,16 +17,25 @@ MENU = {
 }
 
 function MENU.Show()
-
   local baseFrame = MENU.CreateBaseFrame(MENU.SIZE.WIDTH, MENU.SIZE.HEIGHT_PERCENTAGE)
 
   local header = MENU.CreateHeader(baseFrame, MENU.HEADER.HEIGHT_PERCENTAGE)
   local scoreboard = SBRD.CreateScoreboard(baseFrame, SBRD.SIZE.WIDTH, SBRD.SIZE.HEIGHT_PERCENTAGE,
     MENU.HEADER.HEIGHT_PERCENTAGE)
 
-  function MENU.Hide()
-    baseFrame:Remove()
+  -- TODO: This feels way too primitive
+  timer.Create("SBR:RefreshScoreboard", MENU.UPDATE_FREQUENCY, 0, function()
+    if (IsValid(scoreboard)) then
+      scoreboard:Remove()
+      scoreboard = SBRD.CreateScoreboard(baseFrame, SBRD.SIZE.WIDTH, SBRD.SIZE.HEIGHT_PERCENTAGE,
+        MENU.HEADER.HEIGHT_PERCENTAGE)
+    end
+  end)
 
+  function MENU.Hide()
+    timer.Remove("SBR:RefreshScoreboard")
+
+    baseFrame:Remove()
   end
 end
 
@@ -38,6 +48,10 @@ end
 function GM:ScoreboardHide()
   MENU.Hide()
 end
+
+-- Draw: Draws the whole menu
+-- function MENU.Draw()
+-- end
 
 -- CreateBaseFrame: Create the base frame for almost all UI elements of the menu
 function MENU.CreateBaseFrame(width, heightPercentage)

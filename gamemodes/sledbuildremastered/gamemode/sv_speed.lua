@@ -1,14 +1,13 @@
 SPD = {
-  FREQUENCY = 0.2, -- How often the speed is updated
+  UPDATE_FREQUENCY = 0.2, -- How often the speed is updated
 }
 
 -- StartTracking: Start tracking the players speed
 function SPD.StartTracking()
 
-  timer.Create("SBR:SPD:UpdatePlayers", SPD.FREQUENCY, 5, function()
-    -- We update the players and add more repetitions to the timer
+  timer.Create("SBR:SPD:UpdatePlayers", SPD.UPDATE_FREQUENCY, 0, function()
+    -- Update the players
     SPD.UpdatePlayers()
-    timer.Adjust("SBR:SPD:UpdatePlayers", SPD.FREQUENCY, 5)
   end)
 end
 
