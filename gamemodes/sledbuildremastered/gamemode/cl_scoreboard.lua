@@ -187,7 +187,7 @@ function SBRD.CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
   end
 
   UI.CreateLabel(frame, text)
@@ -203,7 +203,7 @@ function SBRD.CreateColumnShaders(parent, widthPercentages, height)
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
   end
 
   local offsetPercentage = 0

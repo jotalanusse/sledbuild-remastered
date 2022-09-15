@@ -49,7 +49,7 @@ function MENU.CreateBaseFrame(width, heightPercentage)
   frame:MakePopup()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0)) -- TODO: Base frame must be invisible
+    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Base frame must be invisible
   end
 
   return frame
@@ -63,7 +63,7 @@ function MENU.CreateHeader(parent, heightPercentage)
   borderFrame:SetSize(parent:GetWide(), (parent:GetTall() / 100) * heightPercentage)
 
   borderFrame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 0))
+    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE)
 
     surface.SetDrawColor(COLORS.MAIN)
 
@@ -118,7 +118,7 @@ function MENU.CreateLogo(parent, width, height)
   frame:Center()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 255, 0)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
 
     surface.SetDrawColor(255, 255, 255, 255)
     surface.SetMaterial(MENU.LOGO.MATERIAL)
@@ -138,7 +138,7 @@ function MENU.CreateCredit(parent, height, offsetHeight)
   frame:CenterHorizontal()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 255, 0)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
   end
 
   UI.CreateLabel(frame, "remake by jotalanusse")

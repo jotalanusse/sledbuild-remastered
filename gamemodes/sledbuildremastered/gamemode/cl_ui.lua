@@ -1,5 +1,5 @@
 UI = {
-
+  COLORS = {}
 }
 
 -- CreateLabel: Create a new label
