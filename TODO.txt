@@ -11,3 +11,5 @@
 - Check player.GetAll() loops that could be replaced with a team check
 - Draw scoreboard text after shaders
 - Send a message when a sled is retrieved
+- Add gamemode commands
+- Update scoreboard UI periodically
