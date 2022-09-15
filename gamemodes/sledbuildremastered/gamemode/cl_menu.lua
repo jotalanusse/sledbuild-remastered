@@ -141,7 +141,7 @@ function MENU.CreateCredit(parent, height, offsetHeight)
     draw.RoundedBox(0, 0, 0, w, h, Color(0, 0, 255, 0)) -- TODO: Change color
   end
 
-  UI.CreateLabel(frame, "a remake by jotalanusse")
+  UI.CreateLabel(frame, "remake by jotalanusse")
 
   return frame
 end

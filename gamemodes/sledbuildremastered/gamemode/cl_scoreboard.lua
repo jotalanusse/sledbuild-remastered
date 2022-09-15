@@ -50,11 +50,12 @@ end
 function SBRD.CreatePlayerList(parent)
   local columnWidthPercentages = { 40, 6, 6, 6, 6, 10, 10, 10, 6, }
 
-  local listHeaders = SBRD.CreateListHeaders(parent, columnWidthPercentages, SBRD.SIZE.HEADER_HEIGHT)
-  local listRows = SBRD.CreateListRows(parent, columnWidthPercentages, SBRD.SIZE.ROW_HEIGHT)
-
+  -- We create the shaders first to avoid the text from being affected
   local height = SBRD.SIZE.HEADER_HEIGHT + SBRD.SIZE.ROW_HEIGHT * #player.GetAll()
   SBRD.CreateColumnShaders(parent, columnWidthPercentages, height)
+
+  local listHeaders = SBRD.CreateListHeaders(parent, columnWidthPercentages, SBRD.SIZE.HEADER_HEIGHT)
+  local listRows = SBRD.CreateListRows(parent, columnWidthPercentages, SBRD.SIZE.ROW_HEIGHT)
 end
 
 -- CreateListHeaders: Create the list headers
