@@ -2,7 +2,6 @@
 - Reset server if more than 6 hours of uptime
 - Read convars for settings
 - Avoid players boosting with the physgun
-- Add module descriptions
 - Make restrictions dont apply to admins (done, kinda)
 - Align scoreboard name left
 - Restrict players from undoing their sled while racing

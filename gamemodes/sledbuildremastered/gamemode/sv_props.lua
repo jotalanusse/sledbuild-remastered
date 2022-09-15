@@ -1,8 +1,12 @@
 PRPS = {
-  MAX_RADIUS = 128,
+  MAX_RADIUS = 128, -- Maximum radius of a prop bewfore being considered too big
+
+  -- Set the different collissions used by the props
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
   },
+
+  -- List of restricted props the players can't spawn
   RESTRICTED = {
     ["models/props_phx/oildrum001_explosive.mdl"] = true,
     ["models/props_junk/gascan001a.mdl"] = true,
@@ -22,6 +26,7 @@ PRPS = {
 function PRPS.DisableRacingSpawning(ply)
   if (ply:Team() == TEAMS.RACING) then
     NET.SendGamemodeMessage(ply, "Props cannot be spawned while being a racer.")
+
     return false
   end
 
@@ -35,13 +40,20 @@ function PRPS.Spawned(ply, model, prop)
   -- Limit the max size of the prop that can be spawned
   if (prop:BoundingRadius() > PRPS.MAX_RADIUS) then
     NET.SendGamemodeMessage(ply, "That prop is way too large for a sled.")
+
     prop:Remove()
   end
-
-  prop:SetCollisionGroup(PRPS.COLLISIONS.DEFAULT) -- TODO: Wah do this do???
 end
 
 hook.Add("PlayerSpawnedProp", "SBR:PRPS:Spawned", PRPS.Spawned)
+
+-- TODO: Whah do this do???
+-- SetDefaultCollissions: Set the default collission for the spawned prop
+function PRPS.SetDefaultCollissions(ply, model, prop)
+  prop:SetCollisionGroup(PRPS.COLLISIONS.DEFAULT)
+end
+
+hook.Add("PlayerSpawnedProp", "SBR:PRPS:SetDefaultCollissions", PRPS.SetDefaultCollissions)
 
 -- Restrict: Restrict the spawning of certain props
 function PRPS.Restrict(ply, model)
@@ -52,6 +64,7 @@ function PRPS.Restrict(ply, model)
 
   if (PRPS.RESTRICTED[model]) then
     NET.SendGamemodeMessage(ply, "This prop is restricted.")
+
     return false
   end
 end

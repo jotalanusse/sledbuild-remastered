@@ -1,7 +1,6 @@
-NET = {
+NET = {}
 
-}
-
+-- Add the messages we are going to use
 util.AddNetworkString("SendGamemodeMessage")
 util.AddNetworkString("SendRaceStartMessage")
 

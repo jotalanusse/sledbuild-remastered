@@ -5,7 +5,7 @@ SPD = {
 -- StartTracking: Start tracking the players speed
 function SPD.StartTracking()
 
-  timer.Create("SBR:SPD:UpdatePlayers", SPD.FREQUENCY, 5, function ()
+  timer.Create("SBR:SPD:UpdatePlayers", SPD.FREQUENCY, 5, function()
     -- We update the players and add more repetitions to the timer
     SPD.UpdatePlayers()
     timer.Adjust("SBR:SPD:UpdatePlayers", SPD.FREQUENCY, 5)
@@ -42,7 +42,7 @@ end
 function SPD.UpdatePlayer(ply, speed)
   ply:SetNWInt("SBR:Speed", speed)
 
-  -- Update the player's top speed if necessary
+  -- Update the player's top speed as well if necessary
   if (ply:GetNWInt("SBR:TopSpeed") < speed) then
     ply:SetNWInt("SBR:TopSpeed", speed)
   end

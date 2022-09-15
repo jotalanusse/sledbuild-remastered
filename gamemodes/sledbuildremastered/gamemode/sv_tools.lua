@@ -1,4 +1,5 @@
 TLS = {
+  -- List of all restricted tools
   RESTRICTED = {
     ["balloon"] = true,
     ["ballsocket_adv"] = true,
@@ -53,8 +54,8 @@ function TLS.LimitToolgun(ply, trace)
   --   return true
   -- end
 
+  -- Don't let player affect world entities or other players
   local entityClass = trace.Entity:GetClass()
-
   if (entityClass == "func_brush" or entityClass == "player") then
     NET.SendGamemodeMessage(ply, "This entity cannot be toolgunned.")
     return false
@@ -65,7 +66,7 @@ hook.Add("CanTool", "SBR:TLS:LimitToolgun", TLS.LimitToolgun)
 
 -- LimitPhysgun: Limit what the player can affect with their physgun
 function TLS.LimitPhysgun(ply, entity)
-  -- Probably a world entity
+  -- Probably a world entity (even admins shouldn't modify this)
   if (entity:GetClass() == "func_brush") then
     return false
   end

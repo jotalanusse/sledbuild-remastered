@@ -1,13 +1,18 @@
 PLYS = {
+  -- Set the different collissions used by the players
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
   },
+
+  -- List of default colors
   COLORS = {
     FIRST = Color(0, 255, 0),
     SECOND = Color(255, 255, 0),
     THIRD = Color(255, 0, 0),
     DEFAULT = Color(255, 255, 255)
   },
+
+  -- List of loadouts a player can spawn with
   LOADOUTS = {
     DEFAULT = {
       "gmod_tool",
@@ -94,25 +99,30 @@ end
 
 -- Spawn: Called everytime a player spawns
 function PLYS.Spawn(ply)
+  -- Admins get the juicy stuff :)
   if (ply:IsAdmin()) then
     PLYS.SetLoadout(ply, PLYS.LOADOUTS.ADMIN)
   else
     PLYS.SetLoadout(ply, PLYS.LOADOUTS.DEFAULT)
   end
 
+  -- Set the default player collision
   PLYS.SetDefaultCollision(ply)
 
-  ply:SelectWeapon("weapon_physgun")
+  -- Set the player's team
   PLYS.SetTeam(ply, TEAMS.BUILDING)
+
+  ply:SelectWeapon("weapon_physgun")
 end
 
 hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)
 
 -- Death: Called everytime a player dies
 function PLYS.Death(ply)
-  -- Disqualify the player on death
+  -- Disqualify the player from the race on death
   if (RND.IsPlayerRacing(ply)) then
     NET.SendGamemodeMessage(ply, "You have died while racing! What happened?", CONSOLE.COLORS.WARNING)
+
     RND.RemovePlayer(ply, RND.STATE.round)
   end
 
@@ -157,6 +167,7 @@ function PLYS.RestrictNoclip(ply, bool)
   -- end
 
   NET.SendGamemodeMessage(ply, "Only admins may use noclip.")
+
   return false
 end
 
@@ -171,5 +182,6 @@ hook.Add("PlayerDeathSound", "SBR:PLYS:RemoveDeathSound", PLYS.RemoveDeathSound)
 
 -- DoPlayerDeath: Handle the player's death
 function GM:DoPlayerDeath(ply, attacker, dmginfo)
-  ply:CreateRagdoll() -- Create a ragdooll for the memes
+  -- Create a ragdooll for the memes
+  ply:CreateRagdoll()
 end

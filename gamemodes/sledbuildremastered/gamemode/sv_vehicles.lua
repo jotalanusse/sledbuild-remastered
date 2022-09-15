@@ -1,11 +1,21 @@
 VEHS = {
-  DEFAULT_SEAT_CLASS = "prop_vehicle_prisoner_pod",
+  DEFAULT_SEAT_CLASS = "prop_vehicle_prisoner_pod", -- The default seat class
+
+  -- List of allowed vehicles a player can spawn
   ALLOWED = {
     ["models/vehicles/prisoner_pod_inner.mdl"] = true,
     ["models/nova/airboat_seat.mdl"] = true
   },
+
+  -- Set the different collissions used by the vehicles
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+  },
+
+  -- Materials used by the gamemode for the sleds -- TODO: CHECK
+  MATERIALS = {
+    BUILDING = "dirt",
+    RACING = "gmod_ice"
   }
 }
 
@@ -31,6 +41,7 @@ function VEHS.IsSled(entity)
   local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
 
   for _, v in pairs(constrainedEntities) do
+    -- If the entities contain a seat they are a sled
     if (v:GetClass() == VEHS.DEFAULT_SEAT_CLASS) then
       return true
     end
@@ -39,10 +50,23 @@ function VEHS.IsSled(entity)
   return false
 end
 
+-- SetMaterial: Apply a given material to a set of constrained props
+function VEHS.SetMaterial(entity, material)
+  local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
+
+  for _, v in pairs(constrainedEntities) do
+    local physObject = v:GetPhysicsObject()
+    if (IsValid(physObject)) then
+      physObject:SetMaterial(material)
+    end
+  end
+end
+
 -- HasPlayer: Checks if a set of constrained props have a player
 function VEHS.HasPlayer(entity)
   local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
 
+  -- If the entities contain a player they have a player (obviously)
   for _, v in pairs(constrainedEntities) do
     if (v:GetClass() == VEHS.DEFAULT_SEAT_CLASS) then
       -- TODO: Do I need the "v:GetDriver()" check?
@@ -91,7 +115,7 @@ hook.Add("PlayerSpawnedVehicle", "SBR:VEHS:SetDefaultCollissions", VEHS.SetDefau
 function VEHS.PlayerLeave(ply, vehicle)
   -- TODO: We kill the players if they are part of the current race
   -- There is a weird bug where the game crashes when trying to kill the player
-  -- so for now we just won't allow players to exit their vehicles
+  -- so for now we just won't allow players to exit their vehicles (CanExitVehicle)
 
   ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
 end

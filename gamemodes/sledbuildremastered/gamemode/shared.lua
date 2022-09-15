@@ -1,33 +1,42 @@
+SHRD = {}
+
 DeriveGamemode("sandbox") -- Use sanbox as our default
 
-GM.Name    = "SledBuild Remastered 1.0"
+-- Set the gamemode information
+GM.Name    = "SledBuild Remastered v1.0"
 GM.Author  = "jotalanusse"
 GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
 -- Global shared variables
 COLORS = {
-  MAIN = Color(150, 0, 255)
+  MAIN = Color(150, 0, 255) -- Main gamemode color
 }
 
+-- Console settings
 CONSOLE = {
-  PREFIX = "[SBR] ",
+  PREFIX = "[SBR] ", -- Prefix for all console messages
+
+  -- List of default colors to be used
   COLORS = {
-    PREFIX = COLORS.MAIN,
-    WARNING = Color(230, 225, 0),
-    ERROR = Color(230, 0, 0),
+    PREFIX = COLORS.MAIN, -- Prefix color
+    WARNING = Color(230, 225, 0), -- Warning color
+    ERROR = Color(230, 0, 0), -- Error color
     TEXT = Color(200, 200, 200), -- TODO: Find the best color
     RACE_ROUND = Color(0, 230, 0) -- TODO: Maybe change color?
   }
 }
 
+-- Round settings
 ROUND = {
+  -- Timings to be used by the gamemode
   TIMES = {
-    START = 5,
-    RACE = 8,
-    WAIT = 5,
+    START = 5, -- Round starting and gates are open
+    RACE = 8, -- Actual race duration
+    WAIT = 5, -- Time after the race finishes before the next race
   },
 
+  -- Different stages a round can be in (same as above)
   STAGES = {
     WAITING = 1,
     STARTING = 2,
@@ -35,21 +44,20 @@ ROUND = {
   }
 }
 
+-- Team enumerations
 TEAMS = {
   BUILDING = 1,
   RACING = 2,
   SPECTATING = 3,
 }
 
--- Create the new teams
-local function SetTeams()
+-- Create the teams
+function SHRD.SetTeams()
   team.SetUp(TEAMS.BUILDING, "Building", Color(80, 255, 80, 255)) -- TODO: Find a real color
   team.SetUp(TEAMS.RACING, "Racing", Color(160, 80, 255, 255)) -- TODO: Find a real color
 end
 
 -- Initialize
 function GM:Initialize()
-  print(CONSOLE.PREFIX .. "SledBuild Remastered initialized!") -- TODO: Remove
-
-  SetTeams()
+  SHRD.SetTeams()
 end
