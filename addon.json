@@ -4,11 +4,16 @@
 	"tags"		:	[ "fun", "build" ],
 	"ignore"	:
 	[
+		".git*",
+		".vscode*",
 		"dev*",
-    ".git*",
-		"*.md",
+		"media*",
+		"workshop*",
 		"*.vcproj",
+		"*.md",
 		"*.svn*",
-		"*.psd"
+		"*.psd",
+		"TODO.txt",
+		".gitignore"
 	]
 }
