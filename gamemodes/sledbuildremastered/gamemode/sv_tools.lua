@@ -33,13 +33,13 @@ TLS = {
 }
 
 -- RestrictToolgun: Restrict certain tools of the toolgun
-function TLS.RestrictToolgun(ply, trace, toolname)
+function TLS.RestrictToolgun(ply, trace, toolName)
   -- TODO: Enable after testing
   -- if (ply:IsAdmin()) then
   --   return true
   -- end
 
-  if (TLS.RESTRICTED[toolname]) then
+  if (TLS.RESTRICTED[toolName]) then
     NET.SendGamemodeMessage(ply, "This tool is restricted.")
     return false
   end

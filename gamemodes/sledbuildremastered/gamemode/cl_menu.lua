@@ -42,7 +42,7 @@ end
 -- CreateBaseFrame: Create the base frame for almost all UI elements of the menu
 function MENU.CreateBaseFrame(width, heightPercentage)
   local frame = vgui.Create("DFrame")
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize(width, (ScrH() / 100) * heightPercentage)
   frame:Center()
@@ -58,7 +58,7 @@ end
 -- CreateHeader: Create the header for the menu for things like logo and buttons
 function MENU.CreateHeader(parent, heightPercentage)
   local borderFrame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(borderFrame)
+  HLPS.DisableFrameInteraction(borderFrame)
 
   borderFrame:SetSize(parent:GetWide(), (parent:GetTall() / 100) * heightPercentage)
 
@@ -74,7 +74,7 @@ function MENU.CreateHeader(parent, heightPercentage)
   end
 
   local headerFrame = vgui.Create("DFrame", borderFrame)
-  HLPS.DisableFrameIntercation(headerFrame)
+  HLPS.DisableFrameInteraction(headerFrame)
 
   headerFrame:SetSize(
     borderFrame:GetWide() - MENU.HEADER.BORDER_SIZE * 2,
@@ -94,7 +94,7 @@ end
 -- CreateHeaderGraphics: Create the graphical elements for the header
 function MENU.CreateHeaderGraphics(parent, widthPercentage)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
   frame:CenterVertical()
@@ -112,7 +112,7 @@ end
 -- CreateLogo: Create the logo
 function MENU.CreateLogo(parent, width, height)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize(width, height)
   frame:Center()
@@ -131,7 +131,7 @@ end
 -- CreateLogo: Create the credit
 function MENU.CreateCredit(parent, height, offsetHeight)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize(parent:GetWide(), height)
   frame:SetPos(0, offsetHeight)

@@ -7,7 +7,7 @@ VEHS = {
     ["models/nova/airboat_seat.mdl"] = true
   },
 
-  -- Set the different collissions used by the vehicles
+  -- Set the different collisions used by the vehicles
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
   },
@@ -103,13 +103,13 @@ end
 
 hook.Add("PlayerSpawnVehicle", "SBR:VEHS:DisableRacingSpawning", VEHS.DisableRacingSpawning)
 
--- TODO: Whah do this do???
--- SetDefaultCollissions: Set the default collission for the spawned vehicle
-function VEHS.SetDefaultCollissions(ply, entity)
+-- TODO: What does this do?
+-- SetDefaultCollisions: Set the default collision for the spawned vehicle
+function VEHS.SetDefaultCollisions(ply, entity)
   entity:SetCollisionGroup(VEHS.COLLISIONS.DEFAULT)
 end
 
-hook.Add("PlayerSpawnedVehicle", "SBR:VEHS:SetDefaultCollissions", VEHS.SetDefaultCollissions)
+hook.Add("PlayerSpawnedVehicle", "SBR:VEHS:SetDefaultCollisions", VEHS.SetDefaultCollisions)
 
 -- PlayerLeave: Called when the player exits a vehicle
 function VEHS.PlayerLeave(ply, vehicle)

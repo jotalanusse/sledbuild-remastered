@@ -1,7 +1,7 @@
 PRPS = {
-  MAX_RADIUS = 128, -- Maximum radius of a prop bewfore being considered too big
+  MAX_RADIUS = 128, -- Maximum radius of a prop before being considered too big
 
-  -- Set the different collissions used by the props
+  -- Set the different collisions used by the props
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
   },
@@ -47,13 +47,13 @@ end
 
 hook.Add("PlayerSpawnedProp", "SBR:PRPS:Spawned", PRPS.Spawned)
 
--- TODO: Whah do this do???
--- SetDefaultCollissions: Set the default collission for the spawned prop
-function PRPS.SetDefaultCollissions(ply, model, prop)
+-- TODO: What does this do?
+-- SetDefaultCollisions: Set the default collision for the spawned prop
+function PRPS.SetDefaultCollisions(ply, model, prop)
   prop:SetCollisionGroup(PRPS.COLLISIONS.DEFAULT)
 end
 
-hook.Add("PlayerSpawnedProp", "SBR:PRPS:SetDefaultCollissions", PRPS.SetDefaultCollissions)
+hook.Add("PlayerSpawnedProp", "SBR:PRPS:SetDefaultCollisions", PRPS.SetDefaultCollisions)
 
 -- Restrict: Restrict the spawning of certain props
 function PRPS.Restrict(ply, model)

@@ -15,7 +15,6 @@ function ENT:StartTouch(entity)
     ZN.END.PLYS.StartTouch(entity)
   elseif (entity:IsValid()) then
     -- TODO: If different entities touch the teleport the vehicle will be teleport n amount of times
-    -- find a way to fix this.
 
     local isSled = VEHS.IsSled(entity)
     if (isSled) then

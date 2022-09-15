@@ -28,7 +28,7 @@ function ZN.END.PLYS.StartTouch(ply)
 
         -- Messages and that things...
         local formattedTime = MSG.FormatTime(racer.time)
-        NET.SendGamemodeMessage(ply, "Finished #" .. racer.position .. "! Your time is [" .. formattedTime .. "]") -- TODO: Costumize
+        NET.SendGamemodeMessage(ply, "Finished #" .. racer.position .. "! Your time is [" .. formattedTime .. "]")
 
         PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
         RND.RemovePlayer(ply, round) -- Remove the player from the round

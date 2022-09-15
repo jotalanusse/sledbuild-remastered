@@ -1,5 +1,5 @@
 PLYS = {
-  -- Set the different collissions used by the players
+  -- Set the different collisions used by the players
   COLLISIONS = {
     DEFAULT = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
   },
@@ -92,12 +92,12 @@ function PLYS.ResetAllColors()
   end
 end
 
--- SetDefaultCollision: Set the default collission for a player
+-- SetDefaultCollision: Set the default collision for a player
 function PLYS.SetDefaultCollision(ply)
   ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT) -- Doesn't collide with players and vehicles
 end
 
--- Spawn: Called everytime a player spawns
+-- Spawn: Called every time a player spawns
 function PLYS.Spawn(ply)
   -- Admins get the juicy stuff :)
   if (ply:IsAdmin()) then
@@ -117,7 +117,7 @@ end
 
 hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)
 
--- Death: Called everytime a player dies
+-- Death: Called every time a player dies
 function PLYS.Death(ply)
   -- Disqualify the player from the race on death
   if (RND.IsPlayerRacing(ply)) then
@@ -130,7 +130,7 @@ function PLYS.Death(ply)
   PLYS.SetTeam(ply, TEAMS.BUILDING)
 end
 
-hook.Add("PlayerDeath", "SBR:PLYS:Detah", PLYS.Death)
+hook.Add("PlayerDeath", "SBR:PLYS:Death", PLYS.Death)
 
 -- InitialSpawn: Called when a player joins the server
 function PLYS.InitialSpawn(ply)
@@ -138,7 +138,7 @@ function PLYS.InitialSpawn(ply)
   PLYS.Spawn(ply)
 
   -- Notify of a new player
-  NET.BroadcastGamemodeMessage(ply:Nick() .. " has joined the server!") -- TODO: Costumize
+  NET.BroadcastGamemodeMessage(ply:Nick() .. " has joined the server!") -- TODO: Customize
 
   -- Check the map and warn the player, let him know our gamemode isn't the problem
   MCHK.WarnPlayer(ply)
@@ -154,7 +154,7 @@ function PLYS.Disconnected(ply)
   end
 
   -- Notify of player leaving
-  NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.") -- TODO: Costumize
+  NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.") -- TODO: Customize
 end
 
 hook.Add("PlayerDisconnected", "SBR:PLYS:Disconnected", PLYS.Disconnected)
@@ -182,6 +182,6 @@ hook.Add("PlayerDeathSound", "SBR:PLYS:RemoveDeathSound", PLYS.RemoveDeathSound)
 
 -- DoPlayerDeath: Handle the player's death
 function GM:DoPlayerDeath(ply, attacker, dmginfo)
-  -- Create a ragdooll for the memes
+  -- Create a ragdoll for the memes
   ply:CreateRagdoll()
 end

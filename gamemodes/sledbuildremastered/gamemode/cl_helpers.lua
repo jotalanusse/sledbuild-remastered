@@ -2,7 +2,7 @@ HLPS = {
 
 }
 
-function HLPS.DisableFrameIntercation(frame)
+function HLPS.DisableFrameInteraction(frame)
   frame:SetTitle("")
   frame:ShowCloseButton(false)
   frame:SetDraggable(false)

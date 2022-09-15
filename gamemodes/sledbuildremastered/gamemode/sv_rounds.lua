@@ -4,7 +4,7 @@ RND = {
     totalRounds = 0, -- Total amount of rounds played
     stage = ROUND.STAGES.WAITING, -- Current round stage
 
-    -- Round information (renewd every round)
+    -- Round information (renewed every round)
     round = {
       startTime = 0, -- Time when the round started
       racers = {}, -- List of racers of this round
@@ -12,7 +12,7 @@ RND = {
   }
 }
 
--- Initialize: Called when we want the rounds funcitonality to start
+-- Initialize: Called when we want the rounds functionality to start
 function RND.Initialize()
   -- Don't initialize if we already have
   if (RND.STATE.initialized) then return end
@@ -182,7 +182,7 @@ function RND.Starting(round)
   timer.Create("SBR:RND:Racing", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
 end
 
--- Racing: We are now officialy racing
+-- Racing: We are now officially racing
 function RND.Racing(round)
   RND.STATE.stage = ROUND.STAGES.RACING
 

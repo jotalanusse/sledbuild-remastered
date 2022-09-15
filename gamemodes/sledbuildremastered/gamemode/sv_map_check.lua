@@ -57,7 +57,7 @@ function MCHK.IsComplete()
 end
 
 -- TODO: This whole process could be more efficient
--- WarnPlayer: Checks the map for the neccesary entities/objects and warns the user if something is wrong
+-- WarnPlayer: Checks the map for the necessary entities/objects and warns the user if something is wrong
 function MCHK.WarnPlayer(ply)
   if (not MCHK.IsComplete()) then
     local totalStartZones = MAP.CountByClass(MAP.ENTITIES.NAMES.START_ZONE_CLASS)

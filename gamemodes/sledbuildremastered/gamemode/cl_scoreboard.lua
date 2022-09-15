@@ -32,7 +32,7 @@ TEST = {
 -- CreateScoreboard: Create the scoreboard
 function SBRD.CreateScoreboard(parent, width, heightPercentage, heightOffsetPercentage)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize(width, (parent:GetWide() / 100) * heightPercentage)
   frame:SetPos(0, (parent:GetTall() / 100) * heightOffsetPercentage)
@@ -60,7 +60,7 @@ end
 -- CreateListHeaders: Create the list headers
 function SBRD.CreateListHeaders(parent, widthPercentages, height)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize(parent:GetWide(), height)
 
@@ -93,7 +93,7 @@ end
 -- CreateHeader: Create each specific header
 function SBRD.CreateHeader(parent, text, widthPercentage, offsetPercentage)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
@@ -131,7 +131,7 @@ end
 -- CreatePlayerRow: Create a enw player row
 function SBRD.CreatePlayerRow(parent, widthPercentages, height, color, ply)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize(parent:GetWide(), height)
 
@@ -164,7 +164,7 @@ end
 -- CreateRowColumn: Create each new row column
 function SBRD.CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
@@ -181,7 +181,7 @@ end
 -- CreateColumnShaders: Create the column shaders for easy column identification
 function SBRD.CreateColumnShaders(parent, widthPercentages, height)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize(parent:GetWide(), height)
 
@@ -202,7 +202,7 @@ end
 -- CreateColumnShader: Create a single column shader
 function SBRD.CreateColumnShader(parent, widthPercentage, offsetPercentage)
   local frame = vgui.Create("DFrame", parent)
-  HLPS.DisableFrameIntercation(frame)
+  HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
