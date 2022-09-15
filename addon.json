@@ -9,6 +9,7 @@
 		"dev*",
 		"media*",
 		"workshop*",
+		"gma*",
 		"*.vcproj",
 		"*.md",
 		"*.svn*",
