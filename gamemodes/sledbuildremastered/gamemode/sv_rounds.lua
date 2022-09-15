@@ -119,7 +119,7 @@ function RND.ResetRacers(round)
           PLYS.SetTeam(ply, TEAMS.BUILDING)
 
           -- Make their sled non-slippery
-          local vehicle = v:GetVehicle()
+          local vehicle = ply:GetVehicle()
           VEHS.SetMaterial(vehicle, VEHS.MATERIALS.BUILDING)
 
           local spawn = MAP.SelectRandomSpawn()

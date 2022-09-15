@@ -32,7 +32,7 @@ ROUND = {
   -- Timings to be used by the game mode
   TIMES = {
     START = 5, -- Round starting and gates are open
-    RACE = 8, -- Actual race duration
+    RACE = 12, -- Actual race duration
     WAIT = 5, -- Time after the race finishes before the next race
   },
 
