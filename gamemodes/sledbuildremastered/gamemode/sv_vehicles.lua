@@ -1,4 +1,5 @@
 VEHS = {
+  DEFAULT_SEAT_CLASS = "prop_vehicle_prisoner_pod",
   ALLOWED = {
     ["models/vehicles/prisoner_pod_inner.mdl"] = true,
     ["models/nova/airboat_seat.mdl"] = true
@@ -30,8 +31,7 @@ function VEHS.IsSled(entity)
   local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
 
   for _, v in pairs(constrainedEntities) do
-    -- TODO: Store entity class in a gobal variable?
-    if (v:GetClass() == "prop_vehicle_prisoner_pod") then
+    if (v:GetClass() == VEHS.DEFAULT_SEAT_CLASS) then
       return true
     end
   end
@@ -44,8 +44,7 @@ function VEHS.HasPlayer(entity)
   local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
 
   for _, v in pairs(constrainedEntities) do
-    -- TODO: Store entity class in a gobal variable?
-    if (v:GetClass() == "prop_vehicle_prisoner_pod") then
+    if (v:GetClass() == VEHS.DEFAULT_SEAT_CLASS) then
       -- TODO: Do I need the "v:GetDriver()" check?
       if (v:GetDriver() and v:GetDriver():IsValid()) then
         return true
@@ -62,7 +61,7 @@ function VEHS.Restrict(ply, model, name, table)
     return true
   end
 
-  NET.SendGamemodeMessage(ply, "Only a Pod or Airboat Seat can be used.")
+  NET.SendGamemodeMessage(ply, "Only a Pod or an Airboat Seat can be used.")
   return false
 end
 

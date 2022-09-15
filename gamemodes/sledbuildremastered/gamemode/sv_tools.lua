@@ -46,7 +46,6 @@ end
 
 hook.Add("CanTool", "SBR:TLS:BlacklistToolgun", TLS.RestrictToolgun)
 
--- TODO: Test if this function actually does something
 -- LimitToolgun: Limit what the player can affect with their toolgun
 function TLS.LimitToolgun(ply, trace)
   -- TODO: Enable after testing
@@ -66,12 +65,14 @@ hook.Add("CanTool", "SBR:TLS:LimitToolgun", TLS.LimitToolgun)
 
 -- LimitPhysgun: Limit what the player can affect with their physgun
 function TLS.LimitPhysgun(ply, entity)
+  -- Probably a world entity
   if (entity:GetClass() == "func_brush") then
     return false
   end
 
   if (entity:IsPlayer()) then
     -- TODO: Enable after testing
+    -- Only admins may pick up players
     -- if (ply:IsAdmin()) then
     --   return true
     -- end
