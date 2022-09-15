@@ -121,7 +121,7 @@ hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)
 function PLYS.Death(ply)
   -- Disqualify the player from the race on death
   if (RND.IsPlayerRacing(ply)) then
-    NET.SendGamemodeMessage(ply, "You have died while racing! What happened?", CONSOLE.COLORS.WARNING)
+    NET.SendGamemodeMessage(ply, "You have died while racing! What happened?", COLORS.WARNING)
 
     RND.RemovePlayer(ply, RND.STATE.round)
   end

@@ -10,21 +10,22 @@ GM.Website = "jotalanusse.github.io"
 
 -- Global shared variables
 COLORS = {
-  MAIN = Color(150, 0, 255) -- Main game mode color
+  RACE = {
+    START = Color(0, 200, 0)
+  },
+  MAIN = Color(150, 0, 255), -- Main game mode color
+  -- PANEL_DEFAULT = Color(32, 32, 32, 100), -- Default panel color
+  WARNING = Color(230, 225, 0), -- Warning color
+  ERROR = Color(230, 0, 0), -- Error color
+
+  TEXT = Color(200, 200, 200), -- TODO: Find the best color
+
+  INVISIBLE = Color(0, 0, 0, 0), -- Invisible color
 }
 
 -- Console settings
 CONSOLE = {
   PREFIX = "[SBR] ", -- Prefix for all console messages
-
-  -- List of default colors to be used
-  COLORS = {
-    PREFIX = COLORS.MAIN, -- Prefix color
-    WARNING = Color(230, 225, 0), -- Warning color
-    ERROR = Color(230, 0, 0), -- Error color
-    TEXT = Color(200, 200, 200), -- TODO: Find the best color
-    RACE_ROUND = Color(0, 230, 0) -- TODO: Maybe change color?
-  }
 }
 
 -- Round settings

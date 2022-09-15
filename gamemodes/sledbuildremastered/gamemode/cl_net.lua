@@ -2,27 +2,65 @@ NET = {
 
 }
 
--- SendGamemodeMessage: Receives a simple game mode message
-net.Receive("SendGamemodeMessage", function()
-  local prefixColor = net.ReadColor()
+-- Receives "GamemodeMessage" message
+net.Receive("GamemodeMessage", function()
+  local color = net.ReadColor()
   local message = net.ReadString()
 
-  chat.AddText(prefixColor, CONSOLE.PREFIX, CONSOLE.COLORS.TEXT, message)
+  chat.AddText(COLORS.MAIN, CONSOLE.PREFIX, COLORS.TEXT, message)
 end)
 
--- SendRaceStartMessage: Receives a simple race start message
-net.Receive("SendRaceStartMessage", function()
-  local prefixColor = net.ReadColor()
+-- Receives "RaceStartMessage" message
+net.Receive("RaceStartMessage", function()
   local round = net.ReadUInt(16)
 
   chat.AddText(
-    prefixColor,
+    COLORS.MAIN,
     CONSOLE.PREFIX,
-    CONSOLE.COLORS.TEXT,
+    COLORS.TEXT,
     "Race ",
-    CONSOLE.COLORS.RACE_ROUND,
+    COLORS.RACE.START,
     "#" .. round,
-    CONSOLE.COLORS.TEXT,
+    COLORS.TEXT,
     " just begun!"
   )
+end)
+
+-- Receives "PlayerFinishedMessage"
+net.Receive("PlayerFinishedMessage", function()
+  local ply = net.ReadEntity()
+  local position = net.ReadUInt(12)
+  local time = net.ReadFloat()
+
+  if (ply:SteamID() == LocalPlayer():SteamID()) then
+    chat.AddText(
+      COLORS.MAIN,
+      CONSOLE.PREFIX,
+      COLORS.TEXT,
+      "Finished ",
+      COLORS.RACE.START,
+      "#" .. position,
+      COLORS.TEXT,
+      "! Your time is [",
+      COLORS.RACE.START,
+      MSG.FormatTime(time),
+      COLORS.TEXT,
+      "]"
+    )
+  else
+    chat.AddText(
+      COLORS.MAIN,
+      CONSOLE.PREFIX,
+      COLORS.TEXT,
+      ply:Nick() .. " Finished ",
+      COLORS.RACE.START,
+      "#" .. position,
+      COLORS.TEXT,
+      "! With a time of [",
+      COLORS.RACE.START,
+      MSG.FormatTime(time),
+      COLORS.TEXT,
+      "]"
+    )
+  end
 end)

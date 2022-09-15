@@ -128,7 +128,7 @@ function RND.ResetRacers(round)
         else
           -- This code should be unreachable, players shouldn't be able to get off
           NET.SendGamemodeMessage(ply, "You can't get off your sled while racing! You shouldn't be alive.",
-            CONSOLE.COLORS.WARNING)
+            COLORS.WARNING)
           ply:Kill()
         end
       end
@@ -163,7 +163,7 @@ function RND.Starting(round)
       local vehicle = v:GetVehicle()
       VEHS.SetMaterial(vehicle, VEHS.MATERIALS.RACING)
     else
-      NET.SendGamemodeMessage(v, "You can't be a racer and not be in a vehicle!", CONSOLE.COLORS.WARNING)
+      NET.SendGamemodeMessage(v, "You can't be a racer and not be in a vehicle!", COLORS.WARNING)
 
       v:Kill()
     end

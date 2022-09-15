@@ -5,11 +5,11 @@ function ZN.STRT.PLYS.StartTouch(ply)
     if (RND.IsPlayerRacing(ply)) then
       if (not ply:InVehicle()) then
         NET.SendGamemodeMessage(ply, "You can't re-enter the start zone without a vehicle while the race is starting!",
-          CONSOLE.COLORS.WARNING)
+          COLORS.WARNING)
         ply:Kill()
       end
     else
-      NET.SendGamemodeMessage(ply, "You can't step in the start zone while the race is starting!", CONSOLE.COLORS.WARNING)
+      NET.SendGamemodeMessage(ply, "You can't step in the start zone while the race is starting!", COLORS.WARNING)
       ply:Kill()
     end
   else
@@ -27,7 +27,7 @@ function ZN.STRT.PLYS.EndTouch(ply)
     -- You cant leave the start zone without a vehicle
     if (ply:Team() == TEAMS.RACING and not ply:InVehicle()) then
       NET.SendGamemodeMessage(ply, "You can't leave the start zone without a vehicle while the race is starting!",
-        CONSOLE.COLORS.WARNING)
+        COLORS.WARNING)
         
       RND.RemovePlayer(ply, RND.STATE.round)
       ply:Kill()

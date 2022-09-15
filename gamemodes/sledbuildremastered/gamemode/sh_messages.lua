@@ -7,3 +7,10 @@ function MSG.FormatTime(time)
 
   return formattedTime
 end
+
+-- FormatSpeed: Formats the speed into a nice string
+function MSG.FormatSpeed(mph)
+  local formattedSpeed = string.format("%i MPH", mph)
+
+  return formattedSpeed
+end

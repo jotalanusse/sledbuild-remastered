@@ -50,31 +50,47 @@ end
 function SBRD.CreatePlayerList(parent)
   local columnWidthPercentages = { 40, 6, 6, 6, 6, 10, 10, 10, 6, }
 
+  local headerBackground = SBRD.CreateHeaderBackground(parent, SBRD.SIZE.HEADER_HEIGHT, COLORS.MAIN)
+
   -- We create the shaders first to avoid the text from being affected
   local height = SBRD.SIZE.HEADER_HEIGHT + SBRD.SIZE.ROW_HEIGHT * #player.GetAll()
   SBRD.CreateColumnShaders(parent, columnWidthPercentages, height)
 
-  local listHeaders = SBRD.CreateListHeaders(parent, columnWidthPercentages, SBRD.SIZE.HEADER_HEIGHT)
+  local listHeader = SBRD.CreateListHeader(parent, columnWidthPercentages, SBRD.SIZE.HEADER_HEIGHT)
   local listRows = SBRD.CreateListRows(parent, columnWidthPercentages, SBRD.SIZE.ROW_HEIGHT)
 end
 
--- CreateListHeaders: Create the list headers
-function SBRD.CreateListHeaders(parent, widthPercentages, height)
+-- CreateHeaderBackground: Create the header background
+function SBRD.CreateHeaderBackground(parent, height, color)
   local frame = vgui.Create("DFrame", parent)
   HLPS.DisableFrameInteraction(frame)
 
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 150)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, color) -- TODO: Change color
+  end
+
+  return frame
+end
+
+-- CreateListHeader: Create the list header
+function SBRD.CreateListHeader(parent, widthPercentages, height)
+  local frame = vgui.Create("DFrame", parent)
+  HLPS.DisableFrameInteraction(frame)
+
+  frame:SetSize(parent:GetWide(), height)
+
+  frame.Paint = function(self, w, h)
+    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
   end
 
   local headers = {
     "Name",
-    "Rounds",
     "Wins",
     "Podiums",
     "Losses",
+    "Total",
     "Speed",
     "Top Speed",
     "Best Time",
@@ -100,7 +116,7 @@ function SBRD.CreateHeader(parent, text, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, COLORS.MAIN) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE)
   end
 
   UI.CreateLabel(frame, text)
@@ -142,13 +158,13 @@ function SBRD.CreatePlayerRow(parent, widthPercentages, height, color, ply)
 
   local values = {
     ply:Nick(),
-    ply:GetNWInt("SBR:Rounds"),
     ply:GetNWInt("SBR:Wins"),
     ply:GetNWInt("SBR:Podiums"),
     ply:GetNWInt("SBR:Losses"),
-    ply:GetNWFloat("SBR:Speed"),
-    ply:GetNWFloat("SBR:TopSpeed"),
-    ply:GetNWFloat("SBR:BestTime"),
+    ply:GetNWInt("SBR:Rounds"),
+    MSG.FormatSpeed(ply:GetNWFloat("SBR:Speed")),
+    MSG.FormatSpeed(ply:GetNWFloat("SBR:TopSpeed")),
+    MSG.FormatTime(ply:GetNWFloat("SBR:BestTime")),
     ply:Ping(),
   }
 

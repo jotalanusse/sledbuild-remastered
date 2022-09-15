@@ -27,8 +27,7 @@ function ZN.END.PLYS.StartTouch(ply)
         end
 
         -- Messages and that things...
-        local formattedTime = MSG.FormatTime(racer.time)
-        NET.SendGamemodeMessage(ply, "Finished #" .. racer.position .. "! Your time is [" .. formattedTime .. "]")
+        NET.BroadcastPlayerFinishedMessage(ply, racer.position, racer.time)
 
         PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
         RND.RemovePlayer(ply, round) -- Remove the player from the round
@@ -53,7 +52,7 @@ function ZN.END.PLYS.StartTouch(ply)
               -- A player might get off their sled
               if (not ply:InVehicle()) then
                 NET.SendGamemodeMessage(ply, "Remember to stay in your sled!")
-              
+
                 -- Teleport the player back to spawn
                 PLYS.Teleport(ply, spawn:GetPos())
               end
@@ -67,7 +66,7 @@ function ZN.END.PLYS.StartTouch(ply)
       else
         -- This code should be unreachable, players shouldn't be able to get off
         NET.SendGamemodeMessage(ply, "You can't finish a race without a sled! You shouldn't be alive.",
-          CONSOLE.COLORS.WARNING)
+          COLORS.WARNING)
 
         RND.RemovePlayer(ply, RND.STATE.round)
         ply:Kill()
@@ -78,7 +77,7 @@ function ZN.END.PLYS.StartTouch(ply)
   else
     -- This code should be unreachable
     NET.SendGamemodeMessage(ply, "How are you at the finish line, we are not even racing? You shouldn't be alive.",
-      CONSOLE.COLORS.WARNING)
+      COLORS.WARNING)
     ply:Kill()
   end
 end

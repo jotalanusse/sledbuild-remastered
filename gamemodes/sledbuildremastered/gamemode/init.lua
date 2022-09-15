@@ -5,7 +5,7 @@ include("shared.lua")
 include("sv_net.lua")
 
 -- Messages
-include("sv_messages.lua")
+include("sh_messages.lua")
 
 -- Map
 include("sv_zones.lua")
