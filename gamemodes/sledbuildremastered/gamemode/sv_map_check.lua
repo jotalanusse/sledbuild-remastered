@@ -107,6 +107,6 @@ function MCHK.WarnPlayer(ply)
       , COLORS.ERROR
     )
 
-    NET.SendGamemodeMessage(ply, "This map is not supported by SBR, the game mode will not start.")
+    NET.SendGamemodeMessage(ply, "This map is not supported by SBR, the gamemode will not start.")
   end
 end

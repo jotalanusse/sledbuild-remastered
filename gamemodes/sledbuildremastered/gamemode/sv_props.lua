@@ -6,7 +6,7 @@ PRPS = {
     DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
   },
 
-  -- List of restricted props the players can't spawn
+  -- Restricted props the players can't spawn
   RESTRICTED = {
     ["models/props_phx/oildrum001_explosive.mdl"] = true,
     ["models/props_junk/gascan001a.mdl"] = true,

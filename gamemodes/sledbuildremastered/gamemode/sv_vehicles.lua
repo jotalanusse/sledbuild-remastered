@@ -1,7 +1,7 @@
 VEHS = {
   DEFAULT_SEAT_CLASS = "prop_vehicle_prisoner_pod", -- The default seat class
 
-  -- List of allowed vehicles a player can spawn
+  -- Allowed vehicles a player can spawn
   ALLOWED = {
     ["models/vehicles/prisoner_pod_inner.mdl"] = true,
     ["models/nova/airboat_seat.mdl"] = true

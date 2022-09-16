@@ -1,5 +1,5 @@
 MAP = {
-	-- List of entities that our gamemode interacts with
+	-- Entities that our gamemode interacts with
 	ENTITIES = {
 		NAMES = {
 			GATE = "sbr_gate",

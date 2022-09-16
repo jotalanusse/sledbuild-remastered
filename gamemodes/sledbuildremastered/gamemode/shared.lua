@@ -2,7 +2,7 @@ SHRD = {}
 
 DeriveGamemode("sandbox") -- Use sandbox as our default
 
--- Set the game mode information
+-- Set the gamemode information
 GM.Name    = "SledBuild Remastered v1.0"
 GM.Author  = "jotalanusse"
 GM.Email   = "jotalanusse@gmail.com"
@@ -13,7 +13,7 @@ COLORS = {
   RACE = {
     START = Color(0, 200, 0)
   },
-  MAIN = Color(150, 0, 255), -- Main game mode color
+  MAIN = Color(150, 0, 255), -- Main gamemode color
   WARNING = Color(230, 225, 0), -- Warning color
   ERROR = Color(230, 0, 0), -- Error color
 
@@ -29,7 +29,7 @@ CONSOLE = {
 
 -- Round settings
 ROUND = {
-  -- Timings to be used by the game mode
+  -- Timings to be used by the gamemode
   TIMES = {
     START = 5, -- Round starting and gates are open
     RACE = 12, -- Actual race duration

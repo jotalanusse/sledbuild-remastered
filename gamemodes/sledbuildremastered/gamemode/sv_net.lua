@@ -5,7 +5,7 @@ util.AddNetworkString("GamemodeMessage")
 util.AddNetworkString("RaceStartMessage")
 util.AddNetworkString("PlayerFinishedMessage")
 
--- SendGamemodeMessage: Send a simple game mode message to the client
+-- SendGamemodeMessage: Send a simple gamemode message to the client
 function NET.SendGamemodeMessage(ply, message, color)
   color = color or COLORS.MAIN
 
@@ -15,7 +15,7 @@ function NET.SendGamemodeMessage(ply, message, color)
   net.Send(ply)
 end
 
--- BroadcastGamemodeMessage: Broadcast a simple game mode message to all clients
+-- BroadcastGamemodeMessage: Broadcast a simple gamemode message to all clients
 function NET.BroadcastGamemodeMessage(message, color)
   color = color or COLORS.MAIN
 

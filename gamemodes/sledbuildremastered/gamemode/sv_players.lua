@@ -4,7 +4,7 @@ PLYS = {
     DEFAULT = COLLISION_GROUP_WEAPON -- Doesn't collide with players and vehicles
   },
 
-  -- List of default colors
+  -- Default colors
   COLORS = {
     FIRST = Color(0, 255, 0),
     SECOND = Color(255, 255, 0),
@@ -12,7 +12,7 @@ PLYS = {
     DEFAULT = Color(255, 255, 255)
   },
 
-  -- List of loadouts a player can spawn with
+  -- Loadouts a player can spawn with
   LOADOUTS = {
     DEFAULT = {
       "gmod_tool",

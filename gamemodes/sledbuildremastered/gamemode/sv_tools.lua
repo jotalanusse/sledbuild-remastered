@@ -1,5 +1,5 @@
 TLS = {
-  -- List of all restricted tools
+  -- Restricted tools
   RESTRICTED = {
     ["balloon"] = true,
     ["ballsocket_adv"] = true,
