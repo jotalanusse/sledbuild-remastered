@@ -1,5 +1,10 @@
 UI = {
-  COLORS = {}
+  COLORS = {
+    INVISIBLE = Color(0, 0, 0, 0), -- Invisible color
+    TEXT = Color(255, 255, 255, 255), -- Text color
+    BACKGROUND = Color(32, 32, 32, 128), -- Background color
+    SHADER = Color(32, 32, 32, 64) -- Shader color
+  }
 }
 
 -- CreateLabel: Create a new label

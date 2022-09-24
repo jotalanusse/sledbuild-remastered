@@ -38,7 +38,7 @@ function SBRD.CreateScoreboard(parent, width, heightPercentage, heightOffsetPerc
   frame:SetPos(0, (parent:GetTall() / 100) * heightOffsetPercentage)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 190)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.BACKGROUND) -- TODO: Change color
   end
 
   local playerList = SBRD.CreatePlayerList(frame)
@@ -82,7 +82,7 @@ function SBRD.CreateListHeader(parent, widthPercentages, height)
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
   end
 
   local headers = {
@@ -116,7 +116,7 @@ function SBRD.CreateHeader(parent, text, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE)
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
   end
 
   UI.CreateLabel(frame, text)
@@ -187,7 +187,7 @@ function SBRD.CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
   end
 
   UI.CreateLabel(frame, text)
@@ -203,7 +203,7 @@ function SBRD.CreateColumnShaders(parent, widthPercentages, height)
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
   end
 
   local offsetPercentage = 0
@@ -225,6 +225,6 @@ function SBRD.CreateColumnShader(parent, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 100)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.SHADER) -- TODO: Change color
   end
 end

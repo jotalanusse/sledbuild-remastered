@@ -18,8 +18,6 @@ COLORS = {
   ERROR = Color(230, 0, 0), -- Error color
 
   TEXT = Color(200, 200, 200), -- TODO: Find the best color
-
-  INVISIBLE = Color(0, 0, 0, 0), -- Invisible color
 }
 
 -- Console settings

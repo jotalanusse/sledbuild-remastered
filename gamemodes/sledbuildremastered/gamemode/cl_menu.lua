@@ -63,7 +63,7 @@ function MENU.CreateBaseFrame(width, heightPercentage)
   frame:MakePopup()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Base frame must be invisible
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Base frame must be invisible
   end
 
   return frame
@@ -77,7 +77,7 @@ function MENU.CreateHeader(parent, heightPercentage)
   borderFrame:SetSize(parent:GetWide(), (parent:GetTall() / 100) * heightPercentage)
 
   borderFrame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE)
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
 
     surface.SetDrawColor(COLORS.MAIN)
 
@@ -97,7 +97,7 @@ function MENU.CreateHeader(parent, heightPercentage)
   headerFrame:SetPos(MENU.HEADER.BORDER_SIZE, MENU.HEADER.BORDER_SIZE)
 
   headerFrame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 200))
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.BACKGROUND)
   end
 
   local graphics = MENU.CreateHeaderGraphics(headerFrame, MENU.HEADER.GRAPHICS.WIDTH_PERCENTAGE)
@@ -114,7 +114,7 @@ function MENU.CreateHeaderGraphics(parent, widthPercentage)
   frame:CenterVertical()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, Color(32, 32, 32, 150)) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.SHADER) -- TODO: Change color
   end
 
   local logo = MENU.CreateLogo(frame, 128, 64)
@@ -132,7 +132,7 @@ function MENU.CreateLogo(parent, width, height)
   frame:Center()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
 
     surface.SetDrawColor(255, 255, 255, 255)
     surface.SetMaterial(MENU.LOGO.MATERIAL)
@@ -152,7 +152,7 @@ function MENU.CreateCredit(parent, height, offsetHeight)
   frame:CenterHorizontal()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
   end
 
   UI.CreateLabel(frame, "remake by jotalanusse")

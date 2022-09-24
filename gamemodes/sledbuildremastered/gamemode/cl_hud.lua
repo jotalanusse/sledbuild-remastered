@@ -21,7 +21,7 @@ hook.Add("HUDPaint", "SBR:HUD:Paint", HUD.Paint)
 --   frame:Center()
 
 --   frame.Paint = function(self, w, h)
---     draw.RoundedBox(0, 0, 0, w, h, COLORS.INVISIBLE)
+--     draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
 --   end
 
 --   return frame
