@@ -17,7 +17,7 @@ include("sv_players.lua")
 include("sv_props.lua")
 include("sv_vehicles.lua")
 include("sv_tools.lua")
-include("sv_speed.lua")
+include("sv_speed_tracker.lua")
 include("sv_disabled.lua")
 
 -- Round control

@@ -29,7 +29,6 @@ function ZN.END.PLYS.StartTouch(ply)
         -- Messages and that things...
         NET.BroadcastPlayerFinishedMessage(ply, racer.position, racer.time)
 
-        PLYS.SetTeam(ply, TEAMS.BUILDING) -- Set the player team back to building
         RND.RemovePlayer(ply, round) -- Remove the player from the round
 
         -- TODO: Check if the racer is the last one to finish (maybe end race early?)
@@ -49,6 +48,9 @@ function ZN.END.PLYS.StartTouch(ply)
           if (ply) then
             -- Or they might die
             if (ply:Alive()) then
+              -- Set the player team back to building
+              PLYS.SetTeam(ply, TEAMS.BUILDING)
+
               -- A player might get off their sled
               if (not ply:InVehicle()) then
                 NET.SendGamemodeMessage(ply, "Remember to stay in your sled!")

@@ -4,7 +4,7 @@ MUST:
 - Avoid players boosting with the physgun
 - Restrict players from undoing their sled while racing
 - Players should only be able to edit their props
-- Fixed speed getting stuck after player exits the speed tracking
+- Only update the speed of racing players
 
 NICE:
 - Reset server if more than 6 hours of uptime
@@ -12,6 +12,7 @@ NICE:
 - Align scoreboard name left
 - Add screen pop-ups when the podium player finish the race
 - Send a message when a sled is retrieved
+- Order the scoreboard to show the best players on top
 
 BONUS:
 - Add a top left scoreboard of the last round
