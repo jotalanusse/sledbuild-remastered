@@ -21,3 +21,10 @@ function FRMT.FormatHUDSpeed(mph)
 
   return formattedSpeed
 end
+
+-- FormatHUDTimer: Formats the timer into a nice 3 digits
+function FRMT.FormatHUDTimer(time)
+  local formattedTime = string.format("%03i", time)
+
+  return formattedTime
+end

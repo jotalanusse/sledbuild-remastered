@@ -10,6 +10,8 @@ RND = {
 SetGlobalBool("SBR:RND:Initialized", false) -- Whether the round cycle has been started
 SetGlobalInt("SBR:RND:Round", 0) -- Total amount of rounds played
 SetGlobalInt("SBR:RND:Stage", ROUND.STAGES.WAITING) -- Current round stage
+SetGlobalInt("SBR:RND:Timer", 0) -- Round timer
+
 SetGlobalFloat("SBR:RND:BestTime", 0) -- Best time of the server
 SetGlobalFloat("SBR:RND:TopSpeed", 0) -- Top speed of the server
 
@@ -142,6 +144,16 @@ function RND.IncrementTotalRounds()
   SetGlobalInt("SBR:RND:Round", GetGlobalInt("SBR:RND:Round", 0) + 1)
 end
 
+-- TODO: This function might be broken (timers might overlap!)
+-- UpdateTimer: Constantly updates the round timer
+function RND.UpdateTimer(time)
+  SetGlobalInt("SBR:RND:Timer", time)
+
+  timer.Create("SBR:RND:Timer", 1, time, function()
+    SetGlobalInt("SBR:RND:Timer", timer.RepsLeft("SBR:RND:Timer"))
+  end)
+end
+
 -- Starting: Starts a new race
 function RND.Starting(round)
   SetGlobalInt("SBR:RND:Stage", ROUND.STAGES.STARTING)
@@ -181,6 +193,7 @@ function RND.Starting(round)
   MAP.PushersEnable()
 
   timer.Create("SBR:RND:Racing", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
+  RND.UpdateTimer(ROUND.TIMES.START)
 end
 
 -- Racing: We are now officially racing
@@ -192,6 +205,7 @@ function RND.Racing(round)
   MAP.PushersDisable()
 
   timer.Create("SBR:RND:End", ROUND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
+  RND.UpdateTimer(ROUND.TIMES.RACE)
 end
 
 -- End: End the current race
@@ -211,4 +225,5 @@ function RND.End(round)
   round.racers = {}
 
   timer.Create("SBR:RND:Starting", ROUND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
+  RND.UpdateTimer(ROUND.TIMES.WAIT)
 end

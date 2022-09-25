@@ -21,12 +21,14 @@ function HUD.CreateHUD(widthOffset, heightOffset)
   surface.SetMaterial(HUD.DASHBOARD.MATERIAL)
   surface.DrawTexturedRect(ScrW() - 256 + widthOffset, heightOffset, 256, 256)
 
+  -- NEVER touch the offsets of this text or it will break!
   local mph = math.Round(LocalPlayer():GetNWFloat("SBR:Speed"))
   local formattedMph = FRMT.FormatHUDSpeed(mph)
-
-  -- NEVER touch the offsets of this text or it will break!
   HUD.CreateSpeedText(formattedMph, HUD.COLORS.TEXT, ScrW() - 73, 40)
-  HUD.CreateTimerText(888, HUD.COLORS.TEXT, ScrW() - 54, 114)
+
+  local time = GetGlobalInt("SBR:RND:Timer", 0)
+  local formattedTime = FRMT.FormatHUDTimer(time)
+  HUD.CreateTimerText(formattedTime, HUD.COLORS.TEXT, ScrW() - 54, 114)
 end
 
 -- CreateSpeedText: Create the HUD speed text
