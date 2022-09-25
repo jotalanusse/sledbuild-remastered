@@ -14,7 +14,6 @@ end
 
 hook.Add("HUDPaint", "SBR:HUD:Paint", HUD.Paint)
 
-
 -- CreateHUD: Create the HUD
 function HUD.CreateHUD(widthOffset, heightOffset)
   surface.SetDrawColor(255, 255, 255, 255)
