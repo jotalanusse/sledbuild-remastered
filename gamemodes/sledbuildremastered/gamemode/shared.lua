@@ -29,8 +29,8 @@ CONSOLE = {
 ROUND = {
   -- Timings to be used by the gamemode
   TIMES = {
-    START = 5, -- Round starting and gates are open
-    RACE = 12, -- Actual race duration
+    START = 10, -- Round starting and gates are open
+    RACE = 15, -- Actual race duration
     WAIT = 5, -- Time after the race finishes before the next race
   },
 

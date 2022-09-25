@@ -1,6 +1,8 @@
 HUD = {
   COLORS = {
     TEXT = Color(255, 255, 255, 180), -- Text color
+    WAITING = Color(255, 255, 0, 180), -- Waiting color
+    STARTING = Color(0, 255, 0, 180), -- Starting color
     PLACEHOLDER = Color(0, 0, 0, 64), -- Placeholder color
   },
   DASHBOARD = {
@@ -27,7 +29,16 @@ function HUD.CreateHUD(widthOffset, heightOffset)
 
   local time = GetGlobalInt("SBR:RND:Timer", 0)
   local formattedTime = FRMT.FormatHUDTimer(time)
-  HUD.CreateTimerText(formattedTime, HUD.COLORS.TEXT, ScrW() - 54, 114)
+
+  -- TODO: The color shouldn't be changed here, too resource intensive?
+  local color = HUD.COLORS.TEXT
+  if (GetGlobalInt("SBR:RND:Stage", 0) == ROUND.STAGES.STARTING) then
+    color = HUD.COLORS.STARTING
+  elseif (GetGlobalInt("SBR:RND:Stage", 0) == ROUND.STAGES.WAITING) then
+    color = HUD.COLORS.WAITING
+  end
+
+  HUD.CreateTimerText(formattedTime, color, ScrW() - 54, 114)
 end
 
 -- CreateSpeedText: Create the HUD speed text

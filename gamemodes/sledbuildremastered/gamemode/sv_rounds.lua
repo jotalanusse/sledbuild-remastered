@@ -23,6 +23,7 @@ function RND.Initialize()
   -- Only start if we pass the map check
   if (MCHK.IsComplete()) then
     timer.Simple(10, function() RND.Starting(RND.round) end) -- Start the first round to start the cycle
+    RND.UpdateTimer(10)
   end
 
   SetGlobalBool("SBR:RND:Initialized", true)
@@ -210,7 +211,7 @@ end
 
 -- End: End the current race
 function RND.End(round)
-  SetGlobalInt("SBR:RND:Stage", ROUND.STAGES.FINISHED)
+  SetGlobalInt("SBR:RND:Stage", ROUND.STAGES.WAITING)
 
   NET.BroadcastGamemodeMessage("The race has finished!")
 

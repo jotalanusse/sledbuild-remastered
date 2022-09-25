@@ -4,6 +4,7 @@ MUST:
 - Restrict players from undoing their sled while racing
 - Players should only be able to edit their props
 - Implement stats saving for the server -> map
+- Fix bug where vehicle is teleported before the player
 
 NICE:
 - Optmize the scoreboard (it's a bit laggy)
@@ -15,11 +16,11 @@ NICE:
 - Add screen pop-ups when the podium player finish the race
 - Send a message when a sled is retrieved
 - Order the scoreboard to show the best players on top
-- Re-design the HUD
 - Separate builders from racers in the scoreboard/HUD
 - Add a visual team indicator (HUD)
 
 BONUS:
+- Re-design the HUD
 - Add estimate for map change
 - Add a top left scoreboard of the last round
 - Add gamemode commands
