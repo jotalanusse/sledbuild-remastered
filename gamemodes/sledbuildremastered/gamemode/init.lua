@@ -4,8 +4,8 @@ include("shared.lua")
 -- Network
 include("sv_net.lua")
 
--- Messages
-include("sh_messages.lua")
+-- Formatting
+include("sh_format.lua")
 
 -- Map
 include("sv_zones.lua")

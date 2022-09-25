@@ -135,7 +135,7 @@ function SBRD.CreateListRows(parent, widthPercentages, rowHeight)
       opacity = opacity / 2
     end
 
-    local playerRow = SBRD.CreatePlayerRow(parent, widthPercentages, rowHeight, Color(32, 32, 32, opacity), v)
+    local playerRow = SBRD.CreatePlayerRow(parent, widthPercentages, rowHeight, Color(32, 32, 32, opacity), v) -- TODO: Change color
     playerRow:SetPos(0, offset)
 
     rows[i] = playerRow
@@ -162,9 +162,9 @@ function SBRD.CreatePlayerRow(parent, widthPercentages, height, color, ply)
     ply:GetNWInt("SBR:Podiums"),
     ply:GetNWInt("SBR:Losses"),
     ply:GetNWInt("SBR:Rounds"),
-    MSG.FormatSpeed(ply:GetNWFloat("SBR:Speed")),
-    MSG.FormatSpeed(ply:GetNWFloat("SBR:TopSpeed")),
-    MSG.FormatTime(ply:GetNWFloat("SBR:BestTime")),
+    FRMT.FormatSpeed(ply:GetNWFloat("SBR:Speed")),
+    FRMT.FormatSpeed(ply:GetNWFloat("SBR:TopSpeed")),
+    FRMT.FormatTime(ply:GetNWFloat("SBR:BestTime")),
     ply:Ping(),
   }
 

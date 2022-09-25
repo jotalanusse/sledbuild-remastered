@@ -1,5 +1,5 @@
 MENU = {
-  UPDATE_FREQUENCY = 0.2, -- How often the menu is updated
+  UPDATE_FREQUENCY = 1, -- How often the menu is updated
   SIZE = {
     WIDTH = 1000,
     HEIGHT_PERCENTAGE = 90,
@@ -24,6 +24,7 @@ function MENU.Show()
     MENU.HEADER.HEIGHT_PERCENTAGE)
 
   -- TODO: This feels way too primitive
+  -- TODO: Find a way to do the scoreboard update more efficiently
   timer.Create("SBR:RefreshScoreboard", MENU.UPDATE_FREQUENCY, 0, function()
     if (IsValid(scoreboard)) then
       scoreboard:Remove()

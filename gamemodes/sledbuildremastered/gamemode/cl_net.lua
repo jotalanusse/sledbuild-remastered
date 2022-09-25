@@ -43,7 +43,7 @@ net.Receive("PlayerFinishedMessage", function()
       COLORS.TEXT,
       "! Your time is [",
       COLORS.RACE.START,
-      MSG.FormatTime(time),
+      FRMT.FormatTime(time),
       COLORS.TEXT,
       "]"
     )
@@ -58,7 +58,7 @@ net.Receive("PlayerFinishedMessage", function()
       COLORS.TEXT,
       "! With a time of [",
       COLORS.RACE.START,
-      MSG.FormatTime(time),
+      FRMT.FormatTime(time),
       COLORS.TEXT,
       "]"
     )

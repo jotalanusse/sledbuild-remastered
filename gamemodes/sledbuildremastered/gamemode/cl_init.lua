@@ -6,8 +6,8 @@ include("shared.lua")
 -- Network
 include("cl_net.lua")
 
--- Messages
-include("sh_messages.lua")
+-- Formatting
+include("sh_format.lua")
 
 -- Interface
 include("cl_helpers.lua")
