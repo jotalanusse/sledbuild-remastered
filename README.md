@@ -25,7 +25,7 @@ So this project aims to do the following key things:
 If you would like to create a map for SBR you can follow [**this guide**](MAPPING_GUIDE) on how to do so. 
 
 ## Server:
-If you would like to host a server for SBR I will be creating a guide on how to do so soon.
+For help on hosting a server for SBR I will be creating a guide on how to do so soon.
 
 ## Contributing:
 Pull requests are more than welcome (specially with the UI). For major changes, **please open an issue first** to discuss what you would like to change.
