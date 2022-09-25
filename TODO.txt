@@ -3,6 +3,7 @@ MUST:
 - Read convars for settings
 - Restrict players from undoing their sled while racing
 - Players should only be able to edit their props
+- Implement stats saving for the server -> map
 
 NICE:
 - Optmize the scoreboard (it's a bit laggy)
@@ -15,9 +16,12 @@ NICE:
 - Send a message when a sled is retrieved
 - Order the scoreboard to show the best players on top
 - Re-design the HUD
+- Separate builders from racers in the scoreboard/HUD
+- Add a visual team indicator (HUD)
 
 BONUS:
 - Add estimate for map change
 - Add a top left scoreboard of the last round
 - Add gamemode commands
 - Add scoring system
+- Add translations

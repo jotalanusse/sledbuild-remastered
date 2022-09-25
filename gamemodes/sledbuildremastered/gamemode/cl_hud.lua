@@ -1,6 +1,6 @@
 HUD = {
   COLORS = {
-    TEXT = Color(255, 255, 255, 200), -- Text color
+    TEXT = Color(255, 255, 255, 180), -- Text color
     PLACEHOLDER = Color(0, 0, 0, 64), -- Placeholder color
   },
   DASHBOARD = {
@@ -9,24 +9,24 @@ HUD = {
 }
 
 function HUD.Paint()
-  local hud = HUD.CreateHUD()
+  local hud = HUD.CreateHUD(-16, 16)
 end
 
 hook.Add("HUDPaint", "SBR:HUD:Paint", HUD.Paint)
 
 
 -- CreateHUD: Create the HUD
-function HUD.CreateHUD()
+function HUD.CreateHUD(widthOffset, heightOffset)
   surface.SetDrawColor(255, 255, 255, 255)
   surface.SetMaterial(HUD.DASHBOARD.MATERIAL)
-  surface.DrawTexturedRect(ScrW() - 256, 0, 256, 256)
+  surface.DrawTexturedRect(ScrW() - 256 + widthOffset, heightOffset, 256, 256)
 
   local mph = math.Round(LocalPlayer():GetNWFloat("SBR:Speed"))
   local formattedMph = FRMT.FormatHUDSpeed(mph)
 
-  -- Never touch the offsets of this text or it will break!
-  HUD.CreateSpeedText(formattedMph, HUD.COLORS.TEXT, ScrW() - 103, 20)
-  HUD.CreateTimerText(888, HUD.COLORS.TEXT, ScrW() - 50, 86)
+  -- NEVER touch the offsets of this text or it will break!
+  HUD.CreateSpeedText(formattedMph, HUD.COLORS.TEXT, ScrW() - 73, 40)
+  HUD.CreateTimerText(888, HUD.COLORS.TEXT, ScrW() - 54, 114)
 end
 
 -- CreateSpeedText: Create the HUD speed text
