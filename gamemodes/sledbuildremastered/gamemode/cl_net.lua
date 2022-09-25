@@ -1,6 +1,4 @@
-NET = {
-
-}
+NET = {}
 
 -- Receives "GamemodeMessage" message
 net.Receive("GamemodeMessage", function()

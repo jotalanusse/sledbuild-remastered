@@ -6,13 +6,12 @@ RND = {
   }
 }
 
--- Define some global variables
+-- Define global variables
 SetGlobalBool("SBR:RND:Initialized", false) -- Whether the round cycle has been started
 SetGlobalInt("SBR:RND:Round", 0) -- Total amount of rounds played
 SetGlobalInt("SBR:RND:Stage", ROUND.STAGES.WAITING) -- Current round stage
 SetGlobalFloat("SBR:RND:BestTime", 0) -- Best time of the server
 SetGlobalFloat("SBR:RND:TopSpeed", 0) -- Top speed of the server
-
 
 -- Initialize: Called when we want the rounds functionality to start
 function RND.Initialize()

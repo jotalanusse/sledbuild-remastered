@@ -1,59 +1,60 @@
-MCHK = {
-  complete = true, -- Is the map complete
-  checked = false -- Has the map been checked
-}
+MCHK = {}
+
+-- Define global variables
+SetGlobalBool("SBR:MCHK:Complete", true) -- Whether the map is complete or not
+SetGlobalBool("SBR:MCHK:Checked", false) -- Whether the map was checked or not
 
 -- IsComplete: Return true is the map is complete
 function MCHK.IsComplete()
   -- Only check the map once, else return the cached result
-  if (MCHK.checked) then
-    return MCHK.complete
+  if (GetGlobalBool("SBR:MCHK:Checked", false)) then
+    return GetGlobalBool("SBR:MCHK:Complete", false)
   end
 
   local totalStartZones = MAP.CountByClass(MAP.ENTITIES.NAMES.START_ZONE_CLASS)
   if (totalStartZones == 0) then
-    MCHK.complete = false
+    SetGlobalBool("SBR:MCHK:Complete", false)
   end
 
   local totalFinishZones = MAP.CountByClass(MAP.ENTITIES.NAMES.FINISH_ZONE_CLASS)
   if (totalFinishZones == 0) then
-    MCHK.complete = false
+    SetGlobalBool("SBR:MCHK:Complete", false)
   end
 
   local totalGates = MAP.CountByName(MAP.ENTITIES.NAMES.GATE)
   if (totalGates == 0) then
-    MCHK.complete = false
+    SetGlobalBool("SBR:MCHK:Complete", false)
   end
 
   local totalPushers = MAP.CountByName(MAP.ENTITIES.NAMES.PUSHER)
   if (totalGates == 0) then
-    MCHK.complete = false
+    SetGlobalBool("SBR:MCHK:Complete", false)
   end
 
   -- local totalSpawns1 = MAP.CountByName(MAP.ENTITIES.NAMES.SPAWN_1)
   -- if (totalSpawns1 == 0) then
-  --   MCHK.complete = false
+  --   SetGlobalBool("SBR:MCHK:Complete", false)
   -- end
 
   -- local totalSpawns2 = MAP.CountByName(MAP.ENTITIES.NAMES.SPAWN_2)
   -- if (totalSpawns2 == 0) then
-  --   MCHK.complete = false
+  --   SetGlobalBool("SBR:MCHK:Complete", false)
   -- end
 
   -- local totalSpawns3 = MAP.CountByName(MAP.ENTITIES.NAMES.SPAWN_3)
   -- if (totalSpawns3 == 0) then
-  --   MCHK.complete = false
+  --   SetGlobalBool("SBR:MCHK:Complete", false)
   -- end
 
   local totalSpawns = MAP.CountByName(MAP.ENTITIES.NAMES.SPAWN)
   if (totalSpawns == 0) then
-    MCHK.complete = false
+    SetGlobalBool("SBR:MCHK:Complete", false)
   end
 
   -- Mark the map as checked
-  MCHK.checked = true
+  SetGlobalBool("SBR:MCHK:Checked", true)
 
-  return MCHK.complete
+  return GetGlobalBool("SBR:MCHK:Complete", false)
 end
 
 -- TODO: This whole process could be more efficient
