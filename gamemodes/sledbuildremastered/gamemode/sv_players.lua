@@ -123,7 +123,7 @@ function PLYS.Death(ply)
   if (RND.IsPlayerRacing(ply)) then
     NET.SendGamemodeMessage(ply, "You have died while racing! What happened?", COLORS.WARNING)
 
-    RND.RemovePlayer(ply, RND.STATE.round)
+    RND.RemovePlayer(ply, RND.round)
   end
 
   -- We don't reset color because the round start already does that

@@ -1,10 +1,11 @@
 -- StartTouch: Called when a player enters the end zone
 function ZN.END.PLYS.StartTouch(ply)
-  if (RND.STATE.stage == ROUND.STAGES.STARTING or RND.STATE.stage == ROUND.STAGES.RACING) then
+  local roundStage = GetGlobalInt("SBR:RND:Stage", 0)
+  if (roundStage == ROUND.STAGES.STARTING or roundStage == ROUND.STAGES.RACING) then
     if (RND.IsPlayerRacing(ply)) then
       if (ply:InVehicle()) then
         -- The player finished the race!
-        local round = RND.STATE.round
+        local round = RND.round
 
         RND.FinishPlayerRace(ply, round)
         local racer = round.racers[ply:SteamID()]
@@ -70,7 +71,7 @@ function ZN.END.PLYS.StartTouch(ply)
         NET.SendGamemodeMessage(ply, "You can't finish a race without a sled! You shouldn't be alive.",
           COLORS.WARNING)
 
-        RND.RemovePlayer(ply, RND.STATE.round)
+        RND.RemovePlayer(ply, RND.round)
         ply:Kill()
       end
     else

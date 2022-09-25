@@ -1,35 +1,37 @@
 RND = {
-  STATE = {
-    initialized = false, -- Whether the round cycle has been started
-    totalRounds = 0, -- Total amount of rounds played
-    stage = ROUND.STAGES.WAITING, -- Current round stage
-
-    -- Round information (renewed every round)
-    round = {
-      startTime = 0, -- Time when the round started
-      racers = {}, -- List of racers of this round
-    }
+  -- Round information (renewed every round)
+  round = {
+    startTime = 0, -- Time when the round started
+    racers = {}, -- List of racers of this round
   }
 }
+
+-- Define some global variables
+SetGlobalBool("SBR:RND:Initialized", false) -- Whether the round cycle has been started
+SetGlobalInt("SBR:RND:Round", 0) -- Total amount of rounds played
+SetGlobalInt("SBR:RND:Stage", ROUND.STAGES.WAITING) -- Current round stage
+SetGlobalFloat("SBR:RND:BestTime", 0) -- Best time of the server
+SetGlobalFloat("SBR:RND:TopSpeed", 0) -- Top speed of the server
+
 
 -- Initialize: Called when we want the rounds functionality to start
 function RND.Initialize()
   -- Don't initialize if we already have
-  if (RND.STATE.initialized) then return end
+  if (GetGlobalBool("SBR:RND:Initialized", false)) then return end
 
   -- Only start if we pass the map check
   if (MCHK.IsComplete()) then
-    timer.Simple(10, function() RND.Starting(RND.STATE.round) end) -- Start the first round to start the cycle
+    timer.Simple(10, function() RND.Starting(RND.round) end) -- Start the first round to start the cycle
   end
 
-  RND.STATE.initialized = true
+  SetGlobalBool("SBR:RND:Initialized", true)
 end
 
 hook.Add("PlayerInitialSpawn", "SBR:RND:Bootstrap", RND.Initialize)
 
 -- IsPlayerRacing: Returns true if the player is racing
 function RND.IsPlayerRacing(ply)
-  local racer = RND.STATE.round.racers[ply:SteamID()]
+  local racer = RND.round.racers[ply:SteamID()]
   if (racer and not racer.finished and not racer.disqualified) then
     return true
   else
@@ -138,17 +140,17 @@ end
 
 -- IncrementTotal: Add 1 to the total rounds played
 function RND.IncrementTotalRounds()
-  RND.STATE.totalRounds = RND.STATE.totalRounds + 1
+  SetGlobalInt("SBR:RND:Round", GetGlobalInt("SBR:RND:Round", 0) + 1)
 end
 
 -- Starting: Starts a new race
 function RND.Starting(round)
-  RND.STATE.stage = ROUND.STAGES.STARTING
+  SetGlobalInt("SBR:RND:Stage", ROUND.STAGES.STARTING)
 
   PLYS.ResetAllColors() -- Reset all player colors
   RND.IncrementTotalRounds() -- Add one to the total races counter
 
-  NET.BroadcastRaceStartMessage(RND.STATE.totalRounds)
+  NET.BroadcastRaceStartMessage(GetGlobalInt("SBR:RND:Round", 0))
 
   -- Add all valid players to the race, kill the others
   for _, v in pairs(team.GetPlayers(TEAMS.RACING)) do
@@ -184,7 +186,7 @@ end
 
 -- Racing: We are now officially racing
 function RND.Racing(round)
-  RND.STATE.stage = ROUND.STAGES.RACING
+  SetGlobalInt("SBR:RND:Stage", ROUND.STAGES.RACING)
 
   -- Starting time is over, let the map know
   MAP.GatesClose()
@@ -195,7 +197,7 @@ end
 
 -- End: End the current race
 function RND.End(round)
-  RND.STATE.stage = ROUND.STAGES.FINISHED
+  SetGlobalInt("SBR:RND:Stage", ROUND.STAGES.FINISHED)
 
   NET.BroadcastGamemodeMessage("The race has finished!")
 

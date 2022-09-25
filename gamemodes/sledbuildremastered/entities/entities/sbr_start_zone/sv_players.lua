@@ -1,7 +1,7 @@
 -- StartTouch: Called when a player enters the start zone
 function ZN.STRT.PLYS.StartTouch(ply)
   -- You cant enter the start zone while the race begins
-  if (RND.STATE.stage == ROUND.STAGES.STARTING) then
+  if (GetGlobalInt("SBR:RND:Stage", 0) == ROUND.STAGES.STARTING) then
     if (RND.IsPlayerRacing(ply)) then
       if (not ply:InVehicle()) then
         NET.SendGamemodeMessage(ply, "You can't re-enter the start zone without a vehicle while the race is starting!",
@@ -23,13 +23,13 @@ end
 
 -- EndTouch: Called when a player leaves the start zone
 function ZN.STRT.PLYS.EndTouch(ply)
-  if (RND.STATE.stage == ROUND.STAGES.STARTING) then
+  if (GetGlobalInt("SBR:RND:Stage", 0) == ROUND.STAGES.STARTING) then
     -- You cant leave the start zone without a vehicle
     if (ply:Team() == TEAMS.RACING and not ply:InVehicle()) then
       NET.SendGamemodeMessage(ply, "You can't leave the start zone without a vehicle while the race is starting!",
         COLORS.WARNING)
         
-      RND.RemovePlayer(ply, RND.STATE.round)
+      RND.RemovePlayer(ply, RND.round)
       ply:Kill()
     end
   else
@@ -37,7 +37,7 @@ function ZN.STRT.PLYS.EndTouch(ply)
     if (RND.IsPlayerRacing(ply)) then
       NET.SendGamemodeMessage(ply, "You didn't leave the start zone during the race start, you were removed from the race.")
 
-      RND.RemovePlayer(ply, RND.STATE.round)
+      RND.RemovePlayer(ply, RND.round)
     end
 
     -- If the player leaves the start zone we consider them a builder
