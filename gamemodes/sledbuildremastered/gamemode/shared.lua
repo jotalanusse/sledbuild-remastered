@@ -27,13 +27,6 @@ CONSOLE = {
 
 -- Round settings
 ROUND = {
-  -- Timings to be used by the gamemode
-  TIMES = {
-    START = 10, -- Round starting and gates are open
-    RACE = 90, -- Actual race duration
-    WAIT = 5, -- Time after the race finishes before the next race
-  },
-
   -- Different stages a round can be in (same as above)
   STAGES = {
     WAITING = 1,

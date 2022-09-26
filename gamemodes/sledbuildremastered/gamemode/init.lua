@@ -13,6 +13,7 @@ include("sv_map.lua")
 include("sv_map_check.lua")
 
 -- general modules
+include("sv_cvars.lua")
 include("sv_players.lua")
 include("sv_props.lua")
 include("sv_vehicles.lua")

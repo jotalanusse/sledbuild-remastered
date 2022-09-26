@@ -1,4 +1,11 @@
 RND = {
+  -- Timings to be used by the gamemode
+  TIMES = {
+    RACE = cvars.Number(CVRS.NAMES.RACE_TIME, 90), -- Round starting and gates are open
+    START = cvars.Number(CVRS.NAMES.START_TIME, 10), -- Actual race duration
+    WAIT = cvars.Number(CVRS.NAMES.WAIT_TIME, 5), -- Time after the race finishes before the next race
+  },
+
   -- Round information (renewed every round)
   round = {
     startTime = 0, -- Time when the round started
@@ -22,8 +29,8 @@ function RND.Initialize()
 
   -- Only start if we pass the map check
   if (MCHK.IsComplete()) then
-    timer.Simple(ROUND.TIMES.RACE, function() RND.Starting(RND.round) end) -- Start the first round to start the cycle
-    RND.UpdateTimer(ROUND.TIMES.RACE)
+    timer.Simple(RND.TIMES.RACE, function() RND.Starting(RND.round) end) -- Start the first round to start the cycle
+    RND.UpdateTimer(RND.TIMES.RACE)
   end
 
   SetGlobalBool("SBR:RND:Initialized", true)
@@ -192,8 +199,8 @@ function RND.Starting(round)
   MAP.GatesOpen()
   MAP.PushersEnable()
 
-  timer.Create("SBR:RND:Racing", ROUND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
-  RND.UpdateTimer(ROUND.TIMES.START)
+  timer.Create("SBR:RND:Racing", RND.TIMES.START, 1, function() RND.Racing(round) end) -- We queue the next action
+  RND.UpdateTimer(RND.TIMES.START)
 end
 
 -- Racing: We are now officially racing
@@ -204,8 +211,8 @@ function RND.Racing(round)
   MAP.GatesClose()
   MAP.PushersDisable()
 
-  timer.Create("SBR:RND:End", ROUND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
-  RND.UpdateTimer(ROUND.TIMES.RACE)
+  timer.Create("SBR:RND:End", RND.TIMES.RACE, 1, function() RND.End(round) end) -- We queue the next action
+  RND.UpdateTimer(RND.TIMES.RACE)
 end
 
 -- End: End the current race
@@ -224,6 +231,6 @@ function RND.End(round)
   round.startTime = 0
   round.racers = {}
 
-  timer.Create("SBR:RND:Starting", ROUND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
-  RND.UpdateTimer(ROUND.TIMES.WAIT)
+  timer.Create("SBR:RND:Starting", RND.TIMES.WAIT, 1, function() RND.Starting(round) end) -- We queue the next action
+  RND.UpdateTimer(RND.TIMES.WAIT)
 end
