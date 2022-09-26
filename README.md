@@ -1,7 +1,7 @@
 # [SBR] SledBuild Remastered
 
 <p align="center">
-  <img src="./gamemodes/sledbuildremastered/logo-banner.png" alt="SBR Logo"/>
+  <img src="./media/logos/logo-banner.png" alt="SBR Logo"/>
 </p>
 
 Welcome to **SledBuild Remastered** or (SBR for short). This is a complete rework of the original SledBuild gamemode created by **G3X** back in 2010.
