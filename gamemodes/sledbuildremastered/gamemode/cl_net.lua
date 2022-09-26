@@ -5,7 +5,7 @@ net.Receive("GamemodeMessage", function()
   local color = net.ReadColor()
   local message = net.ReadString()
 
-  chat.AddText(COLORS.MAIN, CONSOLE.PREFIX, COLORS.TEXT, message)
+  chat.AddText(color, CONSOLE.PREFIX, COLORS.TEXT, message)
 end)
 
 -- Receives "RaceStartMessage" message

@@ -102,12 +102,11 @@ function MCHK.WarnPlayer(ply)
     end
 
     NET.SendGamemodeMessage(ply,
-      "ERROR: The map [" .. game.GetMap() .. "] is not complete, gameplay might be broken! " ..
-      "Please check for missing entities! " ..
+      "ERROR: The map [" .. game.GetMap() .. "] is not complete, please check for missing items! " ..
       "If you can, contact the map creator and tell them about this."
       , COLORS.ERROR
     )
 
-    NET.SendGamemodeMessage(ply, "This map is not supported by SBR, the gamemode will not start.")
+    NET.SendGamemodeMessage(ply, "This map is not supported by SBR, the gamemode will not start.", COLORS.ERROR)
   end
 end

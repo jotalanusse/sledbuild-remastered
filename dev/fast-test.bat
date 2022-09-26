@@ -7,4 +7,4 @@ mkdir "D:\Software\Steam\steamapps\common\GarrysMod\garrysmod\addons\sledbuild-r
 
 xcopy "C:\Users\jotal\Documents\GitHub\sledbuild-remastered" "D:\Software\Steam\steamapps\common\GarrysMod\garrysmod\addons\sledbuild-remastered" /E
 
-"D:\Software\Steam\steamapps\common\GarrysMod\hl2.exe" +gamemode "sledbuildremastered" +map "sbr_marsopa_v1" -novid -windowed -noborder -dev -console -allowdebug -hijack -steam -insecure
+"D:\Software\Steam\steamapps\common\GarrysMod\hl2.exe" +gamemode "sledbuildremastered" +map "sbr_example" -novid -windowed -noborder -dev -console -allowdebug -hijack -steam -insecure
