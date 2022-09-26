@@ -6,7 +6,7 @@ HUD = {
     PLACEHOLDER = Color(0, 0, 0, 64), -- Placeholder color
   },
   DASHBOARD = {
-    MATERIAL = Material("gui/sledbuildremastered/sbr_hud.png")
+    MATERIAL = Material("vgui/hud/sbr_hud.png")
   }
 }
 

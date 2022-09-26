@@ -12,7 +12,7 @@ MENU = {
     },
   },
   LOGO = {
-    MATERIAL = Material("gui/sledbuildremastered/sbr_logo.png")
+    MATERIAL = Material("vgui/logos/sbr_logo.png")
   }
 }
 
