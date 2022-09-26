@@ -1,8 +1,8 @@
 RND = {
   -- Timings to be used by the gamemode
   TIMES = {
-    RACE = cvars.Number(CVRS.NAMES.RACE_TIME, 90), -- Round starting and gates are open
-    START = cvars.Number(CVRS.NAMES.START_TIME, 10), -- Actual race duration
+    RACE = cvars.Number(CVRS.NAMES.RACE_TIME, 90), -- Actual race duration
+    START = cvars.Number(CVRS.NAMES.START_TIME, 10), -- Round starting and gates are open
     WAIT = cvars.Number(CVRS.NAMES.WAIT_TIME, 5), -- Time after the race finishes before the next race
   },
 
