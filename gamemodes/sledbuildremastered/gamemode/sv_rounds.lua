@@ -22,8 +22,8 @@ function RND.Initialize()
 
   -- Only start if we pass the map check
   if (MCHK.IsComplete()) then
-    timer.Simple(10, function() RND.Starting(RND.round) end) -- Start the first round to start the cycle
-    RND.UpdateTimer(10)
+    timer.Simple(ROUND.TIMES.RACE, function() RND.Starting(RND.round) end) -- Start the first round to start the cycle
+    RND.UpdateTimer(ROUND.TIMES.RACE)
   end
 
   SetGlobalBool("SBR:RND:Initialized", true)

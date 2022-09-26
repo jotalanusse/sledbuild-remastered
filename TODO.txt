@@ -5,7 +5,6 @@ MUST:
 - Players should only be able to edit their props
 - Implement stats saving for the server -> map
 - Fix bug where vehicle is teleported before the player
-- Change the initial race delay to 90 seconds
 
 NICE:
 - Optmize the scoreboard (it's a bit laggy)
