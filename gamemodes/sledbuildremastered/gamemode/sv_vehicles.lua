@@ -21,7 +21,10 @@ VEHS = {
 
 -- Teleport: Teleport a vehicle to the specified target
 function VEHS.Teleport(vehicle, target)
-  -- TODO: Should we check here that the vehicle exists?
+  -- Just in case check that the vehicle is valid
+  if (not vehicle:IsValid()) then
+    return
+  end
 
   local originalVehiclePos = vehicle:GetPos() -- Use this so the props don't tp to an unwanted position
   local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
@@ -32,6 +35,18 @@ function VEHS.Teleport(vehicle, target)
       v:SetCollisionGroup(VEHS.COLLISIONS.DEFAULT)
       v:SetPos(target + (v:GetPos() - originalVehiclePos))
       v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+    end
+  end
+end
+
+-- SetMaterial: Apply a given material to a set of constrained props
+function VEHS.SetMaterial(entity, material)
+  local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
+
+  for _, v in pairs(constrainedEntities) do
+    local physObject = v:GetPhysicsObject()
+    if (IsValid(physObject)) then
+      physObject:SetMaterial(material)
     end
   end
 end
@@ -48,18 +63,6 @@ function VEHS.IsSled(entity)
   end
 
   return false
-end
-
--- SetMaterial: Apply a given material to a set of constrained props
-function VEHS.SetMaterial(entity, material)
-  local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
-
-  for _, v in pairs(constrainedEntities) do
-    local physObject = v:GetPhysicsObject()
-    if (IsValid(physObject)) then
-      physObject:SetMaterial(material)
-    end
-  end
 end
 
 -- HasPlayer: Checks if a set of constrained props have a player

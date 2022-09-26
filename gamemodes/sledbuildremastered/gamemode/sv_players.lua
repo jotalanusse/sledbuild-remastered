@@ -44,7 +44,10 @@ end
 
 -- Teleport: Teleport a player to the specified target
 function PLYS.Teleport(ply, target)
-  -- TODO: Should we check here if the player exists?
+  -- Just in case check that the vehicle is valid
+  if (not ply:IsValid()) then
+    return
+  end
 
   if (ply:IsPlayer()) then
     ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
