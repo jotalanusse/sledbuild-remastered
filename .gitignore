@@ -11,5 +11,8 @@
 # Built Visual Studio Code Extensions
 *.vsix
 
+# Output folder
+output/*
+
 # Gmod .gma files
 *.gma
