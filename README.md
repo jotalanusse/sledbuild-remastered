@@ -6,7 +6,7 @@
 
 Welcome to **SledBuild Remastered** or (SBR for short). This is a complete rework of the original SledBuild gamemode created by **G3X** back in 2010.
 
-If you are here because you want to play the gamemode, you can subscribe to it on the steam workshop [**here**](https://steamcommunity.com/sharedfiles/filedetails/?id=000000000).
+If you are here because you want to play the gamemode, you can subscribe to it on the steam workshop [**here**](https://steamcommunity.com/sharedfiles/filedetails/?id=2867842930).
 
 ## Discord:
 There is an official server for SBR on Discord, where I'd like to create a community for contributing and having fun. You can join it [**here**](https://discord.gg/tCVAAr3ZAU).
@@ -22,7 +22,7 @@ So this project aims to do the following key things:
 - Bring back the fun!
 
 ## Mapping:
-If you would like to create a map for SBR you can follow [**this guide**](MAPPING_GUIDE) on how to do so. 
+If you would like to create a map for SBR you can follow [**this guide**](https://github.com/jotalanusse/sledbuild-remastered/wiki/Mapping-Guide) on how to do so. 
 
 ## Server:
 For help on hosting a server for SBR I will be creating a guide on how to do so soon.
