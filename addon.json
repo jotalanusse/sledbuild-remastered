@@ -9,12 +9,12 @@
 		"dev*",
 		"media*",
 		"workshop*",
-		"gma*",
+		"output*",
 		"*.vcproj",
 		"*.md",
 		"*.svn*",
 		"*.psd",
-		"TODO.txt",
-		".gitignore"
+		".gitignore",
+		"TODO.txt"
 	]
 }
