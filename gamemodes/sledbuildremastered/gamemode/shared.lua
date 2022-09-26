@@ -17,7 +17,7 @@ COLORS = {
   WARNING = Color(230, 225, 0), -- Warning color
   ERROR = Color(230, 0, 0), -- Error color
 
-  TEXT = Color(200, 200, 200), -- TODO: Find the best color
+  TEXT = Color(200, 200, 200), -- TODO: Find the best color for the console text
 }
 
 -- Console settings

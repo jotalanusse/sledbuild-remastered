@@ -13,7 +13,7 @@ function UI.CreateLabel(parent, text)
   label:SetText(text)
   label:SetSize(parent:GetWide(), parent:GetTall())
   label:SetFont(FONTS.DEFAULT)
-  label:SetTextColor(Color(255, 255, 255, 255)) -- TODO: Change color
+  label:SetTextColor(UI.COLORS.TEXT)
   label:SetContentAlignment(5)
 
   label:Center()

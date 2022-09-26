@@ -138,7 +138,7 @@ function PLYS.InitialSpawn(ply)
   PLYS.Spawn(ply)
 
   -- Notify of a new player
-  NET.BroadcastGamemodeMessage(ply:Nick() .. " has joined the server!") -- TODO: Customize
+  NET.BroadcastGamemodeMessage(ply:Nick() .. " has joined the server!")
 
   -- Check the map and warn the player, let him know our gamemode isn't the problem
   MCHK.WarnPlayer(ply)
@@ -154,17 +154,16 @@ function PLYS.Disconnected(ply)
   end
 
   -- Notify of player leaving
-  NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.") -- TODO: Customize
+  NET.BroadcastGamemodeMessage(ply:Nick() .. " has left the server.")
 end
 
 hook.Add("PlayerDisconnected", "SBR:PLYS:Disconnected", PLYS.Disconnected)
 
 -- RestrictNoclip: Prevent the player from using noclip
 function PLYS.RestrictNoclip(ply, bool)
-  -- TODO: Enable after testing
-  -- if (ply:IsAdmin()) then
-  --   return true
-  -- end
+  if (ply:IsAdmin()) then
+    return true
+  end
 
   NET.SendGamemodeMessage(ply, "Only admins may use noclip.")
 

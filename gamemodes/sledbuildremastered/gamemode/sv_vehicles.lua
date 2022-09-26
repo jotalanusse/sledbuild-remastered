@@ -12,7 +12,7 @@ VEHS = {
     DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
   },
 
-  -- Materials used by the gamemode for the sleds -- TODO: CHECK
+  -- Materials used by the gamemode for the sleds
   MATERIALS = {
     BUILDING = "dirt",
     RACING = "gmod_ice"
@@ -103,7 +103,6 @@ end
 
 hook.Add("PlayerSpawnVehicle", "SBR:VEHS:DisableRacingSpawning", VEHS.DisableRacingSpawning)
 
--- TODO: What does this do?
 -- SetDefaultCollisions: Set the default collision for the spawned vehicle
 function VEHS.SetDefaultCollisions(ply, entity)
   entity:SetCollisionGroup(VEHS.COLLISIONS.DEFAULT)
@@ -124,10 +123,9 @@ hook.Add("PlayerLeaveVehicle", "SBR:VEHS:PlayerLeave", VEHS.PlayerLeave)
 
 -- CanExitVehicle: Called when the player tries to exit a vehicle
 function VEHS.CanExitVehicle(vehicle, ply)
-  -- TODO: Enable after testing
-  -- if (ply:IsAdmin()) then
-  --   return true
-  -- end
+  if (ply:IsAdmin()) then
+    return true
+  end
 
   if (RND.IsPlayerRacing(ply)) then
     NET.SendGamemodeMessage(ply, "You can't leave your sled while racing!")

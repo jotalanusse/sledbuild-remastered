@@ -34,10 +34,9 @@ TLS = {
 
 -- RestrictToolgun: Restrict certain tools of the toolgun
 function TLS.RestrictToolgun(ply, trace, toolName)
-  -- TODO: Enable after testing
-  -- if (ply:IsAdmin()) then
-  --   return true
-  -- end
+  if (ply:IsAdmin()) then
+    return true
+  end
 
   if (TLS.RESTRICTED[toolName]) then
     NET.SendGamemodeMessage(ply, "This tool is restricted.")
@@ -49,10 +48,7 @@ hook.Add("CanTool", "SBR:TLS:BlacklistToolgun", TLS.RestrictToolgun)
 
 -- LimitToolgun: Limit what the player can affect with their toolgun
 function TLS.LimitToolgun(ply, trace)
-  -- TODO: Enable after testing
-  -- if (ply:IsAdmin()) then
-  --   return true
-  -- end
+  -- TODO: Make admins unable to accidentally affect world entities
 
   -- Don't let player affect world entities or other players
   local entityClass = trace.Entity:GetClass()
@@ -72,11 +68,10 @@ function TLS.LimitPhysgun(ply, entity)
   end
 
   if (entity:IsPlayer()) then
-    -- TODO: Enable after testing
     -- Only admins may pick up players
-    -- if (ply:IsAdmin()) then
-    --   return true
-    -- end
+    if (ply:IsAdmin()) then
+      return true
+    end
 
     return false
   end

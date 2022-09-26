@@ -38,7 +38,7 @@ function SBRD.CreateScoreboard(parent, width, heightPercentage, heightOffsetPerc
   frame:SetPos(0, (parent:GetTall() / 100) * heightOffsetPercentage)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.BACKGROUND) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.BACKGROUND)
   end
 
   local playerList = SBRD.CreatePlayerList(frame)
@@ -68,7 +68,7 @@ function SBRD.CreateHeaderBackground(parent, height, color)
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, color) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, color)
   end
 
   return frame
@@ -82,7 +82,7 @@ function SBRD.CreateListHeader(parent, widthPercentages, height)
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
   end
 
   local headers = {
@@ -153,7 +153,7 @@ function SBRD.CreatePlayerRow(parent, widthPercentages, height, color, ply)
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, color) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, color)
   end
 
   local values = {
@@ -187,7 +187,7 @@ function SBRD.CreateRowColumn(parent, text, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
   end
 
   UI.CreateLabel(frame, text)
@@ -203,7 +203,7 @@ function SBRD.CreateColumnShaders(parent, widthPercentages, height)
   frame:SetSize(parent:GetWide(), height)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
   end
 
   local offsetPercentage = 0
@@ -225,6 +225,6 @@ function SBRD.CreateColumnShader(parent, widthPercentage, offsetPercentage)
   frame:SetPos((parent:GetWide() / 100) * offsetPercentage, 0)
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.SHADER) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.SHADER)
   end
 end

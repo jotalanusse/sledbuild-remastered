@@ -145,7 +145,6 @@ function RND.IncrementTotalRounds()
   SetGlobalInt("SBR:RND:Round", GetGlobalInt("SBR:RND:Round", 0) + 1)
 end
 
--- TODO: This function might be broken (timers might overlap!)
 -- UpdateTimer: Constantly updates the round timer
 function RND.UpdateTimer(time)
   SetGlobalInt("SBR:RND:Timer", time)
@@ -217,7 +216,7 @@ function RND.End(round)
 
   -- Stop tracking speed
   SPD.StopTracking()
-  -- TODO: Add a total races count (player stats) (I think this is handled in other places)
+
   -- Reset all racers and bring them back
   RND.ResetRacers(round)
 

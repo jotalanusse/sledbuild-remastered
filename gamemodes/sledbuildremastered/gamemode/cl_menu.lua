@@ -64,7 +64,7 @@ function MENU.CreateBaseFrame(width, heightPercentage)
   frame:MakePopup()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Base frame must be invisible
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
   end
 
   return frame
@@ -115,7 +115,7 @@ function MENU.CreateHeaderGraphics(parent, widthPercentage)
   frame:CenterVertical()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.SHADER) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.SHADER)
   end
 
   local logo = MENU.CreateLogo(frame, 128, 64)
@@ -133,7 +133,7 @@ function MENU.CreateLogo(parent, width, height)
   frame:Center()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
 
     surface.SetDrawColor(255, 255, 255, 255)
     surface.SetMaterial(MENU.LOGO.MATERIAL)
@@ -153,7 +153,7 @@ function MENU.CreateCredit(parent, height, offsetHeight)
   frame:CenterHorizontal()
 
   frame.Paint = function(self, w, h)
-    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE) -- TODO: Change color
+    draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
   end
 
   UI.CreateLabel(frame, "remake by jotalanusse")

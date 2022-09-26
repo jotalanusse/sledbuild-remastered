@@ -47,7 +47,6 @@ end
 
 hook.Add("PlayerSpawnedProp", "SBR:PRPS:Spawned", PRPS.Spawned)
 
--- TODO: What does this do?
 -- SetDefaultCollisions: Set the default collision for the spawned prop
 function PRPS.SetDefaultCollisions(ply, model, prop)
   prop:SetCollisionGroup(PRPS.COLLISIONS.DEFAULT)
@@ -57,10 +56,9 @@ hook.Add("PlayerSpawnedProp", "SBR:PRPS:SetDefaultCollisions", PRPS.SetDefaultCo
 
 -- Restrict: Restrict the spawning of certain props
 function PRPS.Restrict(ply, model)
-  -- TODO: Enable after testing
-  -- if (ply:IsAdmin()) then
-  --   return true
-  -- end
+  if (ply:IsAdmin()) then
+    return true
+  end
 
   if (PRPS.RESTRICTED[model]) then
     NET.SendGamemodeMessage(ply, "This prop is restricted.")
