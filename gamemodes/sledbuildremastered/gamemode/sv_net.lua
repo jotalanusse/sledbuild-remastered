@@ -28,7 +28,7 @@ end
 -- BroadcastRaceStartMessage: Broadcast a race start to all clients
 function NET.BroadcastRaceStartMessage(round)
   net.Start("RaceStartMessage")
-    net.WriteUInt(round, 16)
+    net.WriteUInt(round, 20) -- No one is going to play ONE MILLION rounds, right? 
   net.Broadcast()
 end
 
@@ -36,7 +36,7 @@ end
 function NET.BroadcastPlayerFinishedMessage(ply, position, time)
   net.Start("PlayerFinishedMessage")
     net.WriteEntity(ply)
-    net.WriteUInt(position, 12) -- There won't be more than 4095 players racing
+    net.WriteUInt(position, 16) -- There won't be more than 65535 players racing
     net.WriteFloat(time)
   net.Send(ply)
 end

@@ -10,7 +10,7 @@ end)
 
 -- Receives "RaceStartMessage" message
 net.Receive("RaceStartMessage", function()
-  local round = net.ReadUInt(16)
+  local round = net.ReadUInt(20)
 
   chat.AddText(
     COLORS.MAIN,
@@ -27,7 +27,7 @@ end)
 -- Receives "PlayerFinishedMessage"
 net.Receive("PlayerFinishedMessage", function()
   local ply = net.ReadEntity()
-  local position = net.ReadUInt(12)
+  local position = net.ReadUInt(16)
   local time = net.ReadFloat()
 
   if (ply:SteamID() == LocalPlayer():SteamID()) then

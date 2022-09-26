@@ -4,7 +4,6 @@ MUST:
 - Players should only be able to edit their props
 - Implement stats saving for the server -> map
 - Fix bug where vehicle is teleported before the player
-- Explain how to change cvars from the map in the mapping guide
 - Add a visual indicator for the finish line in the sbr_example map
 - Add the original no-collide tool
 
