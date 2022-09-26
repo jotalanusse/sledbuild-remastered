@@ -19,6 +19,7 @@ NICE:
 - Order the scoreboard to show the best players on top
 - Separate builders from racers in the scoreboard/HUD
 - Add a visual team indicator (HUD)
+- Remove materials fom the addon once they can be added into the map
 
 BONUS:
 - Re-design the HUD
