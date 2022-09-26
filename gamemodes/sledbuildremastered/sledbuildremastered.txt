@@ -5,26 +5,35 @@
 	"maps"		"^sbr_"
 	"category"	"other"
 	"menusystem"	"1"
-	"workshopid"	"000000000"
+	"workshopid"	"2867842930"
 
 	"settings"
 	{
 		1
 		{
-			"name"		"sbr_waittime"
-			"text"		"Wait Time"
-			"help"		"How many seconds to wait between each race"
+			"name"		"sbr_race_time"
+			"text"		"Race Time"
+			"help"		"Duration of each race"
 			"type"		"Numeric"
 			"default"	"90"
 		}
 
 		2
 		{
-			"name"		"sbr_sandbox"
-			"text"		"Sandbox"
-			"help"		"Sanbox mode disables races and allows players to constantly use the track"
-			"type"		"CheckBox "
-			"default"	"false"
+			"name"		"sbr_start_time"
+			"text"		"Start Time"
+			"help"		"How many seconds the gates are open when a race starts"
+			"type"		"Numeric"
+			"default"	"10"
+		}
+
+		3
+		{
+			"name"		"sbr_wait_time"
+			"text"		"Wait Time"
+			"help"		"How many seconds to wait before a new race starts"
+			"type"		"Numeric"
+			"default"	"5"
 		}
 	}
 }

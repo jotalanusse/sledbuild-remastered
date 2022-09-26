@@ -25,10 +25,14 @@ include("sv_rounds.lua")
 
 -- Send LUA files to client
 AddCSLuaFile("shared.lua")
+AddCSLuaFile("sh_format.lua")
 
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("cl_net.lua")
+
 AddCSLuaFile("cl_ui.lua")
+AddCSLuaFile("cl_helpers.lua")
+AddCSLuaFile("cl_fonts.lua")
 AddCSLuaFile("cl_hud.lua")
 AddCSLuaFile("cl_menu.lua")
 AddCSLuaFile("cl_scoreboard.lua")
