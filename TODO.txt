@@ -7,6 +7,7 @@ MUST:
 - Fix bug where vehicle is teleported before the player
 - Explain how to change cvars from the map in the mapping guide
 - Add a visual indicator for the finish line in the sbr_example map
+- Add the original no-collide tool
 
 NICE:
 - Optmize the scoreboard (it's a bit laggy)
