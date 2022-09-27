@@ -2,42 +2,42 @@
 include("shared.lua")
 
 -- Network
-include("sv_net.lua")
+include("server/sv_net.lua")
 
 -- Formatting
-include("sh_format.lua")
+include("shared/sh_format.lua")
 
 -- Map
-include("sv_zones.lua")
-include("sv_map.lua")
-include("sv_map_check.lua")
+include("server/sv_zones.lua")
+include("server/sv_map.lua")
+include("server/sv_map_check.lua")
 
 -- general modules
-include("sv_cvars.lua")
-include("sv_players.lua")
-include("sv_props.lua")
-include("sv_vehicles.lua")
-include("sv_tools.lua")
-include("sv_effects.lua")
-include("sv_npcs.lua")
-include("sv_ragdolls.lua")
-include("sv_sweps.lua")
+include("server/sv_cvars.lua")
+include("server/sv_players.lua")
+include("server/sv_props.lua")
+include("server/sv_vehicles.lua")
+include("server/sv_tools.lua")
+include("server/sv_effects.lua")
+include("server/sv_npcs.lua")
+include("server/sv_ragdolls.lua")
+include("server/sv_sweps.lua")
 
-include("sv_speed_tracker.lua")
+include("server/sv_speed_tracker.lua")
 
 -- Round control
-include("sv_rounds.lua")
+include("server/sv_rounds.lua")
 
 -- Send LUA files to client
 AddCSLuaFile("shared.lua")
-AddCSLuaFile("sh_format.lua")
+AddCSLuaFile("shared/sh_format.lua")
 
-AddCSLuaFile("cl_init.lua")
-AddCSLuaFile("cl_net.lua")
+AddCSLuaFile("client/cl_init.lua")
+AddCSLuaFile("client/cl_net.lua")
 
-AddCSLuaFile("cl_ui.lua")
-AddCSLuaFile("cl_helpers.lua")
-AddCSLuaFile("cl_fonts.lua")
-AddCSLuaFile("cl_hud.lua")
-AddCSLuaFile("cl_menu.lua")
-AddCSLuaFile("cl_scoreboard.lua")
+AddCSLuaFile("client/cl_ui.lua")
+AddCSLuaFile("client/cl_helpers.lua")
+AddCSLuaFile("client/cl_fonts.lua")
+AddCSLuaFile("client/cl_hud.lua")
+AddCSLuaFile("client/cl_menu.lua")
+AddCSLuaFile("client/cl_scoreboard.lua")

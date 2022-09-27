@@ -8,27 +8,6 @@ SBRD = {
   ROW_OPACITY = 150,
 }
 
-TEST = {
-  PLAYERS = {
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-    LocalPlayer(),
-  }
-}
-
 -- CreateScoreboard: Create the scoreboard
 function SBRD.CreateScoreboard(parent, width, heightPercentage, heightOffsetPercentage)
   local frame = vgui.Create("DFrame", parent)
