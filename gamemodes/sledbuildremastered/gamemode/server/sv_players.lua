@@ -27,6 +27,7 @@ PLYS = {
       "gmod_camera",
       "weapon_crowbar",
       "weapon_357",
+      "weapon_bugbait",
     },
   }
 }
@@ -59,9 +60,8 @@ end
 
 -- StripLoadout: Remove the player's loadout completely
 function PLYS.StripLoadout(ply)
-  -- TODO: Why is this not working?
-  ply:StripWeapons()
   ply:StripAmmo()
+  ply:StripWeapons()
 end
 
 -- SetLoadout: Set the loadout for the player
@@ -102,20 +102,23 @@ end
 
 -- Spawn: Called every time a player spawns
 function PLYS.Spawn(ply)
-  -- Admins get the juicy stuff :)
-  if (ply:IsAdmin()) then
-    PLYS.SetLoadout(ply, PLYS.LOADOUTS.ADMIN)
-  else
-    PLYS.SetLoadout(ply, PLYS.LOADOUTS.DEFAULT)
-  end
-
   -- Set the default player collision
   PLYS.SetDefaultCollision(ply)
 
   -- Set the player's team
   PLYS.SetTeam(ply, TEAMS.BUILDING)
 
-  ply:SelectWeapon("weapon_physgun")
+  -- TODO: I don't know why, this only works if it's done after the spawn event
+  timer.Simple(0.01, function()
+    -- Admins get the juicy stuff :)
+    if (ply:IsAdmin()) then
+      PLYS.SetLoadout(ply, PLYS.LOADOUTS.ADMIN)
+    else
+      PLYS.SetLoadout(ply, PLYS.LOADOUTS.DEFAULT)
+    end
+
+    ply:SelectWeapon("weapon_physgun")
+  end)
 end
 
 hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)

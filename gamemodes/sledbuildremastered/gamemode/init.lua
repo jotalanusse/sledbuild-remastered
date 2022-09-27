@@ -32,7 +32,7 @@ include("server/sv_rounds.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("shared/sh_format.lua")
 
-AddCSLuaFile("client/cl_init.lua")
+AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("client/cl_net.lua")
 
 AddCSLuaFile("client/cl_ui.lua")

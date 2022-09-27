@@ -10,6 +10,10 @@ function ZN.END.VEHS.StartTouch(vehicle)
 
     -- Let the player know that their sled was teleported
     local ply = VEHS.GetCreator(vehicle)
-    NET.SendGamemodeMessage(ply, "Your sled has been retrieved!")
+
+    -- Player might have disconnected
+    if (IsValid(ply)) then
+      NET.SendGamemodeMessage(ply, "Your sled has been retrieved!")
+    end
   end
 end
