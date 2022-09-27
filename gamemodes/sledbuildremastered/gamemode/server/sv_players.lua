@@ -74,17 +74,14 @@ function PLYS.Spawn(ply)
   -- Set the player's team
   PLYS.SetTeam(ply, TEAMS.BUILDING)
 
-  -- TODO: I don't know why, this only works if it's done after the spawn event
-  timer.Simple(0.01, function()
-    -- Admins get the juicy stuff :)
-    if (ply:IsAdmin()) then
-      WPNS.SetLoadout(ply, WPNS.LOADOUTS.ADMIN)
-    else
-      WPNS.SetLoadout(ply, WPNS.LOADOUTS.DEFAULT)
-    end
+  -- Admins get the juicy stuff :)
+  if (ply:IsAdmin()) then
+    WPNS.SetLoadout(ply, WPNS.LOADOUTS.ADMIN)
+  else
+    WPNS.SetLoadout(ply, WPNS.LOADOUTS.DEFAULT)
+  end
 
-    ply:SelectWeapon("weapon_physgun")
-  end)
+  ply:SelectWeapon("weapon_physgun")
 end
 
 hook.Add("PlayerSpawn", "SBR:PLYS:Spawn", PLYS.Spawn)
