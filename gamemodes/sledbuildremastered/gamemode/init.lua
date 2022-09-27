@@ -14,7 +14,6 @@ include("server/sv_map_check.lua")
 
 -- general modules
 include("server/sv_cvars.lua")
-include("server/sv_players.lua")
 include("server/sv_props.lua")
 include("server/sv_vehicles.lua")
 include("server/sv_tools.lua")
@@ -22,6 +21,8 @@ include("server/sv_effects.lua")
 include("server/sv_npcs.lua")
 include("server/sv_ragdolls.lua")
 include("server/sv_sweps.lua")
+include("server/sv_weapons.lua")
+include("server/sv_players.lua")
 
 include("server/sv_speed_tracker.lua")
 

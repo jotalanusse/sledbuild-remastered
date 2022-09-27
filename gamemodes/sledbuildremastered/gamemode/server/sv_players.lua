@@ -11,25 +11,6 @@ PLYS = {
     THIRD = Color(255, 0, 0),
     DEFAULT = Color(255, 255, 255)
   },
-
-  -- Loadouts a player can spawn with
-  LOADOUTS = {
-    DEFAULT = {
-      "gmod_tool",
-      "weapon_physgun",
-      "weapon_physcannon",
-      "gmod_camera",
-    },
-    ADMIN = {
-      "gmod_tool",
-      "weapon_physgun",
-      "weapon_physcannon",
-      "gmod_camera",
-      "weapon_crowbar",
-      "weapon_357",
-      "weapon_bugbait",
-    },
-  }
 }
 
 -- AddNetworkVariables: Adds the required network variables to the player
@@ -55,21 +36,6 @@ function PLYS.Teleport(ply, target)
     ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
     ply:SetPos(target)
     ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-  end
-end
-
--- StripLoadout: Remove the player's loadout completely
-function PLYS.StripLoadout(ply)
-  ply:StripAmmo()
-  ply:StripWeapons()
-end
-
--- SetLoadout: Set the loadout for the player
-function PLYS.SetLoadout(ply, loadout)
-  PLYS.StripLoadout(ply)
-
-  for _, v in pairs(loadout) do
-    ply:Give(v)
   end
 end
 
@@ -112,9 +78,9 @@ function PLYS.Spawn(ply)
   timer.Simple(0.01, function()
     -- Admins get the juicy stuff :)
     if (ply:IsAdmin()) then
-      PLYS.SetLoadout(ply, PLYS.LOADOUTS.ADMIN)
+      WPNS.SetLoadout(ply, WPNS.LOADOUTS.ADMIN)
     else
-      PLYS.SetLoadout(ply, PLYS.LOADOUTS.DEFAULT)
+      WPNS.SetLoadout(ply, WPNS.LOADOUTS.DEFAULT)
     end
 
     ply:SelectWeapon("weapon_physgun")
