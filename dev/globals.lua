@@ -1,4 +1,5 @@
--- THis file just defines all the possible globals so my dumb LUA helper doesn't complain about them
+---@diagnostic disable: lowercase-global
+-- This file just defines all the possible globals so my dumb LUA helper doesn't complain about them
 
 achievements = achievements
 ai = ai
