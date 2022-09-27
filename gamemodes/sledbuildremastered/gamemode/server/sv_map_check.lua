@@ -81,21 +81,6 @@ function MCHK.WarnPlayer(ply)
       NET.SendGamemodeMessage(ply, "ERROR: No pushers found!", COLORS.ERROR)
     end
 
-    -- local totalSpawns1 = MAP.CountByName(MAP.ENTITIES.NAMES.SPAWN_1)
-    -- if (totalSpawns1 == 0) then
-    --   NET.SendGamemodeMessage(ply, "ERROR: No specific spawn 1 found!", COLORS.ERROR)
-    -- end
-
-    -- local totalSpawns2 = MAP.CountByName(MAP.ENTITIES.NAMES.SPAWN_2)
-    -- if (totalSpawns2 == 0) then
-    --   NET.SendGamemodeMessage(ply, "ERROR: No specific spawn 2 found!", COLORS.ERROR)
-    -- end
-
-    -- local totalSpawns3 = MAP.CountByName(MAP.ENTITIES.NAMES.SPAWN_3)
-    -- if (totalSpawns3 == 0) then
-    --   NET.SendGamemodeMessage(ply, "ERROR: No specific spawn 3 found!", COLORS.ERROR)
-    -- end
-
     local totalSpawns = MAP.CountByName(MAP.ENTITIES.NAMES.SPAWN)
     if (totalSpawns == 0) then
       NET.SendGamemodeMessage(ply, "ERROR: No additional spawns found!", COLORS.ERROR)

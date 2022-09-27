@@ -1,5 +1,4 @@
 MUST:
-- Restrict the spawning of weapons
 - Restrict players from undoing their sled while racing
 - Implement stats saving for the server -> map
 - Fix bug where a vehicle is teleported before the player

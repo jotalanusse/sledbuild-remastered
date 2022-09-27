@@ -14,6 +14,7 @@ include("server/sv_map_check.lua")
 
 -- general modules
 include("server/sv_cvars.lua")
+include("server/sv_commands.lua")
 include("server/sv_props.lua")
 include("server/sv_vehicles.lua")
 include("server/sv_tools.lua")

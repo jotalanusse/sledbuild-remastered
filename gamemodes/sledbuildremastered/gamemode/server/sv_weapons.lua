@@ -20,14 +20,14 @@ WPNS = {
 }
 
 -- StripLoadout: Remove the player's loadout completely
--- function WPNS.StripLoadout(ply)
---   ply:StripAmmo()
---   ply:StripWeapons()
--- end
+function WPNS.StripLoadout(ply)
+  ply:StripAmmo()
+  ply:StripWeapons()
+end
 
 -- SetLoadout: Set the loadout for the player
 function WPNS.SetLoadout(ply, loadout)
-  -- WPNS.StripLoadout(ply)
+  WPNS.StripLoadout(ply)
 
   for k, _ in pairs(loadout) do
     ply:Give(k)
@@ -42,10 +42,15 @@ function WPNS.Restrict(ply, weapon)
 
   local weponsClass = weapon:GetClass()
   if (not WPNS.LOADOUTS.DEFAULT[weponsClass]) then
-    -- TODO: We show no message because the default loadout contains multiple weapons
+    NET.SendGamemodeMessage(ply, "You cannot pick up this weapon!")
 
     return false
   end
 end
 
 hook.Add("PlayerCanPickupWeapon", "SBR:WPNS:Restrict", WPNS.Restrict)
+
+-- PlayerLoadout: prevent the player from spawning with their default loadout
+function GM:PlayerLoadout(ply)
+  return true
+end

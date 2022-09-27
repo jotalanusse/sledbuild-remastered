@@ -40,6 +40,7 @@ function TLS.RestrictToolgun(ply, trace, toolName)
 
   if (TLS.RESTRICTED[toolName]) then
     NET.SendGamemodeMessage(ply, "This tool is restricted.")
+
     return false
   end
 end
@@ -54,6 +55,7 @@ function TLS.LimitToolgun(ply, trace)
   local entityClass = trace.Entity:GetClass()
   if (entityClass == "func_brush" or entityClass == "player") then
     NET.SendGamemodeMessage(ply, "This entity cannot be toolgunned.")
+
     return false
   end
 end

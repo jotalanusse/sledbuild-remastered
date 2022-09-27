@@ -119,6 +119,12 @@ hook.Add("PlayerInitialSpawn", "SBR:PLYS:InitialSpawn", PLYS.InitialSpawn)
 function PLYS.Disconnected(ply)
   -- Remove the player from the race on disconnect
   if (RND.IsPlayerRacing(ply)) then
+    -- Update the player stats
+    ply:SetNWInt("SBR:Rounds", ply:GetNWInt("SBR:Rounds") + 1)
+    ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
+
+    -- TODO: Save player stats
+
     RND.RemovePlayer(ply)
   end
 

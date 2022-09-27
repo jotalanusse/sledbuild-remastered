@@ -7,6 +7,7 @@ function SWPS.DisableSpawning(ply)
   end
 
   NET.SendGamemodeMessage(ply, "SWEPs cannot be spawned.")
+
   return false
 end
 

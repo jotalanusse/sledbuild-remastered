@@ -111,6 +111,7 @@ function VEHS.Restrict(ply, model, name, table)
   end
 
   NET.SendGamemodeMessage(ply, "Only a Pod or an Airboat Seat can be used.")
+
   return false
 end
 
@@ -120,6 +121,7 @@ hook.Add("PlayerSpawnVehicle", "SBR:VEHS:LimitType", VEHS.Restrict)
 function VEHS.DisableRacingSpawning(ply, model, name, table)
   if (ply:Team() == TEAMS.RACING) then
     NET.SendGamemodeMessage(ply, "Vehicles cannot be spawned while being a racer.")
+
     return false
   end
 
@@ -154,6 +156,7 @@ function VEHS.CanExitVehicle(vehicle, ply)
 
   if (RND.IsPlayerRacing(ply)) then
     NET.SendGamemodeMessage(ply, "You can't leave your sled while racing!")
+
     return false
   end
 end

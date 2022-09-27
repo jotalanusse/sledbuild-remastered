@@ -63,9 +63,12 @@ end
 function RND.DisqualifyPlayer(ply, round)
   -- Check if player is even racing
   if (RND.IsPlayerRacing(ply)) then
+    NET.SendGamemodeMessage(ply, "You have been disqualified from the race!")
+
     round.racers[ply:SteamID()].disqualified = true
 
     -- Update the player stats
+    ply:SetNWInt("SBR:Rounds", ply:GetNWInt("SBR:Rounds") + 1)
     ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
   end
 end
@@ -119,6 +122,7 @@ function RND.ResetRacers(round)
     if (RND.IsPlayerRacing(ply)) then
       if (not v.finished) then
         NET.SendGamemodeMessage(ply, "You didn't finish the race, better luck next time.")
+
         RND.RemovePlayer(ply, round)
 
         -- Update the player stats
@@ -137,9 +141,9 @@ function RND.ResetRacers(round)
           VEHS.Teleport(ply:GetVehicle(), spawn:GetPos())
 
         else
-          -- This code should be unreachable, players shouldn't be able to get off
           NET.SendGamemodeMessage(ply, "You can't get off your sled while racing! You shouldn't be alive.",
             COLORS.WARNING)
+
           ply:Kill()
         end
       end
@@ -176,7 +180,6 @@ function RND.Starting(round)
     if (v:InVehicle()) then
       NET.SendGamemodeMessage(v, "Here we go!")
 
-      -- Add player to the round
       RND.AddPlayer(v, round)
 
       -- Make their sled slide
