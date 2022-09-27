@@ -11,24 +11,6 @@ PLYS = {
     THIRD = Color(255, 0, 0),
     DEFAULT = Color(255, 255, 255)
   },
-
-  -- Loadouts a player can spawn with
-  LOADOUTS = {
-    DEFAULT = {
-      "gmod_tool",
-      "weapon_physgun",
-      "weapon_physcannon",
-      "gmod_camera",
-    },
-    ADMIN = {
-      "gmod_tool",
-      "weapon_physgun",
-      "weapon_physcannon",
-      "gmod_camera",
-      "weapon_crowbar",
-      "weapon_357",
-    },
-  }
 }
 
 -- AddNetworkVariables: Adds the required network variables to the player
@@ -54,22 +36,6 @@ function PLYS.Teleport(ply, target)
     ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
     ply:SetPos(target)
     ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
-  end
-end
-
--- StripLoadout: Remove the player's loadout completely
-function PLYS.StripLoadout(ply)
-  -- TODO: Why is this not working?
-  ply:StripWeapons()
-  ply:StripAmmo()
-end
-
--- SetLoadout: Set the loadout for the player
-function PLYS.SetLoadout(ply, loadout)
-  PLYS.StripLoadout(ply)
-
-  for _, v in pairs(loadout) do
-    ply:Give(v)
   end
 end
 
@@ -102,18 +68,18 @@ end
 
 -- Spawn: Called every time a player spawns
 function PLYS.Spawn(ply)
-  -- Admins get the juicy stuff :)
-  if (ply:IsAdmin()) then
-    PLYS.SetLoadout(ply, PLYS.LOADOUTS.ADMIN)
-  else
-    PLYS.SetLoadout(ply, PLYS.LOADOUTS.DEFAULT)
-  end
-
   -- Set the default player collision
   PLYS.SetDefaultCollision(ply)
 
   -- Set the player's team
   PLYS.SetTeam(ply, TEAMS.BUILDING)
+
+  -- Admins get the juicy stuff :)
+  if (ply:IsAdmin()) then
+    WPNS.SetLoadout(ply, WPNS.LOADOUTS.ADMIN)
+  else
+    WPNS.SetLoadout(ply, WPNS.LOADOUTS.DEFAULT)
+  end
 
   ply:SelectWeapon("weapon_physgun")
 end
@@ -153,6 +119,12 @@ hook.Add("PlayerInitialSpawn", "SBR:PLYS:InitialSpawn", PLYS.InitialSpawn)
 function PLYS.Disconnected(ply)
   -- Remove the player from the race on disconnect
   if (RND.IsPlayerRacing(ply)) then
+    -- Update the player stats
+    ply:SetNWInt("SBR:Rounds", ply:GetNWInt("SBR:Rounds") + 1)
+    ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
+
+    -- TODO: Save player stats
+
     RND.RemovePlayer(ply)
   end
 

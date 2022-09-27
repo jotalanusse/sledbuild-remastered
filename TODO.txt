@@ -1,10 +1,7 @@
 MUST:
-- Restrict the spawning of weapons
 - Restrict players from undoing their sled while racing
-- Players should only be able to edit their props
 - Implement stats saving for the server -> map
-- Fix bug where vehicle is teleported before the player
-- Add a visual indicator for the finish line in the sbr_example map
+- Fix bug where a vehicle is teleported before the player
 - Add the original no-collide tool
 
 NICE:
@@ -12,16 +9,15 @@ NICE:
 - Add auto map change
 - Avoid players boosting with the physgun
 - Reset server if more than 6 hours of uptime
-- Make restrictions don't apply to admins (done, kinda)
 - Align scoreboard name left
 - Add screen pop-ups when the podium player finish the race
-- Send a message when a sled is retrieved
 - Order the scoreboard to show the best players on top
 - Separate builders from racers in the scoreboard/HUD
 - Add a visual team indicator (HUD)
 - Remove materials fom the addon once they can be added into the map
 
 BONUS:
+- Custom prop protection (maybe)
 - Re-design the HUD
 - Add estimate for map change
 - Add a top left scoreboard of the last round

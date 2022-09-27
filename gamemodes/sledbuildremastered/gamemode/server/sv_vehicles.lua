@@ -82,6 +82,28 @@ function VEHS.HasPlayer(entity)
   return false
 end
 
+-- GetCreator: Get the owner of a set of constrained props
+function VEHS.GetCreator(entity)
+  local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
+
+  for _, v in pairs(constrainedEntities) do
+    if (v:GetClass() == VEHS.DEFAULT_SEAT_CLASS) then
+      local creator = v:GetCreator()
+
+      if (creator:IsPlayer()) then
+        return creator
+      end
+    end
+  end
+end
+
+-- SetDefaultCreator: Sets the creator of a vehicle to the player that spawned it
+function VEHS.SetDefaultCreator(ply, vehicle)
+  vehicle:SetCreator(ply)
+end
+
+hook.Add("PlayerSpawnedVehicle", "SBR:VEHS:SetDefaultCreator", VEHS.SetDefaultCreator)
+
 -- Restrict: Restrict the kind of vehicles that can be used
 function VEHS.Restrict(ply, model, name, table)
   if (VEHS.ALLOWED[model]) then
@@ -89,6 +111,7 @@ function VEHS.Restrict(ply, model, name, table)
   end
 
   NET.SendGamemodeMessage(ply, "Only a Pod or an Airboat Seat can be used.")
+
   return false
 end
 
@@ -98,6 +121,7 @@ hook.Add("PlayerSpawnVehicle", "SBR:VEHS:LimitType", VEHS.Restrict)
 function VEHS.DisableRacingSpawning(ply, model, name, table)
   if (ply:Team() == TEAMS.RACING) then
     NET.SendGamemodeMessage(ply, "Vehicles cannot be spawned while being a racer.")
+
     return false
   end
 
@@ -132,6 +156,7 @@ function VEHS.CanExitVehicle(vehicle, ply)
 
   if (RND.IsPlayerRacing(ply)) then
     NET.SendGamemodeMessage(ply, "You can't leave your sled while racing!")
+
     return false
   end
 end

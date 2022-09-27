@@ -7,6 +7,7 @@ function EFTS.DisableSpawning(ply)
   end
 
   NET.SendGamemodeMessage(ply, "Effects cannot be spawned.")
+
   return false
 end
 

@@ -7,6 +7,7 @@ function NPCS.DisableSpawning(ply)
   end
 
   NET.SendGamemodeMessage(ply, "NPCs cannot be spawned.")
+
   return false
 end
 

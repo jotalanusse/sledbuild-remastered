@@ -14,7 +14,7 @@ include("server/sv_map_check.lua")
 
 -- general modules
 include("server/sv_cvars.lua")
-include("server/sv_players.lua")
+include("server/sv_commands.lua")
 include("server/sv_props.lua")
 include("server/sv_vehicles.lua")
 include("server/sv_tools.lua")
@@ -22,6 +22,8 @@ include("server/sv_effects.lua")
 include("server/sv_npcs.lua")
 include("server/sv_ragdolls.lua")
 include("server/sv_sweps.lua")
+include("server/sv_weapons.lua")
+include("server/sv_players.lua")
 
 include("server/sv_speed_tracker.lua")
 
@@ -32,7 +34,7 @@ include("server/sv_rounds.lua")
 AddCSLuaFile("shared.lua")
 AddCSLuaFile("shared/sh_format.lua")
 
-AddCSLuaFile("client/cl_init.lua")
+AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("client/cl_net.lua")
 
 AddCSLuaFile("client/cl_ui.lua")

@@ -6,16 +6,19 @@ function ZN.STRT.PLYS.StartTouch(ply)
       if (not ply:InVehicle()) then
         NET.SendGamemodeMessage(ply, "You can't re-enter the start zone without a vehicle while the race is starting!",
           COLORS.WARNING)
+
         ply:Kill()
       end
     else
       NET.SendGamemodeMessage(ply, "You can't step in the start zone while the race is starting!", COLORS.WARNING)
+
       ply:Kill()
     end
   else
     -- If the player is in the start zone we consider them a racer
     if (ply:Team() == TEAMS.BUILDING) then
       NET.SendGamemodeMessage(ply, "You are now a racer!") -- TODO: Replace for a UI element
+
       PLYS.SetTeam(ply, TEAMS.RACING)
     end
   end
@@ -28,14 +31,15 @@ function ZN.STRT.PLYS.EndTouch(ply)
     if (ply:Team() == TEAMS.RACING and not ply:InVehicle()) then
       NET.SendGamemodeMessage(ply, "You can't leave the start zone without a vehicle while the race is starting!",
         COLORS.WARNING)
-        
+
       RND.RemovePlayer(ply, RND.round)
       ply:Kill()
     end
   else
     -- The player stayed in the start zone during the race start
     if (RND.IsPlayerRacing(ply)) then
-      NET.SendGamemodeMessage(ply, "You didn't leave the start zone during the race start, you were removed from the race.")
+      NET.SendGamemodeMessage(ply,
+        "You didn't leave the start zone during the race start, you were removed from the race.")
 
       RND.RemovePlayer(ply, RND.round)
     end

@@ -56,7 +56,6 @@ function ZN.END.PLYS.StartTouch(ply)
               if (not ply:InVehicle()) then
                 NET.SendGamemodeMessage(ply, "Remember to stay in your sled!")
 
-                -- Teleport the player back to spawn
                 PLYS.Teleport(ply, spawn:GetPos())
               end
             else
@@ -67,7 +66,6 @@ function ZN.END.PLYS.StartTouch(ply)
           end
         end)
       else
-        -- This code should be unreachable, players shouldn't be able to get off
         NET.SendGamemodeMessage(ply, "You can't finish a race without a sled! You shouldn't be alive.",
           COLORS.WARNING)
 
@@ -79,8 +77,9 @@ function ZN.END.PLYS.StartTouch(ply)
     end
   else
     -- This code should be unreachable
-    NET.SendGamemodeMessage(ply, "How are you at the finish line, we are not even racing? You shouldn't be alive.",
+    NET.SendGamemodeMessage(ply, "How are you at the finish line? We are not even racing, you shouldn't be alive.",
       COLORS.WARNING)
+
     ply:Kill()
   end
 end

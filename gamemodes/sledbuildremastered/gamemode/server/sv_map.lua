@@ -70,7 +70,6 @@ function MAP.SelectSpecificSpawn(name)
 
 	if (#spawns == 0) then
 		-- The mapper didn't add specific spawns, so we'll just use the default spawns
-
 		return MAP.SelectRandomSpawn()
 	end
 
