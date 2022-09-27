@@ -82,6 +82,28 @@ function VEHS.HasPlayer(entity)
   return false
 end
 
+-- GetCreator: Get the owner of a set of constrained props
+function VEHS.GetCreator(entity)
+  local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
+
+  for _, v in pairs(constrainedEntities) do
+    if (v:GetClass() == VEHS.DEFAULT_SEAT_CLASS) then
+      local creator = v:GetCreator()
+
+      if (creator:IsPlayer()) then
+        return creator
+      end
+    end
+  end
+end
+
+-- SetDefaultCreator: Sets the creator of a vehicle to the player that spawned it
+function VEHS.SetDefaultCreator(ply, vehicle)
+  vehicle:SetCreator(ply)
+end
+
+hook.Add("PlayerSpawnedVehicle", "SBR:VEHS:SetDefaultCreator", VEHS.SetDefaultCreator)
+
 -- Restrict: Restrict the kind of vehicles that can be used
 function VEHS.Restrict(ply, model, name, table)
   if (VEHS.ALLOWED[model]) then
