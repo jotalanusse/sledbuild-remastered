@@ -77,13 +77,13 @@ function MCHK.WarnPlayer(ply)
     end
 
     local totalPushers = MAP.CountByName(MAP.ENTITIES.NAMES.PUSHER)
-    if (totalGates == 0) then
+    if (totalPushers == 0) then
       NET.SendGamemodeMessage(ply, "ERROR: No pushers found!", COLORS.ERROR)
     end
 
     local totalSpawns = MAP.CountByName(MAP.ENTITIES.NAMES.SPAWN)
     if (totalSpawns == 0) then
-      NET.SendGamemodeMessage(ply, "ERROR: No additional spawns found!", COLORS.ERROR)
+      NET.SendGamemodeMessage(ply, "ERROR: No spawns found!", COLORS.ERROR)
     end
 
     NET.SendGamemodeMessage(ply,

@@ -3,6 +3,10 @@ MUST:
 - Implement stats saving for the server -> map
 - Fix bug where a vehicle is teleported before the player
 - Add the original no-collide tool
+- Add to the mapping guide that pusher should start disabled
+- Wake ip sleds on round start (physics)
+- Make the game mode configure the map items
+- Make props icy when they enter a start zone
 
 NICE:
 - Optmize the scoreboard (it's a bit laggy)
@@ -17,6 +21,7 @@ NICE:
 - Remove materials fom the addon once they can be added into the map
 
 BONUS:
+- Find a solution to that crappy JitterEntity functionality
 - Custom prop protection (maybe)
 - Re-design the HUD
 - Add estimate for map change
