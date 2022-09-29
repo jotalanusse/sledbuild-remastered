@@ -6,6 +6,8 @@ MUST:
 - Add to the mapping guide that pusher should start disabled
 - Make the game mode configure the map items (flags)
 - Make props icy when they enter a start zone
+- Stop rotations when teleporting a vehicle
+- Add a new function to stop all movement on a vehicle
 
 NICE:
 - Optmize the scoreboard (it's a bit laggy)
@@ -26,7 +28,7 @@ BONUS:
 - Re-design the HUD
 - Add estimate for map change
 - Add a top left scoreboard of the last round
-- Add gamemode commands
+- Improve the gamemode commands
 - Add scoring system
 - Add translations
 - Timer should display an error when the map is not supported
