@@ -8,6 +8,8 @@ MUST:
 - Make props icy when they enter a start zone
 - Stop rotations when teleporting a vehicle
 - Add a new function to stop all movement on a vehicle
+- Broadcast a message when a player breaks the map time record
+- Let the player know their broke their personal record
 
 NICE:
 - Optmize the scoreboard (it's a bit laggy)

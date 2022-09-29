@@ -1,9 +1,11 @@
 {
-	"title"		:	"SledBuild Remastered",
-	"type"		:	"gamemode",
-	"tags"		:	[ "fun", "build" ],
-	"ignore"	:
-	[
+	"title": "SledBuild Remastered",
+	"type": "gamemode",
+	"tags": [
+		"fun",
+		"build"
+	],
+	"ignore": [
 		".git*",
 		".vscode*",
 		"dev*",
