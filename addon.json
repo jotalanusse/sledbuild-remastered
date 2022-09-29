@@ -10,7 +10,6 @@
 		".vscode*",
 		"dev*",
 		"media*",
-		"workshop*",
 		"output*",
 		"*.vcproj",
 		"*.md",
