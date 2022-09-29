@@ -14,6 +14,9 @@ MAP = {
 	}
 }
 
+-- Configure: Configure all our custom items (flags mostly)
+function MAP.Configure() end
+
 -- TODO: Find a solution to this
 -- JitterEntity: Jitter an entity so it's physics object is updated
 function MAP.JitterEntity(entity)

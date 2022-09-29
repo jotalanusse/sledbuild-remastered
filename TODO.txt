@@ -4,8 +4,7 @@ MUST:
 - Fix bug where a vehicle is teleported before the player
 - Add the original no-collide tool
 - Add to the mapping guide that pusher should start disabled
-- Wake ip sleds on round start (physics)
-- Make the game mode configure the map items
+- Make the game mode configure the map items (flags)
 - Make props icy when they enter a start zone
 
 NICE:
@@ -21,6 +20,7 @@ NICE:
 - Remove materials fom the addon once they can be added into the map
 
 BONUS:
+- Make the game mode configure the map items (flags)
 - Find a solution to that crappy JitterEntity functionality
 - Custom prop protection (maybe)
 - Re-design the HUD
