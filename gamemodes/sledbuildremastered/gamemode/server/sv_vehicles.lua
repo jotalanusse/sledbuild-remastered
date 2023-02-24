@@ -31,10 +31,28 @@ function VEHS.Teleport(vehicle, target)
 
   for _, v in pairs(constrainedEntities) do
     if (v and v:IsValid()) then
-      v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
       v:SetCollisionGroup(VEHS.COLLISIONS.DEFAULT)
       v:SetPos(target + (v:GetPos() - originalVehiclePos))
-      v:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+    end
+  end
+
+  VEHS.Stop(vehicle)
+end
+
+-- Stop: Stops a vehicle (removes all inertia)
+function VEHS.Stop(vehicle)
+  -- Just in case check that the vehicle is valid
+  if (not vehicle:IsValid()) then
+    return
+  end
+
+  local constrainedEntities = constraint.GetAllConstrainedEntities(vehicle)
+
+  for _, v in pairs(constrainedEntities) do
+    if (v and v:IsValid()) then
+      local physObject = v:GetPhysicsObject()
+      physObject:SetVelocityInstantaneous(Vector(0, 0, 0))
+      physObject:SetAngleVelocityInstantaneous(Vector(0, 0, 0))
     end
   end
 end

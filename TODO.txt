@@ -1,8 +1,11 @@
 MUST:
 - Restrict players from undoing their sled while racing
 - Implement stats saving for the server -> map
-- Fix bug where a vehicle is teleported before the player
-- Add the original no-collide tool
+- Make the game mode configure the map items (flags)
+- Make props icy when they enter a start zone
+- Add a new function to stop all movement on a vehicle
+- Broadcast a message when a player breaks the map time record
+- Let the player know their broke their personal record
 
 NICE:
 - Optmize the scoreboard (it's a bit laggy)
@@ -17,11 +20,13 @@ NICE:
 - Remove materials fom the addon once they can be added into the map
 
 BONUS:
+- Make the game mode configure the map items (flags)
+- Find a solution to that crappy JitterEntity functionality
 - Custom prop protection (maybe)
 - Re-design the HUD
 - Add estimate for map change
 - Add a top left scoreboard of the last round
-- Add gamemode commands
+- Improve the gamemode commands
 - Add scoring system
 - Add translations
 - Timer should display an error when the map is not supported

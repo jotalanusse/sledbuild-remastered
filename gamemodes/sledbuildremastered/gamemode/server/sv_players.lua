@@ -32,10 +32,23 @@ function PLYS.Teleport(ply, target)
   end
 
   if (ply:IsPlayer()) then
-    ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
     ply:SetCollisionGroup(PLYS.COLLISIONS.DEFAULT)
     ply:SetPos(target)
+    
+    PLYS.Stop(ply)
+  end
+end
+
+-- Stop: Stops a player (removes all inertia)
+function PLYS.Stop(ply)
+  -- Just in case check that the player is valid
+  if (not ply:IsValid()) then
+    return
+  end
+
+  if (ply:IsPlayer()) then
     ply:GetPhysicsObject():SetVelocityInstantaneous(Vector(0, 0, 0))
+    ply:GetPhysicsObject():SetAngleVelocityInstantaneous(Vector(0, 0, 0))
   end
 end
 

@@ -14,6 +14,19 @@ MAP = {
 	}
 }
 
+-- Configure: Configure all our custom items (flags mostly)
+function MAP.Configure() end
+
+-- TODO: Find a solution to this
+-- JitterEntity: Jitter an entity so it's physics object is updated
+function MAP.JitterEntity(entity)
+	entity:SetPos(entity:GetPos() + Vector(0.001, 0.001, 0.001))
+
+	timer.Simple(0.001, function()
+		entity:SetPos(entity:GetPos() - Vector(0.001, 0.001, 0.001))
+	end)
+end
+
 -- CountByName: Count the amount of entities with a given name
 function MAP.CountByName(name)
 	local entities = ents.FindByName(name)
@@ -32,6 +45,9 @@ end
 function MAP.GatesOpen()
 	for _, v in pairs(ents.FindByName(MAP.ENTITIES.NAMES.GATE)) do
 		v:Fire("Disable", "", "0") -- Disable the gate with a delay of 0
+
+		-- We do this to get props in direct contact with the gate to update their physics
+		MAP.JitterEntity(v)
 	end
 end
 
