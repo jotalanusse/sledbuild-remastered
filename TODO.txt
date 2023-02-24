@@ -1,12 +1,8 @@
 MUST:
 - Restrict players from undoing their sled while racing
 - Implement stats saving for the server -> map
-- Fix bug where a vehicle is teleported before the player
-- Add the original no-collide tool
-- Add to the mapping guide that pusher should start disabled
 - Make the game mode configure the map items (flags)
 - Make props icy when they enter a start zone
-- Stop rotations when teleporting a vehicle
 - Add a new function to stop all movement on a vehicle
 - Broadcast a message when a player breaks the map time record
 - Let the player know their broke their personal record
