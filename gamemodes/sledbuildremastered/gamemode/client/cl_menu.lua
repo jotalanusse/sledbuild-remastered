@@ -58,7 +58,7 @@ end
 function MENU.CreateBaseFrame(width, heightPercentage)
   local frame = vgui.Create("DFrame")
   HLPS.DisableFrameInteraction(frame)
-
+  frame:SetName("Base")
   frame:SetSize(width, (ScrH() / 100) * heightPercentage)
   frame:Center()
   frame:MakePopup()
@@ -66,7 +66,6 @@ function MENU.CreateBaseFrame(width, heightPercentage)
   frame.Paint = function(self, w, h)
     draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
   end
-
   return frame
 end
 
@@ -74,9 +73,9 @@ end
 function MENU.CreateHeader(parent, heightPercentage)
   local borderFrame = vgui.Create("DFrame", parent)
   HLPS.DisableFrameInteraction(borderFrame)
-
+  borderFrame:SetName("HeaderBorder")
   borderFrame:SetSize(parent:GetWide(), (parent:GetTall() / 100) * heightPercentage)
-
+  
   borderFrame.Paint = function(self, w, h)
     draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.INVISIBLE)
 
@@ -96,13 +95,24 @@ function MENU.CreateHeader(parent, heightPercentage)
     borderFrame:GetTall() - MENU.HEADER.BORDER_SIZE
   )
   headerFrame:SetPos(MENU.HEADER.BORDER_SIZE, MENU.HEADER.BORDER_SIZE)
-
+  headerFrame:SetName("HeaderFrame")
+  -- Create Technical Information Texts
+  local FillerText = UI.CreateLabel(headerFrame,"You are now playing on...")
+  FillerText:SetContentAlignment(9)
+  local ServerName = UI.CreateLabel(headerFrame,game.GetMap())
+  ServerName:SetColor(COLORS.MAIN)
+  ServerName:SetFont(FONTS.ARIALLARGE)
+  ServerName:SetContentAlignment(6)
+  local ServerUptime = CurTime() / 60
+  local UptimeText = UI.CreateLabel(headerFrame,"Server uptime: "..math.floor(ServerUptime).." Minutes")
+  UptimeText:SetContentAlignment(3)
+  
   headerFrame.Paint = function(self, w, h)
     draw.RoundedBox(0, 0, 0, w, h, UI.COLORS.BACKGROUND)
   end
 
   local graphics = MENU.CreateHeaderGraphics(headerFrame, MENU.HEADER.GRAPHICS.WIDTH_PERCENTAGE)
-
+ 
   return borderFrame
 end
 
@@ -110,7 +120,7 @@ end
 function MENU.CreateHeaderGraphics(parent, widthPercentage)
   local frame = vgui.Create("DFrame", parent)
   HLPS.DisableFrameInteraction(frame)
-
+  frame:SetName("HeaderGraphics")
   frame:SetSize((parent:GetWide() / 100) * widthPercentage, parent:GetTall())
   frame:CenterVertical()
 
@@ -120,7 +130,6 @@ function MENU.CreateHeaderGraphics(parent, widthPercentage)
 
   local logo = MENU.CreateLogo(frame, 128, 64)
   local logoX, logoY, logoW, logoH = logo:GetBounds()
-
   local credit = MENU.CreateCredit(frame, 20, logoY + logoH)
 end
 
@@ -128,7 +137,7 @@ end
 function MENU.CreateLogo(parent, width, height)
   local frame = vgui.Create("DFrame", parent)
   HLPS.DisableFrameInteraction(frame)
-
+  frame:SetName("Logo")
   frame:SetSize(width, height)
   frame:Center()
 
@@ -147,7 +156,7 @@ end
 function MENU.CreateCredit(parent, height, offsetHeight)
   local frame = vgui.Create("DFrame", parent)
   HLPS.DisableFrameInteraction(frame)
-
+  frame:SetName("Credit")
   frame:SetSize(parent:GetWide(), height)
   frame:SetPos(0, offsetHeight)
   frame:CenterHorizontal()
@@ -157,6 +166,5 @@ function MENU.CreateCredit(parent, height, offsetHeight)
   end
 
   UI.CreateLabel(frame, "remake by jotalanusse")
-
   return frame
 end

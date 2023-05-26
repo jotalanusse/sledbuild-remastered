@@ -1,5 +1,6 @@
 FONTS = {
   DEFAULT = "SBR:Default",
+  ARIALLARGE = "SBR:ArialLarge", -- used for server text
   HUD = {
     SPEED = "SBR:HUD:Speed",
     TIMER = "SBR:HUD:Timer",
@@ -12,7 +13,11 @@ function CreateFonts()
     size = 17,
     weight = 500,
   })
-
+  surface.CreateFont("SBR:ArialLarge", {
+    font = "Arial",
+    size = 50,
+    weight = 500,
+  })
   surface.CreateFont("SBR:HUD:Speed", {
     font = "DSEG7 Classic",
     size = 42,
