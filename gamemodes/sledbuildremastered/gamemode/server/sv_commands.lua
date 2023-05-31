@@ -2,14 +2,21 @@ CMDS = {}
 
 -- Help: Displays a list of commands
 function CMDS.Help(ply)
-  
+  NET.SendGamemodeMessage(ply, "Available commands:", COLORS.MAIN)
+  NET.SendGamemodeMessage(ply, "/spawn - Teleport to the spawn", COLORS.MAIN)
+  NET.SendGamemodeMessage(ply, "/coinflip - Flip a coin", COLORS.MAIN)
 end
 
 -- CoinFlip: Flip a coin and broadcast the result
 function CMDS.CoinFlip(ply)
   local result = math.random(2) == 1 and "heads" or "tails"
 
-  NET.BroadcastGamemodeMessage(ply:Nick() .. " flipped a coin and got " .. result .. "!") -- TODO: Maybe chnage color?
+  NET.BroadcastCoinFlipMessage(ply, result)
+end
+
+-- Discord: Send the player a discord server message
+function CMDS.Discord(ply)
+  NET.SendDiscordMessage(ply)
 end
 
 -- Spawn: Bring back a player to the spawn
@@ -50,10 +57,14 @@ function CMDS.ManageChat(ply, text, teamChat)
     local arguments = string.Explode(" ", text)
     local command = string.sub(arguments[1], 2)
 
-    if (command == "spawn") then
+    if (command == "help") then
+      CMDS.Help(ply)
+    elseif (command == "spawn") then
       CMDS.Spawn(ply)
     elseif (command == "coinflip") then
       CMDS.CoinFlip(ply)
+    elseif (command == "discord") then
+      CMDS.Discord(ply)
     else
       NET.SendGamemodeMessage(ply, "Unknown command: /" .. command, COLORS.WARNING)
     end
