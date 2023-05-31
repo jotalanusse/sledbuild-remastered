@@ -1,6 +1,6 @@
 ---
 name: Bug report
-about: Create a report to help us improve SBR
+about: Create a bug report to help us improve SBR
 title: Something is not working as expected
 labels: bug
 assignees: jotalanusse
@@ -25,7 +25,8 @@ If applicable, add screenshots to help explain your problem.
 **GMod settings (please complete the following information):**
  - Resolution: [e.g. 1920x1080]
  - Map: [e.g. sbr_example.bsp]
- - Any other information you consider to be important
+ - GMod version: [e.g. 13.37.0]
+ - Other: [e.g. I'm using a controller]
 
 **Additional context**
 Add any other context about the problem here.
