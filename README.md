@@ -21,18 +21,8 @@ So this project aims to do the following key things:
 - Enable **mapping support** for a wide variety of maps.
 - Bring back the fun!
 
-## Mapping:
-If you would like to create a map for SBR you can follow [**this guide**](https://github.com/jotalanusse/sledbuild-remastered/wiki/Mapping-Guide) on how to do so. 
-
-## Server:
-For help on hosting a server for SBR I will be creating a guide on how to do so soon.
-
-## Contributing:
-Pull requests are more than welcome (specially with the UI). For major changes, **please open an issue first** to discuss what you would like to change.
-
-This is my first project ever on LUA, so a lot of things might not follow the best practices and standards. If you see something that could be improved, please let me know.
-
-Also, if you encountered a bug and wan’t to help fix it you can create a new issue, or if it’s a minor thing you can contact me directly on Discord @ **jotalanusse#1337**.
+## Wiki:
+If you want to know more about the gamemode, you can check the [**wiki**](https://github.com/jotalanusse/sledbuild-remastered/wiki) for more information. Here you can find a lot of useful information such as: map creation, server configuration, contribution guidelines, etc.
 
 ## Credit:
 Although SBR is a **complete rework** of the original LUA code, at the beginning a lot of inspiration was taken on how this gamemode was coded (I didn’t know anything and needed a lot of reference). So it’s the right thing to acknowledge the **original contributors**:

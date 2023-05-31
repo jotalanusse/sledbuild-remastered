@@ -62,3 +62,36 @@ net.Receive("PlayerFinishedMessage", function()
     )
   end
 end)
+
+-- Receives "CoinFlipMessage"
+net.Receive("CoinFlipMessage", function ()
+  local ply = net.ReadEntity()
+  local result = net.ReadString()
+
+  chat.AddText(
+    COLORS.MAIN,
+    CONSOLE.PREFIX,
+    COLORS.TEXT,
+    ply:Nick() .. " flipped a coin and got ",
+    COLORS.GOLDEN,
+    result,
+    COLORS.TEXT,
+    "!"
+  )
+end)
+
+-- Receives "DiscordMessage"
+net.Receive("DiscordMessage", function ()
+  chat.AddText(
+    COLORS.MAIN,
+    CONSOLE.PREFIX,
+    COLORS.TEXT,
+    "Join the official SBR discord server at ",
+    COLORS.GOLDEN,
+    DISCORD.URL,
+    COLORS.TEXT,
+    "!"
+  )
+
+  gui.OpenURL(DISCORD.URL)
+end)

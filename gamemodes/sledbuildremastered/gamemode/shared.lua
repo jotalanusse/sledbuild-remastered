@@ -18,6 +18,19 @@ COLORS = {
   ERROR = Color(230, 0, 0), -- Error color
 
   TEXT = Color(200, 200, 200), -- TODO: Find the best color for the console text
+
+  GOLDEN = Color(255, 215, 0), -- Golden color
+}
+
+-- Pulsating color settings
+PULSATING_COLOR_SETTINGS = {
+  FREQUENCY = 1,
+  MIN_ALPHA = 100,
+}
+
+-- Discord server settings
+DISCORD = {
+  URL = "https://discord.gg/tCVAAr3ZAU",
 }
 
 -- Console settings

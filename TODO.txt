@@ -8,7 +8,7 @@ MUST:
 - Let the player know their broke their personal record
 
 NICE:
-- Optmize the scoreboard (it's a bit laggy)
+- Optimize the scoreboard (it's a bit laggy)
 - Add auto map change
 - Avoid players boosting with the physgun
 - Reset server if more than 6 hours of uptime

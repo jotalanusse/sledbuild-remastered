@@ -1,9 +1,15 @@
 NET = {}
 
 -- Add the messages we are going to use
+-- Game mode
 util.AddNetworkString("GamemodeMessage")
 util.AddNetworkString("RaceStartMessage")
 util.AddNetworkString("PlayerFinishedMessage")
+
+-- Commands
+util.AddNetworkString("CoinFlipMessage")
+util.AddNetworkString("DiscordMessage")
+
 
 -- SendGamemodeMessage: Send a simple gamemode message to the client
 function NET.SendGamemodeMessage(ply, message, color)
@@ -38,5 +44,19 @@ function NET.BroadcastPlayerFinishedMessage(ply, position, time)
     net.WriteEntity(ply)
     net.WriteUInt(position, 16) -- There won't be more than 65535 players racing
     net.WriteFloat(time)
+  net.Send(ply)
+end
+
+-- BroadcastCoinFlipMessage: Broadcast a coin flip to all clients
+function NET.BroadcastCoinFlipMessage(ply, result)
+  net.Start("CoinFlipMessage")
+    net.WriteEntity(ply)
+    net.WriteString(result)
+  net.Broadcast()
+end
+
+-- SendDiscordMessage: Send a discord server message to the client
+function NET.SendDiscordMessage(ply)
+  net.Start("DiscordMessage")
   net.Send(ply)
 end

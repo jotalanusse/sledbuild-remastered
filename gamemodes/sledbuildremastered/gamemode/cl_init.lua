@@ -8,6 +8,7 @@ include("client/cl_net.lua")
 include("shared/sh_format.lua")
 
 -- Interface
+include("client/cl_colors.lua")
 include("client/cl_helpers.lua")
 include("client/cl_ui.lua")
 include("client/cl_fonts.lua")
