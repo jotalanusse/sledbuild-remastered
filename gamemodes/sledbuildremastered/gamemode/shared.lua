@@ -20,6 +20,11 @@ COLORS = {
   TEXT = Color(200, 200, 200), -- TODO: Find the best color for the console text
 }
 
+PULSATING_COLOR_SETTINGS = {
+  FREQUENCY = 1,
+  MIN_ALPHA = 100,
+}
+
 -- Console settings
 CONSOLE = {
   PREFIX = "[SBR] ", -- Prefix for all console messages

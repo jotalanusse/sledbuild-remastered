@@ -1,6 +1,4 @@
-HLPS = {
-
-}
+HLPS = {}
 
 function HLPS.DisableFrameInteraction(frame)
   frame:SetTitle("")
