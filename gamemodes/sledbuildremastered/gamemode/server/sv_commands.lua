@@ -5,7 +5,7 @@ function CMDS.Help(ply)
   NET.SendGamemodeMessage(ply, "Available commands:", COLORS.MAIN)
   NET.SendGamemodeMessage(ply, "/spawn - Teleport to the spawn", COLORS.MAIN)
   NET.SendGamemodeMessage(ply, "/coinflip - Flip a coin", COLORS.MAIN)
-  Net.SendGamemodeMessage(ply, "/discord - Get the discord server link", COLORS.MAIN)
+  NET.SendGamemodeMessage(ply, "/discord - Get the discord server link", COLORS.MAIN)
 end
 
 -- CoinFlip: Flip a coin and broadcast the result
@@ -33,6 +33,7 @@ function CMDS.Spawn(ply)
     if (RND.IsPlayerRacing(ply)) then
       RND.DisqualifyPlayer(ply, RND.round)
       PLYS.SetTeam(ply, TEAMS.BUILDING)
+      SPD.ResetPlayer(ply)
 
       -- A player might not be in their sled
       if (ply:InVehicle()) then

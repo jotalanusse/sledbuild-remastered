@@ -106,6 +106,12 @@ function PLYS.Death(ply)
     NET.SendGamemodeMessage(ply, "You have died while racing! What happened?", COLORS.WARNING)
 
     RND.RemovePlayer(ply, RND.round)
+
+    -- Update the player stats
+    ply:SetNWInt("SBR:Rounds", ply:GetNWInt("SBR:Rounds") + 1)
+    ply:SetNWInt("SBR:Losses", ply:GetNWInt("SBR:Losses") + 1)
+
+    SPD.ResetPlayer(ply)
   end
 
   -- We don't reset color because the round start already does that

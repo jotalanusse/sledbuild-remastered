@@ -8,6 +8,13 @@ function FRMT.FormatTime(time)
   return formattedTime
 end
 
+-- FormatTimeBig: Formats the time into a nice string
+function FRMT.FormatTimeBig(time)
+  local formattedTime = string.FormattedTime(time, "%02i:%02i:%02i")
+
+  return formattedTime
+end
+
 -- FormatSpeed: Formats the speed into a nice string
 function FRMT.FormatSpeed(mph)
   local formattedSpeed = string.format("%i MPH", mph)
