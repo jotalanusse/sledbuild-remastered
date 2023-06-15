@@ -5,6 +5,7 @@ NET = {}
 util.AddNetworkString("GamemodeMessage")
 util.AddNetworkString("RaceStartMessage")
 util.AddNetworkString("PlayerFinishedMessage")
+util.AddNetworkString("ServerUptimeWarningMessage")
 
 -- Commands
 util.AddNetworkString("CoinFlipMessage")
@@ -45,6 +46,14 @@ function NET.BroadcastPlayerFinishedMessage(ply, position, time)
     net.WriteUInt(position, 16) -- There won't be more than 65535 players racing
     net.WriteFloat(time)
   net.Send(ply)
+end
+
+-- BroadcastServerUptimeWarningMessage: Broadcast a server uptime warning to all clients
+function NET.BroadcastServerUptimeWarningMessage(first, periodic)
+  net.Start("ServerUptimeWarningMessage")
+    net.WriteUInt(first, 18)
+    net.WriteUInt(periodic, 18)
+  net.Broadcast()
 end
 
 -- BroadcastCoinFlipMessage: Broadcast a coin flip to all clients

@@ -63,6 +63,27 @@ net.Receive("PlayerFinishedMessage", function()
   end
 end)
 
+-- Receives "ServerUptimeWarningMessage"
+net.Receive("ServerUptimeWarningMessage", function ()
+  local first = net.ReadUInt(18)
+  local periodic = net.ReadUInt(18)
+
+  chat.AddText(
+    COLORS.WARNING,
+    CONSOLE.PREFIX,
+    COLORS.TEXT,
+    "Server has been running for  more than [",
+    COLORS.WARNING,
+    FRMT.FormatTimeBig(first),
+    COLORS.TEXT,
+    "], physics may start to break soon! This message will repeat every [",
+    COLORS.WARNING,
+    FRMT.FormatTimeBig(periodic),
+    COLORS.TEXT,
+    "] until the map changes, or the server restarts."
+  )
+end)
+
 -- Receives "CoinFlipMessage"
 net.Receive("CoinFlipMessage", function ()
   local ply = net.ReadEntity()
