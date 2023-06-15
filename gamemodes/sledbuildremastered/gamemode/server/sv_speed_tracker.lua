@@ -40,7 +40,7 @@ function SPD.UpdatePlayers()
       end
     else
       -- TODO: Maybe this is too resource intensive?
-      -- If yhe player is not racing current speed is 0
+      -- If the player is not racing current speed is 0
       SPD.UpdatePlayer(v, 0)
     end
   end
@@ -51,7 +51,12 @@ function SPD.UpdatePlayer(ply, speed)
   ply:SetNWInt("SBR:Speed", speed)
 
   -- Update the player's top speed as well if necessary
-  if (ply:GetNWInt("SBR:TopSpeed") < speed) then
+  if (speed > ply:GetNWInt("SBR:TopSpeed")) then
     ply:SetNWInt("SBR:TopSpeed", speed)
   end
+end
+
+-- ResetPlayer: Resets a player's speed
+function SPD.ResetPlayer(ply)
+  ply:SetNWInt("SBR:Speed", 0)
 end

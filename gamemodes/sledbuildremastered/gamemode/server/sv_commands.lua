@@ -33,6 +33,7 @@ function CMDS.Spawn(ply)
     if (RND.IsPlayerRacing(ply)) then
       RND.DisqualifyPlayer(ply, RND.round)
       PLYS.SetTeam(ply, TEAMS.BUILDING)
+      SPD.ResetPlayer(ply)
 
       -- A player might not be in their sled
       if (ply:InVehicle()) then
