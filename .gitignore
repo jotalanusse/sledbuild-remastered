@@ -16,3 +16,6 @@ output/*
 
 # Gmod .gma files
 *.gma
+
+# LuaCheck cache
+.luacheckcache
