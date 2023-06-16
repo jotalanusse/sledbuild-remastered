@@ -6,9 +6,11 @@ exclude_files = {
 -- Use cache
 cache = true
 
+allow_defined_top = true
+
 -- Define globals
 std = {
-  new_read_globals  = {
+  read_globals  = {
 
   }
 }
