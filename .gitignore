@@ -19,3 +19,6 @@ output/*
 
 # LuaCheck cache
 .luacheckcache
+
+# Teal build folder
+build/
