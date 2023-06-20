@@ -10,6 +10,17 @@ allow_defined_top = true
 
 -- Define globals
 std = {
+  globals = {
+    GM = {
+      fields = {
+        Name = {},
+        Author = {},
+        Email = {},
+        Website = {},
+        Initialize = {},
+      }
+    },
+  },
   read_globals = {
     ACT_180_LEFT = {},
     ACT_180_RIGHT = {},
