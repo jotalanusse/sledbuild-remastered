@@ -1,5 +1,9 @@
 return {
    source_dir = "src",
+   include_dir = {
+      "src/gamemodes/sledbuildremastered/gamemode",
+   },
+
    build_dir = "build",
 
    global_env_def = "declarations/declarations",
