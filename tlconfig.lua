@@ -7,6 +7,9 @@ return {
 
       "src/gamemodes/sledbuildremastered/gamemode/server/modules/effects",
       "src/gamemodes/sledbuildremastered/gamemode/server/modules/net",
+      "src/gamemodes/sledbuildremastered/gamemode/server/modules/npcs",
+      "src/gamemodes/sledbuildremastered/gamemode/server/modules/ragdolls",
+      "src/gamemodes/sledbuildremastered/gamemode/server/modules/sweps",
       "src/gamemodes/sledbuildremastered/gamemode/server/modules/uptime",
    },
 

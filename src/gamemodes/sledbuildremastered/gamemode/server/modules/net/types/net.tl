@@ -5,6 +5,7 @@ global record NET
 
   Initialize: function()
 
+  -- Functions
   AddNetworkStrings: function()
   BroadcastCoinFlipMessage: function(ply: Player, result: string)
   BroadcastGamemodeMessage: function(message: string, color: any) -- TODO: Add types

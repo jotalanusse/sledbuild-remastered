@@ -1,4 +1,4 @@
-global record EFFECTS
+global record NPCS
   record Config end
 
   CONFIG: Config
@@ -6,5 +6,5 @@ global record EFFECTS
   Initialize: function()
 
   -- Functions
-  DisableEffectSpawning: function(ply: Player): boolean
+  DisableNpcSpawning: function(ply: Player): boolean
 end
