@@ -2,6 +2,7 @@ return {
    source_dir = "src",
    include_dir = {
       "src/gamemodes/sledbuildremastered/gamemode",
+      "src/gamemodes/sledbuildremastered/gamemode/server/modules/uptime",
    },
 
    build_dir = "build",
