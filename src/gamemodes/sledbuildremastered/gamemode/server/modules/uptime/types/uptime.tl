@@ -1,4 +1,4 @@
-global record Uptime
+global record UPTIME
   record Config
     record Warnings
       INITIAL: integer
@@ -11,6 +11,8 @@ global record Uptime
   CONFIG: Config
 
   Initialize: function()
+
+  -- Functions
   FirstUptimeWarning: function()
   BroadcastWarningMessage: function()
 end

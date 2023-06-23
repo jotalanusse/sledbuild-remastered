@@ -11,7 +11,7 @@ include("shared/sh_format.lua")
 include("server/sv_zones.lua")
 include("server/sv_map.lua")
 include("server/sv_map_check.lua")
-require("server/modules/uptime/uptime")
+require("server/modules/uptime/index")
 
 -- general modules
 include("server/sv_cvars.lua")

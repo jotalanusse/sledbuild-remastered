@@ -1,4 +1,4 @@
-require("uptime")
+require("types/uptime")
 
 -- FirstUptimeWarning: Called when the first uptime warning is reached
 function UPTIME.FirstUptimeWarning()

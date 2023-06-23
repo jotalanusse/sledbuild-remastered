@@ -1,4 +1,4 @@
-require("uptime")
+require("types/uptime")
 
 -- BroadcastWarningMessage: Boradcasts a server uptime warning message to all players
 function UPTIME.BroadcastWarningMessage()
