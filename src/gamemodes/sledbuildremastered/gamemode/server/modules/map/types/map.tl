@@ -23,8 +23,14 @@ global record MAP
   Initialize: function()
 
   -- Functions
+  CloseGates: function()
   ConfigureMap: function()
   CountEntitiesByClass: function(class: string): integer
   CountEntitiesByName: function(name: string): integer
+  DisablePushers: function()
+  EnablePushers: function()
   JitterEntity: function(entity: EntityType)
+  OpenGates: function()
+  SelectRandomSpawn: function(): EntityType
+  SelectSpecificSpawn: function(name: string): EntityType
 end

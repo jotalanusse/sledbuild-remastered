@@ -6,6 +6,7 @@ end
 global record EntityType
   SetPos: function(entity: EntityType, position: VectorType)
   GetPos: function(entity: EntityType): VectorType
+  Fire: function(entity: EntityType, input: string, param: string, delay: number, activator: EntityType, caller: EntityType) -- TODO: Check how to accept any entity
 end
 
 global record ColorType
