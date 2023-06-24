@@ -6,5 +6,5 @@ global record RAGDOLLS
   Initialize: function()
 
   -- Functions
-  DisableRagdollSpawning: function(ply: Player): boolean
+  DisableRagdollSpawning: function(ply: PlayerType): boolean
 end

@@ -6,5 +6,5 @@ global record NPCS
   Initialize: function()
 
   -- Functions
-  DisableNpcSpawning: function(ply: Player): boolean
+  DisableNpcSpawning: function(ply: PlayerType): boolean
 end

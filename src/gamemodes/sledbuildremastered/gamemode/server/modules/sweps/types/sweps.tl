@@ -6,5 +6,5 @@ global record SWEPS
   Initialize: function()
 
   -- Functions
-  DisableSwepSpawning: function(ply: Player): boolean
+  DisableSwepSpawning: function(ply: PlayerType): boolean
 end

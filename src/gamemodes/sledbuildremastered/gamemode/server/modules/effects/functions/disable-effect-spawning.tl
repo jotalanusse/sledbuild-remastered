@@ -2,7 +2,7 @@ require("types/effects")
 require("types/net")
 
 -- DisableEffectSpawning: Disable effects from being spawned
-function EFFECTS.DisableEffectSpawning(ply: Player): boolean
+function EFFECTS.DisableEffectSpawning(ply: PlayerType): boolean
   if (ply:IsAdmin()) then
     return true
   end

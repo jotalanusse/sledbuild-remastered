@@ -2,7 +2,7 @@ require("types/net")
 require("config/config")
 
 -- BroadcastGamemodeMessage: Broadcast a simple gamemode message to all clients
-function NET.BroadcastGamemodeMessage(message: string, color: any)
+function NET.BroadcastGamemodeMessage(message: string, color: ColorType)
   color = color or CONFIG.COLORS.MAIN
 
   net.Start("GamemodeMessage")

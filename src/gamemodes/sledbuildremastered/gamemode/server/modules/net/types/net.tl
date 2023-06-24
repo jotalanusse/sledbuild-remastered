@@ -7,11 +7,11 @@ global record NET
 
   -- Functions
   AddNetworkStrings: function()
-  BroadcastCoinFlipMessage: function(ply: Player, result: string)
-  BroadcastGamemodeMessage: function(message: string, color: any) -- TODO: Add types
-  BroadcastPlayerFinishedMessage: function(ply: Player, position: integer, time: number)
+  BroadcastCoinFlipMessage: function(ply: PlayerType, result: string)
+  BroadcastGamemodeMessage: function(message: string, color: ColorType)
+  BroadcastPlayerFinishedMessage: function(ply: PlayerType, position: integer, time: number)
   BroadcastRaceStartMessage: function(round: integer)
   BroadcastServerUptimeWarningMessage: function(initial: integer, periodic: integer)
-  SendDiscordMessage: function(ply: Player)
-  SendGamemodeMessage: function(ply: Player, message: string, color: any) -- TODO: Add types
+  SendDiscordMessage: function(ply: PlayerType)
+  SendGamemodeMessage: function(ply: PlayerType, message: string, color: ColorType)
 end

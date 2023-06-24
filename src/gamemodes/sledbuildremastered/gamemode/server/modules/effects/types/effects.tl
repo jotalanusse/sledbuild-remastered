@@ -6,5 +6,5 @@ global record EFFECTS
   Initialize: function()
 
   -- Functions
-  DisableEffectSpawning: function(ply: Player): boolean
+  DisableEffectSpawning: function(ply: PlayerType): boolean
 end
