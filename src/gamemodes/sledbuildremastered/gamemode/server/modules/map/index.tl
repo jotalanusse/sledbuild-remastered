@@ -1,4 +1,4 @@
-require("types/map")
+require("server/modules/map/types/map")
 
 -- Configuration
 MAP.CONFIG = {
@@ -17,11 +17,11 @@ MAP.CONFIG = {
 }
 
 -- Functions
-require("functions/configure-map")
-require("functions/jitter-entity")
+require("server/modules/map/functions/configure-map")
+require("server/modules/map/functions/jitter-entity")
 
 -- Hooks
-require("hooks")
+require("server/modules/map/hooks")
 
 -- Initialize: Entry point for the module
 function MAP.Initialize() end

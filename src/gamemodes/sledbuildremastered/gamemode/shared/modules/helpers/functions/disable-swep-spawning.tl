@@ -1,4 +1,4 @@
-require("server/modules/sweps/types/sweps")
+require("types/sweps")
 require("server/modules/net/types/net")
 
 -- DisableSwepSpawning: Disable SWEPs from being spawned

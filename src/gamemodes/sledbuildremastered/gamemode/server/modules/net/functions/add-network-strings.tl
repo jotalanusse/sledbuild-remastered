@@ -1,4 +1,4 @@
-require("types/net")
+require("server/modules/net/types/net")
 
 -- AddNetworkStrings: Adds network strings
 function NET.AddNetworkStrings()

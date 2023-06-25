@@ -1,4 +1,4 @@
-require("types/map")
+require("server/modules/map/types/map")
 
 -- TODO: Find a solution to this
 -- JitterEntity: Jitter an entity so it's physics object is updated

@@ -1,13 +1,13 @@
-require("types/sweps")
+require("server/modules/sweps/types/sweps")
 
 -- Configuration
 SWEPS.CONFIG = {}
 
 -- Functions
-require("functions/disable-swep-spawning")
+require("server/modules/sweps/functions/disable-swep-spawning")
 
 -- Hooks
-require("hooks")
+require("server/modules/sweps/hooks")
 
 -- Initialize: Entry point for the module
 function SWEPS.Initialize() end

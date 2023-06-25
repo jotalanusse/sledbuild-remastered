@@ -1,4 +1,4 @@
-require("types/map")
+require("server/modules/map/types/map")
 
 -- CloseGates: Close all gates on the map
 function MAP.CloseGates()

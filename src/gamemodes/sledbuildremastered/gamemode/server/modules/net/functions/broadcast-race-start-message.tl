@@ -1,4 +1,4 @@
-require("types/net")
+require("server/modules/net/types/net")
 require("config/config")
 
 -- BroadcastRaceStartMessage: Broadcast a race start to all clients

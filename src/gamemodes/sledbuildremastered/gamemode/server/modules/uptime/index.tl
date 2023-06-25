@@ -1,4 +1,4 @@
-require("types/uptime")
+require("server/modules/uptime/types/uptime")
 
 -- Configuration
 UPTIME.CONFIG = {
@@ -9,11 +9,11 @@ UPTIME.CONFIG = {
 }
 
 -- Functions
-require("functions/broadcast-warning-message")
-require("functions/first-uptime-warning")
+require("server/modules/uptime/functions/broadcast-warning-message")
+require("server/modules/uptime/functions/first-uptime-warning")
 
 -- Hooks
-require("hooks")
+require("server/modules/uptime/hooks")
 
 -- Initialize: Entry point for the module
 function UPTIME.Initialize()

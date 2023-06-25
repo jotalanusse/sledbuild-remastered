@@ -1,5 +1,5 @@
-require("types/npcs")
-require("types/net")
+require("server/modules/npcs/types/npcs")
+require("server/modules/net/types/net")
 
 -- DisableNpcSpawning: Disable npcs from being spawned
 function NPCS.DisableNpcSpawning(ply: PlayerType): boolean

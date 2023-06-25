@@ -1,4 +1,4 @@
-require("types/map")
+require("server/modules/map/types/map")
 
 -- ConfigureMap: Configure all our custom items (flags mostly)
 function MAP.ConfigureMap()

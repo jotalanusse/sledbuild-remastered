@@ -32,20 +32,20 @@ TLS = {
   }
 }
 
--- RestrictToolgun: Restrict certain tools of the toolgun
-function TLS.RestrictToolgun(ply, trace, toolName)
-  if (ply:IsAdmin()) then
-    return true
-  end
+-- -- RestrictToolgun: Restrict certain tools of the toolgun
+-- function TLS.RestrictToolgun(ply, trace, toolName)
+--   if (ply:IsAdmin()) then
+--     return true
+--   end
 
-  if (TLS.RESTRICTED[toolName]) then
-    NET.SendGamemodeMessage(ply, "This tool is restricted.")
+--   if (TLS.RESTRICTED[toolName]) then
+--     NET.SendGamemodeMessage(ply, "This tool is restricted.")
 
-    return false
-  end
-end
+--     return false
+--   end
+-- end
 
-hook.Add("CanTool", "SBR:TLS:BlacklistToolgun", TLS.RestrictToolgun)
+-- hook.Add("CanTool", "SBR:TLS:BlacklistToolgun", TLS.RestrictToolgun)
 
 -- LimitToolgun: Limit what the player can affect with their toolgun
 function TLS.LimitToolgun(ply, trace)

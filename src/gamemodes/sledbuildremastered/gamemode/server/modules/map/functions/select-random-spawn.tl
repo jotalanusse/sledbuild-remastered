@@ -1,4 +1,4 @@
-require("types/map")
+require("server/modules/map/types/map")
 
 -- SelectRandomSpawn: Selects a random spawn position
 function MAP.SelectRandomSpawn(): EntityType

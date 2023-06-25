@@ -1,9 +1,9 @@
-local COLORS = require("configs/colors")
-local CONSOLE = require("configs/console")
-local DISCORD = require("configs/discord")
-local TEAMS = require("configs/teams")
+local COLORS = require("config/configs/colors")
+local CONSOLE = require("config/configs/console")
+local DISCORD = require("config/configs/discord")
+local TEAMS = require("config/configs/teams")
 
-global CONFIG = {
+global CONFIG <const> = {
   COLORS = COLORS, 
   CONSOLE = CONSOLE,
   DISCORD = DISCORD,

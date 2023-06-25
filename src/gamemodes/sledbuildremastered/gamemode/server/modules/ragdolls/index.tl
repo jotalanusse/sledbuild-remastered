@@ -1,13 +1,13 @@
-require("types/ragdolls")
+require("server/modules/ragdolls/types/ragdolls")
 
 -- Configuration
 RAGDOLLS.CONFIG = {}
 
 -- Functions
-require("functions/disable-ragdoll-spawning")
+require("server/modules/ragdolls/functions/disable-ragdoll-spawning")
 
 -- Hooks
-require("hooks")
+require("server/modules/ragdolls/hooks")
 
 -- Initialize: Entry point for the module
 function RAGDOLLS.Initialize() end

@@ -3,15 +3,18 @@ return {
    include_dir = {
       "src/gamemodes/sledbuildremastered/gamemode",
 
-      "src/gamemodes/sledbuildremastered/gamemode/config",
+      -- "src/gamemodes/sledbuildremastered/gamemode/config",
 
-      "src/gamemodes/sledbuildremastered/gamemode/server/modules/effects",
-      "src/gamemodes/sledbuildremastered/gamemode/server/modules/map",
-      "src/gamemodes/sledbuildremastered/gamemode/server/modules/net",
-      "src/gamemodes/sledbuildremastered/gamemode/server/modules/npcs",
-      "src/gamemodes/sledbuildremastered/gamemode/server/modules/ragdolls",
-      "src/gamemodes/sledbuildremastered/gamemode/server/modules/sweps",
-      "src/gamemodes/sledbuildremastered/gamemode/server/modules/uptime",
+      -- "src/gamemodes/sledbuildremastered/gamemode/shared/modules/helpers",
+
+      -- "src/gamemodes/sledbuildremastered/gamemode/server/modules/effects",
+      -- "src/gamemodes/sledbuildremastered/gamemode/server/modules/map",
+      -- "src/gamemodes/sledbuildremastered/gamemode/server/modules/net",
+      -- "src/gamemodes/sledbuildremastered/gamemode/server/modules/npcs",
+      -- "src/gamemodes/sledbuildremastered/gamemode/server/modules/ragdolls",
+      -- "src/gamemodes/sledbuildremastered/gamemode/server/modules/sweps",
+      -- "src/gamemodes/sledbuildremastered/gamemode/server/modules/tools",
+      -- "src/gamemodes/sledbuildremastered/gamemode/server/modules/uptime",
 
       "declarations",
    },

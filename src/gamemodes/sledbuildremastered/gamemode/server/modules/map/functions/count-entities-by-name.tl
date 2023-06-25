@@ -1,4 +1,4 @@
-require("types/map")
+require("server/modules/map/types/map")
 
 -- CountEntitiesByName: Count the amount of entities with a given name
 function MAP.CountEntitiesByName(name: string): integer

@@ -1,4 +1,4 @@
-require("types/map")
+require("server/modules/map/types/map")
 
 -- DisablePushers: Disable all pushers in the map
 function MAP.DisablePushers()

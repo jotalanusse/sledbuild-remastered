@@ -1,4 +1,4 @@
-require("types/net")
+require("server/modules/net/types/net")
 require("config/config")
 
 -- BroadcastGamemodeMessage: Broadcast a simple gamemode message to all clients

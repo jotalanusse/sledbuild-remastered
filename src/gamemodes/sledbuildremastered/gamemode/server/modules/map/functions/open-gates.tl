@@ -1,4 +1,4 @@
-require("types/map")
+require("server/modules/map/types/map")
 
 -- OpenGates: Open all gates on the map
 function MAP.OpenGates()

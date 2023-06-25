@@ -1,13 +1,13 @@
-require("types/npcs")
+require("server/modules/npcs/types/npcs")
 
 -- Configuration
 NPCS.CONFIG = {}
 
 -- Functions
-require("functions/disable-npc-spawning")
+require("server/modules/npcs/functions/disable-npc-spawning")
 
 -- Hooks
-require("hooks")
+require("server/modules/npcs/hooks")
 
 -- Initialize: Entry point for the module
 function NPCS.Initialize() end

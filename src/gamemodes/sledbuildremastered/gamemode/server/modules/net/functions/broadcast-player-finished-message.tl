@@ -1,4 +1,4 @@
-require("types/net")
+require("server/modules/net/types/net")
 require("config/config")
 
 -- BroadcastPlayerFinishedMessage: Broadcasts that a player has finished the race

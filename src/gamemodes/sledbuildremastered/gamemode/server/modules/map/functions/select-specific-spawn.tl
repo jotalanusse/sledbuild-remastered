@@ -1,4 +1,4 @@
-require("types/map")
+require("server/modules/map/types/map")
 
 -- SelectSpecificSpawn: Selects a specific spawn position
 function MAP.SelectSpecificSpawn(name: string): EntityType

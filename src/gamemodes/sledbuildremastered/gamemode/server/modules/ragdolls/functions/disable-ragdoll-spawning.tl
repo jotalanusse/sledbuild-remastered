@@ -1,5 +1,5 @@
-require("types/ragdolls")
-require("types/net")
+require("server/modules/ragdolls/types/ragdolls")
+require("server/modules/net/types/net")
 
 -- DisableRagdollSpawning: Disable ragdolls from being spawned
 function RAGDOLLS.DisableRagdollSpawning(ply: PlayerType): boolean

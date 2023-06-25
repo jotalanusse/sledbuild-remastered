@@ -1,4 +1,4 @@
-require("types/net")
+require("server/modules/net/types/net")
 require("config/config")
 
 -- BroadcastServerUptimeWarningMessage: Broadcast a server uptime warning to all clients

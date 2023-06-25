@@ -1,4 +1,4 @@
-require("types/net")
+require("server/modules/net/types/net")
 require("config/config")
 
 -- SendDiscordMessage: Send a discord server message to the client
