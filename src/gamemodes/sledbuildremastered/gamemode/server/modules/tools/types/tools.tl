@@ -8,5 +8,7 @@ global record TOOLS
   Initialize: function()
 
   -- Functions
-  RestrictTool: function(ply: PlayerType, trace: any, toolName: string): boolean -- TODO: Add types
+  LimitPhysgun: function(ply: PlayerType, ent: EntityType): boolean
+  LimitToolgun: function(ply: PlayerType, trace: TraceResultType): boolean
+  RestrictTool: function(ply: PlayerType, trace: TraceResultType, toolName: string): boolean
 end

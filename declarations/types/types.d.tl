@@ -6,6 +6,8 @@ global record EntityType
   SetPos: function(entity: EntityType, position: VectorType)
   GetPos: function(entity: EntityType): VectorType
   Fire: function(entity: EntityType, input: string, param: string, delay: number, activator: EntityType, caller: EntityType) -- TODO: Check how to accept any entity
+  GetClass: function(entity: EntityType): string
+  IsPlayer: function(entity: EntityType): boolean
 end
 
 global record ColorType
@@ -22,4 +24,8 @@ global record VectorType
 
   metamethod __add: function(VectorType, VectorType): VectorType
   metamethod __sub: function(VectorType, VectorType): VectorType
+end
+
+global record TraceResultType
+  Entity: EntityType
 end

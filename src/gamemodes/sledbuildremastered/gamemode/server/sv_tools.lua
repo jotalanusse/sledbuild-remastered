@@ -47,20 +47,20 @@ TLS = {
 
 -- hook.Add("CanTool", "SBR:TLS:BlacklistToolgun", TLS.RestrictToolgun)
 
--- LimitToolgun: Limit what the player can affect with their toolgun
-function TLS.LimitToolgun(ply, trace)
-  -- TODO: Make admins unable to accidentally affect world entities
+-- -- LimitToolgun: Limit what the player can affect with their toolgun
+-- function TLS.LimitToolgun(ply, trace)
+--   -- TODO: Make admins unable to accidentally affect world entities
 
-  -- Don't let player affect world entities or other players
-  local entityClass = trace.Entity:GetClass()
-  if (entityClass == "func_brush" or entityClass == "player") then
-    NET.SendGamemodeMessage(ply, "This entity cannot be toolgunned.")
+--   -- Don't let player affect world entities or other players
+--   local entityClass = trace.Entity:GetClass()
+--   if (entityClass == "func_brush" or entityClass == "player") then
+--     NET.SendGamemodeMessage(ply, "This entity cannot be toolgunned.")
 
-    return false
-  end
-end
+--     return false
+--   end
+-- end
 
-hook.Add("CanTool", "SBR:TLS:LimitToolgun", TLS.LimitToolgun)
+-- hook.Add("CanTool", "SBR:TLS:LimitToolgun", TLS.LimitToolgun)
 
 -- LimitPhysgun: Limit what the player can affect with their physgun
 function TLS.LimitPhysgun(ply, entity)
