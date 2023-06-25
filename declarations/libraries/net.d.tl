@@ -1,3 +1,5 @@
+require("types/player")
+
 global record net
   Start: function(_messageName: string, _unreliable: boolean)
   Send: function(_ply: PlayerType)
