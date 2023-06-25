@@ -12,6 +12,8 @@ return {
       "src/gamemodes/sledbuildremastered/gamemode/server/modules/ragdolls",
       "src/gamemodes/sledbuildremastered/gamemode/server/modules/sweps",
       "src/gamemodes/sledbuildremastered/gamemode/server/modules/uptime",
+
+      "declarations",
    },
 
    build_dir = "build",
