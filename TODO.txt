@@ -1,3 +1,6 @@
+URGENT:
+ - Find a way to prevent the player from spawning with their default loadout (GM:PlayerLoadout())
+
 MUST:
 - Restrict players from undoing their sled while racing
 - Implement stats saving for the server -> map
