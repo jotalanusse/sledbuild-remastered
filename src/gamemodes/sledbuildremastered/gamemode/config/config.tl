@@ -3,7 +3,8 @@ local CONSOLE = require("config/configs/console")
 local DISCORD = require("config/configs/discord")
 local TEAMS = require("config/configs/teams")
 
-global CONFIG <const> = {
+-- TODO: Check why when this is <const> the compiler throws an error
+global CONFIG = {
   COLORS = COLORS, 
   CONSOLE = CONSOLE,
   DISCORD = DISCORD,

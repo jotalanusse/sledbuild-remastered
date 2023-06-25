@@ -6,5 +6,5 @@ global record HELPERS
   Initialize: function()
 
   -- Functions
-  -- DisableSwepSpawning: function(ply: PlayerType): boolean
+  ArrayContainsString: function(array: {string}, value: string): boolean
 end

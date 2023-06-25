@@ -4,7 +4,7 @@ require("shared/modules/helpers/types/helpers")
 HELPERS.CONFIG = {}
 
 -- Functions
--- require("functions/disable-swep-spawning")
+require("shared/modules/helpers/functions/array-contains-string")
 
 -- Hooks
 require("shared/modules/helpers/hooks")
