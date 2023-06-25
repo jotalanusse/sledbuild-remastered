@@ -1,5 +1,6 @@
 URGENT:
  - Find a way to prevent the player from spawning with their default loadout (GM:PlayerLoadout())
+ - Disable prop spawning when in racing team
 
 MUST:
 - Restrict players from undoing their sled while racing
