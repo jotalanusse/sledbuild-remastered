@@ -2,8 +2,8 @@ require("server/modules/tools/types/tools")
 require("server/modules/net/types/net")
 require("shared/modules/helpers/types/helpers")
 
--- RestrictTool: Restrict a tool from being used.
-function TOOLS.RestrictTool(ply: PlayerType, _trace: TraceResultType, toolName: string): boolean
+-- RestrictTools: Restrict what tools can be used by players
+function TOOLS.RestrictTools(ply: PlayerType, _trace: TraceResultType, toolName: string): boolean
   if (ply:IsAdmin()) then
     return true
   end

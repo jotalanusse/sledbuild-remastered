@@ -10,5 +10,5 @@ global record TOOLS
   -- Functions
   LimitPhysgun: function(ply: PlayerType, ent: EntityType): boolean
   LimitToolgun: function(ply: PlayerType, trace: TraceResultType): boolean
-  RestrictTool: function(ply: PlayerType, trace: TraceResultType, toolName: string): boolean
+  RestrictTools: function(ply: PlayerType, trace: TraceResultType, toolName: string): boolean
 end

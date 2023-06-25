@@ -1,26 +1,26 @@
-PRPS = {
-  MAX_RADIUS = 128, -- Maximum radius of a prop before being considered too big
+-- PRPS = {
+--   MAX_RADIUS = 128, -- Maximum radius of a prop before being considered too big
 
-  -- Set the different collisions used by the props
-  COLLISIONS = {
-    DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
-  },
+--   -- Set the different collisions used by the props
+--   COLLISIONS = {
+--     DEFAULT = COLLISION_GROUP_DEBRIS_TRIGGER -- Same as debris, but hits triggers. Useful for an item that can be shot, but doesn't collide.
+--   },
 
-  -- Restricted props the players can't spawn
-  RESTRICTED = {
-    ["models/props_phx/oildrum001_explosive.mdl"] = true,
-    ["models/props_junk/gascan001a.mdl"] = true,
-    ["models/props_junk/propane_tank001a.mdl"] = true,
-    ["models/props_c17/oildrum001_explosive.mdl"] = true,
-    ["models/props_phx/misc/flakshell_big.mdl"] = true,
-    ["models/props_phx/ww2bomb.mdl"] = true,
-    ["models/props_phx/amraam.mdl"] = true,
-    ["models/props_phx/mk-82.mdl"] = true,
-    ["models/props_phx/ball.mdl"] = true,
-    ["models/props_phx/cannonball.mdl"] = true,
-    ["models/props_phx/torpedo.mdl"] = true
-  },
-}
+--   -- Restricted props the players can't spawn
+--   RESTRICTED = {
+--     ["models/props_phx/oildrum001_explosive.mdl"] = true,
+--     ["models/props_junk/gascan001a.mdl"] = true,
+--     ["models/props_junk/propane_tank001a.mdl"] = true,
+--     ["models/props_c17/oildrum001_explosive.mdl"] = true,
+--     ["models/props_phx/misc/flakshell_big.mdl"] = true,
+--     ["models/props_phx/ww2bomb.mdl"] = true,
+--     ["models/props_phx/amraam.mdl"] = true,
+--     ["models/props_phx/mk-82.mdl"] = true,
+--     ["models/props_phx/ball.mdl"] = true,
+--     ["models/props_phx/cannonball.mdl"] = true,
+--     ["models/props_phx/torpedo.mdl"] = true
+--   },
+-- }
 
 -- DisableRacingSpawning: Restricts a player from spawning props when racing
 function PRPS.DisableRacingSpawning(ply)
@@ -35,36 +35,36 @@ end
 
 hook.Add("PlayerSpawnObject", "SBR:PRPS:DisableRacingSpawning", PRPS.DisableRacingSpawning)
 
--- Spawned: Called when a player spawns a prop
-function PRPS.Spawned(ply, model, prop)
-  -- Limit the max size of the prop that can be spawned
-  if (prop:BoundingRadius() > PRPS.MAX_RADIUS) then
-    NET.SendGamemodeMessage(ply, "That prop is way too large for a sled.")
+-- -- Spawned: Called when a player spawns a prop
+-- function PRPS.Spawned(ply, model, prop)
+--   -- Limit the max size of the prop that can be spawned
+--   if (prop:BoundingRadius() > PRPS.MAX_RADIUS) then
+--     NET.SendGamemodeMessage(ply, "That prop is way too large for a sled.")
 
-    prop:Remove()
-  end
-end
+--     prop:Remove()
+--   end
+-- end
 
-hook.Add("PlayerSpawnedProp", "SBR:PRPS:Spawned", PRPS.Spawned)
+-- hook.Add("PlayerSpawnedProp", "SBR:PRPS:Spawned", PRPS.Spawned)
 
--- SetDefaultCollisions: Set the default collision for the spawned prop
-function PRPS.SetDefaultCollisions(ply, model, prop)
-  prop:SetCollisionGroup(PRPS.COLLISIONS.DEFAULT)
-end
+-- -- SetDefaultCollisions: Set the default collision for the spawned prop
+-- function PRPS.SetDefaultCollisions(ply, model, prop)
+--   prop:SetCollisionGroup(PRPS.COLLISIONS.DEFAULT)
+-- end
 
-hook.Add("PlayerSpawnedProp", "SBR:PRPS:SetDefaultCollisions", PRPS.SetDefaultCollisions)
+-- hook.Add("PlayerSpawnedProp", "SBR:PRPS:SetDefaultCollisions", PRPS.SetDefaultCollisions)
 
 -- Restrict: Restrict the spawning of certain props
-function PRPS.Restrict(ply, model)
-  if (ply:IsAdmin()) then
-    return true
-  end
+-- function PRPS.Restrict(ply, model)
+--   if (ply:IsAdmin()) then
+--     return true
+--   end
 
-  if (PRPS.RESTRICTED[model]) then
-    NET.SendGamemodeMessage(ply, "This prop is restricted.")
+--   if (PRPS.RESTRICTED[model]) then
+--     NET.SendGamemodeMessage(ply, "This prop is restricted.")
 
-    return false
-  end
-end
+--     return false
+--   end
+-- end
 
-hook.Add("PlayerSpawnProp", "SBR:PRPS:Block", PRPS.Restrict)
+-- hook.Add("PlayerSpawnProp", "SBR:PRPS:Block", PRPS.Restrict)
