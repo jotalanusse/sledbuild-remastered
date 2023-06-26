@@ -35,7 +35,9 @@ TOOLS.CONFIG = {
 }
 
 -- Functions
-require("server/modules/tools/functions/restrict-tool")
+require("server/modules/tools/functions/limit-physgun")
+require("server/modules/tools/functions/limit-toolgun")
+require("server/modules/tools/functions/restrict-tools")
 
 -- Hooks
 require("server/modules/tools/hooks")

@@ -22,6 +22,8 @@ WEAPONS.CONFIG = {
 }
 
 -- Functions
+require("server/modules/weapons/functions/restrict-weapon-pickup")
+require("server/modules/weapons/functions/set-player-loadout")
 require("server/modules/weapons/functions/strip-player-loadout")
 
 -- Hooks

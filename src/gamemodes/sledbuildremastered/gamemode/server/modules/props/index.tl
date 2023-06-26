@@ -22,7 +22,9 @@ PROPS.CONFIG = {
 }
 
 -- Functions
--- require("server/modules/sweps/functions/disable-swep-spawning")
+require("server/modules/props/functions/restrict-big-props")
+require("server/modules/props/functions/restrict-props")
+require("server/modules/props/functions/set-default-prop-collisions")
 
 -- Hooks
 require("server/modules/props/hooks")

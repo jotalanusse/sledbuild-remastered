@@ -1,3 +1,3 @@
 require("server/modules/uptime/types/uptime")
 
-hook.Add("PlayerInitialSpawn", "SBR:UPTIME:Bootstrap", UPTIME.Initialize)
+hook.Add("PlayerInitialSpawn", "SBR:UPTIME:Initialize", UPTIME.Initialize)

@@ -17,8 +17,16 @@ MAP.CONFIG = {
 }
 
 -- Functions
+require("server/modules/map/functions/close-gates")
 require("server/modules/map/functions/configure-map")
+require("server/modules/map/functions/count-entities-by-class")
+require("server/modules/map/functions/count-entities-by-name")
+require("server/modules/map/functions/disable-pushers")
+require("server/modules/map/functions/enable-pushers")
 require("server/modules/map/functions/jitter-entity")
+require("server/modules/map/functions/open-gates")
+require("server/modules/map/functions/select-random-spawn")
+require("server/modules/map/functions/select-specific-spawn")
 
 -- Hooks
 require("server/modules/map/hooks")

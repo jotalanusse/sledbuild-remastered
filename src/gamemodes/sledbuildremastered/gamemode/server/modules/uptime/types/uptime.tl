@@ -13,6 +13,6 @@ global record UPTIME
   Initialize: function()
 
   -- Functions
-  FirstUptimeWarning: function()
   BroadcastWarningMessage: function()
+  FirstUptimeWarning: function()
 end

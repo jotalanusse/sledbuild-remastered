@@ -3,7 +3,7 @@ require("server/modules/net/types/net")
 -- Configuration
 NET.CONFIG = {}
 
--- server/modules/net/functions
+-- Functions
 require("server/modules/net/functions/add-network-strings")
 require("server/modules/net/functions/broadcast-coin-flip-message")
 require("server/modules/net/functions/broadcast-gamemode-message")
