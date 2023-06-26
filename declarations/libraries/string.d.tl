@@ -1,0 +1,3 @@
+global record string
+  
+end
