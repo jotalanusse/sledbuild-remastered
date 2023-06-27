@@ -3,6 +3,7 @@ return {
    include_dir = {
       "src/gamemodes/sledbuildremastered/gamemode",
       "declarations",
+      "tools/scripts",
    },
 
    build_dir = "build",

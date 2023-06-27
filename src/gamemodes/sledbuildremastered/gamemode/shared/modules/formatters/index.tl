@@ -4,7 +4,11 @@ require("shared/modules/formatters/types/formatters")
 FORMATTERS.CONFIG = {}
 
 -- Functions
-require("shared/modules/formatters/functions/00000000000")
+require("shared/modules/formatters/functions/format-hud-speed")
+require("shared/modules/formatters/functions/format-hud-timer")
+require("shared/modules/formatters/functions/format-mph")
+require("shared/modules/formatters/functions/format-race-time")
+require("shared/modules/formatters/functions/format-time")
 
 -- Hooks
 require("shared/modules/formatters/hooks")

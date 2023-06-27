@@ -1,5 +1,7 @@
 require("types/color")
 require("types/entity")
+require("types/formatted-time")
+require("types/gm")
 require("types/player")
 require("types/trace-result")
 require("types/vector")

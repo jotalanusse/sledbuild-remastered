@@ -1,5 +1,6 @@
-require("types/color")
-require("types/vector")
+global GM: GMType
+
+global DeriveGamemode: function(_base : string)
 
 global include: function(_fileName: string): any
 global AddCSLuaFile: function(_fileName: string)

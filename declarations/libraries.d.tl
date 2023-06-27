@@ -1,6 +1,7 @@
 require("libraries/ents")
 require("libraries/hook")
 require("libraries/net")
+require("libraries/string")
 require("libraries/team")
 require("libraries/timer")
 require("libraries/util")

@@ -28,6 +28,8 @@ require("shared/modules/teams/functions/setup-teams")
 require("shared/modules/teams/hooks")
 
 -- Initialize: Entry point for the module
-function TEAMS.Initialize() end
+function TEAMS.Initialize()
+  TEAMS.SetupTeams()
+end
 
 TEAMS.Initialize()
