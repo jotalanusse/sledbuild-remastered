@@ -9,7 +9,7 @@ local function processFile(file: string)
   print("Processing: " .. file)
   
   local parentDir = getFileParentDirectory(file)
-  if parentDir == "functions" then
+  if parentDir == "functions" then -- TODO: FFIXME: This is a hack to prevent the functions directory from being processed :/
     deleteLinesWithRequire(file)
   end
   
