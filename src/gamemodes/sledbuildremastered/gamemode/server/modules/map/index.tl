@@ -33,5 +33,3 @@ require("server/modules/map/hooks")
 
 -- Initialize: Entry point for the module
 function MAP.Initialize() end
-
-MAP.Initialize()

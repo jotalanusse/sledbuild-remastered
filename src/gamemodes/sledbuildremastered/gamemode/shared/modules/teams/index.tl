@@ -31,5 +31,3 @@ require("shared/modules/teams/hooks")
 function TEAMS.Initialize()
   TEAMS.SetupTeams()
 end
-
-TEAMS.Initialize()

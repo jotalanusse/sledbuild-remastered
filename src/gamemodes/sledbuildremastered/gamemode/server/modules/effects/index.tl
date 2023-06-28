@@ -11,5 +11,3 @@ require("server/modules/effects/hooks")
 
 -- Initialize: Entry point for the module
 function EFFECTS.Initialize() end
-
-EFFECTS.Initialize()

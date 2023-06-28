@@ -31,5 +31,3 @@ require("server/modules/props/hooks")
 
 -- Initialize: Entry point for the module
 function PROPS.Initialize() end
-
-PROPS.Initialize()

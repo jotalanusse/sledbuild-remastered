@@ -11,5 +11,3 @@ require("server/modules/npcs/hooks")
 
 -- Initialize: Entry point for the module
 function NPCS.Initialize() end
-
-NPCS.Initialize()

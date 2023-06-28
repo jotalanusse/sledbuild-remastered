@@ -11,5 +11,3 @@ require("server/modules/sweps/hooks")
 
 -- Initialize: Entry point for the module
 function SWEPS.Initialize() end
-
-SWEPS.Initialize()

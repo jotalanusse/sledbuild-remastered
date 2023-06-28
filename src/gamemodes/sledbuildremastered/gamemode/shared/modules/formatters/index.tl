@@ -15,5 +15,3 @@ require("shared/modules/formatters/hooks")
 
 -- Initialize: Entry point for the module
 function FORMATTERS.Initialize() end
-
-FORMATTERS.Initialize()

@@ -31,5 +31,3 @@ require("server/modules/weapons/hooks")
 
 -- Initialize: Entry point for the module
 function WEAPONS.Initialize() end
-
-WEAPONS.Initialize()

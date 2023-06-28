@@ -19,5 +19,3 @@ require("server/modules/uptime/hooks")
 function UPTIME.Initialize()
   timer.Create("SBR:FirstUptimeWarning", UPTIME.CONFIG.WARNINGS.INITIAL, 1, UPTIME.FirstUptimeWarning)
 end
-
-UPTIME.Initialize()

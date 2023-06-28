@@ -20,5 +20,3 @@ require("server/modules/net/hooks")
 function NET.Initialize()
   NET.AddNetworkStrings()
 end
-
-NET.Initialize()

@@ -11,5 +11,3 @@ require("server/modules/ragdolls/hooks")
 
 -- Initialize: Entry point for the module
 function RAGDOLLS.Initialize() end
-
-RAGDOLLS.Initialize()

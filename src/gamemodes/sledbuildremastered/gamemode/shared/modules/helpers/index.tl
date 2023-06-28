@@ -11,5 +11,3 @@ require("shared/modules/helpers/hooks")
 
 -- Initialize: Entry point for the module
 function HELPERS.Initialize() end
-
-HELPERS.Initialize()

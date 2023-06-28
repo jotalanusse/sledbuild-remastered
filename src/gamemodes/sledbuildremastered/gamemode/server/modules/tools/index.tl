@@ -44,5 +44,3 @@ require("server/modules/tools/hooks")
 
 -- Initialize: Entry point for the module
 function TOOLS.Initialize() end
-
-TOOLS.Initialize()
