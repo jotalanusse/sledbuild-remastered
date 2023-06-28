@@ -17,5 +17,7 @@ GM.Website = "jotalanusse.github.io"
 
 -- Initialize
 function GM.Initialize()
+  FORMATTERS.Initialize()
+  HELPERS.Initialize()
   TEAMS.Initialize()
 end
