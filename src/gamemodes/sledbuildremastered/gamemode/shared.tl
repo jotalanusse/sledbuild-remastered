@@ -2,9 +2,9 @@
 require("config/config")
 
 -- Modules
-require("shared/modules/formatters/types/formatters")
-require("shared/modules/helpers/types/helpers")
-require("shared/modules/teams/types/teams")
+require("shared/modules/formatters/index")
+require("shared/modules/helpers/index")
+require("shared/modules/teams/index")
 
 -- Derive from sandbox
 DeriveGamemode("sandbox")
@@ -16,4 +16,6 @@ GM.Email   = "jotalanusse@gmail.com"
 GM.Website = "jotalanusse.github.io"
 
 -- Initialize
--- TODO: Implement
+function GM.Initialize()
+  TEAMS.Initialize()
+end

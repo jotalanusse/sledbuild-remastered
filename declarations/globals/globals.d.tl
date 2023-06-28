@@ -1,5 +1,7 @@
 global GM: GMType
 
+global PrintTable: function(tableToPrint: any, indent: integer, done: table) -- TODO: Add types
+
 global DeriveGamemode: function(_base : string)
 
 global include: function(_fileName: string): any

@@ -8,4 +8,6 @@ global record GMType
   TeamBase: boolean
   ThisClass: string
   BaseClass: table
+
+  Initialize: function()
 end
