@@ -1,4 +1,6 @@
+require("enums/material-name")
 require("enums/network-string")
+require("enums/prop-class")
 require("enums/prop-model")
 require("enums/tool-name")
 require("enums/weapon-class")

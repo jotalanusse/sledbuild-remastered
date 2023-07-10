@@ -5,7 +5,7 @@ function VEHICLES.IsSled(entity: EntityType): boolean
   local constrainedEntities = constraint.GetAllConstrainedEntities(entity)
 
   for _, v in ipairs(constrainedEntities) do
-    -- If the entities contain a seat they are a sled -- TODO: Expand the options searched for
+    -- If the entities contain a seat they are a sled -- TODO: Expand the options searched for (tf does this mean?)
     if (VEHICLES.IsRacingSeat(v)) then
       return true
     end

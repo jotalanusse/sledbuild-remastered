@@ -5,12 +5,12 @@ global record VEHICLES
     end
 
     record Materials
-      BUILDING: string
-      RACING: string
+      BUILDING: MaterialNameEnum
+      RACING: MaterialNameEnum
     end
 
-    DEFAULT_SEAT_CLASS: string
-    ALLOWED_VEHICLES: {string}
+    DEFAULT_SEAT_CLASS: PropClassEnum -- TODO: Chek in depth how this is used
+    ALLOWED_VEHICLES: {PropModelEnum}
     COLLISIONS: Collisions
     MATERIALS: Materials
   end
