@@ -7,8 +7,8 @@ function MAP_CHECK.CheckMap()
     return
   end
 
-  for _, name in pairs(MAP.MAP_CHECKS) do
-    mapCheck:Check()
+  for _, v in pairs(MAP.CONFIG.ENTITIES.NAMES) do
+    
   end
 
   MAP_CHECK.STATE.WAS_MAP_CHECKED = true
