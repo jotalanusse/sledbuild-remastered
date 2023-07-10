@@ -1,6 +1,6 @@
 global record TOOLS
   record Config
-    RESTRICTED: {string}
+    RESTRICTED: {ToolNameEnum}
   end
 
   CONFIG: Config

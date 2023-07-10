@@ -3,7 +3,7 @@ require("config/config")
 
 -- BroadcastCoinFlipMessage: Broadcast a coin flip to all clients
 function NET.BroadcastCoinFlipMessage(ply: PlayerType, result: string)
-  net.Start("CoinFlipMessage")
+  net.Start("SBR:CoinFlipResultMessage")
     net.WriteEntity(ply)
     net.WriteString(result)
   net.Broadcast()

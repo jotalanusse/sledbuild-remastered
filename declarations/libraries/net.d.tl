@@ -1,5 +1,5 @@
 global record net
-  Start: function(messageName: string, unreliable: boolean)
+  Start: function(messageName: NetworkStringEnum, unreliable: boolean)
   Send: function(ply: PlayerType)
   Broadcast: function()
 

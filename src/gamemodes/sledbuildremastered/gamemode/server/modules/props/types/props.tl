@@ -4,9 +4,9 @@ global record PROPS
       DEFAULT: integer
     end
 
-    MAX_RADIUS: number
+    MAX_RADIUS: integer
     COLLISIONS: Collisions
-    RESTRICTED: {string}
+    RESTRICTED: {PropModelEnum}
   end
 
   CONFIG: Config

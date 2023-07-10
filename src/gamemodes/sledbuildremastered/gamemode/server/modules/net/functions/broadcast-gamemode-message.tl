@@ -5,7 +5,7 @@ require("config/config")
 function NET.BroadcastGamemodeMessage(message: string, color: ColorType)
   color = color or CONFIG.COLORS.MAIN
 
-  net.Start("GamemodeMessage")
+  net.Start("SBR:GamemodeMessage")
     net.WriteColor(color)
     net.WriteString(message)
   net.Broadcast()

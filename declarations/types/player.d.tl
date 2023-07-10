@@ -6,7 +6,7 @@ global record PlayerType
   IsAdmin: function(ply: PlayerType): boolean
   StripAmmo: function(ply: PlayerType)
   StripWeapons: function(ply: PlayerType)
-  Give: function(ply: PlayerType, weaponClassName: string, bNoAmmo: boolean)
+  Give: function(ply: PlayerType, weaponClassName: WeaponClassEnum, bNoAmmo: boolean)
 
   -- EntityType methods: This will be removed when we can extend the EntityType class
   IsValid: function(ply: PlayerType): boolean

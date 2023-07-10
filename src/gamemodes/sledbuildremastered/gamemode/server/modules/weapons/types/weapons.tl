@@ -1,8 +1,8 @@
 global record WEAPONS
   record Config
     record Loadouts
-      DEFAULT: {string}
-      ADMIN: {string}
+      DEFAULT: {WeaponClassEnum}
+      ADMIN: {WeaponClassEnum}
     end
 
     LOADOUTS: Loadouts
@@ -14,6 +14,6 @@ global record WEAPONS
 
   -- Functions
   RestrictWeaponPickup: function(ply: PlayerType, weapon: WeaponType): boolean
-  SetPlayerLoadout: function(ply: PlayerType, loadout: {string})
+  SetPlayerLoadout: function(ply: PlayerType, loadout: {WeaponClassEnum})
   StripPlayerLoadout: function(ply: PlayerType)
 end

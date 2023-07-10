@@ -5,10 +5,10 @@ function NET.AddNetworkStrings()
   -- Game mode
   util.AddNetworkString("SBR:GamemodeMessage")
   util.AddNetworkString("SBR:RaceStartMessage")
-  util.AddNetworkString("SBR:PlayerFinishedMessage")
+  util.AddNetworkString("SBR:PlayerFinishedRaceMessage")
   util.AddNetworkString("SBR:ServerUptimeWarningMessage")
 
   -- Commands
-  util.AddNetworkString("SBR:CoinFlipMessage")
+  util.AddNetworkString("SBR:CoinFlipResultMessage")
   util.AddNetworkString("SBR:DiscordMessage")
 end
