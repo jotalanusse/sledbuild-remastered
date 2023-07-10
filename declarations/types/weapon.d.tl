@@ -1,3 +1,5 @@
-global record WeaponType 
-  GetClass: function(entity: WeaponType): string -- TODO: This is from the EntityType
+global record WeaponType
+
+  -- EntityType methods: This will be removed when we can extend the EntityType class
+  GetClass: function(weapon: WeaponType): string
 end

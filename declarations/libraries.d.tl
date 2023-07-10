@@ -1,3 +1,4 @@
+require("libraries/constraint")
 require("libraries/ents")
 require("libraries/hook")
 require("libraries/net")

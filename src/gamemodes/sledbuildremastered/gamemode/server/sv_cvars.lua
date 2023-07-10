@@ -1,10 +1,10 @@
-CVRS = {
-  NAMES = {
-    RACE_TIME = "sbr_race_time",
-    START_TIME = "sbr_start_time",
-    WAIT_TIME = "sbr_wait_time",
-  }
-}
+-- CVRS = {
+--   NAMES = {
+--     RACE_TIME = "sbr_race_time",
+--     START_TIME = "sbr_start_time",
+--     WAIT_TIME = "sbr_wait_time",
+--   }
+-- }
 
 -- UpdateRaceTime: Updates the amount of time each race takes
 function CVRS.UpdateRaceTime(time)

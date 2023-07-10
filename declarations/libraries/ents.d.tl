@@ -1,4 +1,4 @@
 global record ents
-  FindByName: function(_name: string): {EntityType}
-  FindByClass: function(_class: string): {EntityType}
+  FindByName: function(name: string): {EntityType}
+  FindByClass: function(class: string): {EntityType}
 end

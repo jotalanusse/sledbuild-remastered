@@ -1,15 +1,17 @@
+require("server/modules/map/enums/map-entity-name")
+
 global record MAP
   record Config
     record Entities
       record Names
-        GATE: string
-        PUSHER: string
-        SPAWN_1: string
-        SPAWN_2: string
-        SPAWN_3: string
-        SPAWN: string
-        START_ZONE_CLASS: string
-        FINISH_ZONE_CLASS: string
+        GATE: MapEntityName
+        PUSHER: MapEntityName
+        SPAWN_1: MapEntityName
+        SPAWN_2: MapEntityName
+        SPAWN_3: MapEntityName
+        SPAWN: MapEntityName
+        START_ZONE_CLASS: MapEntityName
+        FINISH_ZONE_CLASS: MapEntityName
       end
 
       NAMES: Names

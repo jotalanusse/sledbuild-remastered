@@ -1,4 +1,4 @@
 global record timer
-  Create: function(_identifier: string, _delay: number, _repetitions: number, _func: function)
-  Simple: function(_delay: number, _func: function)
+  Create: function(identifier: string, delay: number, repetitions: number, func: function)
+  Simple: function(delay: number, func: function)
 end

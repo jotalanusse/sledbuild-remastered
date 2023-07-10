@@ -1,3 +1,3 @@
 global record util
-  AddNetworkString: function(_str: string)
+  AddNetworkString: function(str: string)
 end

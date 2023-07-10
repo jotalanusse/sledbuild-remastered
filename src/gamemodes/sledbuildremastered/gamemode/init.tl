@@ -1,13 +1,21 @@
+-- Shared
 require("shared")
 
--- -- Shared functionality
--- include("shared.lua")
+-- Network
+require("server/modules/net/index")
 
--- -- Network
--- include("server/sv_net.lua")
-
--- -- Formatting
--- include("shared/sh_format.lua")
+-- General
+-- require("server/modules/cvars/index")
+require("server/modules/effects/index")
+require("server/modules/map/index")
+require("server/modules/npcs/index")
+require("server/modules/props/index")
+require("server/modules/ragdolls/index")
+require("server/modules/sweps/index")
+require("server/modules/tools/index")
+require("server/modules/uptime/index")
+-- require("server/modules/vehicles/index")
+require("server/modules/weapons/index")
 
 -- -- Map
 -- include("server/sv_zones.lua")
