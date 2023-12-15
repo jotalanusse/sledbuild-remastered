@@ -23,4 +23,3 @@ end
 function UPTIME.BroadcastWarningMessage()
   NET.BroadcastServerUptimeWarningMessage(UPTIME.WARNINGS.FIRST, UPTIME.WARNINGS.PERIODIC)
 end
-
