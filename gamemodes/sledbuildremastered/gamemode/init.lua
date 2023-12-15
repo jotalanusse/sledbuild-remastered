@@ -38,6 +38,7 @@ AddCSLuaFile("shared/sh_format.lua")
 AddCSLuaFile("cl_init.lua")
 AddCSLuaFile("client/cl_net.lua")
 
+AddCSLuaFile("client/cl_colors.lua")
 AddCSLuaFile("client/cl_ui.lua")
 AddCSLuaFile("client/cl_helpers.lua")
 AddCSLuaFile("client/cl_fonts.lua")
