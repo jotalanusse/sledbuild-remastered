@@ -24,6 +24,9 @@ So this project aims to do the following key things:
 ## Wiki:
 If you want to know more about the gamemode, you can check the [**wiki**](https://github.com/jotalanusse/sledbuild-remastered/wiki) for more information. Here you can find a lot of useful information such as: map creation, server configuration, contribution guidelines, etc.
 
+## Development
+SBR is being developed in my spare time, that means that I can't dedicate all my time to it. The development of this project may be slow, but I'll try to keep it as active as possible. You can track the current progress of the project in Notion [**here**](https://sled-build-remastered.notion.site/c87702d5c2184d668687e01fc166d550?v=77a44b0a04ab45a092b2b09872843b5f).
+
 ## Credit:
 Although SBR is a **complete rework** of the original LUA code, at the beginning a lot of inspiration was taken on how this gamemode was coded (I didn’t know anything and needed a lot of reference). So it’s the right thing to acknowledge the **original contributors**:
 
