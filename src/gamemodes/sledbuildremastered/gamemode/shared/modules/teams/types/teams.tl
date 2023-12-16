@@ -4,6 +4,7 @@ global record TEAMS
       index: integer
       name: string
       color: ColorType
+      isJoinable: boolean
     end
 
     TEAMS: {string:Team}

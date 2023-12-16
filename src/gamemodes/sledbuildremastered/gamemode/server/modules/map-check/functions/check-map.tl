@@ -3,7 +3,7 @@ require("server/modules/map/types/map")
 
 -- CheckMap: Chek the map and save information about missing parts
 function MAP_CHECK.CheckMap()
-  if MAP_CHECK.STATE.WAS_MAP_CHECKED then
+  if MAP_CHECK.state.wasMapChecked then
     return
   end
 
@@ -11,5 +11,5 @@ function MAP_CHECK.CheckMap()
     
   end
 
-  MAP_CHECK.STATE.WAS_MAP_CHECKED = true
+  MAP_CHECK.state.wasMapChecked = true
 end

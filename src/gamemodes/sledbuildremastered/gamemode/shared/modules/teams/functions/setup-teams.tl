@@ -5,6 +5,6 @@ function TEAMS.SetupTeams()
   local teams = TEAMS.CONFIG.TEAMS
 
   for _, v in pairs(teams) do
-    team.SetUp(v.index, v.name, v.color)
+    team.SetUp(v.index, v.name, v.color, v.isJoinable)
   end
 end

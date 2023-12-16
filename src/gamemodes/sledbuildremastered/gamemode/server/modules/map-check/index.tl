@@ -4,9 +4,9 @@ require("server/modules/map-check/types/map-check")
 MAP_CHECK.CONFIG = {}
 
 -- State
-MAP_CHECK.STATE = {
-  IS_MAP_COMPLETE = false,
-  WAS_MAP_CHECKED = false,
+MAP_CHECK.state = {
+  isMapComplete = false,
+  wasMapChecked = false,
 }
 
 -- Functions

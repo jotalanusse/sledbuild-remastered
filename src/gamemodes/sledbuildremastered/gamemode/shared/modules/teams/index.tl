@@ -7,16 +7,19 @@ TEAMS.CONFIG = {
       index = 1,
       name = "Builders",
       color = Color(255, 255, 255), -- TODO: Find a real color
+      isJoinable = false,
     },
     RACERS = {
       index = 2,
       name = "Racers",
       color = Color(255, 255, 255), -- TODO: Find a real color
+      isJoinable = false,
     },
     SPECTATORS = {
       index = 3,
       name = "Spectators",
       color = Color(255, 255, 255), -- TODO: Find a real color
+      isJoinable = false,
     },
   }
 }

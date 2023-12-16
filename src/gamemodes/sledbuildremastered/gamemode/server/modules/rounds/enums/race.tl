@@ -1,4 +1,4 @@
-global enum MapEntityNameEnum
+global enum RaceEnum
   "sbr_gate"
   "sbr_pusher"
   "sbr_spawn_1"

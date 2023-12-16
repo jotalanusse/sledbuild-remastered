@@ -1,7 +1,7 @@
-require("server/modules/map/enums/map-entity-reference-type")
+require("server/modules/map/enums/reference-type")
 require("server/modules/map/enums/map-entity-name")
 
-global MapEntityNameToReferenceType <total>: {MapEntityName:MapEntityReferenceType} = {
+global MapEntityNameToReferenceTypeEnum <total>: {MapEntityNameEnum:ReferenceTypeEnum} = {
   ["sbr_gate"] = "name",
   ["sbr_pusher"] = "name",
   ["sbr_spawn_1"] = "name",
